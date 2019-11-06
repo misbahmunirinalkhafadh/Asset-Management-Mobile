@@ -25,12 +25,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#C6C6C6"
                 android:text="Lorem ipsum dolor"
                 android:gravity="right" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#C6C6C6"
                 android:text="Dolor sit amet"
                 android:gravity="right" />
 
