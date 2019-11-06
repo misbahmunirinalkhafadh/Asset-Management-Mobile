@@ -1,7 +1,5 @@
 package com.mii.assetmanagement;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,22 +27,22 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        tvResultFirstname = (TextView) view.findViewById(R.id.tv_result_firstname);
-        btnLogout = (Button) view.findViewById(R.id.btn_logout);
-
-        sharedPrefManager = this.getActivity().getSharedPreferences();
-        tvResultFirstname.setText("Nama : TEST");
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();
-                editor.commit();
-                finish();
-            }
-        });
+//        tvResultFirstname = (TextView) view.findViewById(R.id.tv_result_firstname);
+//        btnLogout = (Button) view.findViewById(R.id.btn_logout);
+//
+//        sharedPrefManager = this.getActivity().getSharedPreferences();
+//        tvResultFirstname.setText("Nama : TEST");
+//
+//        btnLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.clear();
+//                editor.commit();
+//                finish();
+//            }
+//        });
     }
 
 }
