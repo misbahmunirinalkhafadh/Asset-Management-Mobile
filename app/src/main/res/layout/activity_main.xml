@@ -7,7 +7,6 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:background="@color/backgroundColor"
         android:id="@+id/frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,8 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation"
-        />
+        app:itemIconTint="@drawable/bottom_navigation_item_colors"
+        app:itemTextColor="@drawable/selector_bottombar_text"
+        app:labelVisibilityMode="auto"
+        app:menu="@menu/bottom_navigation" />
+
 
 </RelativeLayout>
