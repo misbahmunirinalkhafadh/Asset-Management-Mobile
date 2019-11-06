@@ -1,6 +1,7 @@
 package com.mii.assetmanagement;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,18 +32,19 @@ public class AccountFragment extends Fragment {
         tvResultFirstname = (TextView) view.findViewById(R.id.tv_result_firstname);
         btnLogout = (Button) view.findViewById(R.id.btn_logout);
 
-//        sharedPrefManager = this.getActivity().getSharedPreferences()
-//        tvResultFirstname.setText("Nama : TEST");
-//
-//        btnLogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-//                startActivity(new Intent(AccountFragment.this, LoginActivity.class)
-//                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-//
-//            }
-//        });
+        sharedPrefManager = this.getActivity().getSharedPreferences();
+        tvResultFirstname.setText("Nama : TEST");
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+            }
+        });
     }
 
 }
