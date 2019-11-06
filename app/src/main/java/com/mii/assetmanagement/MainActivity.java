@@ -11,27 +11,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPrefManager prefManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bot_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).commit();
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selecFragment = null;
 
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_home:
                             selecFragment = new HomeFragment();
                             break;

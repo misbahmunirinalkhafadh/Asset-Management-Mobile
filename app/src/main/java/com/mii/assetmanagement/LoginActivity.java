@@ -103,9 +103,9 @@ public class LoginActivity extends AppCompatActivity {
                     loading.dismiss();
                     try {
                         JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                        if (jsonRESULTS.getString("error").equals("false")) {
+                        if (jsonRESULTS.getString("status").equals("login success")) {
                             Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
-                            String nama = jsonRESULTS.getJSONObject("user").getString("firstName");
+                            String nama = jsonRESULTS.getJSONObject("user").getString("userName");
 
                             sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
                             // Shared Pref ini berfungsi untuk menjadi trigger session login
@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                             finish();
                         } else {
-                            String error_message = jsonRESULTS.getString("errorMessage");
+                            String error_message = jsonRESULTS.getString("status");
                             Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
