@@ -8,17 +8,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/profile"
-        app:civ_border_color="#fff"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/profile_image"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:src="@drawable/profile"-->
+<!--        app:civ_border_color="#fff"-->
+<!--        app:civ_border_width="2dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <View
         android:id="@+id/view"
@@ -36,7 +36,7 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/profile"
+        android:src="@drawable/ic_account"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         app:civ_border_color="#fff"
@@ -82,13 +82,14 @@
         app:layout_constraintTop_toBottomOf="@+id/nameUser" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="172dp"
-        android:orientation="vertical"
-        android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_menu"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1">
@@ -97,66 +98,94 @@
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Main menu"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:textSize="16sp"/>
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mmedium"
+            android:text="Main menu"
+            android:textSize="16sp" />
 
 
         <LinearLayout
-            android:weightSum="2"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_scan"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"/>
+                    android:src="@drawable/ic_scan" />
+
                 <TextView
                     android:id="@+id/scan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/mmedium"
                     android:text="Scan"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/mmedium"                    />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_requ"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"/>
+                    android:src="@drawable/ic_requ" />
+
                 <TextView
                     android:id="@+id/req"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/mmedium"
                     android:text="Request\nAsset"
                     android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/mmedium"                    />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
         </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_menu"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mmedium"
+            android:text="History maintenance"
+            android:textSize="16sp" />
+
 
 
     </LinearLayout>
