@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/img_profile"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nameUser"
+        android:id="@+id/tv_result_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -41,6 +41,7 @@
         android:fontFamily="@font/mregular"
         android:text="John Doe"
         android:textColor="@color/backgroundColor"
+
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageView1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +56,7 @@
         android:fontFamily="@font/mlight"
         android:text="MSDEL"
         android:textColor="@color/backgroundColor"
+
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
         app:layout_constraintStart_toEndOf="@+id/imageView1"
@@ -71,7 +73,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1">
+        app:layout_constraintTop_toBottomOf="@+id/img_profile">
 
         <TextView
             android:id="@+id/menu"
