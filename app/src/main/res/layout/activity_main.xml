@@ -59,8 +59,8 @@
 
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
-        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
+        app:layout_constraintStart_toEndOf="@+id/img_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result_name" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
