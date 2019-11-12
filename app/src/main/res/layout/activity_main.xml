@@ -36,14 +36,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_divisi"
+        android:id="@+id/tv_nik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/mlight"
-        android:text="MSDEL"
+        android:text="123456789"
         android:textColor="#fff"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_profile"
