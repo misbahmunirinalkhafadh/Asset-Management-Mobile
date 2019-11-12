@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -14,31 +15,25 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:elevation="1dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="#DFE52A"
+            app:civ_border_width="6dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#8BC34A"
+            app:civ_shadow_radius="10" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
-
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_centerHorizontal="true"
-                        android:elevation="1dp"
-                        android:layout_marginTop="37dp"
-                        android:src="@drawable/ic_account"
-                        app:civ_border_color="@color/colorAccent"
-                        app:civ_border_width="6dp"
-                        app:civ_shadow="true"
-                        app:civ_shadow_color="#8BC34A"
-                        app:civ_shadow_radius="10" />
-
-            <!--        <de.hdodenhof.circleimageview.CircleImageView-->
-            <!--            android:id="@+id/profile"-->
-            <!--            android:layout_width="150dp"-->
-            <!--            android:layout_height="150dp"-->
-            <!--            android:src="@drawable/profile"-->
-            <!--            android:layout_centerHorizontal="true"-->
-            <!--            android:elevation="1dp"/>-->
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +43,6 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
                     app:cardCornerRadius="10dp"
                     app:contentPaddingBottom="30dp"
                     app:contentPaddingLeft="16dp"
@@ -58,68 +52,68 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="100dp"
-                        android:gravity="center"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingLeft="25dp">
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="18dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorTitle"
+                            android:text="Nama Lengkap"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp" />
-
-                            <TextView
-                                android:id="@+id/name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="16dp"
-                                android:text="Yosua Henthreey Eden" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_nama"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="horizontal"
-                            android:paddingLeft="25dp">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
-
-                            <TextView
-                                android:id="@+id/nik"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="16dp"
-                                android:text="672016034" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorField"
+                            android:text="John Doe"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="horizontal"
-                            android:paddingLeft="25dp">
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="18dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorTitle"
+                            android:text="NIK"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
+                        <TextView
+                            android:id="@+id/tv_nik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorField"
+                            android:text="123456789"
+                            android:textSize="16sp" />
 
-                            <TextView
-                                android:id="@+id/email"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="16dp"
-                                android:text="henthreey@gmail.com" />
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="18dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorTitle"
+                            android:text="E-mail"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/mregular"
+                            android:textColor="@color/colorField"
+                            android:text="example@mii.co.id"
+                            android:textSize="16sp" />
+
+
                     </LinearLayout>
 
 
@@ -135,7 +129,10 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
-            android:textColor="#fff"
+            android:textSize="22sp"
+            android:fontFamily="@font/mmedium"
+            android:background="@drawable/btn_login"
+            android:textColor="@color/colorWhite"
             android:text="Logout" />
     </LinearLayout>
 
