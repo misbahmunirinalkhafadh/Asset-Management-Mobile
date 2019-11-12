@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_splashscreen"
     android:id="@+id/sv_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,9 +41,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mlight"
+                android:backgroundTint="@color/colorWhite"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#D8D8D8" />
+                android:textColorHint="@color/colorWhite" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Label -->
@@ -58,20 +60,21 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mlight"
                 android:hint="Password"
+                android:backgroundTint="@color/colorWhite"
                 android:inputType="textPassword"
-                android:textColorHint="#D8D8D8" />
+                android:textColorHint="#fff" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
+              android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/btn_login"
             android:fontFamily="@font/mmedium"
             android:padding="12dp"
             android:text="sign in"
-            android:textColor="#8BC34A"
+            android:textColor="@color/colorWhite"
             android:textSize="22dp" />
 
     </LinearLayout>
