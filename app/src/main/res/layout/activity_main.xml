@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/img_profile"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nameUser"
+        android:id="@+id/tv_result_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -32,11 +32,11 @@
         android:text="John Doe"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintStart_toEndOf="@+id/img_profile"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nameDivisi"
+        android:id="@+id/tv_divisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
@@ -46,9 +46,9 @@
         android:text="MSDEL"
         android:textColor="#fff"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
-        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+        app:layout_constraintStart_toEndOf="@+id/img_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result_name" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -61,7 +61,7 @@
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1">
+        app:layout_constraintTop_toBottomOf="@+id/img_profile">
 
         <LinearLayout
             android:layout_marginBottom="8dp"
