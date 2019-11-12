@@ -3,20 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/backgroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_profile"
     tools:context=".MainActivity">
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="@drawable/bg_app"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView1"
@@ -24,9 +14,9 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_profile"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="18dp"
+        android:src="@drawable/ic_profile"
         app:civ_border_color="#DFE52A"
         app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,11 +26,11 @@
         android:id="@+id/nameUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/mregular"
         android:text="John Doe"
-        android:textColor="@color/backgroundColor"
+        android:textColor="#fff"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageView1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +44,7 @@
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/mlight"
         android:text="MSDEL"
-        android:textColor="@color/backgroundColor"
+        android:textColor="#fff"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
         app:layout_constraintStart_toEndOf="@+id/imageView1"
@@ -63,116 +53,127 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="172dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/bg_menu"
-        android:orientation="vertical"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1">
 
-        <TextView
-            android:id="@+id/menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/mmedium"
-            android:text="Main menu"
-            android:textSize="16sp" />
-
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_scan"/>
 
-                <ImageView
-                    android:id="@+id/iv_main"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_scan" />
-
-                <TextView
-                    android:id="@+id/tv_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mmedium"
-                    android:text="Maintenance"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_req"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_requ" />
-
-                <TextView
-                    android:id="@+id/tv_req"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mmedium"
-                    android:text="Request\nAsset"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_inputsn"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_input" />
-
-                <TextView
-                    android:id="@+id/tv_inputsn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mmedium"
-                    android:text="Input SN"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:fontFamily="@font/mmedium"
+                android:textSize="20sp"
+                android:text="Maintenance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
-
     </LinearLayout>
 
+    <LinearLayout
+        android:elevation="10dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="@drawable/bg_menu"
+        android:orientation="vertical"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
+        <LinearLayout
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_requ"/>
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:fontFamily="@font/mmedium"
+                android:textSize="20sp"
+                android:text="Request Assets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:elevation="10dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="@drawable/bg_menu"
+        android:orientation="vertical"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_input"
+                />
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:fontFamily="@font/mmedium"
+                android:textSize="20sp"
+                android:text="Input Serial Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
