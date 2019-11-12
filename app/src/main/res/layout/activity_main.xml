@@ -12,7 +12,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="@drawable/bg_main"
+        android:background="@drawable/bg_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,10 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_account"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:civ_border_color="#fff"
+        android:src="@drawable/ic_profile"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="18dp"
+        app:civ_border_color="#DFE52A"
         app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,27 +36,31 @@
         android:id="@+id/tv_result_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/mmedium"
-        android:text="Nama Lengkap"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/mregular"
+        android:text="John Doe"
         android:textColor="@color/backgroundColor"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/img_profile"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nameDivisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="12dp"
-        android:fontFamily="@font/mmedium"
-        android:text="Divisi"
+        android:fontFamily="@font/mlight"
+        android:text="MSDEL"
         android:textColor="@color/backgroundColor"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/img_profile"
-        app:layout_constraintTop_toBottomOf="@+id/tv_result_name" />
+
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -86,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -96,6 +100,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_main"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="16dp"
@@ -103,11 +108,11 @@
                     android:src="@drawable/ic_scan" />
 
                 <TextView
-                    android:id="@+id/scan"
+                    android:id="@+id/tv_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mmedium"
-                    android:text="Scan"
+                    android:text="Maintenance"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -120,6 +125,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_req"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="16dp"
@@ -127,11 +133,37 @@
                     android:src="@drawable/ic_requ" />
 
                 <TextView
-                    android:id="@+id/req"
+                    android:id="@+id/tv_req"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mmedium"
                     android:text="Request\nAsset"
+                    android:textAlignment="center"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_inputsn"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_input" />
+
+                <TextView
+                    android:id="@+id/tv_inputsn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mmedium"
+                    android:text="Input SN"
                     android:textAlignment="center"
                     android:textSize="14sp" />
 
@@ -142,30 +174,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_menu"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:id="@+id/history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/mmedium"
-            android:text="History maintenance"
-            android:textSize="16sp" />
-
-
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
