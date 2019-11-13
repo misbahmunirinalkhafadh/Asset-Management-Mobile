@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/libary"
             android:text="Asset"
-            android:textColor="#fff"
+            android:textColor="@color/colorYellow"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/libary"
             android:text="Management"
-            android:textColor="#fff"
+            android:textColor="@color/colorYellow"
             android:textSize="30sp" />
 
     </LinearLayout>
