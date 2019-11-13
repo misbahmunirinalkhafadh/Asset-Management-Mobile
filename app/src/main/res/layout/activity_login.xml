@@ -38,6 +38,7 @@
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
+
                 android:layout_height="50dp"
                 android:padding="16dp"
                 android:fontFamily="@font/mmedium"
@@ -45,6 +46,8 @@
                 android:background="@drawable/input_login"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
+
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Label -->
@@ -57,6 +60,7 @@
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
+
                 android:layout_height="50dp"
                 android:padding="16dp"
                 android:fontFamily="@font/mmedium"
@@ -64,6 +68,7 @@
                 android:background="@drawable/input_login"
                 android:hint="Password"
                 android:inputType="textPassword"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton

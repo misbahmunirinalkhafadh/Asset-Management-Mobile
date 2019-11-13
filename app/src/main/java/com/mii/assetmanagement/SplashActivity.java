@@ -26,7 +26,9 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 Intent start = new Intent(SplashActivity.this, InformasiActivity.class);
+
 
                 //Animate swipe logo app
                 Pair[] pairs = new Pair[1];
