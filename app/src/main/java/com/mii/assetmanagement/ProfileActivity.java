@@ -58,4 +58,10 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btn_logout);
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
+
 }
