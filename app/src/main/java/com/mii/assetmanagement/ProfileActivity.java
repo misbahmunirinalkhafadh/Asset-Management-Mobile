@@ -3,14 +3,13 @@ package com.mii.assetmanagement;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button btnLogout;
 
     Context mContext;
-    BaseApiService mApiService;
+    ApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -29,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
         initComponent();
 
         mContext = this;
-        mApiService = UtilsApi.getApiService();
+        mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(this);
 
         tvResultName.setText(sharedPrefManager.getSPNama());

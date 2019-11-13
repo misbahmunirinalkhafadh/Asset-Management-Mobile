@@ -1,6 +1,5 @@
 package com.mii.assetmanagement;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.LoginRequest;
 import com.mii.assetmanagement.model.LoginResult;
@@ -35,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText etEmail, etPassword;
     Button btnLogin;
     Animation animLogin;
-    ProgressDialog loading;
 
     Context mContext;
     ApiService mApiService;
@@ -99,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        mApiService = retrofit.create(BaseApiService.class);
+        mApiService = retrofit.create(ApiService.class);
         Call<LoginResult> call = mApiService.login(new LoginRequest(email, password));
         call.enqueue(new Callback<LoginResult>() {
             @Override

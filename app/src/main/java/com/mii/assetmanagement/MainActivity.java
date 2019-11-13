@@ -10,9 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.LoginResult;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,9 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout menuScan;
 
     Context mContext;
-    BaseApiService mApiService;
+    ApiService mApiService;
     SharedPrefManager sharedPrefManager;
-    LoginResult loginResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initComponent();
 
         mContext = this;
-        mApiService = UtilsApi.getApiService();
+        mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(this);
 
         tvResultName.setText(sharedPrefManager.getSPNama());
