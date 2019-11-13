@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformasiActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ly_1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_menu"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="User"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="Nama Lengkap"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:text="John Doe"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="NIK"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_nik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:text="123456789"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="E-mail"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:text="example@mii.co.id"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="Tanggal"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:text="12 December 2018"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_2"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_menu"
+            android:orientation="vertical"
+            android:layout_below="@id/ly_1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorTitle"
+                android:text="Device"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:textColor="@color/colorTitle"
+                    android:text="Memory (RAM)"
+                    android:textSize="16sp" />
+
+                <TextView
+
+                    android:id="@+id/tv_ram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="8GB"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:textColor="@color/colorTitle"
+                    android:text="Memory (HDD)"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_hdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:layout_alignParentRight="true"
+                    android:text="500GB"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:textColor="@color/colorTitle"
+                    android:text="OS Name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_os"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:layout_alignParentRight="true"
+                    android:text="Windows 8"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_maintenance"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/ly_2"
+            android:fontFamily="@font/mmedium"
+            android:background="@drawable/btn_green"
+            android:textColor="@color/colorWhite"
+            android:textSize="18dp"
+            android:text="Maintenance"/>
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/btn_maintenance"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/mmedium"
+            android:textSize="18dp"
+            android:text="Cancel"/>
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</ScrollView>

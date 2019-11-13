@@ -10,4 +10,9 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
+    <style name="MyCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:colorControlActivated">@color/colorGreen</item>
+        <item name="android:colorControlHighlight">@color/colorBlue</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
 </resources>

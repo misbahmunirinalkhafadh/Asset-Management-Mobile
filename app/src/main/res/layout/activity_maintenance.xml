@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MaintenanceActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/AppTheme">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_arrow"
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MAINTENANCE"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/mmedium"
+                android:textSize="18dp"
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_gravity="center"/>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_menu"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/cb_ram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Memory (RAM)"
+                android:textSize="14sp"
+                android:fontFamily="@font/mmedium"
+                android:theme="@style/MyCheckbox"/>
+
+            <CheckBox
+                android:id="@+id/cb_hdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Memory (HDD)"
+                android:textSize="14sp"
+                android:fontFamily="@font/mmedium"
+                android:theme="@style/MyCheckbox"/>
+
+            <CheckBox
+                android:id="@+id/cb_os"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OS Name"
+                android:textSize="14sp"
+                android:fontFamily="@font/mmedium"
+                android:theme="@style/MyCheckbox"/>
+        </LinearLayout>
+
+    </LinearLayout>
+<!--    //nanti jadi text area-->
+
+    <EditText
+        android:text="Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_maintenance"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/mmedium"
+        android:background="@drawable/btn_blue"
+        android:textColor="@color/colorWhite"
+        android:textSize="18dp"
+        android:text="Submit"/>
+
+</LinearLayout>

@@ -15,20 +15,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mii.assetmanagement.apihelper.ApiService;
+import com.google.gson.Gson;
+import com.mii.assetmanagement.apihelper.BaseApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
+import com.mii.assetmanagement.model.LoginRequest;
+import com.mii.assetmanagement.model.LoginResult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity {
+import static com.mii.assetmanagement.apihelper.UtilsApi.BASE_URL_API;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     ScrollView svScroll;
     EditText etEmail, etPassword;
@@ -56,86 +57,80 @@ public class LoginActivity extends AppCompatActivity {
         initComponents();
 
         animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnLogin.startAnimation(animLogin);
-
-                final String eml = etEmail.getText().toString();
-                final String pass = etPassword.getText().toString();
-
-                if (!eml.isEmpty() && !pass.isEmpty()) {
-                    loading = ProgressDialog.show(mContext, null, "Please wait", true, false);
-                    requestLogin();
-                } else {
-                    if (eml.isEmpty() || pass.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Username or password is required", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
+        btnLogin.setOnClickListener(this);
 
         //mengecek apakah user sudah login atau belum
         if (sharedPrefManager.getSPSudahLogin()) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
+        }else{
+            Log.v("tett", "sampem sini");
+            Log.v("tett", sharedPrefManager.getSPEmail());
+            etEmail.setText(sharedPrefManager.getSPEmail());
         }
     }
 
+    /**
+     * initialization element
+     */
     private void initComponents() {
-        //initialisation element
-        svScroll = (ScrollView) findViewById(R.id.sv_login);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btnLogin = (Button) findViewById(R.id.btn_login);
+        svScroll = findViewById(R.id.sv_login);
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_password);
+        btnLogin = findViewById(R.id.btn_login);
     }
 
-    private void requestLogin() {
-        mApiService.loginRequest(etEmail.getText().toString(), etPassword.getText().toString()).enqueue(new Callback<ResponseBody>() {
+    @Override
+    public void onClick(View v) {
+        loginRequest();
+    }
+
+    /**
+     * fungsi untuk melakukan request login
+     */
+    public void loginRequest() {
+        btnLogin.startAnimation(animLogin);
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL_API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        mApiService = retrofit.create(BaseApiService.class);
+        Call<LoginResult> call = mApiService.login(new LoginRequest(email, password));
+        call.enqueue(new Callback<LoginResult>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    loading.dismiss();
-                    try {
-                        JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                        if (jsonRESULTS.getString("error").equals("false")) {
-                            Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
-                            String nama = jsonRESULTS.getJSONObject("user").getString("firstName");
-
-                            sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
-                            // Shared Pref ini berfungsi untuk menjadi trigger session login
-                            sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
-
-                            startActivity(new Intent(mContext, MainActivity.class)
-                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                            finish();
-                        } else {
-                            String error_message = jsonRESULTS.getString("errorMessage");
-                            Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                if (response.body().getError()) {
+                    Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
+                    Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.i("debug", "onResponse: GA BERHASIL");
-                    loading.dismiss();
+                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
+
+                    String name = response.body().getUserName();
+                    String email = response.body().getEmail();
+                    String nik = Integer.toString(response.body().getNik());
+
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
+
+                    // Shared Pref ini berfungsi untuk menjadi trigger session login
+                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+
+                    startActivity(new Intent(mContext, MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finish();
+
                 }
             }
 
-            /**
-             *
-             * @param call
-             * @param t
-             */
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<LoginResult> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
-                loading.dismiss();
-                Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
             }
         });
     }
