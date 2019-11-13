@@ -129,7 +129,7 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/tv_logout"
+                android:id="@+id/btn_logout"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
