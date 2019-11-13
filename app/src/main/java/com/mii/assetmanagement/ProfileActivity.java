@@ -30,9 +30,9 @@ public class ProfileActivity extends AppCompatActivity {
         mContext = this;
         mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
-        String name = sharedPrefManager.getSPNama();
-        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
-        tvResultName.setText(sharedPrefManager.getSPNama());
+//        String name = sharedPrefManager.getSPNama();
+//        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
+//        tvResultName.setText(sharedPrefManager.getSPNama());
 //        tvResultEmail.setText(sharedPrefManager.getSPEmail());
 //        tvResultNik.setText(sharedPrefManager.getSpNik());
 
