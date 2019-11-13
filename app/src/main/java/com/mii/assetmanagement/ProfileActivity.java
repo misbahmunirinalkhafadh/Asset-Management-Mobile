@@ -1,5 +1,6 @@
 package com.mii.assetmanagement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.UtilsApi;
+
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView tvResultName;
+    TextView tvResultName, tvResultEmail, tvResultNik;
     Button btnLogout;
 
+    Context mContext;
+    BaseApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -21,9 +27,14 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         initComponent();
-
+        mContext = this;
+        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
+        String name = sharedPrefManager.getSPNama();
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
         tvResultName.setText(sharedPrefManager.getSPNama());
+//        tvResultEmail.setText(sharedPrefManager.getSPEmail());
+//        tvResultNik.setText(sharedPrefManager.getSpNik());
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
-        tvResultName = (TextView) findViewById(R.id.tv_result_name);
-        btnLogout = (Button) findViewById(R.id.btn_logout);
+        tvResultName = findViewById(R.id.tv_name);
+        tvResultEmail = findViewById(R.id.tv_email);
+        tvResultNik = findViewById(R.id.tv_nik);
+        btnLogout = findViewById(R.id.btn_logout);
     }
 }
