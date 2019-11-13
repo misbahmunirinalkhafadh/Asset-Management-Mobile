@@ -1,17 +1,15 @@
 package com.mii.assetmanagement.apihelper;
 
-import okhttp3.ResponseBody;
+import com.mii.assetmanagement.model.LoginRequest;
+import com.mii.assetmanagement.model.LoginResult;
+
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 public interface BaseApiService {
-    /**
-     *
-     * @param email
-     * @param password
-     * @return
-     */
-    @GET("login/{email}/{password}")
-    Call<ResponseBody> loginRequest(@Path("email") String email, @Path("password") String password);
+    @POST("login")
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Call<LoginResult> login(@Body LoginRequest body);
 }

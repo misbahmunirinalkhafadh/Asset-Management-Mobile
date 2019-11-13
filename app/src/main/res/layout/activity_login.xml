@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mlight"
                 android:backgroundTint="@color/colorWhite"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/colorWhite" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mlight"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:backgroundTint="@color/colorWhite"
                 android:inputType="textPassword"
                 android:textColorHint="#fff" />
