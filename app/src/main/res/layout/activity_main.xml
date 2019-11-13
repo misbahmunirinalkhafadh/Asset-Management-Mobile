@@ -23,7 +23,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/ic_profile"
-        app:civ_border_color="#DFE52A"
+        app:civ_border_color="@color/colorYellow"
         app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

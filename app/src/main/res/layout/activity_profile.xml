@@ -16,6 +16,31 @@
             android:layout_height="300dp"
             android:background="@drawable/bg_circle"/>
 
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBlue"
+                android:minHeight="?attr/actionBarSize"
+                app:theme="@style/AppTheme">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_arrow"
+                    style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,8 +56,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 android:src="@drawable/ic_profile"
-                app:civ_border_color="#DFE52A"
-                app:civ_border_width="6dp" />
+
+                app:civ_border_color="@color/colorYellow"
+                app:civ_border_width="6dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="#8BC34A"
+                app:civ_shadow_radius="10" />
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -70,7 +100,7 @@
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/tv_nama"
+                                android:id="@+id/tv_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -138,7 +168,7 @@
                 android:textSize="22sp"
                 android:fontFamily="@font/mmedium"
                 android:background="@drawable/btn_login"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlue"
                 android:text="Logout" />
         </LinearLayout>
 

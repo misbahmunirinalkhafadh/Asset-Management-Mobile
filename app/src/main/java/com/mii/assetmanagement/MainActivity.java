@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initComponent();
+
         mContext = this;
         mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
+
         tvResultName.setText(sharedPrefManager.getSPNama());
-//        tvResultNik.setText(sharedPrefManager.getSpNik());
+        tvResultNik.setText(sharedPrefManager.getSpNik());
 
         ivProfile.setOnClickListener(this);
         menuScan.setOnClickListener(this);
