@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/libary"
             android:text="Asset"
-            android:textColor="#72BF44"
+            android:textColor="#fff"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -25,14 +25,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#C6C6C6"
+                android:textColor="#414141"
                 android:text="Lorem ipsum dolor"
                 android:gravity="right" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#C6C6C6"
+                android:textColor="#414141"
                 android:text="Dolor sit amet"
                 android:gravity="right" />
 
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/libary"
             android:text="Management"
-            android:textColor="#72BF44"
+            android:textColor="#fff"
             android:textSize="30sp" />
 
     </LinearLayout>

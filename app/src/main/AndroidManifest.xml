@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".MaintenanceActivity"></activity>
+        <activity android:name=".InformasiActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
