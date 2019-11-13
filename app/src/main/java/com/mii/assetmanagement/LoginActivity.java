@@ -64,6 +64,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
+        }else{
+            Log.v("tett", "sampem sini");
+            Log.v("tett", sharedPrefManager.getSPEmail());
+            etEmail.setText(sharedPrefManager.getSPEmail());
         }
     }
 
@@ -105,19 +109,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
+
                     String name = response.body().getUserName();
                     String email = response.body().getEmail();
-                    int nik = response.body().getNik();
+                    String nik = Integer.toString(response.body().getNik());
 
                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
-                    sharedPrefManager.saveSPInt("", nik);
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
+
                     // Shared Pref ini berfungsi untuk menjadi trigger session login
                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
 
                     startActivity(new Intent(mContext, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                     finish();
+
                 }
             }
 
