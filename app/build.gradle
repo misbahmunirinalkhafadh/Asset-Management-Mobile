@@ -36,6 +36,9 @@ dependencies {
     // Okhttp
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
+    //Scanner
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+
     //Design
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.android.material:material:1.0.0'

@@ -8,6 +8,7 @@ public class SharedPrefManager {
 
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
+    public static final String SP_NIK = "spNik";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
@@ -41,6 +42,8 @@ public class SharedPrefManager {
     public String getSPEmail(){
         return sp.getString(SP_EMAIL, "");
     }
+
+    public String getSpNik() { return sp.getString(SP_NIK, ""); }
 
     public Boolean getSPSudahLogin(){
         return sp.getBoolean(SP_SUDAH_LOGIN, false);
