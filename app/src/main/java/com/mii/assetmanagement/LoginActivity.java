@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 
 import org.json.JSONException;
@@ -34,10 +34,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button btnLogin;
     Animation animLogin;
-
     ProgressDialog loading;
+
     Context mContext;
-    BaseApiService mApiService;
+    ApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -45,21 +45,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        initComponents();
-
         //hide scroll bar in scrollView
         svScroll.setVerticalScrollBarEnabled(false);
         svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
-        mApiService = UtilsApi.getApiService();
+        mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(this);
+
+        initComponents();
 
         animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
 
-        /**
-         * button Login
-         */
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
+                    Log.i("debug", "onResponse: GA BERHASIL");
                     loading.dismiss();
                 }
             }
@@ -137,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
                 loading.dismiss();
+                Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
             }
         });
     }
