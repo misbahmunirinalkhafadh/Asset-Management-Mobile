@@ -1,8 +1,10 @@
 package com.mii.assetmanagement;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,7 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //move to profile
             case R.id.img_profile:
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(goToProfile);
+
+                //Animate transition
+                Pair[] pairs = new Pair[1];
+                pairs[0] = new Pair(ivProfile, "profileTransition");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+
+                startActivity(goToProfile, options.toBundle());
                 break;
             //move to scanner
             case R.id.menu_scan:
