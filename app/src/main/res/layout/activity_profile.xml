@@ -16,13 +16,6 @@
             android:layout_height="300dp"
             android:background="@drawable/bg_circle"/>
 
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize">
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
@@ -33,13 +26,12 @@
 
                 <ImageView
                     android:id="@+id/iv_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_arrow"
                     style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
             </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,13 +48,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 android:src="@drawable/ic_profile"
-
                 app:civ_border_color="@color/colorYellow"
-                app:civ_border_width="6dp"
-                app:civ_shadow="true"
-                app:civ_shadow_color="#8BC34A"
-                app:civ_shadow_radius="10" />
-
+                app:civ_border_width="6dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
