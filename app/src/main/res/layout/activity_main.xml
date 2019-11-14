@@ -69,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_profile">
 
         <LinearLayout
+            android:id="@+id/menu_scan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
