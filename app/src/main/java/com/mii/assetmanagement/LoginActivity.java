@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initComponents();
 
         animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
+
+        //event click component
         btnLogin.setOnClickListener(this);
 
         //mengecek apakah user sudah login atau belum

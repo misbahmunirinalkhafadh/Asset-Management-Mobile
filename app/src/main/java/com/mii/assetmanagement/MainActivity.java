@@ -28,19 +28,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initComponent();
-
         mContext = this;
         mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(this);
 
+        //call initializer component
+        initComponent();
+
+        //set value component
         tvResultName.setText(sharedPrefManager.getSPNama());
         tvResultNik.setText(sharedPrefManager.getSpNik());
 
+        //event click component
         ivProfile.setOnClickListener(this);
         menuScan.setOnClickListener(this);
     }
 
+    /**
+     * inititalize component
+     */
     private void initComponent() {
         ivProfile = findViewById(R.id.img_profile);
         tvResultName = findViewById(R.id.tv_name);
@@ -48,13 +54,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuScan = findViewById(R.id.menu_scan);
     }
 
+    /**
+     * declare event click
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //move to profile
             case R.id.img_profile:
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(goToProfile);
                 break;
+            //move to scanner
             case R.id.menu_scan:
                 Intent goToScanner = new Intent(MainActivity.this, ScannerActivity.class);
                 startActivity(goToScanner);
