@@ -45,11 +45,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         //hide scroll bar in scrollView
-        svScroll.setVerticalScrollBarEnabled(false);
-        svScroll.setHorizontalScrollBarEnabled(false);
+//        svScroll.setVerticalScrollBarEnabled(false);
+//        svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
-        mApiService = UtilsApi.getAPIService();
+        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
 
         initComponents();

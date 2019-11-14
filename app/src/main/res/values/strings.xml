@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="nik">123456789</string>
     <string name="name">John Doe</string>
+    <string name="maintenance">Maintenance</string>
+    <string name="request_assets">Request Assets</string>
+    <string name="input_serial_number">Input Serial Number</string>
 </resources>
