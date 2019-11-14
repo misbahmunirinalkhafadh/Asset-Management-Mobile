@@ -29,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 Intent start = new Intent(SplashActivity.this, LoginActivity.class);
 
-
                 //Animate swipe logo app
                 Pair[] pairs = new Pair[1];
                 pairs[0] = new Pair(appLogo, "logoTransition");

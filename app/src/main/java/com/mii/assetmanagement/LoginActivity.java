@@ -1,6 +1,5 @@
 package com.mii.assetmanagement;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.mii.assetmanagement.apihelper.BaseApiService;
+import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.LoginRequest;
 import com.mii.assetmanagement.model.LoginResult;
@@ -36,9 +35,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btnLogin;
     Animation animLogin;
 
-    ProgressDialog loading;
     Context mContext;
-    BaseApiService mApiService;
+    ApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -46,28 +44,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        initComponents();
-
         //hide scroll bar in scrollView
-        svScroll.setVerticalScrollBarEnabled(false);
-        svScroll.setHorizontalScrollBarEnabled(false);
+//        svScroll.setVerticalScrollBarEnabled(false);
+//        svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
         mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
 
+        initComponents();
+
         animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
+
+        //event click component
         btnLogin.setOnClickListener(this);
 
         //mengecek apakah user sudah login atau belum
-        if (sharedPrefManager.getSPSudahLogin()) {
+        if (sharedPrefManager.getSPSudahLogin() == true) {
+
+            Log.v("check Login", "login success");
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }else{
-            Log.v("tett", "sampem sini");
-            Log.v("tett", sharedPrefManager.getSPEmail());
-            etEmail.setText(sharedPrefManager.getSPEmail());
+            Log.v("check Login", "login failed");
+//            etEmail.setText(sharedPrefManager.getSPEmail());
         }
     }
 
@@ -99,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        mApiService = retrofit.create(BaseApiService.class);
+        mApiService = retrofit.create(ApiService.class);
         Call<LoginResult> call = mApiService.login(new LoginRequest(email, password));
         call.enqueue(new Callback<LoginResult>() {
             @Override
@@ -133,5 +134,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
