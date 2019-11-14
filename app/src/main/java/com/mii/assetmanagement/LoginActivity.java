@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
-        mApiService = UtilsApi.getAPIService();
+        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
 
         initComponents();
