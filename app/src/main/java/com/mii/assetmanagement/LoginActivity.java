@@ -60,14 +60,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
 
         //mengecek apakah user sudah login atau belum
-        if (sharedPrefManager.getSPSudahLogin()) {
+        if (sharedPrefManager.getSPSudahLogin() == true) {
+
+            Log.v("check Login", "login success");
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }else{
-            Log.v("tett", "sampem sini");
-            Log.v("tett", sharedPrefManager.getSPEmail());
-            etEmail.setText(sharedPrefManager.getSPEmail());
+            Log.v("check Login", "login failed");
+//            etEmail.setText(sharedPrefManager.getSPEmail());
         }
     }
 
@@ -133,5 +134,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
