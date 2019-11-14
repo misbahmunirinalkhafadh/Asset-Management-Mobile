@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mContext = this;
-        mApiService = UtilsApi.getApiService();
+        mApiService = UtilsApi.getAPIService();
         sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
