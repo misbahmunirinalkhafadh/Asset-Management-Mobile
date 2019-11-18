@@ -279,6 +279,7 @@
         android:id="@+id/textArea_result"
         android:layout_below="@id/ly_2"
         android:layout_width="match_parent"
+        android:focusableInTouchMode="false"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:layout_marginStart="18dp"
