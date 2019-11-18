@@ -67,24 +67,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="Nama Lengkap"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="John Doe"
-                    android:textColor="@color/colorField"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/mregular"
                     android:text="NIK"
@@ -103,7 +85,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Lengkap"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="John Doe"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/mregular"
                     android:text="E-mail"
                     android:textColor="@color/colorTitle"
@@ -118,13 +118,48 @@
                     android:textColor="@color/colorField"
                     android:textSize="16sp" />
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Customer Name"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
 
+                <TextView
+                    android:id="@+id/tv_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Customer"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Branch"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_branch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Cabang"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
             <LinearLayout
-                android:id="@+id/line_device"
+                android:id="@+id/line_asset"
+                android:layout_below="@id/line_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line_user"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="18dp"
@@ -136,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mregular"
-                    android:text="@string/device"
+                    android:text="Asset Information"
                     android:textColor="@color/colorTitle"
                     android:textSize="16sp" />
 
@@ -144,136 +179,254 @@
                     android:layout_width="match_parent"
                     android:layout_height="1sp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:background="#B5B7B9" />
 
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Sales Order"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mregular"
-                        android:textColor="@color/colorTitle"
-                        android:text="Processor"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_processor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:fontFamily="@font/mregular"
-                        android:text="Intel Core i5"
-                        android:textColor="@color/colorField"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_so"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
+                    android:fontFamily="@font/mregular"
+                    android:text="7675634"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mregular"
-                        android:textColor="@color/colorTitle"
-                        android:text="Memory (RAM)"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_ram"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:fontFamily="@font/mregular"
-                        android:text="8GB"
-                        android:textColor="@color/colorField"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Serial Number"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mregular"
-                        android:textColor="@color/colorTitle"
-                        android:text="Memory (HDD)"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_hdd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:fontFamily="@font/mregular"
-                        android:text="1 TB"
-                        android:textColor="@color/colorField"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_sn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
+                    android:fontFamily="@font/mregular"
+                    android:text="8768242943"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mregular"
-                        android:textColor="@color/colorTitle"
-                        android:text="OS Name"
-                        android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Asset Type"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/tv_os"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:fontFamily="@font/mregular"
-                        android:text="Windows 10"
-                        android:textColor="@color/colorField"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_assetType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Tipe asset"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mregular"
-                        android:textColor="@color/colorTitle"
-                        android:text="VGA"
-                        android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Brand"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/tv_vgs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:fontFamily="@font/mregular"
-                        android:text="Intel HD Graphic 630"
-                        android:textColor="@color/colorField"
-                        android:textSize="14sp" />
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Brand"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Model"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Model"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
 
             </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/line_device"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/line_user"-->
+<!--                android:layout_marginStart="18dp"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                android:layout_marginEnd="18dp"-->
+<!--                android:background="@drawable/bg_menu"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="18dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/mregular"-->
+<!--                    android:text="Asset Information"-->
+<!--                    android:textColor="@color/colorTitle"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1sp"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:background="#B5B7B9" />-->
+
+<!--                <RelativeLayout-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:textColor="@color/colorTitle"-->
+<!--                        android:text="Processor"-->
+<!--                        android:textSize="14sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_processor"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:text="Intel Core i5"-->
+<!--                        android:textColor="@color/colorField"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </RelativeLayout>-->
+<!--                <RelativeLayout-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:textColor="@color/colorTitle"-->
+<!--                        android:text="Memory (RAM)"-->
+<!--                        android:textSize="14sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_ram"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:text="8GB"-->
+<!--                        android:textColor="@color/colorField"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </RelativeLayout>-->
+<!--                <RelativeLayout-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:textColor="@color/colorTitle"-->
+<!--                        android:text="Memory (HDD)"-->
+<!--                        android:textSize="14sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_hdd"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:text="1 TB"-->
+<!--                        android:textColor="@color/colorField"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </RelativeLayout>-->
+<!--                <RelativeLayout-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:textColor="@color/colorTitle"-->
+<!--                        android:text="OS Name"-->
+<!--                        android:textSize="14sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_os"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:text="Windows 10"-->
+<!--                        android:textColor="@color/colorField"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </RelativeLayout>-->
+<!--                <RelativeLayout-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:textColor="@color/colorTitle"-->
+<!--                        android:text="VGA"-->
+<!--                        android:textSize="14sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_vgs"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:fontFamily="@font/mregular"-->
+<!--                        android:text="Intel HD Graphic 630"-->
+<!--                        android:textColor="@color/colorField"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
 
             <Button
                 android:id="@+id/btn_maintenance"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/line_device"
+                android:layout_below="@+id/line_asset"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="18dp"
