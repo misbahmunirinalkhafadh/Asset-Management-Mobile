@@ -29,51 +29,34 @@
         </LinearLayout>
 
         <!-- Email Label -->
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-
-                android:layout_height="50dp"
-                android:padding="16dp"
-                android:fontFamily="@font/mmedium"
-                android:textSize="16sp"
-                android:background="@drawable/input_login"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_login"
+            android:fontFamily="@font/mmedium"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textSize="16sp" />
 
         <!-- Password Label -->
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:background="@drawable/input_login"
+            android:fontFamily="@font/mmedium"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-
-                android:layout_height="50dp"
-                android:padding="16dp"
-                android:fontFamily="@font/mmedium"
-                android:textSize="16sp"
-                android:background="@drawable/input_login"
-                android:hint="Password"
-                android:inputType="textPassword"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_login"
-              android:layout_width="fill_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/btn_login"
