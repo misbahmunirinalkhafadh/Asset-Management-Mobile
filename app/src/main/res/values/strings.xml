@@ -19,5 +19,6 @@
     <string name="close">Close</string>
     <string name="compatible">COMPATIBLE</string>
     <string name="notCompatible">NOT COMPATIBLE</string>
+    <string name="fullName">Full Name</string>
 
 </resources>

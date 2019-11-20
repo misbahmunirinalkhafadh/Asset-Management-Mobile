@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mregular"
-                    android:text="Nama Lengkap"
+                    android:text="@string/fullName"
                     android:textColor="@color/colorTitle"
                     android:textSize="12sp" />
 
@@ -97,42 +97,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mregular"
                     android:text="John Doe"
-                    android:textColor="@color/colorField"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="E-mail"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="example@mii.co.id"
-                    android:textColor="@color/colorField"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="Customer Name"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="Nama Customer"
                     android:textColor="@color/colorField"
                     android:textSize="16sp" />
 
@@ -151,6 +115,24 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mregular"
                     android:text="Nama Cabang"
+                    android:textColor="@color/colorField"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="Location"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Nama Lokasi"
                     android:textColor="@color/colorField"
                     android:textSize="16sp" />
 
@@ -222,24 +204,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mregular"
-                    android:text="Asset Type"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_assetType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="Tipe asset"
-                    android:textColor="@color/colorField"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mregular"
                     android:text="Brand"
                     android:textColor="@color/colorTitle"
                     android:textSize="12sp" />
@@ -250,24 +214,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mregular"
                     android:text="Nama Brand"
-                    android:textColor="@color/colorField"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="Model"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_model"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="Nama Model"
                     android:textColor="@color/colorField"
                     android:textSize="16sp" />
 
