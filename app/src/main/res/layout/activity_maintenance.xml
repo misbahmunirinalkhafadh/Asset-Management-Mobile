@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".MaintenanceActivity">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
@@ -44,9 +43,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
     <LinearLayout
-        android:id="@+id/ly_1"
+        android:id="@+id/ly_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -55,68 +53,108 @@
         android:background="@drawable/bg_menu"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:padding="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            <LinearLayout
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mregular"
-                android:text="@string/cleaning"
-                android:textColor="@color/colorTitle"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:layout_marginTop="8dp"
-                android:background="#B5B7B9" />
-            <CheckBox
-                android:id="@+id/cb_display"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Display / Monitor"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:theme="@style/MyCheckbox"/>
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mmedium"
+                    android:text="Date : "
+                    android:textSize="16sp"/>
 
-            <CheckBox
-                android:id="@+id/cb_keyboard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Keyboard"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:theme="@style/MyCheckbox"/>
+                    <TextView
+                        android:id="@+id/current_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mmedium"
+                        android:text="Current Date"
+                        android:textSize="16sp" />
 
-            <CheckBox
-                android:id="@+id/cb_mouse"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mouse"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:theme="@style/MyCheckbox"/>
-            <CheckBox
-                android:id="@+id/cb_charger"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Charger"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:theme="@style/MyCheckbox"/>
-        </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
     </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_item"
+                android:layout_below="@id/ly_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <RadioGroup
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Item Asset : "
+                            android:fontFamily="@font/mmedium"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/cb_pc"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="PC"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/mmedium"
+                            android:theme="@style/MyCheckbox"/>
+
+                        <RadioButton
+                            android:id="@+id/cb_nb"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="105dp"
+                            android:layout_height="wrap_content"
+                            android:text="Notebook"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/mmedium"
+                            android:theme="@style/MyCheckbox"/>
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+    </LinearLayout>
+
+
     <LinearLayout
-        android:id="@+id/ly_2"
+        android:id="@+id/ly_checking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_1"
+        android:layout_below="@id/ly_item"
         android:layout_marginTop="18dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
@@ -133,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mregular"
-                android:text="@string/completeness"
+                android:text="Checking Comparison"
                 android:textColor="@color/colorTitle"
                 android:textSize="16sp" />
 
@@ -178,7 +216,7 @@
                     android:id="@+id/cb_ram"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Memory (RAM)"
+                    android:text="Memory RAM"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
                     android:theme="@style/MyCheckbox"/>
@@ -203,7 +241,7 @@
                     android:id="@+id/cb_hdd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Memory (HDD)"
+                    android:text="HDD"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
                     android:theme="@style/MyCheckbox"/>
@@ -226,19 +264,19 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:id="@+id/cb_os"
+                    android:id="@+id/cb_ssd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OS Name"
+                    android:text="SSD"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
                     android:theme="@style/MyCheckbox"/>
 
                 <TextView
-                    android:id="@+id/tv_os"
+                    android:id="@+id/tv_ssd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Windows 10"
+                    android:text="128 GB"
                     android:layout_alignParentRight="true"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
@@ -251,10 +289,10 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:id="@+id/cb_vga"
+                    android:id="@+id/cb_osName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VGA"
+                    android:text="OS Name"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
                     android:theme="@style/MyCheckbox"/>
@@ -263,7 +301,7 @@
                     android:id="@+id/tv_vga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Intel HD Graphic 630"
+                    android:text="Windows 10 Pro"
                     android:layout_alignParentRight="true"
                     android:textSize="14sp"
                     android:fontFamily="@font/mmedium"
@@ -275,9 +313,131 @@
         </LinearLayout>
 
     </LinearLayout>
-    <EditText
+    <LinearLayout
+                android:id="@+id/ly_main"
+                android:layout_below="@id/ly_checking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mregular"
+                        android:text="Main Checklist"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:layout_marginTop="8dp"
+                        android:background="#B5B7B9" />
+                    <CheckBox
+                        android:id="@+id/cb_antivirus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Antivirus"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/mmedium"
+                        android:theme="@style/MyCheckbox"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_os"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Operating System"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/mmedium"
+                        android:theme="@style/MyCheckbox"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_app"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Application Standard"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/mmedium"
+                        android:theme="@style/MyCheckbox"/>
+                    <CheckBox
+                        android:id="@+id/cb_cleaning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cleaning"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/mmedium"
+                        android:theme="@style/MyCheckbox"/>
+                    <CheckBox
+                        android:id="@+id/cb_function"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Function"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/mmedium"
+                        android:theme="@style/MyCheckbox"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ly_additional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ly_main"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="Additional"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="8dp"
+                    android:background="#B5B7B9" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+    </LinearLayout>
+
+
+      <EditText
         android:id="@+id/textArea_result"
-        android:layout_below="@id/ly_2"
+        android:layout_below="@id/ly_additional"
         android:layout_width="match_parent"
         android:focusableInTouchMode="false"
         android:layout_height="wrap_content"
@@ -299,11 +459,39 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:scrollHorizontally="false" />
 
+            <RelativeLayout
+                android:layout_below="@id/textArea_result"
+                android:id="@+id/signature_pad_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+
+
+                <TextView
+                    android:id="@+id/signature_pad_description"
+                    android:layout_below="@id/signature_pad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="agreement"
+                    android:textColor="@android:color/darker_gray" />
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:background="@drawable/bg_menu"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/signature_pad"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp" />
+
+            </RelativeLayout>
+
     <Button
         android:id="@+id/btn_maintenance"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/textArea_result"
+        android:layout_below="@id/signature_pad_container"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
