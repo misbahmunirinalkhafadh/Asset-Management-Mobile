@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mregular"
-        android:text="@string/user"
+        android:text="@string/device"
         android:textColor="@color/colorTitle"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
