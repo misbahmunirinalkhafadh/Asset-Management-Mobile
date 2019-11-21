@@ -17,6 +17,12 @@
     <string name="information">INFORMATION</string>
     <string name="device">Device</string>
     <string name="close">Close</string>
+    <string name="operating_system">Operating System</string>
+    <string name="hardisk">HDD</string>
+    <string name="ssd">SSD</string>
+    <string name="ram">RAM</string>
+    <string name="processor">Processor</string>
+    <string name="icon_back">Icon Back</string>
     <string name="compatible">COMPATIBLE</string>
     <string name="notCompatible">NOT COMPATIBLE</string>
     <string name="fullName">Full Name</string>
