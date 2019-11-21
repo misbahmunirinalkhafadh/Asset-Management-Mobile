@@ -27,7 +27,7 @@ public class ScannerActivity extends AppCompatActivity {
 
         //Set up the view pager and fragments
         TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(ScannerFragment.newInstance(), "Scan QR");
+        adapter.addFragment(CaptureFragment.newInstance(), "Scan QR");
         adapter.addFragment(InputSerialFragment.newInstance(), "Input Serial");
         mViewPager.setAdapter(adapter);
         mTabs.setupWithViewPager(mViewPager);
