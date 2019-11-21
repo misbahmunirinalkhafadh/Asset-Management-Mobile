@@ -11,6 +11,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="generate">GENERATE</string>
+    <string name="cleaning">Cleaning</string>
+    <string name="completeness">Completeness</string>
     <string name="user">User</string>
     <string name="information">INFORMATION</string>
     <string name="device">Device</string>
@@ -21,5 +23,8 @@
     <string name="ram">RAM</string>
     <string name="processor">Processor</string>
     <string name="icon_back">Icon Back</string>
+    <string name="compatible">COMPATIBLE</string>
+    <string name="notCompatible">NOT COMPATIBLE</string>
+    <string name="fullName">Full Name</string>
 
 </resources>
