@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -38,15 +39,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Context mContext;
     ApiService mApiService;
     SharedPrefManager sharedPrefManager;
+    private ProgressBar loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //hide scroll bar in scrollView
-//        svScroll.setVerticalScrollBarEnabled(false);
-//        svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
         mApiService = UtilsApi.getApiService();
@@ -80,20 +79,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
+        loading = findViewById(R.id.loading);
     }
 
     @Override
     public void onClick(View v) {
-        loginRequest();
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (email.isEmpty()) {
+            etEmail.setError("Email Empty");
+            return;
+        }
+
+        if (password.isEmpty()) {
+            etPassword.setError("Password Empty");
+            return;
+        }
+
+        loginRequest(email, password);
     }
 
     /**
      * fungsi untuk melakukan request login
      */
-    public void loginRequest() {
+    public void loginRequest(final String email, String password) {
+        loading.setVisibility(View.VISIBLE);
+        etEmail.setEnabled(false);
+        etPassword.setEnabled(false);
+        btnLogin.setEnabled(false);
+
         btnLogin.startAnimation(animLogin);
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL_API)
@@ -105,9 +121,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+//                if (response.isSuccessful()){
+//                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
+//
+//                    String name = response.body().getUserName();
+//                    String email = response.body().getEmail();
+//                    String nik = Integer.toString(response.body().getNik());
+//
+//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
+//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
+//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
+//
+//                    // Shared Pref ini berfungsi untuk menjadi trigger session login
+//                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+//
+//                    startActivity(new Intent(mContext, MainActivity.class)
+//                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+//                    finish();
+//
+//                }else {
+//                    Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
+//                    Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                    loading.setVisibility(View.GONE);
+//                    etEmail.setEnabled(true);
+//                    etPassword.setEnabled(true);
+//                    btnLogin.setEnabled(true);
+//                }
+//
                 if (response.body().getError()) {
                     Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
                     Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    loading.setVisibility(View.GONE);
+                    etEmail.setEnabled(true);
+                    etPassword.setEnabled(true);
+                    btnLogin.setEnabled(true);
+
                 } else {
                     Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
 
@@ -132,6 +182,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
+
+                loading.setVisibility(View.VISIBLE);
+
+                etEmail.setEnabled(true);
+                etPassword.setEnabled(true);
+                btnLogin.setEnabled(true);
             }
         });
     }
