@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/user"
         style="@style/ItemLayout"
-        layout="@layout/item_user"
+        layout="@layout/item_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
 
     <include
-        android:id="@+id/asset"
+        android:id="@+id/user"
         style="@style/ItemLayout"
-        layout="@layout/item_assets"
+        layout="@layout/item_item_asset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
 
     <include
-        android:id="@+id/button"
+        android:id="@+id/user"
         style="@style/ItemLayout"
-        layout="@layout/item_btn_information"
+        layout="@layout/item_checking_comparison"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+    <include
+        android:id="@+id/user"
+        style="@style/ItemLayout"
+        layout="@layout/item_main_checklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
