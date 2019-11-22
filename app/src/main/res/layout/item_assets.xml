@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mregular"
+        android:text="@string/asset"
+        android:textColor="@color/colorTitle"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorGreySoft" />
+
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:text="@string/sales" />
+
+    <TextView
+        android:id="@+id/tv_sales"
+        style="@style/ItemLayoutUserField"
+        android:text="3442654" />
+
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:text="@string/serial" />
+
+    <TextView
+        android:id="@+id/tv_serial"
+        style="@style/ItemLayoutUserField"
+        android:text="234753" />
+
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:text="@string/brand" />
+
+    <TextView
+        android:id="@+id/tv_brand"
+        style="@style/ItemLayoutUserField"
+        android:text="Nama Brand" />
+
+
+</LinearLayout>

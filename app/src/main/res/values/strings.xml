@@ -2,7 +2,7 @@
     <string name="app_name">AssetManagement</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="nik">Nik</string>
+    <string name="nik">NIK</string>
     <string name="name">John Doe</string>
     <string name="maintenance">Maintenance</string>
     <string name="request_assets">Request Assets</string>
@@ -13,19 +13,27 @@
     <string name="generate">GENERATE</string>
     <string name="cleaning">Cleaning</string>
     <string name="completeness">Completeness</string>
-    <string name="user">User</string>
+    <string name="user">User Information</string>
+    <string name="asset">Asset Information</string>
     <string name="information">INFORMATION</string>
     <string name="device">Device</string>
+    <string name="sales">Sales Order</string>
+    <string name="serial">Serial Number</string>
+    <string name="brand">Brand</string>
     <string name="close">Close</string>
     <string name="operating_system">Operating System</string>
     <string name="hardisk">HDD</string>
     <string name="ssd">SSD</string>
-    <string name="ram">RAM</string>
+    <string name="ram">Memory RAM</string>
     <string name="processor">Processor</string>
     <string name="icon_back">Icon Back</string>
     <string name="compatible">COMPATIBLE</string>
     <string name="notCompatible">NOT COMPATIBLE</string>
     <string name="fullName">Full Name</string>
     <string name="search">Search</string>
+    <string name="main_checklist">Main Checklist</string>
+    <string name="antivirus">Antivirus</string>
+    <string name="application_standard">Application Standard</string>
+    <string name="function">Function</string>
 
 </resources>
