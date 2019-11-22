@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
 
         //mengecek apakah user sudah login atau belum
-        if (sharedPrefManager.getSPSudahLogin() == true) {
+        if (sharedPrefManager.getSPSudahLogin()) {
 
             Log.v("check Login", "login success");
             startActivity(new Intent(LoginActivity.this, MainActivity.class)

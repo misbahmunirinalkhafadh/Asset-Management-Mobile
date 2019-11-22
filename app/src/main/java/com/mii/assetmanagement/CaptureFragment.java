@@ -5,10 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,12 +30,12 @@ import retrofit2.Response;
  * A simple {@link Fragment} subclass.
  */
 public class CaptureFragment extends Fragment implements ZXingScannerView.ResultHandler {
-    String resultCode;
-    ApiService mApiService;
 
     private ZXingScannerView mScannerView;
+    private ApiService mApiService;
+    private ProgressDialog progressDialog;
 
-    public static CaptureFragment newInstance() {
+    static CaptureFragment newInstance() {
         // Required empty public constructor
         return new CaptureFragment();
     }
@@ -44,7 +46,8 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
         mScannerView = new ZXingScannerView(getActivity());
 
         mApiService = UtilsApi.getApiService();
-
+        //Progress Dialog
+        progressDialog = new ProgressDialog(getActivity());
 
         return mScannerView;
     }
@@ -54,60 +57,67 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
     public void onResume() {
         super.onResume();
         mScannerView.setResultHandler(this);
-
         mScannerView.setSquareViewFinder(true);
         mScannerView.setBorderColor(Color.parseColor("#35B781"));
         mScannerView.setLaserEnabled(true);
-
         mScannerView.startCamera();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
         mScannerView.stopCamera();
     }
 
     @Override
     public void handleResult(final Result rawResult) {
-        resultCode = rawResult.getText();
+        progressDialog.show(); // show progress dialog
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
+
+        //Handler Dialog
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 300);
+
+        String resultCode = rawResult.getText();
         Log.v("TAG", resultCode);
 
         mApiService.assetRequest(resultCode).enqueue(new Callback<Asset>() {
-
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
-                final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-                // display a progress dialog
-                progressDialog.setCancelable(true); // set cancelable to false
-                progressDialog.setMessage("Please Wait"); // set message
-                progressDialog.show(); // show progress dialog
-
                 if (!response.body().getError()) {
-
-                    String processor = response.body().getParts().getProcessor();
-                    String system = response.body().getParts().getOS();
-                    String hdd = "";
-                    String ssd = "";
-                    if (response.body().getParts().getSSD()  == null) ssd = "-";
+                    String hdd;
+                    String ssd;
+                    if (response.body().getParts().getSSD() == null) ssd = "-";
                     else ssd = response.body().getParts().getSSD();
-                    if (response.body().getParts().getHDD()  == null) hdd = "-";
+                    if (response.body().getParts().getHDD() == null) hdd = "-";
                     else hdd = response.body().getParts().getHDD();
-                    String ram = response.body().getParts().getRAM();
 
+                    // Bundle
+                    Bundle extras = new Bundle();
+                    extras.putString("Processor", response.body().getParts().getProcessor());
+                    extras.putString("System", response.body().getParts().getOS());
+                    extras.putString("RAM", response.body().getParts().getRAM());
+                    extras.putString("HDD", hdd);
+                    extras.putString("SSD", ssd);
+
+                    //move activity
                     Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-                    goToInformation.putExtra("Processor", processor);
-                    goToInformation.putExtra("System", system);
-                    goToInformation.putExtra("HDD", hdd);
-                    goToInformation.putExtra("SSD", ssd);
-                    goToInformation.putExtra("RAM", ram);
-                    getActivity().startActivity(goToInformation);
-                    progressDialog.dismiss();
-
+                    goToInformation.putExtras(extras);
+                    startActivity(goToInformation);
                 } else {
-                    Log.e("debug", "notSuccess");
+                    Log.e("debug", String.valueOf(true));
                     progressDialog.dismiss();
+                    Toast.makeText(getActivity(), "Invalid QR Code", Toast.LENGTH_SHORT).show();
+
+                    //refresh page
+                    getActivity().finish();
+                    startActivity(getActivity().getIntent());
                 }
             }
 

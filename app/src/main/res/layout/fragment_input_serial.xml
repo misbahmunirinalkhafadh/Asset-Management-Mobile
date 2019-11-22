@@ -23,16 +23,16 @@
             android:id="@+id/et_serial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:hint="Input serial number" />
+            android:layout_marginBottom="8dp"
+            android:hint="@string/input_serial_number" />
 
         <Button
             android:id="@+id/btn_search_serial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBlue"
-            android:textColor="@color/colorWhite"
-            android:text="Search" />
+            android:text="@string/search"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 
