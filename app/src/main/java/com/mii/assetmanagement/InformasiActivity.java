@@ -1,21 +1,19 @@
 package com.mii.assetmanagement;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//import androidx.appcompat.widget.Toolbar;
-
 public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
-    Button btnClose;
-    Button btnBack;
+    Button btnMaintenance, btnClose, btnBack;
+    private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +37,7 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
+        btnMaintenance.setOnClickListener(this);
     }
 
     private void initComponent() {
@@ -48,7 +47,9 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         tvSsd = findViewById(R.id.tv_ssd);
         tvRam = findViewById(R.id.tv_ram);
         btnBack = findViewById(R.id.btn_back);
+        btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
+        loading = findViewById(R.id.loading);
     }
 
     @Override
@@ -56,6 +57,10 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.btn_back:
                 onBackPressed();
+                break;
+            case R.id.btn_maintenance:
+                Intent goToMaintenance = new Intent(InformasiActivity.this, MaintenanceActivity.class);
+                startActivity(goToMaintenance);
                 break;
             case R.id.btn_close:
                 Intent goToHome = new Intent(InformasiActivity.this, MainActivity.class);
