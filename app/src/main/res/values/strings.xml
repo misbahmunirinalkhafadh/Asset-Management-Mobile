@@ -13,9 +13,13 @@
     <string name="generate">GENERATE</string>
     <string name="cleaning">Cleaning</string>
     <string name="completeness">Completeness</string>
-    <string name="user">User</string>
+    <string name="user">User Information</string>
+    <string name="asset">Asset Information</string>
     <string name="information">INFORMATION</string>
     <string name="device">Device</string>
+    <string name="sales">Sales Order</string>
+    <string name="serial">Serial Number</string>
+    <string name="brand">Brand</string>
     <string name="close">Close</string>
     <string name="operating_system">Operating System</string>
     <string name="hardisk">HDD</string>
