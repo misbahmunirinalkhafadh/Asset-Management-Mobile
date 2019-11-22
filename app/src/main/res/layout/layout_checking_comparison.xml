@@ -123,7 +123,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
-                android:id="@+id/cb_osName"
+                android:id="@+id/cb_system"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/operating_system"
@@ -131,7 +131,7 @@
                 android:theme="@style/MyCheckbox"/>
 
             <TextView
-                android:id="@+id/tv_vga"
+                android:id="@+id/tv_system"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Windows 10 Pro"
