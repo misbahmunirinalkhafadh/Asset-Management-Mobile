@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_profile"
         android:transitionName="profileTransition"
-        app:civ_border_color="@color/colorYellow"
+        app:civ_border_color="@color/colorWhite"
         app:civ_border_width="6dp" />
 
     <LinearLayout
@@ -117,7 +117,7 @@
             android:elevation="4dp"
             android:fontFamily="@font/mmedium"
             android:text="Logout"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
     </LinearLayout>

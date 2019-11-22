@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="20dp"
-    android:background="@drawable/bg_menu"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/bg_menu"
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-         <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:fontFamily="@font/mmedium"
-              android:text="Date : "
-              android:textSize="16sp"/>
-              <TextView
-                 android:id="@+id/current_Date"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:fontFamily="@font/mmedium"
-                  android:text="Current Date"
-                  android:textSize="16sp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mmedium"
+            android:text="Date : "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/current_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mmedium"
+            android:text="Current Date"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <TextView
-        android:layout_marginTop="16dp"
-        android:textSize="14sp"
         style="@style/ItemLayoutUserTitle"
-        android:text="@string/nik"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/nik"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_nik"
         style="@style/ItemLayoutUserField"
-        android:text="1231241"/>
+        android:text="1231241" />
 
     <TextView
-        android:layout_marginTop="16dp"
-        android:textSize="14sp"
         style="@style/ItemLayoutUserTitle"
-        android:text="@string/fullName"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/fullName"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_name"
         style="@style/ItemLayoutUserField"
-        android:text="NAMA"/>
+        android:text="NAMA" />
 
 </LinearLayout>
