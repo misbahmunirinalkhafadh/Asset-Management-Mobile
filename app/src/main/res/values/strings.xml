@@ -2,7 +2,7 @@
     <string name="app_name">AssetManagement</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="nik">123456789</string>
+    <string name="nik">Nik</string>
     <string name="name">John Doe</string>
     <string name="maintenance">Maintenance</string>
     <string name="request_assets">Request Assets</string>
@@ -26,5 +26,6 @@
     <string name="compatible">COMPATIBLE</string>
     <string name="notCompatible">NOT COMPATIBLE</string>
     <string name="fullName">Full Name</string>
+    <string name="search">Search</string>
 
 </resources>

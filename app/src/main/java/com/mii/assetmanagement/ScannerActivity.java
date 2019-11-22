@@ -2,8 +2,8 @@ package com.mii.assetmanagement;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -11,7 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 public class ScannerActivity extends AppCompatActivity {
-    ImageView btnBack;
+    Button btnBack;
     TabLayout mTabs;
     View mIndicator;
     ViewPager mViewPager;
@@ -76,7 +76,7 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
-        btnBack = findViewById(R.id.iv_back);
+        btnBack = findViewById(R.id.btn_back);
         mTabs = findViewById(R.id.tab);
         mIndicator = findViewById(R.id.indicator);
         mViewPager = findViewById(R.id.viewPager);
