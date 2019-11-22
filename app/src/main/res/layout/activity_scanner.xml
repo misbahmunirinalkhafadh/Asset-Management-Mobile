@@ -23,11 +23,11 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/mmedium"
             android:text="@string/generate"
             android:textColor="@color/colorWhite"
-            android:fontFamily="@font/mmedium"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -35,16 +35,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlue"
-        android:paddingBottom="18dp"
-        android:paddingEnd="8dp"
+        android:clipToPadding="false"
         android:paddingStart="8dp"
-        android:clipToPadding="false">
+        android:paddingEnd="8dp"
+        android:paddingBottom="18dp">
 
         <View
             android:id="@+id/indicator"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/bg_tab"/>
+            android:background="@drawable/bg_tab" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
@@ -52,17 +52,17 @@
             android:layout_height="40dp"
             android:background="@drawable/tab_circle"
             app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorBlue"
-            app:tabTextColor="@color/colorWhite"
             app:tabIndicatorColor="@null"
-            app:tabRippleColor="@null"/>
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/colorBlue"
+            app:tabTextColor="@color/colorWhite" />
 
     </FrameLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
