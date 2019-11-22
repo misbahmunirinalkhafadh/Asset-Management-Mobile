@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:text="Additional"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="8dp"
+        android:background="#B5B7B9" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/ItemLayoutUserField"
+        android:hint="IP Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/ItemLayoutUserField"
+        android:hint="User Name Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/ItemLayoutUserField"
+        android:hint="Computer Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

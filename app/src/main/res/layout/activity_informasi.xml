@@ -35,11 +35,36 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-        <include
-            android:id="@+id/user"
-            layout="@layout/layout_information"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/user"
+                style="@style/ItemLayout"
+                layout="@layout/item_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <include
+                android:id="@+id/asset"
+                style="@style/ItemLayout"
+                layout="@layout/item_assets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <include
+                android:id="@+id/button"
+                style="@style/ItemLayout"
+                layout="@layout/item_btn_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
 
     </ScrollView>
 
