@@ -13,9 +13,9 @@
         android:layout_marginTop="16dp" />
 
     <include
-        android:id="@+id/parts"
+        android:id="@+id/asset"
         style="@style/ItemLayout"
-        layout="@layout/item_parts"
+        layout="@layout/item_assets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
