@@ -124,25 +124,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/cb_system"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/operating_system"
+                style="@style/ItemLayoutCheckbox"
+                android:theme="@style/MyCheckbox"/>
 
-        <CheckBox
-            android:id="@+id/cb_osName"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/operating_system"
-            android:theme="@style/MyCheckbox" />
+            <TextView
+                android:id="@+id/tv_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Windows 10 Pro"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:fontFamily="@font/mmedium"
+                android:layout_centerVertical="true"/>
 
-        <TextView
-            android:id="@+id/tv_vga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
-            android:text="Windows 10 Pro"
-            android:textSize="14sp" />
+        </RelativeLayout>
 
-    </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
