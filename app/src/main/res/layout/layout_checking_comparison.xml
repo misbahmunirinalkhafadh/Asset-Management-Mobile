@@ -1,127 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:padding="18dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <TextView
+        style="@style/ItemLayoutUserTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_menu"
-        android:orientation="vertical">
+        android:text="Checking Comparison"
+        android:textSize="16sp" />
 
-        <TextView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#B5B7B9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_processor"
+            style="@style/ItemLayoutCheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Checking Comparison"
-            style="@style/ItemLayoutUserTitle"
-            android:textSize="16sp" />
+            android:text="@string/processor"
+            android:theme="@style/MyCheckbox" />
 
-        <View
+        <TextView
+            android:id="@+id/tv_processor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mmedium"
+            android:text="Intel Core i5"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_ram"
+            style="@style/ItemLayoutCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#B5B7B9" />
+            android:layout_height="wrap_content"
+            android:text="@string/ram"
+            android:theme="@style/MyCheckbox" />
 
-        <RelativeLayout
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/tv_ram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mmedium"
+            android:text="8GB"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_hdd"
+            style="@style/ItemLayoutCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="@string/hardisk"
+            android:theme="@style/MyCheckbox" />
 
-            <CheckBox
-                android:id="@+id/cb_processor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/processor"
-                style="@style/ItemLayoutCheckbox"
-                android:theme="@style/MyCheckbox"/>
+        <TextView
+            android:id="@+id/tv_hdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mmedium"
+            android:text="1 TB"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_processor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Intel Core i5"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:orientation="horizontal"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_ssd"
+            style="@style/ItemLayoutCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="@string/ssd"
+            android:theme="@style/MyCheckbox" />
 
-            <CheckBox
-                android:id="@+id/cb_ram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ram"
-                style="@style/ItemLayoutCheckbox"
-                android:theme="@style/MyCheckbox"/>
+        <TextView
+            android:id="@+id/tv_ssd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mmedium"
+            android:text="128 GB"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_ram"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="8GB"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/cb_hdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/hardisk"
-                style="@style/ItemLayoutCheckbox"
-                android:theme="@style/MyCheckbox"/>
-
-            <TextView
-                android:id="@+id/tv_hdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1 TB"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/cb_ssd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ssd"
-                style="@style/ItemLayoutCheckbox"
-                android:theme="@style/MyCheckbox"/>
-
-            <TextView
-                android:id="@+id/tv_ssd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="128 GB"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:fontFamily="@font/mmedium"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
             <CheckBox
                 android:id="@+id/cb_system"
                 android:layout_width="match_parent"
