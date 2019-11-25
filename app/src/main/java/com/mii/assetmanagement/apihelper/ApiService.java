@@ -17,7 +17,5 @@ public interface ApiService {
     Call<LoginResult> login(@Body LoginRequest body);
 
     @GET("maintenance/getparts/{serial}")
-//    String[] assetRequest(@Path("serial") String serial);
-//    Call <Device> assetRequest(@Path("serial") String serial);
     Call <Asset> assetRequest(@Path("serial") String serial);
 }

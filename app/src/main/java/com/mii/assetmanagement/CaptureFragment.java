@@ -2,6 +2,7 @@ package com.mii.assetmanagement;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import retrofit2.Response;
  */
 public class CaptureFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
+    Context mContext;
     private ZXingScannerView mScannerView;
     private ApiService mApiService;
     private ProgressDialog progressDialog;
@@ -45,6 +47,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mScannerView = new ZXingScannerView(getActivity());
 
+        mContext = getActivity();
         mApiService = UtilsApi.getApiService();
         //Progress Dialog
         progressDialog = new ProgressDialog(getActivity());
@@ -61,6 +64,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
         mScannerView.setBorderColor(Color.parseColor("#35B781"));
         mScannerView.setLaserEnabled(true);
         mScannerView.startCamera();
+
     }
 
     @Override
@@ -107,13 +111,13 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
                     extras.putString("SSD", ssd);
 
                     //move activity
-                    Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
+                    Intent goToInformation = new Intent(mContext, InformasiActivity.class);
                     goToInformation.putExtras(extras);
                     startActivity(goToInformation);
                 } else {
                     Log.e("debug", String.valueOf(true));
                     progressDialog.dismiss();
-                    Toast.makeText(getActivity(), "Invalid QR Code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Invalid QR Code", Toast.LENGTH_SHORT).show();
 
                     //refresh page
                     getActivity().finish();
