@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
 
+    TextView tvNik, tvName, tvLocation, tvBranch;
+    TextView tvSales, tvSerial, tvBrand, tvType;
     TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     Button btnMaintenance, btnClose, btnBack;
     private ProgressBar loading;
@@ -35,11 +37,19 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         String type = intent.getExtras().getString("type");
         // Parts
         String processor = intent.getExtras().getString("Processor");
-        String system = intent.getExtras().getString("System");
+        String system = intent.getExtras().getString("OS");
         String hdd = intent.getExtras().getString("HDD");
         String ssd = intent.getExtras().getString("SSD");
         String ram = intent.getExtras().getString("RAM");
 
+        tvNik.setText(nik);
+        tvName.setText(name);
+        tvLocation.setText(location);
+        tvBranch.setText(branch);
+        tvSales.setText(so);
+        tvSerial.setText(sn);
+        tvBrand.setText(brand);
+        tvType.setText(type);
         tvProcessor.setText(processor);
         tvSystem.setText(system);
         tvHdd.setText(hdd);
@@ -52,8 +62,16 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initComponent() {
+        tvNik = findViewById(R.id.tv_nik);
+        tvName = findViewById(R.id.tv_name);
+        tvLocation = findViewById(R.id.tv_location);
+        tvBranch = findViewById(R.id.tv_branch);
+        tvSales = findViewById(R.id.tv_sales);
+        tvSerial = findViewById(R.id.tv_serial);
+        tvBrand = findViewById(R.id.tv_brand);
+        tvType = findViewById(R.id.tv_item);
         tvProcessor = findViewById(R.id.tv_processor);
-        tvSystem = findViewById(R.id.tv_system);
+        tvSystem = findViewById(R.id.tv_os);
         tvHdd = findViewById(R.id.tv_hdd);
         tvSsd = findViewById(R.id.tv_ssd);
         tvRam = findViewById(R.id.tv_ram);

@@ -116,7 +116,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
                     extras.putString("type", response.body().getType());
                     // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
-                    extras.putString("System", response.body().getParts().getOS());
+                    extras.putString("OS", response.body().getParts().getOS());
                     extras.putString("RAM", response.body().getParts().getRAM());
                     extras.putString("HDD", hdd);
                     extras.putString("SSD", ssd);
@@ -139,6 +139,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             @Override
             public void onFailure(Call<Asset> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
+                getActivity().onBackPressed();
             }
         });
     }
