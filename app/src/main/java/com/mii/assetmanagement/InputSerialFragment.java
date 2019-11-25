@@ -96,23 +96,34 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 if (!response.body().getError()) {
-//                    String hdd;
-//                    String ssd;
-//                    if (response.body().getParts().getSSD() == null) ssd = "-";
-//                    else ssd = response.body().getParts().getSSD();
-//                    if (response.body().getParts().getHDD() == null) hdd = "-";
-//                    else hdd = response.body().getParts().getHDD();
-//
-//                    //Bundle
-//                    Bundle extras = new Bundle();
-//                    extras.putString("Processor", response.body().getParts().getProcessor());
-//                    extras.putString("System", response.body().getParts().getOS());
-//                    extras.putString("RAM", response.body().getParts().getRAM());
-//                    extras.putString("HDD", hdd);
-//                    extras.putString("SSD", ssd);
+                    String hdd;
+                    String ssd;
+                    if (response.body().getParts().getSSD() == null) ssd = "-";
+                    else ssd = response.body().getParts().getSSD();
+                    if (response.body().getParts().getHDD() == null) hdd = "-";
+                    else hdd = response.body().getParts().getHDD();
+
+                    //Bundle
+                    Bundle extras = new Bundle();
+                    // User
+                    extras.putString("nik", response.body().getUser().getNik());
+                    extras.putString("name", response.body().getUser().getName());
+                    extras.putString("location", response.body().getUser().getLocation());
+                    extras.putString("branch", response.body().getUser().getBranch());
+                    // Asset
+                    extras.putString("salesOrder", response.body().getSalesOrder());
+                    extras.putString("serialNumber", response.body().getSerialNumber());
+                    extras.putString("brand", response.body().getBrand());
+                    extras.putString("type", response.body().getType());
+                    // Parts
+                    extras.putString("Processor", response.body().getParts().getProcessor());
+                    extras.putString("System", response.body().getParts().getOS());
+                    extras.putString("RAM", response.body().getParts().getRAM());
+                    extras.putString("HDD", hdd);
+                    extras.putString("SSD", ssd);
 
                     Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-//                    goToInformation.putExtras(extras);
+                   goToInformation.putExtras(extras);
                     startActivity(goToInformation);
 
                 } else {

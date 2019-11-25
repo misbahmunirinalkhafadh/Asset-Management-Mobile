@@ -22,18 +22,29 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
 
         initComponent();
 
-//        Intent intent = getIntent();
-//        String processor = intent.getExtras().getString("Processor");
-//        String system = intent.getExtras().getString("System");
-//        String hdd = intent.getExtras().getString("HDD");
-//        String ssd = intent.getExtras().getString("SSD");
-//        String ram = intent.getExtras().getString("RAM");
-//
-//        tvProcessor.setText(processor);
-//        tvSystem.setText(system);
-//        tvHdd.setText(hdd);
-//        tvSsd.setText(ssd);
-//        tvRam.setText(ram);
+        Intent intent = getIntent();
+        // User
+        String nik = intent.getExtras().getString("nik");
+        String name = intent.getExtras().getString("name");
+        String location = intent.getExtras().getString("location");
+        String branch = intent.getExtras().getString("branch");
+        // Asset
+        String so = intent.getExtras().getString("salesOrder");
+        String sn = intent.getExtras().getString("serialNumber");
+        String brand = intent.getExtras().getString("brand");
+        String type = intent.getExtras().getString("type");
+        // Parts
+        String processor = intent.getExtras().getString("Processor");
+        String system = intent.getExtras().getString("System");
+        String hdd = intent.getExtras().getString("HDD");
+        String ssd = intent.getExtras().getString("SSD");
+        String ram = intent.getExtras().getString("RAM");
+
+        tvProcessor.setText(processor);
+        tvSystem.setText(system);
+        tvHdd.setText(hdd);
+        tvSsd.setText(ssd);
+        tvRam.setText(ram);
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
