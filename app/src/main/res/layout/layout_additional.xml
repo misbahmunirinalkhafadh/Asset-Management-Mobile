@@ -20,18 +20,27 @@
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="IP Address" />
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_field"
+        android:hint="IP Address"
+        android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Name Login" />
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_field"
+        android:hint="User Name Login"
+        android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Computer Name" />
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_field"
+        android:hint="Computer Name"
+        android:padding="10dp" />
 </LinearLayout>
