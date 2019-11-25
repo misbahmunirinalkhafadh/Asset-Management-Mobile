@@ -35,5 +35,7 @@
     <string name="antivirus">Antivirus</string>
     <string name="application_standard">Application Standard</string>
     <string name="function">Function</string>
+    <string name="todo">TODO</string>
+    <string name="logout">Logout</string>
 
 </resources>

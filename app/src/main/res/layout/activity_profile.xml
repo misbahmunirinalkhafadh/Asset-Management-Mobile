@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mregular"
-                android:text="Nama Lengkap"
+                android:text="@string/fullName"
                 android:textColor="@color/colorTitle"
                 android:textSize="12sp" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mregular"
-                android:text="John Doe"
+                android:text="@string/name"
                 android:textColor="@color/colorField"
                 android:textSize="16sp" />
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mregular"
-                android:text="NIK"
+                android:text="@string/nik"
                 android:textColor="@color/colorTitle"
                 android:textSize="12sp" />
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mregular"
-                android:text="E-mail"
+                android:text="@string/email"
                 android:textColor="@color/colorTitle"
                 android:textSize="12sp" />
 
@@ -116,7 +116,7 @@
             android:background="@drawable/btn_login"
             android:elevation="4dp"
             android:fontFamily="@font/mmedium"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textColor="@color/colorBlue"
             android:textSize="22sp" />
 

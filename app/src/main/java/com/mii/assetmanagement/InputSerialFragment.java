@@ -105,6 +105,17 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
 
                     //Bundle
                     Bundle extras = new Bundle();
+                    // User
+                    extras.putString("nik", response.body().getUser().getNik());
+                    extras.putString("name", response.body().getUser().getName());
+                    extras.putString("location", response.body().getUser().getLocation());
+                    extras.putString("branch", response.body().getUser().getBranch());
+                    // Asset
+                    extras.putString("salesOrder", response.body().getSalesOrder());
+                    extras.putString("serialNumber", response.body().getSerialNumber());
+                    extras.putString("brand", response.body().getBrand());
+                    extras.putString("type", response.body().getType());
+                    // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
                     extras.putString("System", response.body().getParts().getOS());
                     extras.putString("RAM", response.body().getParts().getRAM());
