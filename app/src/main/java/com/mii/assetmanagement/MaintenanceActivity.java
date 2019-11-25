@@ -15,11 +15,5 @@ public class MaintenanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
-
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-
-        TextView textView = findViewById(R.id.current_Date);
-        textView.setText(currentDate);
     }
 }

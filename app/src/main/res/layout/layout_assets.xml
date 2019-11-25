@@ -47,6 +47,14 @@
         android:id="@+id/tv_brand"
         style="@style/ItemLayoutUserField"
         android:text="Nama Brand" />
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:text="@string/item" />
+
+    <TextView
+        android:id="@+id/tv_item"
+        style="@style/ItemLayoutUserField"
+        android:text="Nama Item" />
 
 
 </LinearLayout>
