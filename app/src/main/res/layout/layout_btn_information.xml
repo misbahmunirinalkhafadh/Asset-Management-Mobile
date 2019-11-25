@@ -7,13 +7,14 @@
     <Button
         android:id="@+id/btn_maintenance"
         style="@style/ButtonItem"
-        android:background="@drawable/btn_green"
-        android:text="@string/maintenance" />
+        android:background="@drawable/btn_blue"
+        android:text="@string/maintain" />
 
     <Button
         android:id="@+id/btn_close"
         style="@style/ButtonItem"
-        android:background="@drawable/btn_blue"
+        android:background="@color/colorTransparant"
+        android:textColor="@color/colorRed"
         android:text="@string/close" />
 
 </LinearLayout>

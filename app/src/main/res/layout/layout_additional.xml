@@ -8,7 +8,7 @@
 
     <TextView
         style="@style/ItemLayoutUserTitle"
-        android:text="Additional"
+        android:text="@string/additional"
         android:textSize="16sp" />
 
     <View
@@ -20,27 +20,27 @@
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="IP Address"
+        android:hint="@string/iPAddress"
         android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="User Name Login"
+        android:hint="@string/userNameLogin"
         android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="Computer Name"
+        android:hint="@string/computerName"
         android:padding="10dp" />
 </LinearLayout>
