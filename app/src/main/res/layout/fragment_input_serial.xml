@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_blue"
-            android:fontFamily="@font/mregular"
+            android:fontFamily="@font/mmedium"
             android:text="@string/search"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />

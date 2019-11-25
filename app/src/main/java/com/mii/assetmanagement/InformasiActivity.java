@@ -24,18 +24,18 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
 
         initComponent();
 
-        Intent intent = getIntent();
-        String processor = intent.getExtras().getString("Processor");
-        String system = intent.getExtras().getString("System");
-        String hdd = intent.getExtras().getString("HDD");
-        String ssd = intent.getExtras().getString("SSD");
-        String ram = intent.getExtras().getString("RAM");
-
-        tvProcessor.setText(processor);
-        tvSystem.setText(system);
-        tvHdd.setText(hdd);
-        tvSsd.setText(ssd);
-        tvRam.setText(ram);
+//        Intent intent = getIntent();
+//        String processor = intent.getExtras().getString("Processor");
+//        String system = intent.getExtras().getString("System");
+//        String hdd = intent.getExtras().getString("HDD");
+//        String ssd = intent.getExtras().getString("SSD");
+//        String ram = intent.getExtras().getString("RAM");
+//
+//        tvProcessor.setText(processor);
+//        tvSystem.setText(system);
+//        tvHdd.setText(hdd);
+//        tvSsd.setText(ssd);
+//        tvRam.setText(ram);
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);

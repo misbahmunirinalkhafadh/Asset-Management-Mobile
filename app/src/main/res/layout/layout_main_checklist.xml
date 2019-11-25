@@ -29,14 +29,6 @@
         android:theme="@style/MyCheckbox" />
 
     <CheckBox
-        android:id="@+id/cb_os"
-        style="@style/ItemLayoutCheckbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/operating_system"
-        android:theme="@style/MyCheckbox" />
-
-    <CheckBox
         android:id="@+id/cb_app"
         style="@style/ItemLayoutCheckbox"
         android:layout_width="match_parent"
