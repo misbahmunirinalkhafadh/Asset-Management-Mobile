@@ -13,7 +13,7 @@
     <Button
         android:id="@+id/btn_close"
         style="@style/ButtonItem"
-        android:background="@color/colorTransparant"
+        android:background="@android:color/transparent"
         android:textColor="@color/colorRed"
         android:text="@string/close" />
 

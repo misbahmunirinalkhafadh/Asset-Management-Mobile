@@ -7,7 +7,7 @@ public class Asset {
     private String type;
     private String brand;
     private String serialNumber;
-    private String others;
+    private String[] others;
     private Boolean error;
 
     public Asset() {
@@ -61,11 +61,11 @@ public class Asset {
         this.serialNumber = serialNumber;
     }
 
-    public String getOthers() {
+    public String[] getOthers() {
         return others;
     }
 
-    public void setOthers(String others) {
+    public void setOthers(String[] others) {
         this.others = others;
     }
 
@@ -77,3 +77,4 @@ public class Asset {
         this.error = error;
     }
 }
+
