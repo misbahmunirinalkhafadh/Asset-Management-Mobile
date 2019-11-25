@@ -35,6 +35,8 @@
     <string name="antivirus">Antivirus</string>
     <string name="application_standard">Application Standard</string>
     <string name="function">Function</string>
+    <string name="todo">TODO</string>
+    <string name="logout">Logout</string>
     <string name="item">Item</string>
     <string name="maintain">Maintain</string>
     <string name="computerName">Computer Name</string>

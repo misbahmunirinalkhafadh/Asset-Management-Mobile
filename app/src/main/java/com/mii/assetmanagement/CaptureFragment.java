@@ -88,7 +88,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             }
         }, 300);
 
-        String resultCode = rawResult.getText();
+        final String resultCode = rawResult.getText();
         Log.v("TAG", resultCode);
 
         mApiService.assetRequest(resultCode).enqueue(new Callback<Asset>() {
@@ -97,15 +97,26 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
                 if (!response.body().getError()) {
                     String hdd;
                     String ssd;
-                    if (response.body().getParts().getSSD() == null) ssd = "-";
+                    if (response.body().getParts().getSSD() == null) ssd = "N/A";
                     else ssd = response.body().getParts().getSSD();
-                    if (response.body().getParts().getHDD() == null) hdd = "-";
+                    if (response.body().getParts().getHDD() == null) hdd = "N/A";
                     else hdd = response.body().getParts().getHDD();
 
                     // Bundle
                     Bundle extras = new Bundle();
+                    // User
+                    extras.putString("nik", response.body().getUser().getNik());
+                    extras.putString("name", response.body().getUser().getName());
+                    extras.putString("location", response.body().getUser().getLocation());
+                    extras.putString("branch", response.body().getUser().getBranch());
+                    // Asset
+                    extras.putString("salesOrder", response.body().getSalesOrder());
+                    extras.putString("serialNumber", response.body().getSerialNumber());
+                    extras.putString("brand", response.body().getBrand());
+                    extras.putString("type", response.body().getType());
+                    // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
-                    extras.putString("System", response.body().getParts().getOS());
+                    extras.putString("OS", response.body().getParts().getOS());
                     extras.putString("RAM", response.body().getParts().getRAM());
                     extras.putString("HDD", hdd);
                     extras.putString("SSD", ssd);
@@ -128,6 +139,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             @Override
             public void onFailure(Call<Asset> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
+                getActivity().onBackPressed();
             }
         });
     }
