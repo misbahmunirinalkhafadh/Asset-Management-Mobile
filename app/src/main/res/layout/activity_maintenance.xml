@@ -15,12 +15,11 @@
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/AppTheme">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_arrow" />
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_arrow_back_black_24dp" />
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -46,22 +45,6 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/info"
-                style="@style/ItemLayout"
-                layout="@layout/layout_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-
-            <include
-                android:id="@+id/asset"
-                style="@style/ItemLayout"
-                layout="@layout/layout_item_asset"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-
-            <include
                 android:id="@+id/user"
                 style="@style/ItemLayout"
                 layout="@layout/layout_checking_comparison"
@@ -76,10 +59,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" />
+
             <include
                 android:id="@+id/additional"
                 style="@style/ItemLayout"
                 layout="@layout/layout_additional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <include
+                android:id="@+id/textArea_result"
+                style="@style/ItemLayout"
+                layout="@layout/layout_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" />
@@ -90,8 +82,8 @@
                 layout="@layout/layout_btn_maintenance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
 
         </LinearLayout>

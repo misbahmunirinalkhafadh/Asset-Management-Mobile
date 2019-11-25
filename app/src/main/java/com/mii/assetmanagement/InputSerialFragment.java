@@ -123,7 +123,7 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     extras.putString("SSD", ssd);
 
                     Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-                    goToInformation.putExtras(extras);
+                   goToInformation.putExtras(extras);
                     startActivity(goToInformation);
 
                 } else {

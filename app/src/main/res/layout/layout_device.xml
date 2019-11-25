@@ -7,31 +7,34 @@
     android:padding="18dp">
 
     <TextView
-        style="@style/ItemLayoutUserTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checking Comparison"
+        android:fontFamily="@font/mregular"
+        android:text="@string/device"
+        android:textColor="@color/colorTitle"
         android:textSize="16sp" />
 
     <View
+        android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="1sp"
+        android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#B5B7B9" />
+        android:background="@color/colorGreySoft" />
 
-  <RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_processor"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/processor"
-            android:theme="@style/MyCheckbox" />
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mregular"
+            android:text="Processor"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_processor"
@@ -39,23 +42,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
+            android:fontFamily="@font/mregular"
             android:text="Intel Core i5"
             android:textSize="14sp" />
-    </RelativeLayout>
 
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_ram"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ram"
-            android:theme="@style/MyCheckbox" />
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mregular"
+            android:text="Memory RAM"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_ram"
@@ -63,24 +68,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
-            android:text="8GB"
+            android:fontFamily="@font/mregular"
+            android:text="8 GB"
             android:textSize="14sp" />
 
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_hdd"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hardisk"
-            android:theme="@style/MyCheckbox" />
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mregular"
+            android:text="HDD"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_hdd"
@@ -88,24 +94,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
+            android:fontFamily="@font/mregular"
             android:text="1 TB"
             android:textSize="14sp" />
 
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/cb_ssd"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ssd"
-            android:theme="@style/MyCheckbox" />
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mregular"
+            android:text="SSD"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_ssd"
@@ -113,35 +120,37 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
-            android:text="128 GB"
+            android:fontFamily="@font/mregular"
+            android:text="N/A"
             android:textSize="14sp" />
 
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
-        <CheckBox
-            android:id="@+id/cb_system"
-            style="@style/ItemLayoutCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/operating_system"
-            android:theme="@style/MyCheckbox" />
 
         <TextView
-            android:id="@+id/tv_system"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mregular"
+            android:text="Operating System"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_os"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/mmedium"
-            android:text="Windows 10 Pro"
+            android:fontFamily="@font/mregular"
+            android:text="Windows !0 Pro"
             android:textSize="14sp" />
 
     </RelativeLayout>
 
-</LinearLayout>
 
+</LinearLayout>

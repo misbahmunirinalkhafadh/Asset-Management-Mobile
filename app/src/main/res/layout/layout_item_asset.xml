@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:background="@drawable/bg_menu"
-            android:padding="18dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioGroup
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mmedium"
+                android:text="Item Asset : "
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Item Asset : "
-                        android:fontFamily="@font/mmedium"
-                        android:textSize="14sp"/>
+            <RadioButton
+                android:id="@+id/cb_pc"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="PC"
+                android:textSize="14sp"
+                android:theme="@style/MyCheckbox" />
 
-                    <RadioButton
-                        android:id="@+id/cb_pc"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="PC"
-                        style="@style/ItemLayoutUserField"
-                        android:textSize="14sp"
-                        android:theme="@style/MyCheckbox"/>
-
-                    <RadioButton
-                        android:id="@+id/cb_nb"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="105dp"
-                        android:layout_height="wrap_content"
-                        android:text="Notebook"
-                        style="@style/ItemLayoutUserField"
-                        android:textSize="14sp"
-                        android:theme="@style/MyCheckbox"/>
-                </RadioGroup>
-            </LinearLayout>
+            <RadioButton
+                android:id="@+id/cb_nb"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Notebook"
+                android:textSize="14sp"
+                android:theme="@style/MyCheckbox" />
+        </RadioGroup>
+    </LinearLayout>
 </LinearLayout>

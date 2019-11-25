@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
         android:background="@color/colorWhite"
+        android:elevation="10dp"
         android:orientation="vertical"
         android:padding="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,15 +25,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="@string/input_serial_number" />
+            android:fontFamily="@font/mregular"
+            android:hint="@string/input_serial_number"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btn_search_serial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBlue"
+            android:background="@drawable/btn_blue"
+            android:fontFamily="@font/mmedium"
             android:text="@string/search"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

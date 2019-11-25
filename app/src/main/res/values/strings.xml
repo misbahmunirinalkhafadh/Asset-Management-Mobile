@@ -13,8 +13,8 @@
     <string name="generate">GENERATE</string>
     <string name="cleaning">Cleaning</string>
     <string name="completeness">Completeness</string>
-    <string name="user">User Information</string>
-    <string name="asset">Asset Information</string>
+    <string name="user">User</string>
+    <string name="asset">Asset</string>
     <string name="information">INFORMATION</string>
     <string name="device">Device</string>
     <string name="sales">Sales Order</string>
@@ -37,5 +37,11 @@
     <string name="function">Function</string>
     <string name="todo">TODO</string>
     <string name="logout">Logout</string>
+    <string name="item">Item</string>
+    <string name="maintain">Maintain</string>
+    <string name="computerName">Computer Name</string>
+    <string name="userNameLogin">User Name Login</string>
+    <string name="iPAddress">IP Address</string>
+    <string name="additional">Additional</string>
 
 </resources>
