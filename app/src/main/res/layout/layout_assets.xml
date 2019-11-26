@@ -27,8 +27,7 @@
 
     <TextView
         android:id="@+id/tv_sales"
-        style="@style/ItemLayoutUserField"
-        android:text="3442654" />
+        style="@style/ItemLayoutUserField" />
 
     <TextView
         style="@style/ItemLayoutUserTitle"
@@ -36,8 +35,7 @@
 
     <TextView
         android:id="@+id/tv_serial"
-        style="@style/ItemLayoutUserField"
-        android:text="234753" />
+        style="@style/ItemLayoutUserField"/>
 
     <TextView
         style="@style/ItemLayoutUserTitle"
@@ -45,16 +43,14 @@
 
     <TextView
         android:id="@+id/tv_brand"
-        style="@style/ItemLayoutUserField"
-        android:text="Nama Brand" />
+        style="@style/ItemLayoutUserField" />
     <TextView
         style="@style/ItemLayoutUserTitle"
         android:text="@string/item" />
 
     <TextView
         android:id="@+id/tv_item"
-        style="@style/ItemLayoutUserField"
-        android:text="Nama Item" />
+        style="@style/ItemLayoutUserField" />
 
 
 </LinearLayout>

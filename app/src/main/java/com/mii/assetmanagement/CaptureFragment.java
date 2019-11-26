@@ -139,7 +139,6 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             @Override
             public void onFailure(Call<Asset> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
-                getActivity().onBackPressed();
             }
         });
     }

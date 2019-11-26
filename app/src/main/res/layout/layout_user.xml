@@ -27,8 +27,7 @@
 
     <TextView
         android:id="@+id/tv_nik"
-        style="@style/ItemLayoutUserField"
-        android:text="123456789" />
+        style="@style/ItemLayoutUserField" />
 
     <TextView
         style="@style/ItemLayoutUserTitle"
@@ -36,25 +35,22 @@
 
     <TextView
         android:id="@+id/tv_name"
-        style="@style/ItemLayoutUserField"
-        android:text="@string/name" />
+        style="@style/ItemLayoutUserField" />
 
     <TextView
         style="@style/ItemLayoutUserTitle"
-        android:text="Branch" />
+        android:text="@string/branch" />
 
     <TextView
         android:id="@+id/tv_branch"
-        style="@style/ItemLayoutUserField"
-        android:text="Nama Cabang" />
+        style="@style/ItemLayoutUserField" />
 
     <TextView
         style="@style/ItemLayoutUserTitle"
-        android:text="Location" />
+        android:text="@string/location" />
 
     <TextView
         android:id="@+id/tv_location"
-        style="@style/ItemLayoutUserField"
-        android:text="Nama Lokasi" />
+        style="@style/ItemLayoutUserField" />
 
 </LinearLayout>

@@ -1,15 +1,13 @@
 package com.mii.assetmanagement;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.util.Calendar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MaintenanceActivity extends AppCompatActivity {
+
+    TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

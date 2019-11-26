@@ -98,9 +98,9 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                 if (!response.body().getError()) {
                     String hdd;
                     String ssd;
-                    if (response.body().getParts().getSSD() == null) ssd = "-";
+                    if (response.body().getParts().getSSD() == null) ssd = "N/A";
                     else ssd = response.body().getParts().getSSD();
-                    if (response.body().getParts().getHDD() == null) hdd = "-";
+                    if (response.body().getParts().getHDD() == null) hdd = "N/A";
                     else hdd = response.body().getParts().getHDD();
 
                     //Bundle
@@ -117,20 +117,19 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     extras.putString("type", response.body().getType());
                     // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
-                    extras.putString("System", response.body().getParts().getOS());
+                    extras.putString("OS", response.body().getParts().getOS());
                     extras.putString("RAM", response.body().getParts().getRAM());
                     extras.putString("HDD", hdd);
                     extras.putString("SSD", ssd);
 
                     Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-                   goToInformation.putExtras(extras);
+                    goToInformation.putExtras(extras);
                     startActivity(goToInformation);
 
                 } else {
                     Log.e("Error", String.valueOf(true));
                     progressDialog.dismiss();
                     Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
-
                     etSerial.getText().clear();
                 }
             }
