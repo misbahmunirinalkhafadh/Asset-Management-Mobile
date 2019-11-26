@@ -19,7 +19,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ErrorActivity"></activity>
         <activity android:name=".ScannerActivity" />
-        <activity android:name=".ReviewActivity" />
         <activity android:name=".MaintenanceActivity" />
         <activity android:name=".InformasiActivity" />
         <activity android:name=".ProfileActivity" />
