@@ -8,6 +8,6 @@
         android:id="@+id/btn_submit"
         style="@style/ButtonItem"
         android:background="@drawable/btn_blue"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
 </LinearLayout>
