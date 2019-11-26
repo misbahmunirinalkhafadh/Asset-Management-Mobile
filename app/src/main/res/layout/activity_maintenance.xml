@@ -77,13 +77,12 @@
                 android:layout_marginTop="16dp" />
 
             <include
-                android:id="@+id/btn_submit"
+                android:id="@+id/submit"
                 style="@style/ItemLayout"
                 layout="@layout/layout_btn_maintenance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginTop="16dp" />
 
         </LinearLayout>
     </ScrollView>
