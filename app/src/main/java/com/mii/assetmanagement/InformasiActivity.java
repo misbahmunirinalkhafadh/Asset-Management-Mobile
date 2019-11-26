@@ -89,6 +89,7 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_maintenance:
                 Intent goToMaintenance = new Intent(InformasiActivity.this, MaintenanceActivity.class);
+                goToMaintenance.putExtras(getIntent());
                 startActivity(goToMaintenance);
                 break;
             case R.id.btn_close:

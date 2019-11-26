@@ -4,7 +4,8 @@
     <string name="password">Password</string>
     <string name="nik">NIK</string>
     <string name="name">John Doe</string>
-    <string name="maintenance">Maintenance</string>
+    <string name="menu_maintenance">Maintenance</string>
+    <string name="maintenance">MAINTENANCE</string>
     <string name="request_assets">Request Assets</string>
     <string name="input_serial_number">Input Serial Number</string>
 
@@ -43,5 +44,8 @@
     <string name="userNameLogin">User Name Login</string>
     <string name="iPAddress">IP Address</string>
     <string name="additional">Additional</string>
+    <string name="checking_comparison">Checking Comparison</string>
+    <string name="branch">Branch</string>
+    <string name="location">Location</string>
 
 </resources>
