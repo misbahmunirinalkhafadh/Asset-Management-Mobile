@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".MaintenanceActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/mmedium"
-            android:text="MAINTENANCE"
+            android:text="@string/maintenance"
             android:textColor="@color/colorWhite"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +41,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <include
@@ -84,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp" />
-
 
         </LinearLayout>
     </ScrollView>

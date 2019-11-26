@@ -15,9 +15,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1sp"
+        android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="#B5B7B9" />
+        android:background="@color/colorGreySoft" />
 
     <CheckBox
         android:id="@+id/cb_antivirus"

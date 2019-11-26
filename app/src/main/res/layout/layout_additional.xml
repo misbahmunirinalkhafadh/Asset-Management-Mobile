@@ -12,10 +12,11 @@
         android:textSize="16sp" />
 
     <View
+        android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="1sp"
+        android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="#B5B7B9" />
+        android:background="@color/colorGreySoft" />
 
     <com.google.android.material.textfield.TextInputEditText
         style="@style/ItemLayoutUserField"
