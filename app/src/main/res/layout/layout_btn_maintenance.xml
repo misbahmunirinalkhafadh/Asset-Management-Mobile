@@ -7,6 +7,7 @@
     <Button
         android:id="@+id/btn_submit"
         style="@style/ButtonItem"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/btn_blue"
         android:text="@string/submit" />
 
