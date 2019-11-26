@@ -17,6 +17,7 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
     Button btnMaintenance, btnClose, btnBack;
     private ProgressBar loading;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,36 +26,19 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         initComponent();
 
         Intent intent = getIntent();
-        // User
-        String nik = intent.getExtras().getString("nik");
-        String name = intent.getExtras().getString("name");
-        String location = intent.getExtras().getString("location");
-        String branch = intent.getExtras().getString("branch");
-        // Asset
-        String so = intent.getExtras().getString("salesOrder");
-        String sn = intent.getExtras().getString("serialNumber");
-        String brand = intent.getExtras().getString("brand");
-        String type = intent.getExtras().getString("type");
-        // Parts
-        String processor = intent.getExtras().getString("Processor");
-        String system = intent.getExtras().getString("OS");
-        String hdd = intent.getExtras().getString("HDD");
-        String ssd = intent.getExtras().getString("SSD");
-        String ram = intent.getExtras().getString("RAM");
-
-        tvNik.setText(nik);
-        tvName.setText(name);
-        tvLocation.setText(location);
-        tvBranch.setText(branch);
-        tvSales.setText(so);
-        tvSerial.setText(sn);
-        tvBrand.setText(brand);
-        tvType.setText(type);
-        tvProcessor.setText(processor);
-        tvSystem.setText(system);
-        tvHdd.setText(hdd);
-        tvSsd.setText(ssd);
-        tvRam.setText(ram);
+        tvNik.setText(intent.getStringExtra("nik"));
+        tvName.setText(intent.getStringExtra("name"));
+        tvLocation.setText(intent.getStringExtra("location"));
+        tvBranch.setText(intent.getStringExtra("branch"));
+        tvSales.setText(intent.getStringExtra("salesOrder"));
+        tvSerial.setText(intent.getStringExtra("serialNumber"));
+        tvBrand.setText(intent.getStringExtra("brand"));
+        tvType.setText(intent.getStringExtra("type"));
+        tvProcessor.setText(intent.getStringExtra("Processor"));
+        tvSystem.setText(intent.getStringExtra("OS"));
+        tvHdd.setText(intent.getStringExtra("HDD"));
+        tvSsd.setText(intent.getStringExtra("SSD"));
+        tvRam.setText(intent.getStringExtra("RAM"));
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
@@ -88,8 +72,15 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
                 onBackPressed();
                 break;
             case R.id.btn_maintenance:
+                Bundle extras = new Bundle();
+                extras.putString("Processor", tvProcessor.getText().toString());
+                extras.putString("OS", tvSystem.getText().toString());
+                extras.putString("HDD", tvHdd.getText().toString());
+                extras.putString("SSD", tvSsd.getText().toString());
+                extras.putString("RAM", tvRam.getText().toString());
+
                 Intent goToMaintenance = new Intent(InformasiActivity.this, MaintenanceActivity.class);
-                goToMaintenance.putExtras(getIntent());
+                goToMaintenance.putExtras(extras);
                 startActivity(goToMaintenance);
                 break;
             case R.id.btn_close:

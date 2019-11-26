@@ -47,5 +47,6 @@
     <string name="checking_comparison">Checking Comparison</string>
     <string name="branch">Branch</string>
     <string name="location">Location</string>
+    <string name="submit">Submit</string>
 
 </resources>
