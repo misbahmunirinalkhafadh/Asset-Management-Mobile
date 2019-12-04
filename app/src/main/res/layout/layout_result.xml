@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/textArea_result"
+        android:id="@+id/et_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_result"

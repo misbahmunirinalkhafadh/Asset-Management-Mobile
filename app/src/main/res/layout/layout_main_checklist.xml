@@ -19,36 +19,11 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorGreySoft" />
 
-    <CheckBox
-        android:id="@+id/cb_antivirus"
-        style="@style/ItemLayoutCheckbox"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main_checklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/antivirus"
-        android:theme="@style/MyCheckbox" />
+        android:layout_marginTop="8dp" />
 
-    <CheckBox
-        android:id="@+id/cb_app"
-        style="@style/ItemLayoutCheckbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/application_standard"
-        android:theme="@style/MyCheckbox" />
 
-    <CheckBox
-        android:id="@+id/cb_cleaning"
-        style="@style/ItemLayoutCheckbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cleaning"
-        android:theme="@style/MyCheckbox" />
-
-    <CheckBox
-        android:id="@+id/cb_function"
-        style="@style/ItemLayoutCheckbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/function"
-        android:theme="@style/MyCheckbox" />
 </LinearLayout>
