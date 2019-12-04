@@ -11,7 +11,7 @@
         android:background="@drawable/bg_result"
         android:fontFamily="@font/mmedium"
         android:gravity="top|left"
-        android:hint="Result"
+        android:hint="@string/result"
         android:inputType="textMultiLine"
         android:lines="8"
         android:overScrollMode="always"
