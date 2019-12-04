@@ -51,6 +51,8 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
         mApiService = UtilsApi.getApiService();
         //Progress Dialog
         progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
 
         return mScannerView;
     }
@@ -76,8 +78,6 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
     @Override
     public void handleResult(final Result rawResult) {
         progressDialog.show(); // show progress dialog
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
 
         //Handler Dialog
         Handler handler = new Handler();
@@ -86,7 +86,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             public void run() {
                 progressDialog.dismiss();
             }
-        }, 300);
+        }, 3000);
 
         final String resultCode = rawResult.getText();
         Log.v("TAG", resultCode);
@@ -114,6 +114,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
                     extras.putString("serialNumber", response.body().getSerialNumber());
                     extras.putString("brand", response.body().getBrand());
                     extras.putString("type", response.body().getType());
+                    extras.putStringArray("others", response.body().getOthers());
                     // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
                     extras.putString("OS", response.body().getParts().getOS());

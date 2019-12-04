@@ -3,6 +3,7 @@ package com.mii.assetmanagement.apihelper;
 import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.LoginRequest;
 import com.mii.assetmanagement.model.LoginResult;
+import com.mii.assetmanagement.model.MaintenanceRequest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,6 +17,10 @@ public interface ApiService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Call<LoginResult> login(@Body LoginRequest body);
 
+    @POST("maintenance/save")
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Call<MaintenanceRequest> saveMaintenance(@Body MaintenanceRequest body);
+
     @GET("maintenance/getparts/{serial}")
-    Call <Asset> assetRequest(@Path("serial") String serial);
+    Call<Asset> assetRequest(@Path("serial") String serial);
 }
