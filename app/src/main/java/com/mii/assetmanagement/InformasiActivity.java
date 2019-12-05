@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -16,13 +16,14 @@ import java.util.Arrays;
 
 public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
 
+    LinearLayout llProgress;
     TextView tvNik, tvName, tvLocation, tvBranch;
     TextView tvSales, tvSerial, tvBrand, tvType;
     TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     Button btnMaintenance, btnClose, btnBack;
     String[] listService;
-    ScrollView llInformation;
-    private ProgressBar loading;
+    ScrollView svInformation;
+//    private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                loading.setVisibility(View.GONE);
-                llInformation.setVisibility(View.VISIBLE);
+                llProgress.setVisibility(View.GONE);
+                svInformation.setVisibility(View.VISIBLE);
             }
         }, 1000);
 
@@ -50,8 +51,8 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void loadInformation() {
-        loading.setVisibility(View.VISIBLE);
-        llInformation.setVisibility(View.GONE);
+        llProgress.setVisibility(View.VISIBLE);
+        svInformation.setVisibility(View.GONE);
 
         Intent intent = getIntent();
         tvNik.setText(intent.getStringExtra("nik"));
@@ -71,6 +72,7 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initComponent() {
+        llProgress = findViewById(R.id.ll_progress);
         tvNik = findViewById(R.id.tv_nik);
         tvName = findViewById(R.id.tv_name);
         tvLocation = findViewById(R.id.tv_location);
@@ -87,8 +89,8 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         btnBack = findViewById(R.id.btn_back);
         btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
-        loading = findViewById(R.id.loading);
-        llInformation = findViewById(R.id.ll_information);
+//        loading = findViewById(R.id.loading);
+        svInformation = findViewById(R.id.sv_information);
     }
 
     @Override
