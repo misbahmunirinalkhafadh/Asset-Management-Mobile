@@ -2,21 +2,28 @@ package com.mii.assetmanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+
 public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
 
+    LinearLayout llProgress;
     TextView tvNik, tvName, tvLocation, tvBranch;
     TextView tvSales, tvSerial, tvBrand, tvType;
     TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     Button btnMaintenance, btnClose, btnBack;
-    private ProgressBar loading;
-
+    String[] listService;
+    ScrollView svInformation;
+//    private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,28 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_informasi);
 
         initComponent();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                llProgress.setVisibility(View.GONE);
+                svInformation.setVisibility(View.VISIBLE);
+            }
+        }, 1000);
+
+        loadInformation();
+
+        Log.v("Information Act Others", Arrays.toString(listService));
+
+        btnBack.setOnClickListener(this);
+        btnClose.setOnClickListener(this);
+        btnMaintenance.setOnClickListener(this);
+    }
+
+    private void loadInformation() {
+        llProgress.setVisibility(View.VISIBLE);
+        svInformation.setVisibility(View.GONE);
 
         Intent intent = getIntent();
         tvNik.setText(intent.getStringExtra("nik"));
@@ -39,13 +68,11 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         tvHdd.setText(intent.getStringExtra("HDD"));
         tvSsd.setText(intent.getStringExtra("SSD"));
         tvRam.setText(intent.getStringExtra("RAM"));
-
-        btnBack.setOnClickListener(this);
-        btnClose.setOnClickListener(this);
-        btnMaintenance.setOnClickListener(this);
+        listService = intent.getStringArrayExtra("others");
     }
 
     private void initComponent() {
+        llProgress = findViewById(R.id.ll_progress);
         tvNik = findViewById(R.id.tv_nik);
         tvName = findViewById(R.id.tv_name);
         tvLocation = findViewById(R.id.tv_location);
@@ -62,7 +89,8 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         btnBack = findViewById(R.id.btn_back);
         btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
-        loading = findViewById(R.id.loading);
+//        loading = findViewById(R.id.loading);
+        svInformation = findViewById(R.id.sv_information);
     }
 
     @Override
@@ -73,11 +101,13 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_maintenance:
                 Bundle extras = new Bundle();
+                extras.putString("serialNumber", tvSerial.getText().toString());
                 extras.putString("Processor", tvProcessor.getText().toString());
                 extras.putString("OS", tvSystem.getText().toString());
                 extras.putString("HDD", tvHdd.getText().toString());
                 extras.putString("SSD", tvSsd.getText().toString());
                 extras.putString("RAM", tvRam.getText().toString());
+                extras.putStringArray("others", listService);
 
                 Intent goToMaintenance = new Intent(InformasiActivity.this, MaintenanceActivity.class);
                 goToMaintenance.putExtras(extras);

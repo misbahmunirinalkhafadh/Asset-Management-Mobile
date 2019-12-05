@@ -19,6 +19,7 @@
         android:background="@color/colorGreySoft" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_ipAddress"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -28,6 +29,7 @@
         android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_username"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -37,6 +39,7 @@
         android:padding="10dp" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_computerName"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="40dp"

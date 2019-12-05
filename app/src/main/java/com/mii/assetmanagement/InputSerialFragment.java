@@ -22,6 +22,8 @@ import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.Asset;
 
+import java.util.Arrays;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,7 +85,7 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                 public void run() {
                     progressDialog.dismiss();
                 }
-            }, 300);
+            }, 2000);
 
             serialRequest();
         }
@@ -115,12 +117,16 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     extras.putString("serialNumber", response.body().getSerialNumber());
                     extras.putString("brand", response.body().getBrand());
                     extras.putString("type", response.body().getType());
+                    extras.putStringArray("others", response.body().getOthers());
                     // Parts
                     extras.putString("Processor", response.body().getParts().getProcessor());
                     extras.putString("OS", response.body().getParts().getOS());
                     extras.putString("RAM", response.body().getParts().getRAM());
                     extras.putString("HDD", hdd);
                     extras.putString("SSD", ssd);
+
+
+                    Log.v("List Others", Arrays.toString(response.body().getOthers()));
 
                     Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
                     goToInformation.putExtras(extras);
