@@ -23,6 +23,8 @@
         <item name="android:fontFamily">@font/mmedium</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
     </style>
 
     <style name="ItemLayout">
