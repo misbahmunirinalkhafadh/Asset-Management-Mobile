@@ -22,6 +22,9 @@ public class MaintenanceRequest {
     @SerializedName("service")
     @Expose
     private boolean[] service;
+    @SerializedName("names")
+    @Expose
+    private String[] names;
     @SerializedName("ip")
     @Expose
     private String ip;
@@ -155,4 +158,9 @@ public class MaintenanceRequest {
     public void setMaintainer(String maintainer) {
         this.maintainer = maintainer;
     }
+
+    public String[] getNames() { return names; }
+
+    public void setNames(String[] names) { this.names = names; }
+
 }
