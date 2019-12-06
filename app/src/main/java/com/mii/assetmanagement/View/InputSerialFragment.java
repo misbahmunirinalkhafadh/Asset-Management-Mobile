@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 
 import android.app.ProgressDialog;
@@ -18,9 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.Model.Asset;
 
 import java.util.Arrays;
 
@@ -124,7 +125,6 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     extras.putString("RAM", response.body().getParts().getRAM());
                     extras.putString("HDD", hdd);
                     extras.putString("SSD", ssd);
-
 
                     Log.v("List Others", Arrays.toString(response.body().getOthers()));
 

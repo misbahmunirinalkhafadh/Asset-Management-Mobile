@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.LoginRequest;
-import com.mii.assetmanagement.model.LoginResult;
+import com.mii.assetmanagement.Model.LoginRequest;
+import com.mii.assetmanagement.Model.LoginResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -121,34 +123,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-//                if (response.isSuccessful()){
-//                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
-//
-//                    String name = response.body().getUserName();
-//                    String email = response.body().getEmail();
-//                    String nik = Integer.toString(response.body().getNik());
-//
-//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
-//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
-//                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
-//
-//                    // Shared Pref ini berfungsi untuk menjadi trigger session login
-//                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
-//
-//                    startActivity(new Intent(mContext, MainActivity.class)
-//                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-//                    finish();
-//
-//                }else {
-//                    Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
-//                    Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                    loading.setVisibility(View.GONE);
-//                    etEmail.setEnabled(true);
-//                    etPassword.setEnabled(true);
-//                    btnLogin.setEnabled(true);
-//                }
-//
                 if (response.body().getError()) {
                     Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
                     Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
