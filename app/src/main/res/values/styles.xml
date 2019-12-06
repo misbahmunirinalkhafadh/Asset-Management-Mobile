@@ -72,4 +72,12 @@
         <item name="android:textSize">26sp</item>
         <item name="android:fontFamily">@font/msemibold</item>
     </style>
+
+    <style name="AlertSuccess" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
