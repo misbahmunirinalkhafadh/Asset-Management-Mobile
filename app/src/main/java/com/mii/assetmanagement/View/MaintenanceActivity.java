@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,19 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mii.assetmanagement.apihelper.ApiService;
-import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.MaintenanceRequest;
+import com.mii.assetmanagement.Adapter.MainChecklistAdapter;
+import com.mii.assetmanagement.Model.MaintenanceRequest;
+import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
+import com.mii.assetmanagement.ViewModel.MaintenanceViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,9 +37,9 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     Button btnBack, btnSubmit;
 
     Context mContext;
-    ApiService mApiService;
     SharedPrefManager sharedPrefManager;
 
+    private MaintenanceViewModel maintenanceViewModel;
     private ProgressDialog progressDialog;
     private String serial;
     private String[] service;
@@ -54,8 +52,8 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_maintenance);
 
         mContext = this;
-        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
+        maintenanceViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
 
         initComponent();
 
@@ -65,12 +63,12 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         tvProcessor.setText(intent.getStringExtra("Processor"));
         tvSystem.setText(intent.getStringExtra("OS"));
         tvHdd.setText(intent.getStringExtra("HDD"));
-        if (tvHdd.getText().equals("N/A")){
+        if (tvHdd.getText().equals("N/A")) {
             tvHdd.setVisibility(View.GONE);
             cbHdd.setVisibility(View.GONE);
         }
         tvSsd.setText(intent.getStringExtra("SSD"));
-        if (tvSsd.getText().equals("N/A")){
+        if (tvSsd.getText().equals("N/A")) {
             tvSsd.setVisibility(View.GONE);
             cbSsd.setVisibility(View.GONE);
         }
@@ -136,31 +134,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         request.setComputerName(etComputer.getText().toString());
         request.setResult(etResult.getText().toString());
 
-        mApiService.saveMaintenance(request).enqueue(new Callback<MaintenanceRequest>() {
-            @Override
-            public void onResponse(Call<MaintenanceRequest> call, Response<MaintenanceRequest> response) {
-                if (response.isSuccessful()) {
-                    Log.i("post submitted to API.", response.body().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MaintenanceRequest> call, Throwable t) {
-                Log.e("onFailure", t.getMessage());
-            }
-        });
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_back:
-                onBackPressed();
-                break;
-            case R.id.btn_submit:
-                confirmDialog();
-                break;
-        }
+        maintenanceViewModel.apiSaveMaintenance(request);
     }
 
     private void confirmDialog() {
@@ -199,4 +173,16 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 }).show();
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_back:
+                onBackPressed();
+                break;
+            case R.id.btn_submit:
+                confirmDialog();
+                break;
+        }
+    }
 }

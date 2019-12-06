@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mii.assetmanagement.R;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;

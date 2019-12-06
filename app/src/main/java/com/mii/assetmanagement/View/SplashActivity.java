@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.mii.assetmanagement.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent start = new Intent(SplashActivity.this, MaintenanceActivity.class);
+                Intent start = new Intent(SplashActivity.this, LoginActivity.class);
 
                 //Animate swipe logo app
                 Pair[] pairs = new Pair[1];

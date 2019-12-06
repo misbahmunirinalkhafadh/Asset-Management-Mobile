@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mii.assetmanagement.Adapter.TabFragmentAdapter;
+import com.mii.assetmanagement.R;
 
 public class ScannerActivity extends AppCompatActivity {
     Button btnBack;
