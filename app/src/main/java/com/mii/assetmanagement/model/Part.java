@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.model;
+package com.mii.assetmanagement.Model;
 
 public class Part {
     private String Processor;

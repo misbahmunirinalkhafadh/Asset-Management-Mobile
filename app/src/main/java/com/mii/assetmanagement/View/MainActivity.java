@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 

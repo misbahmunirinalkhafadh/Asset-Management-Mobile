@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 
 import android.app.ProgressDialog;
@@ -18,9 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.zxing.Result;
+import com.mii.assetmanagement.Model.Asset;
+import com.mii.assetmanagement.ViewModel.AssetViewModel;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.Asset;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.Call;
@@ -32,10 +33,13 @@ import retrofit2.Response;
  */
 public class CaptureFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
+    private String resultSerial;
+
     Context mContext;
     private ZXingScannerView mScannerView;
     private ApiService mApiService;
     private ProgressDialog progressDialog;
+    private AssetViewModel assetViewModel;
 
     static CaptureFragment newInstance() {
         // Required empty public constructor
@@ -49,6 +53,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
 
         mContext = getActivity();
         mApiService = UtilsApi.getApiService();
+//        assetViewModel = ViewModelProviders.of(getActivity(), new ViewModelProvider.NewInstanceFactory()).get(AssetViewModel.class);
         //Progress Dialog
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false); // set cancelable to false
@@ -88,10 +93,12 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
             }
         }, 3000);
 
-        final String resultCode = rawResult.getText();
-        Log.v("TAG", resultCode);
+        resultSerial = rawResult.getText();
+        Log.v("TAG", resultSerial);
 
-        mApiService.assetRequest(resultCode).enqueue(new Callback<Asset>() {
+//        assetViewModel.apiAssetMaintenance(resultSerial);
+
+        mApiService.assetRequest(resultSerial).enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 if (!response.body().getError()) {

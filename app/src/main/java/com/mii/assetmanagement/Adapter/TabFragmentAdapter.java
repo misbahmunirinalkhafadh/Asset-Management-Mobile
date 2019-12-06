@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

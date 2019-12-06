@@ -1,9 +1,9 @@
 package com.mii.assetmanagement.apihelper;
 
-import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.model.LoginRequest;
-import com.mii.assetmanagement.model.LoginResult;
-import com.mii.assetmanagement.model.MaintenanceRequest;
+import com.mii.assetmanagement.Model.Asset;
+import com.mii.assetmanagement.Model.LoginRequest;
+import com.mii.assetmanagement.Model.LoginResult;
+import com.mii.assetmanagement.Model.MaintenanceRequest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
