@@ -53,4 +53,8 @@
     <string name="login">LOGIN</string>
     <string name="submit">SUBMIT</string>
     <string name="result">Result</string>
+    <string name="todo">TODO</string>
+    <string name="success">SUCCESS</string>
+    <string name="con">continue</string>
+    <string name="home">home</string>
 </resources>
