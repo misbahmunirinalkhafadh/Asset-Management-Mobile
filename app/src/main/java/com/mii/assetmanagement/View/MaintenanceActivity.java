@@ -1,13 +1,13 @@
 package com.mii.assetmanagement.View;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -40,7 +40,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     SharedPrefManager sharedPrefManager;
 
     private MaintenanceViewModel maintenanceViewModel;
-    private ProgressDialog progressDialog;
     private String serial;
     private String[] service;
     private List<String> serviceList;
@@ -143,26 +142,15 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         maintenanceRequest();
 
-                        //Progress Dialog
-                        progressDialog = new ProgressDialog(mContext);
-                        progressDialog.setCancelable(false); // set cancelable to false
-                        progressDialog.setMessage("Saving..."); // set message
-                        progressDialog.show(); // show progress dialog
+                        showAlertSuccess();
 
-                        //Handler Dialog
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                Toast.makeText(mContext, "Successfull", Toast.LENGTH_LONG).show();
-                                Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
-                                startActivity(submit);
-                                finish();
-                            }
-                        }, 3000);
+
+
+                        Toast.makeText(mContext, "Successfull", Toast.LENGTH_LONG).show();
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -173,6 +161,22 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 }).show();
     }
 
+    private void showAlertSuccess() {
+        final Dialog alert = new Dialog(mContext, android.R.style.Theme_Light);
+        alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alert.setContentView(R.layout.layout_dialog_success);
+        alert.setCancelable(false);
+        alert.show();
+        
+        Button btnClose = alert.findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
+                startActivity(submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+    }
 
     @Override
     public void onClick(View v) {
