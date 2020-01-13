@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_password"
+            android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
