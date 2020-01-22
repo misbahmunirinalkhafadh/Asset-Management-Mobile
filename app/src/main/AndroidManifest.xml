@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RequestActivity"></activity>
+        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".View.SearchSOActivity" />
+        <activity android:name=".View.RequestActivity" />
         <activity android:name=".View.ScannerActivity" />
         <activity android:name=".View.MaintenanceActivity" />
         <activity android:name=".View.InformasiActivity" />
@@ -33,7 +35,7 @@
         </activity>
         <activity
             android:name=".View.LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".View.MainActivity" />
     </application>
 
