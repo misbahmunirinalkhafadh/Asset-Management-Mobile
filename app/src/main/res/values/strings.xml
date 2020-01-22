@@ -61,4 +61,7 @@
     <string name="salesorder">Search Sales Order</string>
     <string name="Input_sales_order">Input Sales Order</string>
     <string name="Name">Name</string>
+    <string name="company">Company</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
 </resources>
