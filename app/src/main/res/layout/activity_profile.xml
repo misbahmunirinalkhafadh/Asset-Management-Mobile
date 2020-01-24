@@ -57,6 +57,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mregular"
+                android:text="@string/nik"
+                android:textColor="@color/colorTitle"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_nik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
                 android:text="@string/fullName"
                 android:textColor="@color/colorTitle"
                 android:textSize="12sp" />
@@ -69,22 +86,6 @@
                 android:textColor="@color/colorField"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:fontFamily="@font/mregular"
-                android:text="@string/nik"
-                android:textColor="@color/colorTitle"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_nik"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mregular"
-                android:textColor="@color/colorField"
-                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
