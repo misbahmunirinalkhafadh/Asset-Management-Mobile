@@ -64,4 +64,5 @@
     <string name="company">Company</string>
     <string name="confirm">confirm</string>
     <string name="cancel">cancel</string>
+    <string name="successs">SUCCESS !</string>
 </resources>
