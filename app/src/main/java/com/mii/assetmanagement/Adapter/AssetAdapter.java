@@ -1,11 +1,11 @@
-package com.mii.assetmanagement.Adapter;
+package com.mii.assetmanagement.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.mii.assetmanagement.Model.Asset;
+import com.mii.assetmanagement.model.Asset;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.Model;
+package com.mii.assetmanagement.model;
 
 public class Asset {
     private Part parts;

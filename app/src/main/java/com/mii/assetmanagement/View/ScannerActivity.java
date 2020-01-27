@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.mii.assetmanagement.Adapter.TabFragmentAdapter;
+import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 import com.mii.assetmanagement.R;
 
 public class ScannerActivity extends AppCompatActivity {
