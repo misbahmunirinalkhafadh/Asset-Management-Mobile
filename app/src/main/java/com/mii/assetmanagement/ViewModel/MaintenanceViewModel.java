@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class MaintenanceViewModel extends ViewModel {
 
-    ApiService mApiService;
+    private ApiService mApiService;
 
     public void apiSaveMaintenance(MaintenanceRequest request) {
         mApiService = UtilsApi.getApiService();
