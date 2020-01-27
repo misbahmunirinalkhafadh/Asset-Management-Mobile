@@ -1,8 +1,10 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mContext = this;
-        mApiService = UtilsApi.getAPIService();
+        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * declare event click
+     *
      * @param v
      */
     @Override
@@ -64,7 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //move to profile
             case R.id.img_profile:
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(goToProfile);
+
+                //Animate transition
+                Pair[] pairs = new Pair[1];
+                pairs[0] = new Pair(ivProfile, "profileTransition");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+
+                startActivity(goToProfile, options.toBundle());
                 break;
             //move to scanner
             case R.id.menu_scan:

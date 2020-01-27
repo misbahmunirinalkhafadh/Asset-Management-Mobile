@@ -3,8 +3,11 @@
     package="com.mii.assetmanagement">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"/>
+
+    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
@@ -16,20 +19,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ScannerActivity"></activity>
-        <activity android:name=".ReviewActivity"></activity>
-        <activity android:name=".MaintenanceActivity" />
-        <activity android:name=".InformasiActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".View.ScannerActivity" />
+        <activity android:name=".View.MaintenanceActivity" />
+        <activity android:name=".View.InformasiActivity" />
+        <activity android:name=".View.ProfileActivity" />
+        <activity android:name=".View.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".View.LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".View.MainActivity" />
     </application>
 
 </manifest>

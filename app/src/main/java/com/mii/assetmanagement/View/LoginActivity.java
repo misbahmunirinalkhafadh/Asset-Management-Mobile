@@ -1,4 +1,4 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,16 +9,19 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.LoginRequest;
-import com.mii.assetmanagement.model.LoginResult;
+import com.mii.assetmanagement.Model.LoginRequest;
+import com.mii.assetmanagement.Model.LoginResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,15 +41,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Context mContext;
     ApiService mApiService;
     SharedPrefManager sharedPrefManager;
+    private ProgressBar loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //hide scroll bar in scrollView
-        svScroll.setVerticalScrollBarEnabled(false);
-        svScroll.setHorizontalScrollBarEnabled(false);
 
         mContext = this;
         mApiService = UtilsApi.getApiService();
@@ -61,13 +62,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //mengecek apakah user sudah login atau belum
         if (sharedPrefManager.getSPSudahLogin()) {
+
+            Log.v("check Login", "login success");
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }else{
-            Log.v("tett", "sampem sini");
-            Log.v("tett", sharedPrefManager.getSPEmail());
-            etEmail.setText(sharedPrefManager.getSPEmail());
+            Log.v("check Login", "login failed");
+//            etEmail.setText(sharedPrefManager.getSPEmail());
         }
     }
 
@@ -79,20 +81,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
+        loading = findViewById(R.id.loading);
     }
 
     @Override
     public void onClick(View v) {
-        loginRequest();
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (email.isEmpty()) {
+            etEmail.setError("Email Empty");
+            return;
+        }
+
+        if (password.isEmpty()) {
+            etPassword.setError("Password Empty");
+            return;
+        }
+
+        loginRequest(email, password);
     }
 
     /**
      * fungsi untuk melakukan request login
      */
-    public void loginRequest() {
+    public void loginRequest(final String email, String password) {
+        loading.setVisibility(View.VISIBLE);
+        etEmail.setEnabled(false);
+        etPassword.setEnabled(false);
+        btnLogin.setEnabled(false);
+
         btnLogin.startAnimation(animLogin);
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL_API)
@@ -107,6 +126,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body().getError()) {
                     Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
                     Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    loading.setVisibility(View.GONE);
+                    etEmail.setEnabled(true);
+                    etPassword.setEnabled(true);
+                    btnLogin.setEnabled(true);
+
                 } else {
                     Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
 
@@ -131,7 +156,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
+
+                loading.setVisibility(View.VISIBLE);
+
+                etEmail.setEnabled(true);
+                etPassword.setEnabled(true);
+                btnLogin.setEnabled(true);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

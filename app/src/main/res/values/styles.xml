@@ -15,4 +15,69 @@
         <item name="android:colorControlHighlight">@color/colorBlue</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
     </style>
+
+    <style name="ButtonItem" parent="TextAppearance.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:fontFamily">@font/mmedium</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="ItemTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/mmedium</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="ItemLayout">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="ItemLayoutUserTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTitle</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/mlight</item>
+        <item name="android:layout_marginTop">6dp</item>
+    </style>
+
+    <style name="ItemLayoutUserField">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorField</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/mregular</item>
+    </style>
+
+    <style name="ItemLayoutCheckbox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorField</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/mregular</item>
+    </style>
+
+    <style name="ItemTextLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/msemibold</item>
+    </style>
+
+    <style name="AlertSuccess" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>

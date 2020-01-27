@@ -1,166 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/backgroundColor"
+    tools:context=".View.MainActivity">
 
-    <RelativeLayout
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/bg_circle" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/bg_circle"/>
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_arrow_back_black_24dp" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorBlue"
-                android:minHeight="?attr/actionBarSize"
-                app:theme="@style/AppTheme">
+    </androidx.appcompat.widget.Toolbar>
 
-                <ImageView
-                    android:id="@+id/iv_back"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_arrow"
-                    style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_profile"
+        android:transitionName="profileTransition"
+        app:civ_border_color="@color/colorWhite"
+        app:civ_border_width="6dp" />
 
-            </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_profile"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/bg_menu"
+            android:elevation="2dp"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:padding="18dp">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:src="@drawable/ic_profile"
-                app:civ_border_color="@color/colorYellow"
-                app:civ_border_width="6dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:fontFamily="@font/mregular"
+                android:text="@string/fullName"
+                android:textColor="@color/colorTitle"
+                android:textSize="12sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:textSize="16sp" />
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:text="@string/nik"
+                android:textColor="@color/colorTitle"
+                android:textSize="12sp" />
 
-                        app:cardCornerRadius="10dp"
-                        app:contentPaddingBottom="30dp"
-                        app:contentPaddingLeft="16dp"
-                        app:contentPaddingRight="16dp"
-                        app:contentPaddingTop="16dp">
+            <TextView
+                android:id="@+id/tv_nik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:textSize="16sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mregular"
+                android:text="@string/email"
+                android:textColor="@color/colorTitle"
+                android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="18dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorTitle"
-                                android:text="Nama Lengkap"
-                                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/colorField"
+                android:textSize="16sp" />
 
-                            <TextView
-                                android:id="@+id/tv_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorField"
-                                android:text="John Doe"
-                                android:textSize="16sp" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="18dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorTitle"
-                                android:text="NIK"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/tv_nik"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorField"
-                                android:text="123456789"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="18dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorTitle"
-                                android:text="E-mail"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/tv_email"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:fontFamily="@font/mregular"
-                                android:textColor="@color/colorField"
-                                android:text="example@mii.co.id"
-                                android:textSize="16sp" />
-
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/btn_logout"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:textSize="22sp"
-                android:fontFamily="@font/mmedium"
-                android:background="@drawable/btn_login"
-                android:textColor="@color/colorBlue"
-                android:text="Logout" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="22dp"
+            android:background="@drawable/btn_login"
+            android:elevation="4dp"
+            android:fontFamily="@font/mmedium"
+            android:text="Logout"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
 
+    </LinearLayout>
 
-
-</ScrollView>
+</RelativeLayout>
