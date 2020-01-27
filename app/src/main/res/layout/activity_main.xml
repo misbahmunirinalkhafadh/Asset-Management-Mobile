@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".View.MainActivity">
+    tools:context=".view.MainActivity">
 
     <View
         android:id="@+id/view"
@@ -105,6 +105,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/menu_request"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="18dp"
@@ -132,6 +133,7 @@
                 android:textSize="20sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"

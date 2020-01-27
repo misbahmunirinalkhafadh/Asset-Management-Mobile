@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.ViewModel;
+package com.mii.assetmanagement.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

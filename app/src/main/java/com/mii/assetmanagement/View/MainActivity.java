@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageView ivProfile;
     TextView tvResultName, tvResultNik;
-    LinearLayout menuScan;
+    LinearLayout menuScan, menuRequest;
 
     Context mContext;
     ApiService mApiService;
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //event click component
         ivProfile.setOnClickListener(this);
         menuScan.setOnClickListener(this);
+        menuRequest.setOnClickListener(this);
     }
 
     /**
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvResultName = findViewById(R.id.tv_name);
         tvResultNik = findViewById(R.id.tv_nik);
         menuScan = findViewById(R.id.menu_scan);
+        menuRequest = findViewById(R.id.menu_request);
     }
 
     /**
@@ -82,6 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent goToScanner = new Intent(MainActivity.this, ScannerActivity.class);
                 startActivity(goToScanner);
                 break;
+            //menu request assets
+            case R.id.menu_request:
+                Intent goToRequest = new Intent(MainActivity.this, RequestActivity.class);
+                startActivity(goToRequest);
+                break;
+
         }
     }
 }

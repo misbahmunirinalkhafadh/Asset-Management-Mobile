@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +20,8 @@ import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.Model.LoginRequest;
-import com.mii.assetmanagement.Model.LoginResult;
+import com.mii.assetmanagement.model.LoginRequest;
+import com.mii.assetmanagement.model.LoginResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;

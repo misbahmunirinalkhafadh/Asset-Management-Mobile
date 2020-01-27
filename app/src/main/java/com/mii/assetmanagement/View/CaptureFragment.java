@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 
 import android.app.ProgressDialog;
@@ -18,8 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.zxing.Result;
-import com.mii.assetmanagement.Model.Asset;
-import com.mii.assetmanagement.ViewModel.AssetViewModel;
+import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.viewmodel.AssetViewModel;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 

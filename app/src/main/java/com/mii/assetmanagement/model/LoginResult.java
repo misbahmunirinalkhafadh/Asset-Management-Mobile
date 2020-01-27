@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.Model;
+package com.mii.assetmanagement.model;
 
 public class LoginResult {
     private Boolean error;

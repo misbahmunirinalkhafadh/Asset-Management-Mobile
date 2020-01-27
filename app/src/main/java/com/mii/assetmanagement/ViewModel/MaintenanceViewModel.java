@@ -1,10 +1,10 @@
-package com.mii.assetmanagement.ViewModel;
+package com.mii.assetmanagement.viewmodel;
 
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.mii.assetmanagement.Model.MaintenanceRequest;
+import com.mii.assetmanagement.model.MaintenanceRequest;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 
