@@ -56,4 +56,13 @@
     <string name="success">SUCCESS</string>
     <string name="con">continue</string>
     <string name="home">home</string>
+    <string name="request">Request</string>
+    <string name="Requestt">REQUEST</string>
+    <string name="salesorder">Search Sales Order</string>
+    <string name="Input_sales_order">Input Sales Order</string>
+    <string name="Name">Name</string>
+    <string name="company">Company</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
+    <string name="successs">SUCCESS !</string>
 </resources>

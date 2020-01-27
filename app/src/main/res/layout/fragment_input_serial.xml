@@ -20,16 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/et_serial"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/mregular"
-            android:hint="@string/input_serial_number"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_serial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/mregular"
+                android:hint="@string/input_serial_number"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btn_search_serial"

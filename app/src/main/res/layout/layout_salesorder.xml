@@ -8,7 +8,7 @@
 
     <TextView
         style="@style/ItemLayoutUserTitle"
-        android:text="@string/additional"
+        android:text="@string/salesorder"
         android:textSize="16sp" />
 
     <View
@@ -18,34 +18,37 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorGreySoft" />
 
+    <TextView
+        style="@style/ItemLayoutUserTitle"
+        android:layout_marginTop="8dp"
+        android:text="@string/salesorder"
+        android:textSize="12sp" />
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_ipAddress"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/bg_field"
-        android:hint="@string/iPAddress"
-        android:padding="10dp" />
+        android:hint="@string/Input_sales_order"
+        android:padding="10dp"
+        android:textSize="10sp" />
 
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_username"
-        style="@style/ItemLayoutUserField"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_field"
-        android:hint="@string/userNameLogin"
-        android:padding="10dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mregular"
+        android:text="Company"
+        android:textSize="12sp" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_computerName"
-        style="@style/ItemLayoutUserField"
+    <TextView
+        android:id="@+id/tv_company"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_field"
-        android:hint="@string/computerName"
-        android:padding="10dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/mregular"
+        android:text="-"
+        android:textSize="14sp" />
 </LinearLayout>
