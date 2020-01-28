@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".SearchAssetActivity"></activity>
+        <activity android:name=".ResultActivity" />
         <activity android:name=".View.SearchSOActivity" />
         <activity android:name=".View.RequestActivity" />
         <activity android:name=".View.ScannerActivity" />
