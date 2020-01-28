@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 
 import android.app.ProgressDialog;
@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.Model.Asset;
+import com.mii.assetmanagement.model.Asset;
 
 import java.util.Arrays;
 

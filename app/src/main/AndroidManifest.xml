@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".SearchAssetActivity"></activity>
         <activity android:name=".ResultActivity" />
         <activity android:name=".View.SearchSOActivity" />
@@ -35,9 +36,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.LoginActivity"
+            android:name=".view.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".View.MainActivity" />
+        <activity android:name=".view.MainActivity" />
     </application>
 
 </manifest>
