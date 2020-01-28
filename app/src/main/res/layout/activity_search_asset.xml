@@ -57,8 +57,9 @@
                 android:hint="@string/search"
                 android:paddingStart="20dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btn_category"
+                android:src="@drawable/ic_list"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -68,5 +69,5 @@
 
 
     </RelativeLayout>
-    
+
 </RelativeLayout>
