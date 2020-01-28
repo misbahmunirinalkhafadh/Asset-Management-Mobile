@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".View.SearchSOActivity">
+    tools:context=".View.SearchAssetActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
@@ -57,7 +57,7 @@
                 android:hint="@string/search"
                 android:paddingStart="20dp" />
 
-            <Button
+            <ImageView
                 android:id="@+id/btn_category"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
@@ -68,4 +68,5 @@
 
 
     </RelativeLayout>
+    
 </RelativeLayout>
