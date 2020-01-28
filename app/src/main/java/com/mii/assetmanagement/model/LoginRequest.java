@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.Model;
+package com.mii.assetmanagement.model;
 
 public class LoginRequest {
     String email;

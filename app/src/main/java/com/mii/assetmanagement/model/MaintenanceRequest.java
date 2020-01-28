@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.Model;
+package com.mii.assetmanagement.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

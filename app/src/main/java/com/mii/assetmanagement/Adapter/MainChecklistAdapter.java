@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.Adapter;
+package com.mii.assetmanagement.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.mii.assetmanagement.View;
+package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,11 +19,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mii.assetmanagement.Adapter.MainChecklistAdapter;
-import com.mii.assetmanagement.Model.MaintenanceRequest;
+import com.mii.assetmanagement.adapter.MainChecklistAdapter;
+import com.mii.assetmanagement.model.MaintenanceRequest;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
-import com.mii.assetmanagement.ViewModel.MaintenanceViewModel;
+import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
