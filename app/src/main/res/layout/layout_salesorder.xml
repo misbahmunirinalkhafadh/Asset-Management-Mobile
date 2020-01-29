@@ -21,26 +21,27 @@
     <TextView
         style="@style/ItemLayoutUserTitle"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
         android:text="@string/salesorder"
         android:textSize="12sp" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_ipAddress"
+        android:id="@+id/et_sales_order"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_field"
+        android:focusable="false"
         android:hint="@string/Input_sales_order"
-        android:padding="10dp"
-        android:textSize="10sp" />
+        android:padding="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/mregular"
-        android:text="Company"
+        android:text="@string/company"
         android:textSize="12sp" />
 
     <TextView
@@ -49,6 +50,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/mregular"
-        android:text="-"
+        android:text="@string/stript"
         android:textSize="14sp" />
 </LinearLayout>

@@ -65,4 +65,8 @@
     <string name="confirm">confirm</string>
     <string name="cancel">cancel</string>
     <string name="successs">SUCCESS !</string>
+    <string name="stript">-</string>
+    <string name="api_url_jwt_sakura">http://116.254.101.228:8080/APISAKURAJWT/</string>
+    <string name="company_name">Company Name</string>
+    <string name="sales_order_number">Sales Order Number</string>
 </resources>
