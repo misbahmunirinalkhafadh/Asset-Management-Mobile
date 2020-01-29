@@ -19,16 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.PopupActivity"></activity>
-        <activity android:name=".View.SearchAssetActivity" />
-        <activity android:name=".View.ResultActivity" />
-        <activity android:name=".View.SearchSOActivity" />
-        <activity android:name=".View.RequestActivity" />
-        <activity android:name=".View.ScannerActivity" />
-        <activity android:name=".View.MaintenanceActivity" />
-        <activity android:name=".View.InformasiActivity" />
-        <activity android:name=".View.ProfileActivity" />
-        <activity android:name=".View.SplashActivity">
+        <activity android:name=".view.PopupActivity"></activity>
+        <activity android:name=".view.SearchAssetActivity" />
+        <activity android:name=".view.ResultActivity" />
+        <activity android:name=".view.SearchSOActivity" />
+        <activity android:name=".view.RequestActivity" />
+        <activity android:name=".view.ScannerActivity" />
+        <activity android:name=".view.MaintenanceActivity" />
+        <activity android:name=".view.InformasiActivity" />
+        <activity android:name=".view.ProfileActivity" />
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

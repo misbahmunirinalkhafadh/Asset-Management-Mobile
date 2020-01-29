@@ -1,6 +1,4 @@
-package com.mii.assetmanagement.View;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.mii.assetmanagement.view;
 
 import android.app.Activity;
 import android.os.Bundle;
