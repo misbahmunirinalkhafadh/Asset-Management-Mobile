@@ -4,19 +4,18 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_menu"
     android:orientation="vertical"
+    android:id="@+id/layout_sales_order"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/tv_so"
+        android:id="@+id/tv_sonumber"
         style="@style/ItemLayoutUserField"
-        android:text="123456789"
+        android:text="@string/sales_order_number"
         android:textSize="12sp"/>
     <TextView
         android:id="@+id/tv_company"
         style="@style/ItemLayoutUserField"
-        android:text="BNI"
+        android:text="@string/company_name"
         android:textSize="12sp"/>
-
-
 
 </LinearLayout>

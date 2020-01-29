@@ -20,7 +20,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".view.SearchSOActivity" />
+        <activity android:name=".view.SearchSOActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
+        </activity>
         <activity android:name=".view.RequestActivity" />
         <activity android:name=".view.ScannerActivity" />
         <activity android:name=".view.MaintenanceActivity" />

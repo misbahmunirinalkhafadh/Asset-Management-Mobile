@@ -26,6 +26,7 @@ import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
@@ -85,9 +86,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
 
     private void fillItems() {
         serviceList = new ArrayList<>();
-        for (String isi : service) {
-            serviceList.add(isi);
-        }
+        Collections.addAll(serviceList, service);
     }
 
     private void initComponent() {
@@ -146,8 +145,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                         maintenanceRequest();
 
                         showAlertSuccess();
-
-
 
                         Toast.makeText(mContext, "Successfull", Toast.LENGTH_LONG).show();
 
