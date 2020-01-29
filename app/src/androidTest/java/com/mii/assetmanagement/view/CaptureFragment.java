@@ -130,7 +130,7 @@ public class CaptureFragment extends Fragment implements ZXingScannerView.Result
                     extras.putString("SSD", ssd);
 
                     //move activity
-                    Intent goToInformation = new Intent(mContext, InformasiActivity.class);
+                    Intent goToInformation = new Intent(mContext, com.mii.assetmanagement.view.InformasiActivity.class);
                     goToInformation.putExtras(extras);
                     startActivity(goToInformation);
                 } else {
