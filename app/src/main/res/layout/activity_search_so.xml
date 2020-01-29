@@ -22,40 +22,21 @@
             android:layout_height="24dp"
             android:background="@drawable/ic_arrow_back_black_24dp" />
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:layout_width="wrap_content"
+        <SearchView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/mmedium"
-            android:text="@string/Requestt"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="18dp"
+            android:background="@color/colorWhite"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Here" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_salesorder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_main"
-        android:orientation="vertical">
+        android:layout_below="@+id/toolbar_main" />
 
-        <EditText
-            android:id="@+id/search_so"
-            style="@style/ItemSearch"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_search"
-            android:hint="@string/search" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main_checklist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp" />
-
-    </LinearLayout>
 </RelativeLayout>
