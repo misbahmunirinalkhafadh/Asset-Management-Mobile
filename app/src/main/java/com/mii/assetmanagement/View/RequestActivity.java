@@ -27,9 +27,9 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         initComponent();
 
         SalesOrder salesOrder = getIntent().getParcelableExtra(EXTRA_SALES_ORDER);
-        String soId = salesOrder.getSoId();
+//        String soId = salesOrder.getSoId();
 //        String company = salesOrder.getCustomerName();
-        etSalesOrder.setText(soId);
+//        etSalesOrder.setText(soId);
 //        tvCompanyName.setText(company);
 
         etSalesOrder.setOnClickListener(this);
