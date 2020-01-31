@@ -29,7 +29,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="@string/iPAddress"
+        android:hint="@string/Input_Branch"
         android:padding="10dp" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="@string/userNameLogin"
+        android:hint="@string/Input_NIK"
         android:padding="10dp" />
 
     <TextView
@@ -57,6 +57,6 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_field"
-        android:hint="@string/computerName"
+        android:hint="@string/Input_name"
         android:padding="10dp" />
 </LinearLayout>
