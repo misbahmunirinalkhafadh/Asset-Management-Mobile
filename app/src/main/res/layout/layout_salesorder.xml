@@ -32,7 +32,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_field"
-        android:focusable="false"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
         android:hint="@string/Input_sales_order"
         android:padding="10dp" />
 

@@ -22,16 +22,6 @@
         <activity android:name=".view.PopupActivity"></activity>
         <activity android:name=".view.SearchAssetActivity" />
         <activity android:name=".view.ResultActivity" />
-        <activity android:name=".view.SearchSOActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTask">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable">
-            </meta-data>
-        </activity>
 
         <activity android:name=".view.RequestActivity" />
         <activity android:name=".view.ScannerActivity" />
