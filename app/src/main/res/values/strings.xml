@@ -69,4 +69,6 @@
     <string name="api_url_jwt_sakura">http://116.254.101.228:8080/APISAKURAJWT/</string>
     <string name="company_name">Company Name</string>
     <string name="sales_order_number">Sales Order Number</string>
+    <string name="conf">Confirm</string>
+    <string name="invalid">Invalid number</string>
 </resources>
