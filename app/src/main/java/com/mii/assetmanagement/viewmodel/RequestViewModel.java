@@ -20,6 +20,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 public class RequestViewModel extends ViewModel {
+
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<ArrayList<SalesOrder>> liveData = new MutableLiveData<>();
 
@@ -36,7 +37,7 @@ public class RequestViewModel extends ViewModel {
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {
-
+                Log.e("Failure", e.getMessage());
             }
 
             @Override
@@ -54,6 +55,7 @@ public class RequestViewModel extends ViewModel {
                         salesOrderArrayList.add(salesOrder);
                     }
                     liveData.postValue(salesOrderArrayList);
+                    Log.i("Data", "" + list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e("Exception", e.getMessage());
