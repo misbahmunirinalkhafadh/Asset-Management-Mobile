@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,14 +8,17 @@
     tools:context=".view.MainActivity">
 
     <View
+        android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/bg_circle" />
+        android:background="@drawable/bg_circle"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/btn_back"
@@ -34,14 +37,18 @@
         android:src="@drawable/ic_profile"
         android:transitionName="profileTransition"
         app:civ_border_color="@color/colorWhite"
-        app:civ_border_width="6dp" />
+        app:civ_border_width="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_profile"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,4 +127,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

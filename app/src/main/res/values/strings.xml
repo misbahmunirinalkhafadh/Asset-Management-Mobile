@@ -71,4 +71,8 @@
     <string name="sales_order_number">Sales Order Number</string>
     <string name="conf">Confirm</string>
     <string name="invalid">Invalid number</string>
+    <string name="Input_Branch">Input Branch</string>
+    <string name="Input_NIK">Input NIK</string>
+    <string name="Input_name">Input Name</string>
+    <string name="search_asset">Search Asset</string>
 </resources>
