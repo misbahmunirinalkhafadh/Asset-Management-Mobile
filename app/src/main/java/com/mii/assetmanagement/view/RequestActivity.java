@@ -1,7 +1,6 @@
 package com.mii.assetmanagement.view;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -110,10 +109,10 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.et_sales_order:
-                Intent goToSearchSalesOrder = new Intent(this, SearchSOActivity.class);
-                startActivity(goToSearchSalesOrder);
-                break;
+//            case R.id.et_sales_order:
+//                Intent goToSearchSalesOrder = new Intent(this, SearchSOActivity.class);
+//                startActivity(goToSearchSalesOrder);
+//                break;
             case R.id.btn_back:
                 onBackPressed();
                 break;
