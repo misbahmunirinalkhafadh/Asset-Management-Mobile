@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/user"
+                android:id="@+id/salesOrder"
                 style="@style/ItemLayout"
                 layout="@layout/layout_salesorder"
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:layout_marginTop="16dp" />
 
             <include
-                android:id="@+id/mainChecklist"
+                android:id="@+id/inputRequest"
                 style="@style/ItemLayout"
                 layout="@layout/layout_input_req"
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="16dp" />
 
             <include
-                android:id="@+id/additional"
+                android:id="@+id/search"
                 style="@style/ItemLayout"
                 layout="@layout/layout_search"
                 android:layout_width="match_parent"
