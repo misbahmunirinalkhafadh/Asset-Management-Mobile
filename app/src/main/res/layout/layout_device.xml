@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="263dp" />
+        app:layout_constraintGuide_end="222dp" />
 
     <TextView
         android:id="@+id/textView2"
