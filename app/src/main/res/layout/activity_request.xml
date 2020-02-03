@@ -45,29 +45,156 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/salesOrder"
+            <LinearLayout
                 style="@style/ItemLayout"
-                layout="@layout/layout_salesorder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-            <include
-                android:id="@+id/inputRequest"
-                style="@style/ItemLayout"
-                layout="@layout/layout_input_req"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/salesorder"
+                    android:textSize="16sp" />
 
-            <include
-                android:id="@+id/search"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreySoft" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/salesorder"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sales_order"
+                    style="@style/ItemLayoutUserField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/Input_sales_order"
+                    android:imeOptions="actionDone"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/company"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/stript"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 style="@style/ItemLayout"
-                layout="@layout/layout_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/asset"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreySoft" />
+
+                <TextView
+                    style="@style/ItemInputTitle"
+                    android:text="@string/branch" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_ipAddress"
+                    style="@style/ItemInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/Input_Branch"
+                    android:padding="10dp" />
+
+                <TextView
+                    style="@style/ItemInputTitle"
+                    android:text="@string/nik" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_username"
+                    style="@style/ItemInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/Input_NIK"
+                    android:padding="10dp" />
+
+                <TextView
+                    style="@style/ItemInputTitle"
+                    android:text="@string/Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_computerName"
+                    style="@style/ItemInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/Input_name"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ItemLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/search_asset"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreySoft" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/ItemInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/search"
+                    android:padding="10dp" />
+
+            </LinearLayout>
 
             <include
                 android:id="@+id/submit"
@@ -75,7 +202,8 @@
                 layout="@layout/layout_btn_req"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="80dp" />
 
         </LinearLayout>
 
