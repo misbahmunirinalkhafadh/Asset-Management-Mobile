@@ -59,6 +59,7 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/sv_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
@@ -69,21 +70,121 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/user"
+            <LinearLayout
                 style="@style/ItemLayout"
-                layout="@layout/layout_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-            <include
-                android:id="@+id/asset"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/user"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreySoft" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/nik" />
+
+                <TextView
+                    android:id="@+id/tv_nik"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/fullName" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/branch" />
+
+                <TextView
+                    android:id="@+id/tv_branch"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/location" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    style="@style/ItemLayoutUserField" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 style="@style/ItemLayout"
-                layout="@layout/layout_assets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/asset"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreySoft" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/sales" />
+
+                <TextView
+                    android:id="@+id/tv_sales"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/serial" />
+
+                <TextView
+                    android:id="@+id/tv_serial"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/brand" />
+
+                <TextView
+                    android:id="@+id/tv_brand"
+                    style="@style/ItemLayoutUserField" />
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/item" />
+
+                <TextView
+                    android:id="@+id/tv_item"
+                    style="@style/ItemLayoutUserField" />
+
+
+            </LinearLayout>
 
             <include
                 android:id="@+id/asset"
@@ -100,7 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="80dp" />
 
         </LinearLayout>
 
