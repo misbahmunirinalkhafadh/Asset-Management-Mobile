@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".view.PopupActivity"></activity>
         <activity android:name=".view.SearchAssetActivity" />
-        <activity android:name=".view.ResultActivity" />
+        <activity android:name=".view.ReviewActivity" />
 
         <activity android:name=".view.RequestActivity" />
         <activity android:name=".view.ScannerActivity" />
