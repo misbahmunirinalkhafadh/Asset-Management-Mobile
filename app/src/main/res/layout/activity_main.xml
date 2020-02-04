@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
-            android:id="@+id/menu_scan"
+            android:id="@+id/menu_maintenance"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="18dp"

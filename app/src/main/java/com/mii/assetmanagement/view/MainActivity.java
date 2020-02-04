@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivProfile = findViewById(R.id.img_profile);
         tvResultName = findViewById(R.id.tv_name);
         tvResultNik = findViewById(R.id.tv_nik);
-        menuScan = findViewById(R.id.menu_scan);
+        menuScan = findViewById(R.id.menu_maintenance);
         menuRequest = findViewById(R.id.menu_request);
     }
 
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 startActivity(goToProfile, options.toBundle());
                 break;
-            //move to scanner
-            case R.id.menu_scan:
+            //move to maintenance
+            case R.id.menu_maintenance:
                 Intent goToScanner = new Intent(MainActivity.this, ScannerActivity.class);
                 startActivity(goToScanner);
                 break;
@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent goToRequest = new Intent(MainActivity.this, RequestActivity.class);
                 startActivity(goToRequest);
                 break;
+
+
+
 
         }
     }
