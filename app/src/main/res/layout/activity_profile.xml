@@ -51,11 +51,9 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_profile">
 
         <LinearLayout
+            style="@style/ItemLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/bg_menu"
             android:elevation="2dp"
             android:orientation="vertical"
             android:padding="18dp">
@@ -114,11 +112,10 @@
         </LinearLayout>
 
         <Button
+            style="@style/ButtonItem"
             android:id="@+id/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:layout_margin="22dp"
-            android:background="@drawable/btn_login"
+            android:background="@drawable/btn_blue"
             android:elevation="4dp"
             android:fontFamily="@font/mmedium"
             android:text="Logout"
