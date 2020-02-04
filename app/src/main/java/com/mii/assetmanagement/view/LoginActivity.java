@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     btnLogin.setEnabled(true);
 
                 } else {
-                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
+//                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
 
                     String name = response.body().getUserName();
                     String email = response.body().getEmail();

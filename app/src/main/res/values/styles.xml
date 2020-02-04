@@ -18,7 +18,7 @@
 
     <style name="ButtonItem" parent="TextAppearance.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:layout_marginTop">6dp</item>
         <item name="android:fontFamily">@font/mmedium</item>
         <item name="android:textColor">@color/colorWhite</item>
@@ -38,6 +38,7 @@
     <style name="ItemLayout">
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:background">@drawable/bg_menu</item>
     </style>
 
     <style name="ItemLayoutUserTitle">

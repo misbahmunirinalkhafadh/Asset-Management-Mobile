@@ -45,12 +45,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+<!--            Search Sales Order-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_menu"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -85,6 +85,7 @@
                     android:singleLine="true" />
 
                 <TextView
+                    style="@style/ItemLayoutUserTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -93,6 +94,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    style="@style/ItemLayoutUserField"
                     android:id="@+id/tv_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,14 +102,28 @@
                     android:fontFamily="@font/mregular"
                     android:text="@string/stript"
                     android:textSize="14sp" />
-            </LinearLayout>
 
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:text="@string/branch" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_ipAddress"
+                    style="@style/ItemInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_field"
+                    android:hint="@string/Input_Branch"
+                    android:padding="10dp" />
+            </LinearLayout>
+<!--            Asset-->
             <LinearLayout
+                android:visibility="gone"
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_menu"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -122,22 +138,9 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/colorGreySoft" />
 
-                <TextView
-                    style="@style/ItemInputTitle"
-                    android:text="@string/branch" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_ipAddress"
-                    style="@style/ItemInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_field"
-                    android:hint="@string/Input_Branch"
-                    android:padding="10dp" />
 
                 <TextView
-                    style="@style/ItemInputTitle"
+                    style="@style/ItemLayoutUserTitle"
                     android:text="@string/nik" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -151,26 +154,25 @@
                     android:padding="10dp" />
 
                 <TextView
-                    style="@style/ItemInputTitle"
+                    style="@style/ItemLayoutUserTitle"
                     android:text="@string/Name" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_computerName"
-                    style="@style/ItemInput"
+                <TextView
+                    style="@style/ItemLayoutUserField"
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_field"
-                    android:hint="@string/Input_name"
-                    android:padding="10dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/stript"
+                    android:textSize="14sp" />
             </LinearLayout>
-
+<!--            Search Asset-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_menu"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -195,7 +197,7 @@
                     android:padding="10dp" />
 
             </LinearLayout>
-
+<!--            Button Request-->
             <include
                 android:id="@+id/submit"
                 style="@style/ItemLayout"
