@@ -69,12 +69,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+<!--            User-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_menu"
                 android:orientation="vertical"
                 android:padding="18dp">
@@ -127,13 +126,11 @@
                     style="@style/ItemLayoutUserField" />
 
             </LinearLayout>
-
+<!--            Asset-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_menu"
                 android:orientation="vertical"
                 android:padding="18dp">
 
@@ -185,22 +182,20 @@
 
 
             </LinearLayout>
-
+<!--            Device-->
             <include
                 android:id="@+id/asset"
                 style="@style/ItemLayout"
                 layout="@layout/layout_device"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-
+                android:layout_height="wrap_content" />
+<!--            Button-->
             <include
                 android:id="@+id/button"
                 style="@style/ItemLayout"
                 layout="@layout/layout_btn_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginBottom="80dp" />
 
         </LinearLayout>
