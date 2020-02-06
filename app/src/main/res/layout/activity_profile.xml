@@ -30,8 +30,8 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/iv_profile"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_profile"
@@ -46,16 +46,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_profile"
-        android:layout_marginTop="25dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile">
 
         <LinearLayout
+            style="@style/ItemLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/bg_menu"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:elevation="2dp"
             android:orientation="vertical"
             android:padding="18dp">
@@ -115,10 +115,9 @@
 
         <Button
             android:id="@+id/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="22dp"
-            android:background="@drawable/btn_login"
+            style="@style/ButtonItem"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/btn_blue"
             android:elevation="4dp"
             android:fontFamily="@font/mmedium"
             android:text="Logout"

@@ -37,6 +37,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     EditText etIpAddress, etUsername, etComputer, etResult;
     Button btnBack, btnSubmit;
 
+
     Context mContext;
     SharedPrefManager sharedPrefManager;
 
