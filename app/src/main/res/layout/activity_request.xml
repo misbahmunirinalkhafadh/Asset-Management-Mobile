@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--            Search Sales Order-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
@@ -120,13 +119,15 @@
             </LinearLayout>
             <!--            Asset-->
             <LinearLayout
+
+
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:visibility="gone">
+                >
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
@@ -139,13 +140,12 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/colorGreySoft" />
 
-
                 <TextView
                     style="@style/ItemLayoutUserTitle"
                     android:text="@string/nik" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_nik"
                     style="@style/ItemInput"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"

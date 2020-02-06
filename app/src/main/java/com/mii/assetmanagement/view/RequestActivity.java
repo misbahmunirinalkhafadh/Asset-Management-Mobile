@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,12 +21,11 @@ import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
-import java.util.ArrayList;
-
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText etSalesOrder;
-    private TextView tvCompanyName;
+    private EditText etSalesOrder, etNik;
+    private TextView tvCompanyName, tvEmpName;
+    private LinearLayout layoutUser;
     private Button btnBack;
     private ProgressDialog progressDialog;
     private RequestViewModel requestViewModel;
@@ -40,36 +40,9 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 
         eventInputSo();
-        loading();
         callData();
-
+        loading();
         btnBack.setOnClickListener(this);
-    }
-
-    private void callData() {
-        requestViewModel.getListSalesOrder().observe(this, new Observer<ArrayList<SalesOrder>>() {
-            @Override
-            public void onChanged(ArrayList<SalesOrder> salesOrders) {
-                boolean tes = salesOrders.isEmpty();
-                if (tes) {
-                    Log.i("Sales Order Result", "Kosong");
-                    tvCompanyName.setText(R.string.invalid);
-                    tvCompanyName.setTextColor(Color.RED);
-                    progressDialog.dismiss();
-                } else {
-                    for (SalesOrder salesOrder : salesOrders) {
-                        tvCompanyName.append(salesOrder.getCustomerName());
-                    }
-                    progressDialog.dismiss();
-                }
-            }
-        });
-    }
-
-    private void loading() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
     }
 
     private void eventInputSo() {
@@ -83,6 +56,8 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     etSalesOrder.setError("Required");
                     tvCompanyName.setText("-");
                     tvCompanyName.setTextColor(Color.GRAY);
+                    layoutUser.setVisibility(View.GONE);
+                    etNik.getText().clear();
                 } else {
                     if (actionId == EditorInfo.IME_ACTION_SEARCH
                             || actionId == EditorInfo.IME_ACTION_DONE
@@ -90,8 +65,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                         progressDialog.show();
                         tvCompanyName.setText("");
-                        requestViewModel.setLiveData(soNumber);
-
+                        requestViewModel.setDataSO(soNumber);
                         return true;
                     }
                 }
@@ -100,10 +74,50 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    private void callData() {
+        requestViewModel.getDataSO().observe(this, new Observer<SalesOrder>() {
+            @Override
+            public void onChanged(SalesOrder salesOrder) {
+                String asset_type = "Resource";
+                if (salesOrder != null) {
+                    Log.i("Sales Order Result", "ADA");
+                    tvCompanyName.append(salesOrder.getCustomerName());
+                    tvCompanyName.setTextColor(Color.BLACK);
+                    //Set Visibility User Layout
+                    if (salesOrder.getAssetType().equals(asset_type)) {
+                        layoutUser.setVisibility(View.VISIBLE);
+                    } else {
+                        layoutUser.setVisibility(View.GONE);
+                        etNik.getText().clear();
+                    }
+                    progressDialog.dismiss();
+                } else {
+                    Log.i("Sales Order Result", "Kosong");
+                    tvCompanyName.setText(R.string.invalid);
+                    tvCompanyName.setTextColor(Color.RED);
+                    layoutUser.setVisibility(View.GONE);
+                    etNik.getText().clear();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+    }
+
     private void initComponent() {
         etSalesOrder = findViewById(R.id.et_sales_order);
+        etNik = findViewById(R.id.et_nik);
         tvCompanyName = findViewById(R.id.tv_company);
+        tvEmpName = findViewById(R.id.tv_name);
+        layoutUser = findViewById(R.id.ll_user);
         btnBack = findViewById(R.id.btn_back);
+
+        layoutUser.setVisibility(View.GONE);
+    }
+
+    private void loading() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
     }
 
     @Override
