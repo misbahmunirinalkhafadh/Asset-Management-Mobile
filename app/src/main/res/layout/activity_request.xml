@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--            Search Sales Order-->
+            <!-- Search Sales Order-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
@@ -94,8 +94,8 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    style="@style/ItemLayoutUserField"
                     android:id="@+id/tv_company"
+                    style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -117,9 +117,9 @@
                     android:hint="@string/Input_Branch"
                     android:padding="10dp" />
             </LinearLayout>
-<!--            Asset-->
+            <!--            Asset-->
             <LinearLayout
-                android:visibility="gone"
+                android:id="@+id/ll_user"
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,13 +138,12 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/colorGreySoft" />
 
-
                 <TextView
                     style="@style/ItemLayoutUserTitle"
                     android:text="@string/nik" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_nik"
                     style="@style/ItemInput"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -158,8 +157,8 @@
                     android:text="@string/Name" />
 
                 <TextView
-                    style="@style/ItemLayoutUserField"
                     android:id="@+id/tv_name"
+                    style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -167,7 +166,8 @@
                     android:text="@string/stript"
                     android:textSize="14sp" />
             </LinearLayout>
-<!--            Search Asset-->
+
+            <!--            Search Asset-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                     android:padding="10dp" />
 
             </LinearLayout>
-<!--            Button Request-->
+            <!--            Button Request-->
             <include
                 android:id="@+id/submit"
                 style="@style/ItemLayout"

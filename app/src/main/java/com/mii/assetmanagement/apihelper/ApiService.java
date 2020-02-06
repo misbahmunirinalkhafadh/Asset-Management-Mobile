@@ -43,6 +43,10 @@ public interface ApiService {
     @GET("maintenance/getparts/{serial}")
     Call<Asset> assetRequest(@Path("serial") String serial);
 
+    @GET("maintenance/getparts")
+    @Headers({"Content-Type: application/json"})
+    Call<Asset> getSerialNumber(@Query("serial_number") String serial,
+                                   @Header("Authorization") String token);
     /**
      * Search Sales order
      * JWT
