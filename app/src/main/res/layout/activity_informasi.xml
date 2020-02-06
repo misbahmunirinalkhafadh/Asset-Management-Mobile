@@ -189,7 +189,8 @@
                 layout="@layout/layout_device"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-<!--            Button-->
+<!--            Butt
+on-->
             <include
                 android:id="@+id/button"
                 style="@style/ItemLayout"

@@ -109,7 +109,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_ipAddress"
-                    style="@style/ItemInput"
+                    style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
@@ -188,7 +188,7 @@
                     android:background="@color/colorGreySoft" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/ItemInput"
+                    style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
