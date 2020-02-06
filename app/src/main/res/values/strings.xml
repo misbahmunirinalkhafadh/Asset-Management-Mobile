@@ -58,7 +58,8 @@
     <string name="home">home</string>
     <string name="request">Request</string>
     <string name="Requestt">REQUEST</string>
-    <string name="salesorder">Search Sales Order</string>
+    <string name="SONumber">SO Number</string>
+    <string name="salesorder">Sales Order</string>
     <string name="Input_sales_order">Input Sales Order</string>
     <string name="Name">Name</string>
     <string name="company">Company</string>
