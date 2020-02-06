@@ -20,8 +20,6 @@ import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
-import java.util.ArrayList;
-
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etSalesOrder;
@@ -46,32 +44,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         btnBack.setOnClickListener(this);
     }
 
-    private void callData() {
-        requestViewModel.getListSalesOrder().observe(this, new Observer<ArrayList<SalesOrder>>() {
-            @Override
-            public void onChanged(ArrayList<SalesOrder> salesOrders) {
-                boolean tes = salesOrders.isEmpty();
-                if (tes) {
-                    Log.i("Sales Order Result", "Kosong");
-                    tvCompanyName.setText(R.string.invalid);
-                    tvCompanyName.setTextColor(Color.RED);
-                    progressDialog.dismiss();
-                } else {
-                    for (SalesOrder salesOrder : salesOrders) {
-                        tvCompanyName.append(salesOrder.getCustomerName());
-                    }
-                    progressDialog.dismiss();
-                }
-            }
-        });
-    }
-
-    private void loading() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
-    }
-
     private void eventInputSo() {
         etSalesOrder.setInputType(InputType.TYPE_CLASS_NUMBER);
         etSalesOrder.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -90,8 +62,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                         progressDialog.show();
                         tvCompanyName.setText("");
-                        requestViewModel.setLiveData(soNumber);
-
+                        requestViewModel.setData(soNumber);
                         return true;
                     }
                 }
@@ -100,10 +71,35 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    private void callData() {
+        requestViewModel.getData().observe(this, new Observer<SalesOrder>() {
+            @Override
+            public void onChanged(SalesOrder salesOrder) {
+                if (salesOrder != null) {
+                    Log.i("Sales Order Result", "ADA");
+                    tvCompanyName.append(salesOrder.getCustomerName());
+                    tvCompanyName.setTextColor(Color.BLACK);
+                    progressDialog.dismiss();
+                } else {
+                    Log.i("Sales Order Result", "Kosong");
+                    tvCompanyName.setText(R.string.invalid);
+                    tvCompanyName.setTextColor(Color.RED);
+                    progressDialog.dismiss();
+                }
+            }
+        });
+    }
+
     private void initComponent() {
         etSalesOrder = findViewById(R.id.et_sales_order);
         tvCompanyName = findViewById(R.id.tv_company);
         btnBack = findViewById(R.id.btn_back);
+    }
+
+    private void loading() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
     }
 
     @Override

@@ -3,25 +3,33 @@ package com.mii.assetmanagement.apihelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static Retrofit retrofit = null;
 
-    public static Retrofit getClient(String baseUrl){
+    private static Retrofit retrofit = null;
+    private static Retrofit retrofitJwt = null;
+
+    static Retrofit getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(interceptor).build();
 
-        if (retrofit == null){
+        if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
             retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(UtilsApi.BASE_URL_API)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(client)
                     .build();
@@ -29,12 +37,25 @@ public class RetrofitClient {
         return retrofit;
     }
 
-//    private ServiceHelper() {
-//        httpClient = new OkHttpClient.Builder();
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        httpClient.interceptors().add(interceptor);
-//        Retrofit retrofit = createAdapter().build();
-//        service = retrofit.create(IService.class);
-//    }
+    static Retrofit getClientJwt() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(interceptor).build();
+
+        if (retrofitJwt == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofitJwt = new Retrofit.Builder()
+                    .baseUrl(UtilsApi.BASE_URL_API_JWT)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .client(client)
+                    .build();
+        }
+        return retrofitJwt;
+    }
 }

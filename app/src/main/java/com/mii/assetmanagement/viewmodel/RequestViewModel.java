@@ -7,64 +7,46 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.mii.assetmanagement.BuildConfig;
+import com.mii.assetmanagement.apihelper.ApiService;
+import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.SalesOrder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RequestViewModel extends ViewModel {
 
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
-    private MutableLiveData<ArrayList<SalesOrder>> liveData = new MutableLiveData<>();
+    private MutableLiveData<SalesOrder> liveData = new MutableLiveData<>();
 
-    public void setLiveData(String soNumber) {
-        String url = "http://116.254.101.228:8080/APISAKURAJWT/salesorder/" + soNumber;
-        final ArrayList<SalesOrder> salesOrderArrayList = new ArrayList<>();
-        final Request.Builder builder = new Request.Builder()
-                .get()
-                .url(url)
-                .addHeader("Authorization", "bootcamp " + API_TOKEN);
-
-        OkHttpClient client = new OkHttpClient();
-        Request request = builder.build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
+    public void setData(String soNumber) {
+        ApiService mApiService = UtilsApi.getApiServiceJwt();
+        Call<SalesOrder> call = mApiService.getSalesOrder(soNumber, API_TOKEN);
+        call.enqueue(new Callback<SalesOrder>() {
             @Override
-            public void onFailure(okhttp3.Call call, IOException e) {
-                Log.e("Failure", e.getMessage());
+            public void onResponse(Call<SalesOrder> call, Response<SalesOrder> response) {
+                Log.e("onResponse", response.message());
+                if (response.body().getError()) {
+                    liveData.setValue(null);
+                } else {
+                    SalesOrder so = new SalesOrder();
+                    so.setSoId(response.body().getSoId());
+                    so.setCustomerName(response.body().getCustomerName());
+                    so.setAssetType(response.body().getAssetType());
+                    so.setAssetType(response.body().getAssetType());
+                    liveData.setValue(so);
+                }
             }
 
             @Override
-            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-                String result = response.body().string();
-                try {
-                    JSONObject responseObject = new JSONObject(result);
-                    JSONArray list = responseObject.getJSONArray("data");
-                    for (int i = 0; i < list.length(); i++) {
-                        JSONObject object = list.getJSONObject(i);
-                        SalesOrder salesOrder = new SalesOrder();
-                        salesOrder.setSoId(object.getString("Sales_Order_Id"));
-                        salesOrder.setCustomerName(object.getString("customername"));
-
-                        salesOrderArrayList.add(salesOrder);
-                    }
-                    liveData.postValue(salesOrderArrayList);
-                    Log.i("Data", "" + list);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.e("Exception", e.getMessage());
-                }
+            public void onFailure(Call<SalesOrder> call, Throwable t) {
+                Log.e("onFailure", t.getMessage());
             }
         });
     }
 
-    public LiveData<ArrayList<SalesOrder>> getListSalesOrder() {
+    public LiveData<SalesOrder> getData() {
         return liveData;
     }
 }
