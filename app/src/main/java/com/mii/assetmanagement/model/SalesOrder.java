@@ -3,18 +3,31 @@ package com.mii.assetmanagement.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class SalesOrder implements Parcelable {
-    private String soId;
-    private String customerName;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public SalesOrder(String soId, String customerName) {
-        this.soId = soId;
-        this.customerName = customerName;
-    }
+public class SalesOrder implements Parcelable {
+    @SerializedName("sales_order")
+    @Expose
+    private String soId;
+    @SerializedName("customer_name")
+    @Expose
+    private String customerName;
+    @SerializedName("asset_type")
+    @Expose
+    private String assetType;
+    @SerializedName("error")
+    @Expose
+    private boolean error;
 
     public SalesOrder() {
     }
 
+    /**
+     * Setter Getter Generate
+     *
+     * @return
+     */
     public String getSoId() {
         return soId;
     }
@@ -31,9 +44,31 @@ public class SalesOrder implements Parcelable {
         this.customerName = customerName;
     }
 
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public boolean getError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    /**
+     * Parcelable Generate
+     *
+     * @param in
+     */
     private SalesOrder(Parcel in) {
         soId = in.readString();
         customerName = in.readString();
+        assetType = in.readString();
     }
 
     public static final Creator<SalesOrder> CREATOR = new Creator<SalesOrder>() {
@@ -57,5 +92,6 @@ public class SalesOrder implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(soId);
         dest.writeString(customerName);
+        dest.writeString(assetType);
     }
 }
