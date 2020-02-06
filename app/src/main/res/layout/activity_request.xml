@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Search Sales Order-->
             <LinearLayout
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
@@ -69,7 +68,7 @@
                     style="@style/ItemLayoutUserTitle"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mregular"
-                    android:text="@string/salesorder"
+                    android:text="@string/SONumber"
                     android:textSize="12sp" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -105,6 +104,7 @@
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
+                    android:layout_marginTop="16dp"
                     android:text="@string/branch" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -119,17 +119,19 @@
             </LinearLayout>
             <!--            Asset-->
             <LinearLayout
-                android:id="@+id/ll_user"
+
+
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="20dp"
+                >
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
-                    android:text="@string/asset"
+                    android:text="@string/user"
                     android:textSize="16sp" />
 
                 <View
@@ -166,7 +168,6 @@
                     android:text="@string/stript"
                     android:textSize="14sp" />
             </LinearLayout>
-
             <!--            Search Asset-->
             <LinearLayout
                 style="@style/ItemLayout"
@@ -178,7 +179,7 @@
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
-                    android:text="@string/search_asset"
+                    android:text="@string/asset"
                     android:textSize="16sp" />
 
                 <View
