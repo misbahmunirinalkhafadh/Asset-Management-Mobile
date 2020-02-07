@@ -195,6 +195,9 @@
                     android:hint="@string/search"
                     android:padding="10dp" />
 
+                <include layout="@layout/layout_result_asset" />
+
+
             </LinearLayout>
             <!--            Button Request-->
             <include
