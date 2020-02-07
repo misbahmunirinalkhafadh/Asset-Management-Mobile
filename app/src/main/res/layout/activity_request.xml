@@ -119,15 +119,13 @@
             </LinearLayout>
             <!--            Asset-->
             <LinearLayout
-
-
+                android:id="@+id/ll_user"
                 style="@style/ItemLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
-                android:padding="20dp"
-                >
+                android:padding="20dp">
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
@@ -146,7 +144,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_nik"
-                    style="@style/ItemInput"
+                    style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
@@ -196,6 +194,9 @@
                     android:background="@drawable/bg_field"
                     android:hint="@string/search"
                     android:padding="10dp" />
+
+                <include layout="@layout/layout_result_asset" />
+
 
             </LinearLayout>
             <!--            Button Request-->
