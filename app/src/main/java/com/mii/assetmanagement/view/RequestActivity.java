@@ -50,8 +50,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         etSalesOrder.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String soNumber = v.getText().toString();
-                String val = etSalesOrder.getText().toString().trim();
+                String val = v.getText().toString().trim();
                 if (val.isEmpty()) {
                     etSalesOrder.setError("Required");
                     tvCompanyName.setText("-");
@@ -65,7 +64,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                         progressDialog.show();
                         tvCompanyName.setText("");
-                        requestViewModel.setDataSO(soNumber);
+                        requestViewModel.setDataSO(val);
                         return true;
                     }
                 }
@@ -79,7 +78,14 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onChanged(SalesOrder salesOrder) {
                 String asset_type = "Resource";
-                if (salesOrder != null) {
+                if (salesOrder.getError()) {
+                    Log.i("Sales Order Result", "Kosong");
+                    tvCompanyName.setText(R.string.invalid);
+                    tvCompanyName.setTextColor(Color.RED);
+                    layoutUser.setVisibility(View.GONE);
+                    etNik.getText().clear();
+                    progressDialog.dismiss();
+                } else {
                     Log.i("Sales Order Result", "ADA");
                     tvCompanyName.append(salesOrder.getCustomerName());
                     tvCompanyName.setTextColor(Color.BLACK);
@@ -90,13 +96,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         layoutUser.setVisibility(View.GONE);
                         etNik.getText().clear();
                     }
-                    progressDialog.dismiss();
-                } else {
-                    Log.i("Sales Order Result", "Kosong");
-                    tvCompanyName.setText(R.string.invalid);
-                    tvCompanyName.setTextColor(Color.RED);
-                    layoutUser.setVisibility(View.GONE);
-                    etNik.getText().clear();
                     progressDialog.dismiss();
                 }
             }
