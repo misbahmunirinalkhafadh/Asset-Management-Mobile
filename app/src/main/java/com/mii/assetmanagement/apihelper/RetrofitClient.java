@@ -14,6 +14,8 @@ public class RetrofitClient {
 
     private static Retrofit retrofit = null;
     private static Retrofit retrofitJwt = null;
+    private static Retrofit retrofitSakuraJwt = null;
+
 
     static Retrofit getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -58,4 +60,26 @@ public class RetrofitClient {
         }
         return retrofitJwt;
     }
+    static Retrofit getClientSakuraJwt() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(interceptor).build();
+
+        if (retrofitSakuraJwt == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofitSakuraJwt = new Retrofit.Builder()
+                    .baseUrl(UtilsApi.BASE_URL_API_SAKURA_JWT)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .client(client)
+                    .build();
+        }
+        return retrofitSakuraJwt;
+    }
+
 }
