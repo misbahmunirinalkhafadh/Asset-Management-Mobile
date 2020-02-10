@@ -11,8 +11,6 @@ import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.SalesOrder;
 
-import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,17 +26,10 @@ public class RequestViewModel extends ViewModel {
         call.enqueue(new Callback<SalesOrder>() {
             @Override
             public void onResponse(Call<SalesOrder> call, Response<SalesOrder> response) {
-                Log.e("onResponse", response.message());
-                boolean error = Objects.requireNonNull(response.body()).getError();
-                if (error) {
+                if (response.body() == null) {
                     liveData.setValue(null);
                 } else {
-                    SalesOrder so = new SalesOrder();
-                    so.setSoId(response.body().getSoId());
-                    so.setCustomerName(response.body().getCustomerName());
-                    so.setAssetType(response.body().getAssetType());
-                    so.setAssetType(response.body().getAssetType());
-                    liveData.setValue(so);
+                    liveData.setValue(response.body());
                 }
             }
 

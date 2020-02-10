@@ -12,7 +12,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -40,13 +39,14 @@ public interface ApiService {
      * @param serial
      * @return
      */
-    @GET("maintenance/getparts/{serial}")
-    Call<Asset> assetRequest(@Path("serial") String serial);
+//    @GET("maintenance/getparts/{serial}")
+//    Call<Asset> assetRequest(@Path("serial") String serial);
 
     @GET("maintenance/getparts")
     @Headers({"Content-Type: application/json"})
-    Call<Asset> getSerialNumber(@Query("serial_number") String serial,
+    Call<Asset> assetRequest(@Query("serial_number") String serial,
                                    @Header("Authorization") String token);
+
     /**
      * Search Sales order
      * JWT

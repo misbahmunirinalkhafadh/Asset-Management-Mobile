@@ -4,8 +4,6 @@ package com.mii.assetmanagement.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.apihelper.ApiService;
-import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.viewmodel.AssetViewModel;
 
-import java.util.Arrays;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Objects;
 
 
 /**
@@ -37,7 +33,7 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
 
     private EditText etSerial;
     private Button btnSearch;
-    private ApiService mApiService;
+    private AssetViewModel assetViewModel;
     private ProgressDialog progressDialog;
 
     static InputSerialFragment newInstance() {
@@ -51,13 +47,9 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_input_serial, container, false);
 
         initComponent(view);
+        loading();
 
-        mApiService = UtilsApi.getApiService();
-        //Progress Dialog
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
-
+        assetViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(AssetViewModel.class);
         btnSearch.setOnClickListener(this);
 
         return view;
@@ -75,76 +67,41 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (TextUtils.isEmpty(etSerial.getText())) {
+        String serial = etSerial.getText().toString().trim();
+        if (serial.isEmpty()) {
             etSerial.setError("Enter serial number");
         } else {
-            progressDialog.show(); // show progress dialog
-            //Handler Dialog
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialog.dismiss();
-                }
-            }, 2000);
-
-            serialRequest();
+            progressDialog.show();
+            assetViewModel.setDataAsset(serial);
         }
     }
 
-    private void serialRequest() {
-        String serial = etSerial.getText().toString();
-        Log.v("TAG", serial);
-        mApiService.assetRequest(serial).enqueue(new Callback<Asset>() {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        assetViewModel.getDataAsset().observe(this, new Observer<Asset>() {
             @Override
-            public void onResponse(Call<Asset> call, Response<Asset> response) {
-                if (!response.body().getError()) {
-                    String hdd;
-                    String ssd;
-                    if (response.body().getParts().getSSD() == null) ssd = "N/A";
-                    else ssd = response.body().getParts().getSSD();
-                    if (response.body().getParts().getHDD() == null) hdd = "N/A";
-                    else hdd = response.body().getParts().getHDD();
-
-                    //Bundle
-                    Bundle extras = new Bundle();
-                    // User
-                    extras.putString("nik", response.body().getUser().getNik());
-                    extras.putString("name", response.body().getUser().getName());
-                    extras.putString("location", response.body().getUser().getLocation());
-                    extras.putString("branch", response.body().getUser().getBranch());
-                    // Asset
-                    extras.putString("salesOrder", response.body().getSalesOrder());
-                    extras.putString("serialNumber", response.body().getSerialNumber());
-                    extras.putString("brand", response.body().getBrand());
-                    extras.putString("type", response.body().getType());
-                    extras.putStringArray("others", response.body().getOthers());
-                    // Parts
-                    extras.putString("Processor", response.body().getParts().getProcessor());
-                    extras.putString("OS", response.body().getParts().getOS());
-                    extras.putString("RAM", response.body().getParts().getRAM());
-                    extras.putString("HDD", hdd);
-                    extras.putString("SSD", ssd);
-
-                    Log.v("List Others", Arrays.toString(response.body().getOthers()));
-
-                    Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-                    goToInformation.putExtras(extras);
-                    startActivity(goToInformation);
-
-                } else {
-                    Log.e("Error", String.valueOf(true));
-                    progressDialog.dismiss();
-                    Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
+            public void onChanged(Asset asset) {
+                Log.v("CHECK", "Error " + asset.isError());
+                if (asset.isError()) {
                     etSerial.getText().clear();
+                    Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
+                    goToInformation.putExtra(InformasiActivity.EXTRA_ASSET, asset);
+                    goToInformation.putExtra(InformasiActivity.EXTRA_USER, asset.getUser());
+                    goToInformation.putExtra(InformasiActivity.EXTRA_PARTS, asset.getParts());
+                    startActivity(goToInformation);
                 }
-            }
-
-            @Override
-            public void onFailure(Call<Asset> call, Throwable t) {
-                Log.e("debug", "onFailure: ERROR > " + t.toString());
+                progressDialog.hide();
             }
         });
+    }
 
+    private void loading() {
+        //Progress Dialog
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait..."); // set message
     }
 }
