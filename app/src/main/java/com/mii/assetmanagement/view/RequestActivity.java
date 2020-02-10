@@ -89,7 +89,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     Log.i("Sales Order Result", "ADA");
                     tvCompanyName.append(salesOrder.getCustomerName());
                     tvCompanyName.setTextColor(Color.BLACK);
-                    //Set Visibility User Layout
+                    //Set V isibility User Layout
                     if (salesOrder.getAssetType().equals(asset_type)) {
                         layoutUser.setVisibility(View.VISIBLE);
                     } else {
