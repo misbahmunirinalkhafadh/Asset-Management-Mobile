@@ -3,7 +3,6 @@ package com.mii.assetmanagement.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,19 +12,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mii.assetmanagement.R;
-
-import java.util.Arrays;
+import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.model.Part;
+import com.mii.assetmanagement.model.User;
 
 public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout llProgress;
-    TextView tvNik, tvName, tvLocation, tvBranch;
-    TextView tvSales, tvSerial, tvBrand, tvType;
-    TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
-    Button btnMaintenance, btnClose, btnBack;
-    String[] listService;
-    ScrollView svInformation;
-//    private ProgressBar loading;
+    private TextView tvNik, tvName, tvLocation, tvBranch;
+    private TextView tvSales, tvSerial, tvBrand, tvType;
+    public TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
+    private String[] listService;
+    private Button btnMaintenance, btnClose, btnBack;
+    private LinearLayout llProgress;
+    private ScrollView svInformation;
+    public static final String EXTRA_ASSET = "extra_asset";
+    public static final String EXTRA_USER = "extra_user";
+    public static final String EXTRA_PARTS = "extra_parts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,44 +35,25 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_informasi);
 
         initComponent();
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                llProgress.setVisibility(View.GONE);
-                svInformation.setVisibility(View.VISIBLE);
-            }
-        }, 1000);
-
-        loadInformation();
-
-        Log.v("Information Act Others", Arrays.toString(listService));
+        loading();
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnMaintenance.setOnClickListener(this);
     }
 
-    private void loadInformation() {
+    private void loading() {
         llProgress.setVisibility(View.VISIBLE);
         svInformation.setVisibility(View.GONE);
 
-        Intent intent = getIntent();
-        tvNik.setText(intent.getStringExtra("nik"));
-        tvName.setText(intent.getStringExtra("name"));
-        tvLocation.setText(intent.getStringExtra("location"));
-        tvBranch.setText(intent.getStringExtra("branch"));
-        tvSales.setText(intent.getStringExtra("salesOrder"));
-        tvSerial.setText(intent.getStringExtra("serialNumber"));
-        tvBrand.setText(intent.getStringExtra("brand"));
-        tvType.setText(intent.getStringExtra("type"));
-        tvProcessor.setText(intent.getStringExtra("Processor"));
-        tvSystem.setText(intent.getStringExtra("OS"));
-        tvHdd.setText(intent.getStringExtra("HDD"));
-        tvSsd.setText(intent.getStringExtra("SSD"));
-        tvRam.setText(intent.getStringExtra("RAM"));
-        listService = intent.getStringArrayExtra("others");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                llProgress.setVisibility(View.GONE);
+                svInformation.setVisibility(View.VISIBLE);
+            }
+        }, 500);
     }
 
     private void initComponent() {
@@ -91,8 +74,41 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         btnBack = findViewById(R.id.btn_back);
         btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
-//        loading = findViewById(R.id.loading);
         svInformation = findViewById(R.id.sv_information);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Asset asset = getIntent().getParcelableExtra(EXTRA_ASSET);
+        tvSales.setText(asset.getSalesOrder());
+        tvSerial.setText(asset.getSerialNumber());
+        tvBrand.setText(asset.getBrand());
+        tvType.setText(asset.getType());
+        listService = asset.getOthers();
+
+        User user = getIntent().getParcelableExtra(EXTRA_USER);
+        tvNik.setText(user.getNik());
+        tvName.setText(user.getName());
+        tvLocation.setText(user.getLocation());
+        tvBranch.setText(user.getBranch());
+
+        Part part = getIntent().getParcelableExtra(EXTRA_PARTS);
+        String hdd = part.getHDD();
+        String ssd = part.getSSD();
+        if (hdd.equals("")) {
+            tvHdd.setText("N/A");
+        } else {
+            tvHdd.setText(hdd);
+        }
+        if (ssd.equals("")) {
+            tvSsd.setText("N/A");
+        } else {
+            tvSsd.setText(ssd);
+        }
+        tvProcessor.setText(part.getProcessor());
+        tvSystem.setText(part.getOS());
+        tvRam.setText(part.getRAM());
     }
 
     @Override
