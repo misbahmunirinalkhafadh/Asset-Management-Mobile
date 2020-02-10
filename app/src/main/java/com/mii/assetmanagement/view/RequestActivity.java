@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
@@ -40,9 +41,40 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 
         eventInputSo();
-        callData();
+        eventInputNik();
+        callDataSO();
+        callDataEmpl();
         loading();
         btnBack.setOnClickListener(this);
+    }
+
+
+    private void eventInputNik() {
+        etNik.setInputType(InputType.TYPE_CLASS_NUMBER);
+        etNik.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                String value = v.getText().toString().trim();
+                int val = Integer.parseInt(value);
+                if (value.isEmpty()) {
+                    etNik.setError("Required");
+                    tvEmpName.setText("-");
+                    tvEmpName.setTextColor(Color.GRAY);
+                    etNik.getText().clear();
+                } else {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH
+                            || actionId == EditorInfo.IME_ACTION_DONE
+                            || event.getAction() == KeyEvent.ACTION_DOWN
+                            && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        progressDialog.show();
+                        tvEmpName.setText("");
+                        requestViewModel.setDataEmpl(val);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void eventInputSo() {
@@ -73,7 +105,29 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    private void callData() {
+    private void callDataEmpl() {
+        requestViewModel.getDataEmployee().observe(this, new Observer<Employee>() {
+            @Override
+            public void onChanged(Employee employee) {
+                Log.v("test", "employee name" + employee.getEmplName());
+                if (employee.isError()) {
+                    Log.i("Employee Result", "Benar");
+                    tvEmpName.setText(R.string.invalid);
+                    tvEmpName.setTextColor(Color.RED);
+                    etNik.getText().clear();
+                    progressDialog.dismiss();
+                } else {
+                    Log.i("Employee Result", "Salah");
+                    tvEmpName.append(employee.getEmplName());
+                    tvEmpName.setTextColor(Color.BLACK);
+                    progressDialog.dismiss();
+                }
+
+            }
+        });
+    }
+
+    private void callDataSO() {
         requestViewModel.getDataSO().observe(this, new Observer<SalesOrder>() {
             @Override
             public void onChanged(SalesOrder salesOrder) {

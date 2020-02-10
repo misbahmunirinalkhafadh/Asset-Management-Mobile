@@ -1,6 +1,7 @@
 package com.mii.assetmanagement.apihelper;
 
 import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.LoginRequest;
 import com.mii.assetmanagement.model.LoginResult;
 import com.mii.assetmanagement.model.MaintenanceRequest;
@@ -58,4 +59,9 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     Call<SalesOrder> getSalesOrder(@Query("so_number") String sonumber,
                                         @Header("Authorization") String token);
+
+    @GET("getEmployeebynik")
+    @Headers({"Content-Type: application/json"})
+    Call<Employee> getEmployee(@Query("id") int nik,
+                                 @Header("Authorization") String token);
 }
