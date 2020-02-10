@@ -111,13 +111,13 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
             public void onChanged(Employee employee) {
                 Log.v("test", "employee name" + employee.getEmplName());
                 if (employee.isError()) {
-                    Log.i("Employee Result", "Benar");
+                    Log.i("Employee Result", "Salah");
                     tvEmpName.setText(R.string.invalid);
                     tvEmpName.setTextColor(Color.RED);
                     etNik.getText().clear();
                     progressDialog.dismiss();
                 } else {
-                    Log.i("Employee Result", "Salah");
+                    Log.i("Employee Result", "Benar");
                     tvEmpName.append(employee.getEmplName());
                     tvEmpName.setTextColor(Color.BLACK);
                     progressDialog.dismiss();
