@@ -84,7 +84,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     tvCompanyName.setTextColor(Color.RED);
                     layoutUser.setVisibility(View.GONE);
                     etNik.getText().clear();
-                    progressDialog.dismiss();
                 } else {
                     Log.i("Sales Order Result", "ADA");
                     tvCompanyName.append(salesOrder.getCustomerName());
@@ -96,8 +95,8 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         layoutUser.setVisibility(View.GONE);
                         etNik.getText().clear();
                     }
-                    progressDialog.dismiss();
                 }
+                progressDialog.dismiss();
             }
         });
     }
