@@ -1,6 +1,7 @@
 package com.mii.assetmanagement.view;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -24,7 +25,7 @@ import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText etSalesOrder, etNik;
+    private EditText etSalesOrder, etNik, etSearch;
     private TextView tvCompanyName, tvEmpName;
     private LinearLayout layoutUser;
     private Button btnBack;
@@ -46,6 +47,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         callDataEmpl();
         loading();
         btnBack.setOnClickListener(this);
+        etSearch.setOnClickListener(this);
     }
 
 
@@ -157,6 +159,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initComponent() {
+        etSearch = findViewById(R.id.et_search);
         etSalesOrder = findViewById(R.id.et_sales_order);
         etNik = findViewById(R.id.et_nik);
         tvCompanyName = findViewById(R.id.tv_company);
@@ -177,9 +180,15 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
 //            case R.id.et_sales_order:
-//                Intent goToSearchSalesOrder = new Intent(this, SearchSOActivity.class);
+//                Intent goToSearchSalesOrder = new Intent(this, SearchAssetActivity.class);
 //                startActivity(goToSearchSalesOrder);
 //                break;
+            case R.id.et_search:
+                Bundle extras = new Bundle();
+                Intent goToSearchAsset = new Intent(RequestActivity.this, SearchAssetActivity.class);
+                goToSearchAsset.putExtras(extras);
+                startActivity(goToSearchAsset);
+                break;
             case R.id.btn_back:
                 onBackPressed();
                 break;

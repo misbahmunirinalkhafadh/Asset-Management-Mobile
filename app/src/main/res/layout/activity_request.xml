@@ -187,6 +187,7 @@
                     android:background="@color/colorGreySoft" />
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_search"
                     style="@style/ItemLayoutUserField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -194,9 +195,6 @@
                     android:background="@drawable/bg_field"
                     android:hint="@string/search"
                     android:padding="10dp" />
-
-                <include layout="@layout/layout_result_asset" />
-
 
             </LinearLayout>
             <!--            Button Request-->

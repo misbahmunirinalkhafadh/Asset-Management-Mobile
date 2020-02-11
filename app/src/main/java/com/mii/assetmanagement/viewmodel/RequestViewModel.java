@@ -57,7 +57,7 @@ public class RequestViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<Employee> call, Throwable t) {
-
+                Log.e("onFailure", t.getMessage());
             }
         });
     }
