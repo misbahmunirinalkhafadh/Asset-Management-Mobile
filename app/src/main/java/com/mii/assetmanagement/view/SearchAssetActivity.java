@@ -10,9 +10,9 @@ import android.widget.Button;
 
 import com.mii.assetmanagement.R;
 
-public class SearchAssetActivity extends AppCompatActivity {
+public class SearchAssetActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btn_category;
+    Button btnBack;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -20,14 +20,29 @@ public class SearchAssetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_asset);
 
-        btn_category = (Button) findViewById(R.id.btn_category);
+        initComponent();
 
-        btn_category.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PopupActivity.class);
-                startActivity(i);
-            }
-        });
+        btnBack.setOnClickListener(this);
+//        btn_category = (Button) findViewById(R.id.btn_category);
+
+//        btn_category.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(), PopupActivity.class);
+//                startActivity(i);
+//            }
+//        });
+    }
+
+    private void initComponent() {
+        btnBack = findViewById(R.id.btn_back);
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_back:
+                onBackPressed();
+                break;
+        }
     }
 }
