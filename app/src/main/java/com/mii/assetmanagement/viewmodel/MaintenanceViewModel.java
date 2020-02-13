@@ -2,34 +2,65 @@ package com.mii.assetmanagement.viewmodel;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mii.assetmanagement.model.MaintenanceRequest;
+import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
+import com.mii.assetmanagement.model.Asset;
+import com.mii.assetmanagement.model.MaintenanceRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MaintenanceViewModel extends ViewModel {
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
+public class MaintenanceViewModel extends ViewModel {
+    private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
+    private MutableLiveData<Asset> liveData = new MutableLiveData<>();
     private ApiService mApiService;
 
-    public void apiSaveMaintenance(MaintenanceRequest request) {
-        mApiService = UtilsApi.getApiService();
-        mApiService.saveMaintenance(request).enqueue(new Callback<MaintenanceRequest>() {
+    public void setDataAsset(String serial) {
+        mApiService = UtilsApi.getApiServiceJwt();
+        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
+        call.enqueue(new Callback<Asset>() {
             @Override
-            public void onResponse(Call<MaintenanceRequest> call, Response<MaintenanceRequest> response) {
-                if (response.isSuccessful()) {
-                    Log.i("post submitted to API.", response.body().toString());
+            public void onResponse(Call<Asset> call, Response<Asset> response) {
+                Log.d("onResponse", "Asset " + response.body().toString());
+                if (response.body() == null) {
+                    liveData.setValue(null);
+                } else {
+                    liveData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<MaintenanceRequest> call, Throwable t) {
+            public void onFailure(Call<Asset> call, Throwable t) {
                 Log.e("onFailure", t.getMessage());
             }
         });
     }
+
+    public void setMaintenance(MaintenanceRequest request) {
+        mApiService = UtilsApi.getApiService();
+        mApiService.saveMaintenance(request, API_TOKEN).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.i(TAG, "onResponse > Save Maintenance" + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("onFailure > ", t.getMessage());
+            }
+        });
+    }
+
+    public LiveData<Asset> getDataAsset() {
+        return liveData;
+    }
+
 }

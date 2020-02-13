@@ -21,7 +21,7 @@ public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdap
     private Context mContext;
     private LayoutInflater inflater;
     private List<String> serviceList;
-    public boolean[] booleanList;
+    private boolean[] booleanList;
 
     public MainChecklistAdapter(Context context, List<String> serviceList, boolean[] booleanList) {
         this.mContext = context;
@@ -41,11 +41,8 @@ public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdap
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.cbService.setText(serviceList.get(position));
-
         Arrays.fill(booleanList, Boolean.FALSE);
-
         holder.cbService.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -54,8 +51,6 @@ public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdap
                     Array.setBoolean(booleanList, position, false);
                 }
             }
-
-
         });
 
     }
