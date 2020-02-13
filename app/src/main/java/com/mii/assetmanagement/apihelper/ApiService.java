@@ -35,15 +35,13 @@ public interface ApiService {
      */
     @POST("maintenance/save")
     @Headers({"Content-Type: application/json;charset=UTF-8"})
-    Call<MaintenanceRequest> saveMaintenance(@Body MaintenanceRequest body);
+    Call<String> saveMaintenance(@Body MaintenanceRequest body,
+                                             @Header("Authorization") String token);
 
     /**
      * @param serial
      * @return
      */
-//    @GET("maintenance/getparts/{serial}")
-//    Call<Asset> assetRequest(@Path("serial") String serial);
-
     @GET("maintenance/getparts")
     @Headers({"Content-Type: application/json"})
     Call<Asset> assetRequest(@Query("serial_number") String serial,

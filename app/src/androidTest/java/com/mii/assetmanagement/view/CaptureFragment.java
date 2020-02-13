@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.zxing.Result;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.viewmodel.AssetViewModel;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 
