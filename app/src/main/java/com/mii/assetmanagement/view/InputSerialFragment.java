@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.viewmodel.AssetViewModel;
+import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
 
     private EditText etSerial;
     private Button btnSearch;
-    private AssetViewModel assetViewModel;
+    private MaintenanceViewModel maintenanceViewModel;
     private ProgressDialog progressDialog;
 
     static InputSerialFragment newInstance() {
@@ -49,17 +49,13 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
         initComponent(view);
         loading();
 
-        assetViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(AssetViewModel.class);
+        maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
+
         btnSearch.setOnClickListener(this);
 
         return view;
     }
 
-    /**
-     * initialize component
-     *
-     * @param view
-     */
     private void initComponent(View view) {
         etSerial = view.findViewById(R.id.et_serial);
         btnSearch = view.findViewById(R.id.btn_search_serial);
@@ -72,14 +68,14 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
             etSerial.setError("Enter serial number");
         } else {
             progressDialog.show();
-            assetViewModel.setDataAsset(serial);
+            maintenanceViewModel.setDataAsset(serial);
         }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        assetViewModel.getDataAsset().observe(this, new Observer<Asset>() {
+        maintenanceViewModel.getDataAsset().observe(this, new Observer<Asset>() {
             @Override
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
