@@ -45,7 +45,7 @@ dependencies {
 
     //Design
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     //Lifecycle
     implementation 'android.arch.lifecycle:viewmodel:1.1.1'

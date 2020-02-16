@@ -1,18 +1,18 @@
 package com.mii.assetmanagement.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.mii.assetmanagement.R;
 
 public class SearchAssetActivity extends AppCompatActivity {
 
-    Button btn_category;
+    private Button btn_category;
 
     @SuppressLint("WrongViewCast")
     @Override

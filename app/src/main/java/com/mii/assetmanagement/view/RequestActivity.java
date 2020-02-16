@@ -41,7 +41,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
         eventInputSo();
         callData();
-        loading();
+
         btnBack.setOnClickListener(this);
     }
 
@@ -62,7 +62,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             || actionId == EditorInfo.IME_ACTION_DONE
                             || event.getAction() == KeyEvent.ACTION_DOWN
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                        progressDialog.show();
+                        showLoading();
                         tvCompanyName.setText("");
                         requestViewModel.setDataSO(val);
                         return true;
@@ -71,6 +71,15 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 return false;
             }
         });
+    }
+
+    private void showLoading() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Please wait...");
+        }
+        progressDialog.show();
     }
 
     private void callData() {
@@ -96,9 +105,15 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         etNik.getText().clear();
                     }
                 }
-                progressDialog.dismiss();
+                dismissLoading();
             }
         });
+    }
+
+    private void dismissLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     private void initComponent() {
@@ -110,12 +125,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         btnBack = findViewById(R.id.btn_back);
 
         layoutUser.setVisibility(View.GONE);
-    }
-
-    private void loading() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
     }
 
     @Override
