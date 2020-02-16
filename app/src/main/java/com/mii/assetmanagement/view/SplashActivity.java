@@ -16,21 +16,19 @@ import com.mii.assetmanagement.R;
 public class SplashActivity extends AppCompatActivity {
 
     private LinearLayout appLogo;
-    private static int splashTimeOut = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        appLogo = (LinearLayout) findViewById(R.id.logo_app);
+        appLogo = findViewById(R.id.logo_app);
 
+        int splashTimeOut = 5000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 Intent start = new Intent(SplashActivity.this, LoginActivity.class);
-
                 //Animate swipe logo app
                 Pair[] pairs = new Pair[1];
                 pairs[0] = new Pair(appLogo, "logoTransition");

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedPrefManager {
-    public static final String SP_ASSETMANAGEMENT_APP = "spAssetManagementApp";
+    private static final String SP_ASSETMANAGEMENT_APP = "spAssetManagementApp";
 
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
@@ -12,12 +12,13 @@ public class SharedPrefManager {
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
-    SharedPreferences sp;
-    SharedPreferences.Editor spEditor;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor spEditor;
 
     public SharedPrefManager(Context context) {
         sp = context.getSharedPreferences(SP_ASSETMANAGEMENT_APP, Context.MODE_PRIVATE);
         spEditor = sp.edit();
+        spEditor.apply();
     }
 
     public void saveSPString(String keySP, String value) {

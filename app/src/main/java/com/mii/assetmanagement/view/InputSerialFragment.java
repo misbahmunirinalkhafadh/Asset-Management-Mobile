@@ -61,15 +61,28 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
         btnSearch = view.findViewById(R.id.btn_search_serial);
     }
 
+    private void loading() {
+
+    }
+
     @Override
     public void onClick(View v) {
         String serial = etSerial.getText().toString().trim();
         if (serial.isEmpty()) {
             etSerial.setError("Enter serial number");
         } else {
-            progressDialog.show();
+            showLoading();
             maintenanceViewModel.setDataAsset(serial);
         }
+    }
+
+    private void showLoading() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Please wait...");
+        }
+        progressDialog.show();
     }
 
     @Override
@@ -89,15 +102,14 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     goToInformation.putExtra(InformasiActivity.EXTRA_PARTS, asset.getParts());
                     startActivity(goToInformation);
                 }
-                progressDialog.hide();
+                dismissLoading();
             }
         });
     }
 
-    private void loading() {
-        //Progress Dialog
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait..."); // set message
+    private void dismissLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 }

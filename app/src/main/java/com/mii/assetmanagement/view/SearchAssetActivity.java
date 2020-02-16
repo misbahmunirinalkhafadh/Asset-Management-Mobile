@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.viewmodel.BrandViewModel;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;

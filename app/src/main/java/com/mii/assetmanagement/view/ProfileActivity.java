@@ -1,6 +1,5 @@
 package com.mii.assetmanagement.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,25 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
-import com.mii.assetmanagement.apihelper.ApiService;
-import com.mii.assetmanagement.apihelper.UtilsApi;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvResultName, tvResultEmail, tvResultNik;
-    Button btnLogout, btnBack;
+    private TextView tvResultName, tvResultEmail, tvResultNik;
+    private Button btnLogout, btnBack;
 
-    Context mContext;
-    ApiService mApiService;
-    SharedPrefManager sharedPrefManager;
+    private SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mContext = this;
-        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
@@ -65,18 +58,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             //move to login page
             case R.id.btn_logout:
-
                 Log.v("remove session", "check function");
-
                 // Shared Pref ini berfungsi untuk menjadi trigger session login
                 sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-
                 startActivity(new Intent(ProfileActivity.this, LoginActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
-
         }
     }
-
-
 }
