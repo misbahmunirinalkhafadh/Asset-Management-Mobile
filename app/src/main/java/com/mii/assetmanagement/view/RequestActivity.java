@@ -165,7 +165,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         tvEmpName = findViewById(R.id.tv_name);
         layoutUser = findViewById(R.id.ll_user);
         btnBack = findViewById(R.id.btn_back);
-
+        etSearch.setKeyListener(null);
         layoutUser.setVisibility(View.GONE);
     }
 
