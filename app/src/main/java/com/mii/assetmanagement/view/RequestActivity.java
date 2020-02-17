@@ -57,7 +57,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 String value = v.getText().toString().trim();
-                int val = Integer.parseInt(value);
                 if (value.isEmpty()) {
                     etNik.setError("Required");
                     tvEmpName.setText("-");
@@ -70,7 +69,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                         showLoading();
                         tvEmpName.setText("");
-                        requestViewModel.setDataEmpl(val);
+                        requestViewModel.setDataEmpl(Integer.parseInt(value));
                         return true;
                     }
                 }

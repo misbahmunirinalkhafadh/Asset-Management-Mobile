@@ -150,7 +150,9 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_field"
                     android:hint="@string/Input_NIK"
-                    android:padding="10dp" />
+                    android:imeOptions="actionDone"
+                    android:padding="10dp"
+                    android:singleLine="true" />
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
