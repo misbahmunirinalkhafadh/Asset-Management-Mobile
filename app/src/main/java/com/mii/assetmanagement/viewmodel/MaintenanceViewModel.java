@@ -21,6 +21,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class MaintenanceViewModel extends ViewModel {
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<Asset> liveData = new MutableLiveData<>();
+    private MutableLiveData<Asset> liveDataScan = new MutableLiveData<>();
     private ApiService mApiService;
 
     public void setDataAsset(String serial) {
@@ -44,8 +45,29 @@ public class MaintenanceViewModel extends ViewModel {
         });
     }
 
+    public void setDataAssetScan(String serial) {
+        mApiService = UtilsApi.getApiServiceJwt();
+        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
+        call.enqueue(new Callback<Asset>() {
+            @Override
+            public void onResponse(Call<Asset> call, Response<Asset> response) {
+                Log.d("onResponse", "Asset " + response.body().toString());
+                if (response.body() == null) {
+                    liveDataScan.setValue(null);
+                } else {
+                    liveDataScan.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Asset> call, Throwable t) {
+                Log.e("onFailure", t.getMessage());
+            }
+        });
+    }
+
     public void setMaintenance(MaintenanceRequest request) {
-        mApiService = UtilsApi.getApiService();
+        mApiService = UtilsApi.getApiServiceJwt();
         mApiService.saveMaintenance(request, API_TOKEN).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -61,6 +83,10 @@ public class MaintenanceViewModel extends ViewModel {
 
     public LiveData<Asset> getDataAsset() {
         return liveData;
+    }
+
+    public LiveData<Asset> getDataAssetScan() {
+        return liveDataScan;
     }
 
 }

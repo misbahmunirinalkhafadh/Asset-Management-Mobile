@@ -1,7 +1,6 @@
 package com.mii.assetmanagement.view;
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
@@ -14,27 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
-import com.mii.assetmanagement.apihelper.ApiService;
-import com.mii.assetmanagement.apihelper.UtilsApi;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView ivProfile;
-    TextView tvResultName, tvResultNik;
-    LinearLayout menuScan, menuRequest;
-
-    Context mContext;
-    ApiService mApiService;
-    SharedPrefManager sharedPrefManager;
+    private ImageView ivProfile;
+    private TextView tvResultName, tvResultNik;
+    private LinearLayout menuScan, menuRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mContext = this;
-        mApiService = UtilsApi.getApiService();
-        sharedPrefManager = new SharedPrefManager(this);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
         initComponent();
@@ -76,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Pair[] pairs = new Pair[1];
                 pairs[0] = new Pair(ivProfile, "profileTransition");
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
-
                 startActivity(goToProfile, options.toBundle());
                 break;
             //move to maintenance
@@ -89,10 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent goToRequest = new Intent(MainActivity.this, RequestActivity.class);
                 startActivity(goToRequest);
                 break;
-
-
-
-
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.mii.assetmanagement.view;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,161 +9,116 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.google.gson.Gson;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
-import com.mii.assetmanagement.apihelper.ApiService;
-import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.LoginRequest;
 import com.mii.assetmanagement.model.LoginResult;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.mii.assetmanagement.apihelper.UtilsApi.BASE_URL_API;
+import com.mii.assetmanagement.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ScrollView svScroll;
-    EditText etEmail, etPassword;
-    Button btnLogin;
-    Animation animLogin;
+    private EditText etEmail, etPassword;
+    private Button btnLogin;
+    private Animation animLogin;
 
-    Context mContext;
-    ApiService mApiService;
-    SharedPrefManager sharedPrefManager;
-    private ProgressBar loading;
-
+    private LoginViewModel loginViewModel;
+    private SharedPrefManager sharedPrefManager;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mContext = this;
-        mApiService = UtilsApi.getApiService();
         sharedPrefManager = new SharedPrefManager(this);
-
-        initComponents();
-
-        animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
-
-        //event click component
-        btnLogin.setOnClickListener(this);
+        loginViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LoginViewModel.class);
 
         //mengecek apakah user sudah login atau belum
         if (sharedPrefManager.getSPSudahLogin()) {
-
-            Log.v("check Login", "login success");
+            Log.v("Check Login", "Sudah login");
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
-        }else{
-            Log.v("check Login", "login failed");
-//            etEmail.setText(sharedPrefManager.getSPEmail());
         }
+
+        initComponents();
+
+        btnLogin.setOnClickListener(this);
     }
 
-    /**
-     * initialization element
-     */
     private void initComponents() {
-        svScroll = findViewById(R.id.sv_login);
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
-        loading = findViewById(R.id.loading);
+        animLogin = AnimationUtils.loadAnimation(this, R.anim.button_touch);
     }
 
     @Override
     public void onClick(View v) {
+        btnLogin.startAnimation(animLogin);
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-
-        if (email.isEmpty()) {
-            etEmail.setError("Email Empty");
-            return;
+        if (validateLogin(email, password)) {
+            showLoading();
+            loginViewModel.setLiveDataUser(email, password);
         }
-
-        if (password.isEmpty()) {
-            etPassword.setError("Password Empty");
-            return;
-        }
-
-        loginRequest(email, password);
     }
 
-    /**
-     * fungsi untuk melakukan request login
-     */
-    public void loginRequest(final String email, String password) {
-        loading.setVisibility(View.VISIBLE);
-        etEmail.setEnabled(false);
-        etPassword.setEnabled(false);
-        btnLogin.setEnabled(false);
+    private boolean validateLogin(String email, String password) {
+        if (email == null || email.trim().length() == 0) {
+            etEmail.setError("Email is required");
+            return false;
+        }
+        if (password == null || password.trim().length() == 0) {
+            etPassword.setError("Password is required");
+            return false;
+        }
+        return true;
+    }
 
-        btnLogin.startAnimation(animLogin);
+    private void showLoading() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Please wait...");
+        }
+        progressDialog.show();
+    }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL_API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mApiService = retrofit.create(ApiService.class);
-        Call<LoginResult> call = mApiService.login(new LoginRequest(email, password));
-        call.enqueue(new Callback<LoginResult>() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loginViewModel.getLiveData().observe(this, new Observer<LoginResult>() {
             @Override
-            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                if (response.body().getError()) {
-                    Log.e("", "ERROR RESPONSE : " + new Gson().toJson(response));
-                    Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    loading.setVisibility(View.GONE);
-                    etEmail.setEnabled(true);
-                    etPassword.setEnabled(true);
-                    btnLogin.setEnabled(true);
-
+            public void onChanged(LoginResult loginResult) {
+                String name = loginResult.getUserName();
+                String email = loginResult.getEmail();
+                String nik = Integer.toString(loginResult.getNik());
+                if (loginResult.isError()) {
+                    Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_SHORT).show();
                 } else {
-//                    Log.i("", "SUCCESS RESPONSE : " + new Gson().toJson(response));
-
-                    String name = response.body().getUserName();
-                    String email = response.body().getEmail();
-                    String nik = Integer.toString(response.body().getNik());
-
+                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, name);
                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
-
-                    // Shared Pref ini berfungsi untuk menjadi trigger session login
-                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
-
-                    startActivity(new Intent(mContext, MainActivity.class)
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                     finish();
-
                 }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
-                Log.e("debug", "onFailure: ERROR > " + t.toString());
-
-                loading.setVisibility(View.VISIBLE);
-
-                etEmail.setEnabled(true);
-                etPassword.setEnabled(true);
-                btnLogin.setEnabled(true);
+                dismissLoading();
             }
         });
+    }
+
+    private void dismissLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override

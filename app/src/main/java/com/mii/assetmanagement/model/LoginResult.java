@@ -1,17 +1,33 @@
 package com.mii.assetmanagement.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResult {
-    private Boolean error;
+    @SerializedName("error")
+    @Expose
+    private boolean error;
+    @SerializedName("message")
+    @Expose
     private String message;
+    @SerializedName("userName")
+    @Expose
     private String userName;
+    @SerializedName("email")
+    @Expose
     private String email;
+    @SerializedName("nik")
+    @Expose
     private int nik;
 
-    public Boolean getError() {
+    public LoginResult() {
+    }
+
+    public boolean isError() {
         return error;
     }
 
-    public void setError(Boolean error) {
+    public void setError(boolean error) {
         this.error = error;
     }
 

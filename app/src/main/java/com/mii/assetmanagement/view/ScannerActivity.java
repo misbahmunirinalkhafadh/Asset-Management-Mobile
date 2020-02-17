@@ -9,14 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
 public class ScannerActivity extends AppCompatActivity {
-    Button btnBack;
-    TabLayout mTabs;
-    View mIndicator;
-    ViewPager mViewPager;
+    private Button btnBack;
+    private TabLayout mTabs;
+    private View mIndicator;
+    private ViewPager mViewPager;
 
     private int indicatorWidth;
 

@@ -1,11 +1,13 @@
 package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,14 +30,13 @@ import java.util.List;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
-    CheckBox cbProcessor, cbSystem, cbHdd, cbSsd, cbRam;
-    RecyclerView rvService;
-    EditText etIpAddress, etUsername, etComputer, etResult;
-    Button btnBack, btnSubmit;
-    Context mContext;
-    SharedPrefManager sharedPrefManager;
-
+    private TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
+    private CheckBox cbProcessor, cbSystem, cbHdd, cbSsd, cbRam;
+    private RecyclerView rvService;
+    private EditText etIpAddress, etUsername, etComputer, etResult;
+    private Button btnBack, btnSubmit;
+    private Context mContext;
+    private SharedPrefManager sharedPrefManager;
     private MaintenanceViewModel maintenanceViewModel;
     private String serial;
     private String[] service;
@@ -105,23 +106,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         btnSubmit = findViewById(R.id.btn_submit);
     }
 
-//    private void showAlertSuccess() {
-//        final Dialog alert = new Dialog(mContext, android.R.style.Theme_Light);
-//        alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        alert.setContentView(R.layout.layout_dialog_success);
-//        alert.setCancelable(false);
-//        alert.show();
-//
-//        Button btnClose = alert.findViewById(R.id.btn_close);
-//        btnClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
-//                startActivity(submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-//            }
-//        });
-//    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -130,7 +114,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.btn_submit:
                 validation();
-
                 break;
         }
     }
@@ -193,6 +176,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                             request.setResult(etResult.getText().toString());
                             maintenanceViewModel.setMaintenance(request);
 
+                            showDialogSuccess();
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -202,6 +186,30 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                         }
                     }).show();
         }
+    }
 
+
+    private void showDialogSuccess() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!isFinishing()){
+                    final Dialog dialog = new Dialog(mContext);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.layout_dialog_success);
+                    dialog.show();
+                    Button dialogButton = dialog.findViewById(R.id.btn_continue);
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
+                            startActivity(submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        }
+                    });
+                }
+            }
+        });
     }
 }

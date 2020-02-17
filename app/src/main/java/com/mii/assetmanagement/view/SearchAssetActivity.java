@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.viewmodel.BrandViewModel;
 
