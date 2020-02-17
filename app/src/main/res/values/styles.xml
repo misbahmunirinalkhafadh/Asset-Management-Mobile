@@ -124,4 +124,9 @@
         <item name="android:textColor">@color/colorField</item>
         <item name="android:textSize">16dp</item>
     </style>
+    
+    <style name="AppTheme.PopMe">
+        <item name ="android:windowIsTranslucent">true</item>
+        <item name ="android:windowCloseOnTouchOutside">true</item>
+    </style>
 </resources>

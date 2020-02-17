@@ -16,7 +16,6 @@ public class PopupActivity extends Activity {
         setContentView(R.layout.layout_popup);
 
 
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
