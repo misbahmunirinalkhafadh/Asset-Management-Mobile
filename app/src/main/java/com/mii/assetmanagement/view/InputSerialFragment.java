@@ -98,10 +98,10 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
                     etSerial.getText().clear();
                     Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent goToInformation = new Intent(getActivity(), InformasiActivity.class);
-                    goToInformation.putExtra(InformasiActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformasiActivity.EXTRA_USER, asset.getUser());
-                    goToInformation.putExtra(InformasiActivity.EXTRA_PARTS, asset.getParts());
+                    Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
+                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
+                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                    goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
                     startActivity(goToInformation);
                 }
                 dismissLoading();

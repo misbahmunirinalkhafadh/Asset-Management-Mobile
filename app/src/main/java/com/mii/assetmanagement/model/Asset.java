@@ -12,7 +12,7 @@ public class Asset implements Parcelable {
     private Part parts;
     @SerializedName("user")
     @Expose
-    private User user;
+    private Employee employee;
     @SerializedName("salesOrder")
     @Expose
     private String salesOrder;
@@ -43,12 +43,12 @@ public class Asset implements Parcelable {
         this.parts = parts;
     }
 
-    public User getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getSalesOrder() {
