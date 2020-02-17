@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.Employee;
+import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 
 import retrofit2.Call;
@@ -20,7 +20,7 @@ public class RequestViewModel extends ViewModel {
 
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<SalesOrder> liveDataSO = new MutableLiveData<>();
-    private MutableLiveData<Employee> liveDataEmpl = new MutableLiveData<>();
+    private MutableLiveData<EmployeeResult> liveDataEmpl = new MutableLiveData<>();
 
     public void setDataSO(String soNumber) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
@@ -43,10 +43,10 @@ public class RequestViewModel extends ViewModel {
     }
     public void setDataEmpl(int nik) {
         ApiService mApiService = UtilsApi.getApiServiceSakuraJwt();
-        Call<Employee> call = mApiService.getEmployee(nik, API_TOKEN);
-        call.enqueue(new Callback<Employee>() {
+        Call<EmployeeResult> call = mApiService.getEmployee(nik, API_TOKEN);
+        call.enqueue(new Callback<EmployeeResult>() {
             @Override
-            public void onResponse(Call<Employee> call, Response<Employee> response) {
+            public void onResponse(Call<EmployeeResult> call, Response<EmployeeResult> response) {
                 Log.v("","Test" + response.body());
                 if (response.body() == null) {
                     liveDataEmpl.setValue(null);
@@ -56,7 +56,7 @@ public class RequestViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<Employee> call, Throwable t) {
+            public void onFailure(Call<EmployeeResult> call, Throwable t) {
                 Log.e("onFailure", t.getMessage());
             }
         });
@@ -65,7 +65,7 @@ public class RequestViewModel extends ViewModel {
     public LiveData<SalesOrder> getDataSO() {
         return liveDataSO;
     }
-    public LiveData<Employee> getDataEmployee() {
+    public LiveData<EmployeeResult> getDataEmployee() {
         return liveDataEmpl;
     }
 

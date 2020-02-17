@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
-import com.mii.assetmanagement.model.LoginResult;
+import com.mii.assetmanagement.model.User;
 import com.mii.assetmanagement.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -93,13 +93,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        loginViewModel.getLiveData().observe(this, new Observer<LoginResult>() {
+        loginViewModel.getLiveData().observe(this, new Observer<User>() {
             @Override
-            public void onChanged(LoginResult loginResult) {
-                String name = loginResult.getUserName();
-                String email = loginResult.getEmail();
-                String nik = Integer.toString(loginResult.getNik());
-                if (loginResult.isError()) {
+            public void onChanged(User user) {
+                String name = user.getUserName();
+                String email = user.getEmail();
+                String nik = Integer.toString(user.getNik());
+                if (user.isError()) {
                     Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_SHORT).show();
                 } else {
                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);

@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/user"
+                android:id="@+id/employee"
                 style="@style/ItemLayout"
                 layout="@layout/layout_checking_comparison"
                 android:layout_width="match_parent"
