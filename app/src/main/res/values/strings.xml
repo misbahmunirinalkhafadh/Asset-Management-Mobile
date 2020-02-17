@@ -76,4 +76,5 @@
     <string name="Input_NIK">Input NIK</string>
     <string name="Input_name">Input Name</string>
     <string name="search_asset">Search Asset</string>
+    <string name="category">Category</string>
 </resources>

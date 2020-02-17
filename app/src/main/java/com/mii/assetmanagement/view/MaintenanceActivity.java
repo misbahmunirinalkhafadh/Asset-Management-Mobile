@@ -55,6 +55,8 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         initComponent();
         setVariableData();
 
+        getSupportActionBar().hide();
+
         booleanList = new boolean[serviceList.size()];
         rvService.setLayoutManager(new LinearLayoutManager(this));
         rvService.setAdapter(new MainChecklistAdapter(this, serviceList, booleanList));
