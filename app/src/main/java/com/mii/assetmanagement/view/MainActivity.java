@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent goToScanner = new Intent(MainActivity.this, ScannerActivity.class);
                 startActivity(goToScanner);
                 break;
-            //menu_main request assets
+            //menu request assets
             case R.id.menu_request:
                 Intent goToRequest = new Intent(MainActivity.this, RequestActivity.class);
                 startActivity(goToRequest);
