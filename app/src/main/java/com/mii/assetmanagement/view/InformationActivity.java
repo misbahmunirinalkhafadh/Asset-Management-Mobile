@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.Part;
-import com.mii.assetmanagement.model.User;
+import com.mii.assetmanagement.model.Employee;
 
-public class InformasiActivity extends AppCompatActivity implements View.OnClickListener {
+public class InformationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvNik, tvName, tvLocation, tvBranch;
     private TextView tvSales, tvSerial, tvBrand, tvType;
@@ -26,13 +26,13 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout llProgress;
     private ScrollView svInformation;
     public static final String EXTRA_ASSET = "extra_asset";
-    public static final String EXTRA_USER = "extra_user";
+    public static final String EXTRA_EMPLOYEE = "extra_employee";
     public static final String EXTRA_PARTS = "extra_parts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informasi);
+        setContentView(R.layout.activity_information);
 
         initComponent();
         loading();
@@ -87,11 +87,11 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         tvType.setText(asset.getType());
         listService = asset.getOthers();
 
-        User user = getIntent().getParcelableExtra(EXTRA_USER);
-        tvNik.setText(user.getNik());
-        tvName.setText(user.getName());
-        tvLocation.setText(user.getLocation());
-        tvBranch.setText(user.getBranch());
+        Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);
+        tvNik.setText(employee.getNik());
+        tvName.setText(employee.getName());
+        tvLocation.setText(employee.getLocation());
+        tvBranch.setText(employee.getBranch());
 
         Part part = getIntent().getParcelableExtra(EXTRA_PARTS);
         String hdd = part.getHDD();
@@ -127,12 +127,12 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
                 extras.putString("RAM", tvRam.getText().toString());
                 extras.putStringArray("others", listService);
 
-                Intent goToMaintenance = new Intent(InformasiActivity.this, MaintenanceActivity.class);
+                Intent goToMaintenance = new Intent(InformationActivity.this, MaintenanceActivity.class);
                 goToMaintenance.putExtras(extras);
                 startActivity(goToMaintenance);
                 break;
             case R.id.btn_close:
-                Intent goToHome = new Intent(InformasiActivity.this, MainActivity.class);
+                Intent goToHome = new Intent(InformationActivity.this, MainActivity.class);
                 startActivity(goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                 break;
         }

@@ -26,7 +26,7 @@
         <activity android:name=".view.RequestActivity" />
         <activity android:name=".view.ScannerActivity" />
         <activity android:name=".view.MaintenanceActivity" />
-        <activity android:name=".view.InformasiActivity" />
+        <activity android:name=".view.InformationActivity" />
         <activity android:name=".view.ProfileActivity" />
         <activity android:name=".view.SplashActivity">
 

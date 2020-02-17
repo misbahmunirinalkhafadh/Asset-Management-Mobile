@@ -140,7 +140,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             MaintenanceRequest request = new MaintenanceRequest();
-                            request.setMaintainer(sharedPrefManager.getSPNama());
+                            request.setMaintainer(sharedPrefManager.getSpNik());
                             request.setSn(serial);
                             request.setService(booleanList);
                             request.setNames(service);
@@ -187,7 +187,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                     }).show();
         }
     }
-
 
     private void showDialogSuccess() {
         runOnUiThread(new Runnable() {

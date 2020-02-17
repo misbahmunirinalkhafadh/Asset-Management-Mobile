@@ -19,7 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.model.Employee;
+import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
@@ -68,7 +68,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                             || actionId == EditorInfo.IME_ACTION_DONE
                             || event.getAction() == KeyEvent.ACTION_DOWN
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                        progressDialog.show();
+                        showLoading();
                         tvEmpName.setText("");
                         requestViewModel.setDataEmpl(val);
                         return true;
@@ -117,23 +117,21 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     }
   
     private void callDataEmpl() {
-        requestViewModel.getDataEmployee().observe(this, new Observer<Employee>() {
+        requestViewModel.getDataEmployee().observe(this, new Observer<EmployeeResult>() {
             @Override
-            public void onChanged(Employee employee) {
-                Log.v("test", "employee name" + employee.getEmplName());
-                if (employee.isError()) {
-                    Log.i("Employee Result", "Salah");
+            public void onChanged(EmployeeResult employeeResult) {
+                Log.v("test", "employeeResult name" + employeeResult.getEmplName());
+                if (employeeResult.isError()) {
+                    Log.i("EmployeeResult Result", "Salah");
                     tvEmpName.setText(R.string.invalid);
                     tvEmpName.setTextColor(Color.RED);
                     etNik.getText().clear();
-                    progressDialog.dismiss();
                 } else {
-                    Log.i("Employee Result", "Benar");
-                    tvEmpName.append(employee.getEmplName());
+                    Log.i("EmployeeResult Result", "Benar");
+                    tvEmpName.append(employeeResult.getEmplName());
                     tvEmpName.setTextColor(Color.BLACK);
-                    progressDialog.dismiss();
                 }
-
+                dismissLoading();
             }
         });
     }
@@ -153,7 +151,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     Log.i("Sales Order Result", "ADA");
                     tvCompanyName.append(salesOrder.getCustomerName());
                     tvCompanyName.setTextColor(Color.BLACK);
-                    //Set V isibility User Layout
+                    //Set V isibility Employee Layout
                     if (salesOrder.getAssetType().equals(asset_type)) {
                         layoutUser.setVisibility(View.VISIBLE);
                     } else {
