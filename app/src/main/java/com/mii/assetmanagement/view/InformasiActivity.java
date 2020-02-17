@@ -37,6 +37,8 @@ public class InformasiActivity extends AppCompatActivity implements View.OnClick
         initComponent();
         loading();
 
+        getSupportActionBar().hide();
+
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnMaintenance.setOnClickListener(this);

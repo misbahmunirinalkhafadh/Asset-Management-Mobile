@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //call initializer component
         initComponent();
+        getSupportActionBar().hide();
 
         //set value component
         tvResultName.setText(sharedPrefManager.getSPNama());

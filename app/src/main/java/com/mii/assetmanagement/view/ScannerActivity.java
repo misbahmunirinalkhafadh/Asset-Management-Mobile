@@ -26,6 +26,7 @@ public class ScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
 
         initComponent();
+        getSupportActionBar().hide();
 
         //Set up the view pager and fragments
         TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager());

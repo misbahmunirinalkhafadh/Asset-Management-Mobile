@@ -39,6 +39,8 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
         initComponent();
 
+        getSupportActionBar().hide();
+
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 
         eventInputSo();

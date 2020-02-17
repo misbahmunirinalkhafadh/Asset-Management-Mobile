@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initComponents();
 
+        getSupportActionBar().hide();
+
         btnLogin.setOnClickListener(this);
     }
 

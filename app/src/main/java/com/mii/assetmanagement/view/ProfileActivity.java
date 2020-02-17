@@ -29,6 +29,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //call initializer component
         initComponent();
 
+        getSupportActionBar().hide();
+
         //set value component
         tvResultName.setText(sharedPrefManager.getSPNama());
         tvResultNik.setText(sharedPrefManager.getSpNik());
