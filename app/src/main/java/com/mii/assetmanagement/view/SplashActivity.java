@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         appLogo = findViewById(R.id.logo_app);
+        getSupportActionBar().hide();
 
         int splashTimeOut = 5000;
         new Handler().postDelayed(new Runnable() {

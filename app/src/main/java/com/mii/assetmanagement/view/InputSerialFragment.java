@@ -49,6 +49,8 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
         initComponent(view);
         loading();
 
+
+
         maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
 
         btnSearch.setOnClickListener(this);
