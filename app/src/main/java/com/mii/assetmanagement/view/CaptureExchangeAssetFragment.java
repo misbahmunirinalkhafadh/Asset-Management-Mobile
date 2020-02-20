@@ -34,15 +34,15 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CaptureFragment extends Fragment implements ZXingScannerView.ResultHandler {
+public class CaptureExchangeAssetFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
     private MaintenanceViewModel maintenanceViewModel;
     private ProgressDialog progressDialog;
 
-    static CaptureFragment newInstance() {
+    static CaptureExchangeAssetFragment newInstance() {
         // Required empty public constructor
-        return new CaptureFragment();
+        return new CaptureExchangeAssetFragment();
     }
 
     @Override

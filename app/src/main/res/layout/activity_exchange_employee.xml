@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".view.ExchangeEmployeeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="18dp">
+
+        <LinearLayout
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/detail_exchange"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorGreySoft" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/salesorder" />
+
+            <TextView
+                android:id="@+id/tv_sales"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/company" />
+
+            <TextView
+                android:id="@+id/tv_company"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/branch" />
+
+            <TextView
+                android:id="@+id/tv_branch"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/brand" />
+
+            <TextView
+                android:id="@+id/tv_brand"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/nik" />
+
+            <TextView
+                android:id="@+id/tv_old_nik"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/Name" />
+
+            <TextView
+                android:id="@+id/tv_old_name"
+                style="@style/ItemLayoutUserField" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/new_user"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorGreySoft" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/nik" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_new_nik"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_field"
+                android:hint="@string/Input_NIK"
+                android:imeOptions="actionDone"
+                android:padding="10dp"
+                android:singleLine="true" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/Name" />
+
+            <TextView
+                android:id="@+id/tv_new_name"
+                style="@style/ItemLayoutUserField" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_result"
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_result"
+            android:gravity="top|start"
+            android:hint="@string/reason"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:overScrollMode="always"
+            android:padding="18dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_blue"
+            android:text="@string/submit"
+            android:fontFamily="@font/mmedium"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed"
+            android:fontFamily="@font/mmedium"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/close"/>
+
+    </LinearLayout>
+
+</ScrollView>

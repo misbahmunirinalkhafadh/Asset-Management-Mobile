@@ -20,6 +20,8 @@ import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.model.User;
 import com.mii.assetmanagement.viewmodel.LoginViewModel;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etEmail, etPassword;
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         sharedPrefManager = new SharedPrefManager(this);
         loginViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LoginViewModel.class);
@@ -47,8 +50,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         initComponents();
-
-        getSupportActionBar().hide();
 
         btnLogin.setOnClickListener(this);
     }

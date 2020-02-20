@@ -5,31 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.ScannerActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue">
-
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_arrow_back_black_24dp" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/mmedium"
-            android:text="@string/generate"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
-
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".view.GenerateExchangeAssetActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

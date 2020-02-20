@@ -23,6 +23,8 @@ import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
+import java.util.Objects;
+
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etSalesOrder, etNik, etSearch;
@@ -36,13 +38,11 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
-
-        initComponent();
-
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 
+        initComponent();
         eventInputSo();
         eventInputNik();
         callDataSO();
@@ -51,7 +51,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         btnBack.setOnClickListener(this);
         etSearch.setOnClickListener(this);
     }
-
 
     private void eventInputNik() {
         etNik.setInputType(InputType.TYPE_CLASS_NUMBER);

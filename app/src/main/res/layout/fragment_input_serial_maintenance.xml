@@ -5,49 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".view.InputSerialFragment">
+    tools:context=".view.InputSerialMaintenanceFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
-        android:background="@color/colorWhite"
-        android:elevation="10dp"
-        android:orientation="vertical"
         android:padding="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="125dp"
+            android:background="@color/colorWhite"
+            android:elevation="2dp"
+            android:padding="18dp">
 
             <EditText
                 android:id="@+id/et_serial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_login"
                 android:fontFamily="@font/mregular"
                 android:hint="@string/input_serial_number"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="10dp"
+                android:textSize="18sp" />
 
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btn_search_serial"
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:elevation="5dp"
             android:background="@drawable/btn_blue"
             android:fontFamily="@font/mmedium"
             android:text="@string/search"
             android:textColor="@color/colorWhite"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,30 +34,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/ll_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/loading" />
-
-    </LinearLayout>
-
     <ScrollView
         android:id="@+id/sv_information"
         android:layout_width="match_parent"
@@ -91,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/colorGreySoft" />
 
                 <TextView
@@ -146,6 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/colorGreySoft" />
 
                 <TextView
@@ -174,10 +152,10 @@
 
                 <TextView
                     style="@style/ItemLayoutUserTitle"
-                    android:text="@string/item" />
+                    android:text="@string/category" />
 
                 <TextView
-                    android:id="@+id/tv_item"
+                    android:id="@+id/tv_category"
                     style="@style/ItemLayoutUserField" />
 
 
