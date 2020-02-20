@@ -24,7 +24,6 @@
         <activity android:name=".view.GenerateExchangeAssetActivity" />
         <activity android:name=".view.GenerateExchangeEmplActivity" />
         <activity android:name=".view.ExchangeActivity" />
-        <activity android:name=".view.PopupActivity" />
         <activity android:name=".view.PopupActivity"
             android:theme="@style/AppTheme.PopMe"
             ></activity>

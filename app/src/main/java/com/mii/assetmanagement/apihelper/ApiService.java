@@ -45,9 +45,14 @@ public interface ApiService {
     Call<EmployeeResult> getEmployee(@Query("id") int nik,
                                      @Header("Authorization") String token);
 
-    @GET("brand")
+    @GET("assetrequest/brand")
     @Headers({"Content-Type: application/json"})
     Call<AssetResult> getBrand(@Query("name") String brand,
                                @Header("Authorization") String token);
+
+//    @GET("assetrequest/category")
+//    @Headers({"Content-Type: application/json"})
+//    Call<> getBrand(@Query("name") String brand,
+//                               @Header("Authorization") String token);
 
 }
