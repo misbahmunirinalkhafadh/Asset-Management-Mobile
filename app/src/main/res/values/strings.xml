@@ -48,7 +48,7 @@
     <string name="branch">Branch</string>
     <string name="location">Location</string>
     <string name="service_name">Service Name</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="welcome">WELCOME</string>
     <string name="login">LOGIN</string>
     <string name="submit">SUBMIT</string>
@@ -64,10 +64,9 @@
     <string name="Name">Name</string>
     <string name="company">Company</string>
     <string name="confirm">confirm</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="successs">SUCCESS !</string>
     <string name="stript">-</string>
-    <string name="api_url_jwt_sakura">http://116.254.101.228:8080/APISAKURAJWT/</string>
     <string name="company_name">Company Name</string>
     <string name="sales_order_number">Sales Order Number</string>
     <string name="conf">Confirm</string>
@@ -77,4 +76,19 @@
     <string name="Input_name">Input Name</string>
     <string name="search_asset">Search Asset</string>
     <string name="category">Category</string>
+    <string name="type_asset_exchange">Asset Exchange</string>
+    <string name="type_employee_exchange">Employee Exchange</string>
+    <string name="appbar_exchange_type">Exchange Type</string>
+    <string name="appbar_generate_exchange">Generate Exchange</string>
+    <string name="appbar_profile">Profile</string>
+    <string name="appbar_generate_maintenance">Generate Maintenance</string>
+    <string name="exchange">Exchange</string>
+    <string name="version">Version</string>
+    <string name="appbar_exchange_employee">Exchange Employee</string>
+    <string name="appbar_exchange_asset">Exchange Asset</string>
+    <string name="detail_exchange">Detail Exchange</string>
+    <string name="current_nik">Current NIK</string>
+    <string name="current_name">Current Name</string>
+    <string name="new_user">New User</string>
+    <string name="reason">Reason</string>
 </resources>

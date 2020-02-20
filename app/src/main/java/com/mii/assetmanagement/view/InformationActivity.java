@@ -2,29 +2,24 @@ package com.mii.assetmanagement.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.model.Part;
 import com.mii.assetmanagement.model.Employee;
+import com.mii.assetmanagement.model.Part;
 
 public class InformationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvNik, tvName, tvLocation, tvBranch;
-    private TextView tvSales, tvSerial, tvBrand, tvType;
+    private TextView tvSales, tvSerial, tvBrand, tvCategory;
     public TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     private String[] listService;
     private Button btnMaintenance, btnClose, btnBack;
-    private LinearLayout llProgress;
-    private ScrollView svInformation;
     public static final String EXTRA_ASSET = "extra_asset";
     public static final String EXTRA_EMPLOYEE = "extra_employee";
     public static final String EXTRA_PARTS = "extra_parts";
@@ -33,33 +28,16 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
+        getSupportActionBar().hide();
 
         initComponent();
-        loading();
-
-        getSupportActionBar().hide();
 
         btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnMaintenance.setOnClickListener(this);
     }
 
-    private void loading() {
-        llProgress.setVisibility(View.VISIBLE);
-        svInformation.setVisibility(View.GONE);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                llProgress.setVisibility(View.GONE);
-                svInformation.setVisibility(View.VISIBLE);
-            }
-        }, 500);
-    }
-
     private void initComponent() {
-        llProgress = findViewById(R.id.ll_progress);
         tvNik = findViewById(R.id.tv_nik);
         tvName = findViewById(R.id.tv_name);
         tvLocation = findViewById(R.id.tv_location);
@@ -67,7 +45,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         tvSales = findViewById(R.id.tv_sales);
         tvSerial = findViewById(R.id.tv_serial);
         tvBrand = findViewById(R.id.tv_brand);
-        tvType = findViewById(R.id.tv_item);
+        tvCategory = findViewById(R.id.tv_category);
         tvProcessor = findViewById(R.id.tv_processor);
         tvSystem = findViewById(R.id.tv_os);
         tvHdd = findViewById(R.id.tv_hdd);
@@ -76,7 +54,6 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         btnBack = findViewById(R.id.btn_back);
         btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
-        svInformation = findViewById(R.id.sv_information);
     }
 
     @Override
@@ -86,7 +63,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         tvSales.setText(asset.getSalesOrder());
         tvSerial.setText(asset.getSerialNumber());
         tvBrand.setText(asset.getBrand());
-        tvType.setText(asset.getType());
+        tvCategory.setText(asset.getType());
         listService = asset.getOthers();
 
         Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);

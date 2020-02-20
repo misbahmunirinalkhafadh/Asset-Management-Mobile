@@ -2,7 +2,6 @@ package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +26,7 @@ import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +35,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     private RecyclerView rvService;
     private EditText etIpAddress, etUsername, etComputer, etResult;
     private Button btnBack, btnSubmit;
-    private Context mContext;
     private SharedPrefManager sharedPrefManager;
     private MaintenanceViewModel maintenanceViewModel;
     private String serial;
@@ -47,15 +46,13 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        mContext = this;
         sharedPrefManager = new SharedPrefManager(this);
         maintenanceViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
 
         initComponent();
         setVariableData();
-
-        getSupportActionBar().hide();
 
         booleanList = new boolean[serviceList.size()];
         rvService.setLayoutManager(new LinearLayoutManager(this));
@@ -123,7 +120,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     private void validation() {
         String result = etResult.getText().toString();
         if (result.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Form required!")
                     .setMessage("Field result can't empty")
                     .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
@@ -135,7 +132,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                     .show();
 
         } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")
                     .setMessage("Are you sure, want you save this maintenance?")
                     .setPositiveButton("Save", new DialogInterface.OnClickListener() {
@@ -195,7 +192,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void run() {
                 if (!isFinishing()){
-                    final Dialog dialog = new Dialog(mContext);
+                    final Dialog dialog = new Dialog(MaintenanceActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);
                     dialog.setContentView(R.layout.layout_dialog_success);
