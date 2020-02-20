@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mii.assetmanagement.R;
 
+import java.util.Objects;
+
 public class SplashActivity extends AppCompatActivity {
 
     private LinearLayout appLogo;
@@ -21,9 +23,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         appLogo = findViewById(R.id.logo_app);
-        getSupportActionBar().hide();
 
         int splashTimeOut = 5000;
         new Handler().postDelayed(new Runnable() {
@@ -40,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, splashTimeOut);
 
-        Animation splashtitle = AnimationUtils.loadAnimation(this, R.anim.app_splash);
-        appLogo.startAnimation(splashtitle);
+        Animation splashing = AnimationUtils.loadAnimation(this, R.anim.app_splash);
+        appLogo.startAnimation(splashing);
     }
 }

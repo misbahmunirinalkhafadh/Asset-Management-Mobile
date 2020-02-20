@@ -1,19 +1,22 @@
 package com.mii.assetmanagement.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
-public class ScannerActivity extends AppCompatActivity {
-    private Button btnBack;
+public class GenerateExchangeAssetActivity extends AppCompatActivity {
+
     private TabLayout mTabs;
     private View mIndicator;
     private ViewPager mViewPager;
@@ -23,15 +26,14 @@ public class ScannerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanner);
-
+        setContentView(R.layout.activity_generate_exchange_asset);
+        actionBar();
         initComponent();
-        getSupportActionBar().hide();
 
         //Set up the view pager and fragments
         TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(CaptureFragment.newInstance(), "Scan QR");
-        adapter.addFragment(InputSerialFragment.newInstance(), "Input Serial");
+        adapter.addFragment(CaptureExchangeAssetFragment.newInstance(), "Scan QR");
+        adapter.addFragment(InputSerialExchangeAssetFragment.newInstance(), "Input Serial");
         mViewPager.setAdapter(adapter);
         mTabs.setupWithViewPager(mViewPager);
 
@@ -69,19 +71,30 @@ public class ScannerActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    private void actionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        mTitleTextView.setSingleLine();
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.CENTER;
+        actionBar.setCustomView(mTitleTextView, layoutParams);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        mTitleTextView.setText(getString(R.string.appbar_generate_exchange));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     private void initComponent() {
-        btnBack = findViewById(R.id.btn_back);
         mTabs = findViewById(R.id.tab);
         mIndicator = findViewById(R.id.indicator);
         mViewPager = findViewById(R.id.viewPager);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

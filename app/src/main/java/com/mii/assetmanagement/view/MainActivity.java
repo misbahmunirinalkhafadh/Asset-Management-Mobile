@@ -14,22 +14,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView ivProfile;
     private TextView tvResultName, tvResultNik;
-    private LinearLayout menuScan, menuRequest;
+    private LinearLayout menuScan, menuRequest, menuExchange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
         initComponent();
-        getSupportActionBar().hide();
 
         //set value component
         tvResultName.setText(sharedPrefManager.getSPNama());
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivProfile.setOnClickListener(this);
         menuScan.setOnClickListener(this);
         menuRequest.setOnClickListener(this);
+        menuExchange.setOnClickListener(this);
     }
 
     /**
@@ -50,13 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvResultNik = findViewById(R.id.tv_nik);
         menuScan = findViewById(R.id.menu_maintenance);
         menuRequest = findViewById(R.id.menu_request);
+        menuExchange = findViewById(R.id.menu_exchange);
     }
 
-    /**
-     * declare event click
-     *
-     * @param v
-     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -72,13 +71,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             //move to maintenance
             case R.id.menu_maintenance:
-                Intent goToScanner = new Intent(MainActivity.this, ScannerActivity.class);
+                Intent goToScanner = new Intent(MainActivity.this, GenerateMaintenanceActivity.class);
                 startActivity(goToScanner);
                 break;
             //menu request assets
             case R.id.menu_request:
                 Intent goToRequest = new Intent(MainActivity.this, RequestActivity.class);
                 startActivity(goToRequest);
+                break;
+            case R.id.menu_exchange:
+                Intent goToExchange = new Intent(MainActivity.this, ExchangeActivity.class);
+                startActivity(goToExchange);
                 break;
         }
     }

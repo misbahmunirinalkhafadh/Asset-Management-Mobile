@@ -1,81 +1,92 @@
 package com.mii.assetmanagement.view;
 
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.mii.assetmanagement.R;
+import com.google.zxing.Result;
 import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.Objects;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InputSerialFragment extends Fragment implements View.OnClickListener {
+public class CaptureMaintenanceFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
-    private EditText etSerial;
-    private Button btnSearch;
+    private ZXingScannerView mScannerView;
     private MaintenanceViewModel maintenanceViewModel;
     private ProgressDialog progressDialog;
 
-    static InputSerialFragment newInstance() {
+    static CaptureMaintenanceFragment newInstance() {
         // Required empty public constructor
-        return new InputSerialFragment();
+        return new CaptureMaintenanceFragment();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_input_serial, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        initComponent(view);
-        loading();
-
-
-
+        //set permission version
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 5);
+            }
+        }
         maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
 
-        btnSearch.setOnClickListener(this);
+        mScannerView = new ZXingScannerView(getActivity());
+        Window window = getActivity().getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        return view;
-    }
-
-    private void initComponent(View view) {
-        etSerial = view.findViewById(R.id.et_serial);
-        btnSearch = view.findViewById(R.id.btn_search_serial);
-    }
-
-    private void loading() {
-
+        return mScannerView;
     }
 
     @Override
-    public void onClick(View v) {
-        String serial = etSerial.getText().toString().trim();
-        if (serial.isEmpty()) {
-            etSerial.setError("Enter serial number");
-        } else {
-            showLoading();
-            maintenanceViewModel.setDataAsset(serial);
-        }
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this);
+        mScannerView.setSquareViewFinder(true);
+        mScannerView.setBorderColor(Color.parseColor("#35B781"));
+        mScannerView.setLaserEnabled(true);
+        mScannerView.startCamera();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        showLoading();
+        String serial = rawResult.getText();
+        maintenanceViewModel.setDataAssetScan(serial);
+
+        mScannerView.resumeCameraPreview(this);
     }
 
     private void showLoading() {
@@ -90,13 +101,12 @@ public class InputSerialFragment extends Fragment implements View.OnClickListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAsset().observe(this, new Observer<Asset>() {
+        maintenanceViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
             @Override
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
                 if (asset.isError()) {
-                    etSerial.getText().clear();
-                    Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Invalid QR CODE", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
                     goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);

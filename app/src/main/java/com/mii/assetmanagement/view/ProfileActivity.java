@@ -9,34 +9,35 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 
+import java.util.Objects;
+
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView tvResultName, tvResultEmail, tvResultNik;
-    private Button btnLogout, btnBack;
-
+    private TextView tvResultName, tvResultEmail, tvResultNik, tvVersion;
+    private Button btnLogout;
     private SharedPrefManager sharedPrefManager;
+    private static final String VERSION_NAME = "Version " + BuildConfig.VERSION_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        actionBar();
 
         sharedPrefManager = new SharedPrefManager(this);
 
         //call initializer component
         initComponent();
 
-        getSupportActionBar().hide();
-
         //set value component
         tvResultName.setText(sharedPrefManager.getSPNama());
         tvResultNik.setText(sharedPrefManager.getSpNik());
         tvResultEmail.setText(sharedPrefManager.getSPEmail());
-
-        btnBack.setOnClickListener(this);
+        tvVersion.setText(VERSION_NAME);
         btnLogout.setOnClickListener(this);
     }
 
@@ -47,25 +48,31 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvResultName = findViewById(R.id.tv_name);
         tvResultEmail = findViewById(R.id.tv_email);
         tvResultNik = findViewById(R.id.tv_nik);
+        tvVersion = findViewById(R.id.tv_version_app);
         btnLogout = findViewById(R.id.btn_logout);
-        btnBack = findViewById(R.id.btn_back);
+    }
+
+    private void actionBar() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.appbar_profile);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setElevation(0);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //back to prev page
-            case R.id.btn_back:
-                onBackPressed();
-                break;
-            //move to login page
-            case R.id.btn_logout:
-                Log.v("remove session", "check function");
-                // Shared Pref ini berfungsi untuk menjadi trigger session login
-                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                finish();
-        }
+        Log.v("remove session", "check function");
+        // Shared Pref ini berfungsi untuk menjadi trigger session login
+        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+        startActivity(new Intent(ProfileActivity.this, LoginActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
