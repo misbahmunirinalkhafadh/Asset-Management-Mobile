@@ -12,5 +12,6 @@
     <item
         android:id="@+id/action_filter"
         android:title="@string/category"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_arrow"
+        app:showAsAction="always"/>
 </menu>
