@@ -2,6 +2,7 @@ package com.mii.assetmanagement.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
@@ -9,20 +10,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
 public class SearchAssetActivity extends AppCompatActivity implements View.OnClickListener {
     //    private EditText;
 
     Button action_filter;
+    private RequestViewModel requestViewModel;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -35,6 +43,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 //        action_filter.setOnClickListener(this);
 
         initComponent();
@@ -50,6 +59,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void eventInputBrand() {
+
 
     }
 
@@ -92,6 +102,8 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
+                    requestViewModel.setDataAsset(query);
+                    Toast.makeText(SearchAssetActivity.this, "keyword" + query,Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
