@@ -3,8 +3,15 @@ package com.mii.assetmanagement.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class AssetResult implements Parcelable {
+    @SerializedName("category")
+    @Expose
     private String category;
+    @SerializedName("brand")
+    @Expose
     private String [] brand;
 
     public AssetResult() {

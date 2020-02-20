@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/tv_brand"
             style="@style/ItemLayoutUserField"
-            android:text="@string/service_name" />
+            android:text="@string/brand_name" />
 
     </LinearLayout>
 

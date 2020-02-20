@@ -2,7 +2,11 @@ package com.mii.assetmanagement.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
@@ -10,27 +14,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.adapter.RequestAssetAdapter;
+import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchAssetActivity extends AppCompatActivity implements View.OnClickListener {
     //    private EditText;
-
     Button action_filter;
+    private RecyclerView rvAsset;
     private RequestViewModel requestViewModel;
+
+    private RequestAssetAdapter adapter;
+    private String[] brand;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -47,14 +56,28 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
 //        action_filter.setOnClickListener(this);
 
         initComponent();
-
-
         eventInputBrand();
         callDataBrand();
+        setupRecyclerView();
+
     }
+
+    private void setupRecyclerView() {
+        if (adapter == null) {
+            adapter = new RequestAssetAdapter(this, brand);
+            rvAsset.setLayoutManager(new LinearLayoutManager(this));
+            rvAsset.setAdapter(adapter);
+            rvAsset.setItemAnimator(new DefaultItemAnimator());
+            rvAsset.setNestedScrollingEnabled(true);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 
     private void initComponent() {
         action_filter = findViewById(R.id.action_filter);
+        rvAsset = findViewById(R.id.rv_asset);
 //        btnBack = findViewById(R.id.btn_back);
     }
 
@@ -103,7 +126,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     requestViewModel.setDataAsset(query);
-                    Toast.makeText(SearchAssetActivity.this, "keyword" + query,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchAssetActivity.this, query, Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
@@ -114,6 +137,19 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
             });
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestViewModel.getDataAsset().observe(this, new Observer<AssetResult>() {
+            @Override
+            public void onChanged(AssetResult asset) {
+                String[] brandsg = asset.getBrand();
+                brand = brandsg;
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
