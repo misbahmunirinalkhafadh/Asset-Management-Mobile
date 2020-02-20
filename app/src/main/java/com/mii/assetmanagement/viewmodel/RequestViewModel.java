@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
+import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 
@@ -21,6 +22,31 @@ public class RequestViewModel extends ViewModel {
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<SalesOrder> liveDataSO = new MutableLiveData<>();
     private MutableLiveData<EmployeeResult> liveDataEmpl = new MutableLiveData<>();
+    private MutableLiveData<AssetResult> liveDataAsset = new MutableLiveData<>();
+
+    public void setDataAsset(String brand) {
+        String query = "Hp";
+        ApiService mApiService = UtilsApi.getApiServiceJwt();
+        Call<AssetResult> call = mApiService.getBrand(query, API_TOKEN);
+        call.enqueue(new Callback<AssetResult>() {
+            @Override
+            public void onResponse(Call<AssetResult> call, Response<AssetResult> response) {
+
+                Log.v("", "Test" + response.body());
+
+                if (response.body() == null) {
+                    liveDataAsset.setValue(null);
+                } else {
+                    liveDataAsset.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AssetResult> call, Throwable t) {
+                Log.e("onFailure", t.getMessage());
+            }
+        });
+    }
 
     public void setDataSO(String soNumber) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
@@ -41,13 +67,14 @@ public class RequestViewModel extends ViewModel {
             }
         });
     }
+
     public void setDataEmpl(int nik) {
         ApiService mApiService = UtilsApi.getApiServiceSakuraJwt();
         Call<EmployeeResult> call = mApiService.getEmployee(nik, API_TOKEN);
         call.enqueue(new Callback<EmployeeResult>() {
             @Override
             public void onResponse(Call<EmployeeResult> call, Response<EmployeeResult> response) {
-                Log.v("","Test" + response.body());
+                Log.v("", "Test" + response.body());
                 if (response.body() == null) {
                     liveDataEmpl.setValue(null);
                 } else {
@@ -65,6 +92,7 @@ public class RequestViewModel extends ViewModel {
     public LiveData<SalesOrder> getDataSO() {
         return liveDataSO;
     }
+
     public LiveData<EmployeeResult> getDataEmployee() {
         return liveDataEmpl;
     }
