@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="18dp">
-
             <TextView
                 style="@style/ItemLayoutUserTitle"
                 android:text="@string/detail_exchange"
@@ -87,10 +86,25 @@
             android:orientation="vertical"
             android:padding="18dp">
 
-            <TextView
-                style="@style/ItemLayoutUserTitle"
-                android:text="@string/new_user"
-                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ItemLayoutUserTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/new_user"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_info_black_24dp" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -125,7 +139,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/et_result"
+            android:id="@+id/et_reason"
             style="@style/ItemLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,26 +160,26 @@
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/btn_blue"
-            android:text="@string/submit"
-            android:fontFamily="@font/mmedium"
-            android:textSize="18sp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:textColor="@color/colorWhite"/>
+            android:background="@drawable/btn_blue"
+            android:fontFamily="@font/mmedium"
+            android:text="@string/submit"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorRed"
-            android:fontFamily="@font/mmedium"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
-            android:text="@string/close"/>
+            android:fontFamily="@font/mmedium"
+            android:text="@string/close"
+            android:textColor="@color/colorRed"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

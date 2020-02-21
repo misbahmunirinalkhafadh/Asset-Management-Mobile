@@ -34,8 +34,7 @@ public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_main_checklist, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -52,7 +51,6 @@ public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdap
                 }
             }
         });
-
     }
 
     @Override
