@@ -16,6 +16,9 @@ public class Asset implements Parcelable {
     @SerializedName("salesOrder")
     @Expose
     private String salesOrder;
+    @SerializedName("companyname")
+    @Expose
+    private String company;
     @SerializedName("type")
     @Expose
     private String type;
@@ -57,6 +60,14 @@ public class Asset implements Parcelable {
 
     public void setSalesOrder(String salesOrder) {
         this.salesOrder = salesOrder;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getType() {
@@ -101,6 +112,7 @@ public class Asset implements Parcelable {
 
     protected Asset(Parcel in) {
         salesOrder = in.readString();
+        company = in.readString();
         type = in.readString();
         brand = in.readString();
         serialNumber = in.readString();
@@ -128,6 +140,7 @@ public class Asset implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(salesOrder);
+        dest.writeString(company);
         dest.writeString(type);
         dest.writeString(brand);
         dest.writeString(serialNumber);
