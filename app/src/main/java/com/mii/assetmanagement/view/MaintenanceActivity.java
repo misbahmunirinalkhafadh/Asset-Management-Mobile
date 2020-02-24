@@ -2,17 +2,24 @@ package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +33,8 @@ import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,7 +42,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     private CheckBox cbProcessor, cbSystem, cbHdd, cbSsd, cbRam;
     private RecyclerView rvService;
     private EditText etIpAddress, etUsername, etComputer, etResult;
-    private Button btnBack, btnSubmit;
+    private Button btnSubmit;
     private SharedPrefManager sharedPrefManager;
     private MaintenanceViewModel maintenanceViewModel;
     private String serial;
@@ -46,7 +54,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        actionBar();
 
         sharedPrefManager = new SharedPrefManager(this);
         maintenanceViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
@@ -58,7 +66,6 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         rvService.setLayoutManager(new LinearLayoutManager(this));
         rvService.setAdapter(new MainChecklistAdapter(this, serviceList, booleanList));
 
-        btnBack.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
     }
 
@@ -101,36 +108,36 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         etComputer = findViewById(R.id.et_computerName);
         etResult = findViewById(R.id.et_result);
 
-        btnBack = findViewById(R.id.btn_back);
         btnSubmit = findViewById(R.id.btn_submit);
+    }
+
+    private void actionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.START;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        }
+        mTitleTextView.setText(getString(R.string.apbar_maintenance));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_back:
-                onBackPressed();
-                break;
-            case R.id.btn_submit:
-                validation();
-                break;
+        if (v.getId() == R.id.btn_submit) {
+            InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(etResult.getWindowToken(), 0);
+            validation();
         }
     }
 
     private void validation() {
         String result = etResult.getText().toString();
         if (result.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Form required!")
-                    .setMessage("Field result can't empty")
-                    .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
-
+            Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")
@@ -191,7 +198,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!isFinishing()){
+                if (!isFinishing()) {
                     final Dialog dialog = new Dialog(MaintenanceActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);
@@ -209,5 +216,11 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

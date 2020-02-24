@@ -2,12 +2,14 @@ package com.mii.assetmanagement.view;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 
 /**
@@ -62,6 +66,8 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
 
     @Override
     public void onClick(View v) {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(etSerial.getWindowToken(), 0);
         String serial = etSerial.getText().toString().trim();
         if (serial.isEmpty()) {
             etSerial.setError("Enter serial number");
@@ -89,7 +95,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
                 Log.v("CHECK", "Error " + asset.isError());
                 if (asset.isError()) {
                     etSerial.getText().clear();
-                    Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
+                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
                 } else {
                     Intent goToExchangeEmpl = new Intent(getActivity(), ExchangeEmployeeActivity.class);
                     goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_ASSET, asset);
