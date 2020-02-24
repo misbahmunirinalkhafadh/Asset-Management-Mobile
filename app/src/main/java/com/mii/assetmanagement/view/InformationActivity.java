@@ -1,12 +1,16 @@
 package com.mii.assetmanagement.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
@@ -19,7 +23,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     private TextView tvSales, tvSerial, tvBrand, tvCategory;
     public TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     private String[] listService;
-    private Button btnMaintenance, btnClose, btnBack;
+    private Button btnMaintenance, btnClose;
     public static final String EXTRA_ASSET = "extra_asset";
     public static final String EXTRA_EMPLOYEE = "extra_employee";
     public static final String EXTRA_PARTS = "extra_parts";
@@ -28,11 +32,10 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        getSupportActionBar().hide();
+        actionBar();
 
         initComponent();
 
-        btnBack.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnMaintenance.setOnClickListener(this);
     }
@@ -51,9 +54,22 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         tvHdd = findViewById(R.id.tv_hdd);
         tvSsd = findViewById(R.id.tv_ssd);
         tvRam = findViewById(R.id.tv_ram);
-        btnBack = findViewById(R.id.btn_back);
         btnMaintenance = findViewById(R.id.btn_maintenance);
         btnClose = findViewById(R.id.btn_close);
+    }
+
+    private void actionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.START;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        }
+        mTitleTextView.setText(getString(R.string.apbar_information));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -93,9 +109,6 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_back:
-                onBackPressed();
-                break;
             case R.id.btn_maintenance:
                 Bundle extras = new Bundle();
                 extras.putString("serialNumber", tvSerial.getText().toString());
@@ -115,5 +128,11 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
                 startActivity(goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                 break;
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

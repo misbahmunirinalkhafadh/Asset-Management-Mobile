@@ -11,12 +11,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="generate">GENERATE</string>
     <string name="cleaning">Cleaning</string>
     <string name="completeness">Completeness</string>
     <string name="employee">User</string>
     <string name="asset">Asset</string>
-    <string name="information">INFORMATION</string>
     <string name="device">Device</string>
     <string name="sales">Sales Order</string>
     <string name="serial">Serial Number</string>
@@ -91,4 +89,6 @@
     <string name="current_name">Current Name</string>
     <string name="new_user">New User</string>
     <string name="reason">Reason</string>
+    <string name="apbar_information">Information</string>
+    <string name="apbar_maintenance">Maintenance</string>
 </resources>
