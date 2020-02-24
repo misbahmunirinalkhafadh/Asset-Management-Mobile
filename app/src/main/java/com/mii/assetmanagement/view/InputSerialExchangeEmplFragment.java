@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
+import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
 
     private EditText etSerial;
     private Button btnSearch;
-    private MaintenanceViewModel maintenanceViewModel;
+    private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
 
     static InputSerialExchangeEmplFragment newInstance() {
@@ -48,7 +48,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
 
         initComponent(view);
 
-        maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
+        exchangeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(ExchangeViewModel.class);
 
         btnSearch.setOnClickListener(this);
 
@@ -67,7 +67,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
             etSerial.setError("Enter serial number");
         } else {
             showLoading();
-            maintenanceViewModel.setDataAsset(serial);
+            exchangeViewModel.setDataAssetInput(serial);
         }
     }
 
@@ -83,7 +83,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAsset().observe(this, new Observer<Asset>() {
+        exchangeViewModel.getDataAssetInput().observe(this, new Observer<Asset>() {
             @Override
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
@@ -91,10 +91,10 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
                     etSerial.getText().clear();
                     Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent goToInformation = new Intent(getActivity(), ExchangeEmployeeActivity.class);
-                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    startActivity(goToInformation);
+                    Intent goToExchangeEmpl = new Intent(getActivity(), ExchangeEmployeeActivity.class);
+                    goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_ASSET, asset);
+                    goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                    startActivity(goToExchangeEmpl);
                 }
                 dismissLoading();
             }

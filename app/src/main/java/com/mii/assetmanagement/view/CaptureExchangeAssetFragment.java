@@ -25,7 +25,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.zxing.Result;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
+import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
 
@@ -37,7 +37,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class CaptureExchangeAssetFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
-    private MaintenanceViewModel maintenanceViewModel;
+    private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
 
     static CaptureExchangeAssetFragment newInstance() {
@@ -55,7 +55,7 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 5);
             }
         }
-        maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
+        exchangeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(ExchangeViewModel.class);
 
         mScannerView = new ZXingScannerView(getActivity());
         Window window = getActivity().getWindow();
@@ -84,7 +84,7 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
     public void handleResult(Result rawResult) {
         showLoading();
         String serial = rawResult.getText();
-        maintenanceViewModel.setDataAssetScan(serial);
+        exchangeViewModel.setDataAssetScan(serial);
 
         mScannerView.resumeCameraPreview(this);
     }
@@ -101,18 +101,17 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
+        exchangeViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
             @Override
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
                 if (asset.isError()) {
                     Toast.makeText(getActivity(), "Invalid QR CODE", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
-                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
-                    startActivity(goToInformation);
+                    Intent goToExchangeAsset = new Intent(getActivity(), ExchangeAssetActivity.class);
+                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_ASSET, asset);
+                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                    startActivity(goToExchangeAsset);
                 }
                 dismissLoading();
             }

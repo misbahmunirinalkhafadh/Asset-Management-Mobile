@@ -27,6 +27,11 @@
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
+    <style name="ActionBar" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/mmedium</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="ItemTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -124,13 +129,13 @@
         <item name="android:textColor">@color/colorField</item>
         <item name="android:textSize">16dp</item>
     </style>
-    
+
     <style name="AppTheme.PopMe">
-        <item name ="android:windowIsTranslucent">true</item>
-        <item name ="android:windowCloseOnTouchOutside">true</item>
-<!--        <item name ="android:windowBackground">@android:color/transparent</item>-->
-<!--        <item name ="android:windowContentOverlay">@null</item>-->
-<!--        <item name ="android:windowIsFloating">false</item>-->
-<!--        <item name ="android:backgroundDimEnabled">false</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <!--        <item name ="android:windowBackground">@android:color/transparent</item>-->
+        <!--        <item name ="android:windowContentOverlay">@null</item>-->
+        <!--        <item name ="android:windowIsFloating">false</item>-->
+        <!--        <item name ="android:backgroundDimEnabled">false</item>-->
     </style>
 </resources>

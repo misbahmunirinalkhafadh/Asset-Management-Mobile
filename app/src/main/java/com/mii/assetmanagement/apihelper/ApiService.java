@@ -3,6 +3,7 @@ package com.mii.assetmanagement.apihelper;
 import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
+import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.model.User;
 import com.mii.assetmanagement.model.MaintenanceRequest;
 import com.mii.assetmanagement.model.SalesOrder;
@@ -31,6 +32,16 @@ public interface ApiService {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     Call<String> saveMaintenance(@Body MaintenanceRequest body,
                                  @Header("Authorization") String token);
+
+    @POST("exchange/saveuser")
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    Call<String> saveExchangeEmpl(@Body ExchangeRequest body,
+                                  @Header("Authorization") String token);
+
+    @POST("exchange/saveasset")
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    Call<String> saveExchangeAsset(@Body ExchangeRequest body,
+                                  @Header("Authorization") String token);
 
     @GET("maintenance/getparts")
     @Headers({"Content-Type: application/json;charset=UTF-8"})

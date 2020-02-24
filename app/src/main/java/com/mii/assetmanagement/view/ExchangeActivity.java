@@ -2,7 +2,6 @@ package com.mii.assetmanagement.view;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -32,11 +31,12 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     private void actionBar() {
         ActionBar actionBar = getSupportActionBar();
         AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
-        mTitleTextView.setSingleLine();
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity = Gravity.CENTER;
-        actionBar.setCustomView(mTitleTextView, layoutParams);
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        }
         mTitleTextView.setText(getString(R.string.appbar_exchange_type));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);

@@ -1,17 +1,19 @@
 package com.mii.assetmanagement.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.TabFragmentAdapter;
-
-import java.util.Objects;
 
 public class GenerateMaintenanceActivity extends AppCompatActivity {
     private TabLayout mTabs;
@@ -77,11 +79,18 @@ public class GenerateMaintenanceActivity extends AppCompatActivity {
     }
 
     private void actionBar() {
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.appbar_generate_maintenance);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setElevation(0);
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.CENTER;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+            actionBar.setElevation(0);
+        }
+        mTitleTextView.setText(getString(R.string.appbar_generate_maintenance));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override

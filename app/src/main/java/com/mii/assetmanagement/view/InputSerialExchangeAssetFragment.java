@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
+import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class InputSerialExchangeAssetFragment extends Fragment implements View.O
 
     private EditText etSerial;
     private Button btnSearch;
-    private MaintenanceViewModel maintenanceViewModel;
+    private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
 
     static InputSerialExchangeAssetFragment newInstance() {
@@ -48,7 +48,7 @@ public class InputSerialExchangeAssetFragment extends Fragment implements View.O
 
         initComponent(view);
 
-        maintenanceViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(MaintenanceViewModel.class);
+        exchangeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(ExchangeViewModel.class);
 
         btnSearch.setOnClickListener(this);
 
@@ -62,15 +62,13 @@ public class InputSerialExchangeAssetFragment extends Fragment implements View.O
 
     @Override
     public void onClick(View v) {
-        Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
-        startActivity(goToInformation);
-//        String serial = etSerial.getText().toString().trim();
-//        if (serial.isEmpty()) {
-//            etSerial.setError("Enter serial number");
-//        } else {
-//            showLoading();
-//            maintenanceViewModel.setDataAsset(serial);
-//        }
+        String serial = etSerial.getText().toString().trim();
+        if (serial.isEmpty()) {
+            etSerial.setError("Enter serial number");
+        } else {
+            showLoading();
+            exchangeViewModel.setDataAssetInput(serial);
+        }
     }
 
     private void showLoading() {
@@ -85,7 +83,7 @@ public class InputSerialExchangeAssetFragment extends Fragment implements View.O
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAsset().observe(this, new Observer<Asset>() {
+        exchangeViewModel.getDataAssetInput().observe(this, new Observer<Asset>() {
             @Override
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
@@ -93,11 +91,10 @@ public class InputSerialExchangeAssetFragment extends Fragment implements View.O
                     etSerial.getText().clear();
                     Toast.makeText(getActivity(), "Invalid serial number", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
-                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
-                    startActivity(goToInformation);
+                    Intent goToExchangeAsset = new Intent(getActivity(), ExchangeAssetActivity.class);
+                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_ASSET, asset);
+                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                    startActivity(goToExchangeAsset);
                 }
                 dismissLoading();
             }
