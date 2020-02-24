@@ -39,7 +39,9 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     private RequestViewModel requestViewModel;
 
     private RequestAssetAdapter adapter;
-    private String[] brand;
+    private List<AssetResult> assetResultList =  new ArrayList<>();
+
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -53,7 +55,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
-//        action_filter.setOnClickListener(this);
+//       action_filter.setOnClickListener(this);
 
         initComponent();
         eventInputBrand();
@@ -64,7 +66,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
 
     private void setupRecyclerView() {
         if (adapter == null) {
-            adapter = new RequestAssetAdapter(this, brand);
+            adapter = new RequestAssetAdapter(this, assetResultList);
             rvAsset.setLayoutManager(new LinearLayoutManager(this));
             rvAsset.setAdapter(adapter);
             rvAsset.setItemAnimator(new DefaultItemAnimator());
@@ -142,11 +144,11 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        requestViewModel.getDataAsset().observe(this, new Observer<AssetResult>() {
+        requestViewModel.getDataAsset().observe(this, new Observer<List<AssetResult>>() {
             @Override
-            public void onChanged(AssetResult asset) {
-                String[] brandsg = asset.getBrand();
-                brand = brandsg;
+            public void onChanged(List<AssetResult> assetResults) {
+                Log.v("asset Result" , assetResults.toString());
+                assetResultList = assetResults;
                 adapter.notifyDataSetChanged();
             }
         });

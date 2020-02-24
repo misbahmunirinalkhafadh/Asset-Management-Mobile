@@ -2,59 +2,64 @@ package com.mii.assetmanagement.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.view.SearchAssetActivity;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RequestAssetAdapter extends RecyclerView.Adapter<RequestAssetAdapter.ViewHolder> {
     private Context mContext;
-    private String[] brand;
+    private List<AssetResult> assetResult;
 
-    public RequestAssetAdapter(Context mContext, String[] brand) {
+    public RequestAssetAdapter(Context mContext, List<AssetResult> assetResult) {
         this.mContext = mContext;
-        this.brand = brand;
+        this.assetResult = assetResult;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_brand, parent, false);
-        return new ViewHolder(mView);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_brand, parent, false);
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       
+        AssetResult result = assetResult.get(position);
+        holder.tvBrand.setText(result.getBrand());
+        holder.cvBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SearchAssetActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return null != brand ? brand.length : 0;
+        return assetResult.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout llBrand;
+        CardView cvBrand;
         TextView tvBrand;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            llBrand = itemView.findViewById(R.id.ll_brand);
+            cvBrand = itemView.findViewById(R.id.cv_brand);
             tvBrand = itemView.findViewById(R.id.tv_brand);
         }
     }
