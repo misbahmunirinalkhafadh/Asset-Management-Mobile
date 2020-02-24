@@ -8,6 +8,8 @@ import com.mii.assetmanagement.model.User;
 import com.mii.assetmanagement.model.MaintenanceRequest;
 import com.mii.assetmanagement.model.SalesOrder;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -54,11 +56,16 @@ public interface ApiService {
     @GET("getEmployeebynik")
     @Headers({"Content-Type: application/json"})
     Call<EmployeeResult> getEmployee(@Query("id") int nik,
-                                     @Header("Authorization") String token);
+                                           @Header("Authorization") String token);
 
-    @GET("brand")
+    @GET("assetrequest/brand")
     @Headers({"Content-Type: application/json"})
-    Call<AssetResult> getBrand(@Query("name") String brand,
+    Call<List<AssetResult>> getBrand(@Query("name") String brand,
                                @Header("Authorization") String token);
+
+//    @GET("assetrequest/category")
+//    @Headers({"Content-Type: application/json"})
+//    Call<> getBrand(@Query("name") String brand,
+//                               @Header("Authorization") String token);
 
 }

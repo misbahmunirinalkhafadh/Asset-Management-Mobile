@@ -91,4 +91,5 @@
     <string name="reason">Reason</string>
     <string name="apbar_information">Information</string>
     <string name="apbar_maintenance">Maintenance</string>
+    <string name="brand_name">Brand Name</string>
 </resources>
