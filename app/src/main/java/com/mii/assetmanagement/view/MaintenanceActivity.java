@@ -2,6 +2,7 @@ package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,10 +10,12 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,8 @@ import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -123,6 +128,8 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_submit) {
+            InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(etResult.getWindowToken(), 0);
             validation();
         }
     }
@@ -130,17 +137,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     private void validation() {
         String result = etResult.getText().toString();
         if (result.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Form required!")
-                    .setMessage("Field result can't empty")
-                    .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
-
+            Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")
@@ -201,7 +198,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!isFinishing()){
+                if (!isFinishing()) {
                     final Dialog dialog = new Dialog(MaintenanceActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);

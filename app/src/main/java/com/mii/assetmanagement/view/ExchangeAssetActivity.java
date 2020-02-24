@@ -2,6 +2,7 @@ package com.mii.assetmanagement.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,9 +10,11 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,8 @@ import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
+
+import es.dmoral.toasty.Toasty;
 
 public class ExchangeAssetActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -90,6 +95,8 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_submit:
+                InputMethodManager imm = (InputMethodManager) ExchangeAssetActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
                 saveState();
                 break;
             case R.id.btn_close:
@@ -103,16 +110,7 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
         String reason = etReason.getText().toString().trim();
         if (reason.isEmpty()) {
             etReason.requestFocus();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Form required!")
-                    .setMessage("Field reason can't empty")
-                    .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
+            Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")

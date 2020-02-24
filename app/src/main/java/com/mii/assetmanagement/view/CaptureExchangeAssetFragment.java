@@ -29,6 +29,7 @@ import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
@@ -106,7 +107,7 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
             public void onChanged(Asset asset) {
                 Log.v("CHECK", "Error " + asset.isError());
                 if (asset.isError()) {
-                    Toast.makeText(getActivity(), "Invalid QR CODE", Toast.LENGTH_SHORT).show();
+                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
                 } else {
                     Intent goToExchangeAsset = new Intent(getActivity(), ExchangeAssetActivity.class);
                     goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_ASSET, asset);
