@@ -12,7 +12,7 @@ public class AssetResult implements Parcelable {
     private String category;
     @SerializedName("brand")
     @Expose
-    private String [] brand;
+    private String brand;
 
     public AssetResult() {
     }
@@ -25,17 +25,17 @@ public class AssetResult implements Parcelable {
         this.category = category;
     }
 
-    public String[] getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String[] brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
     protected AssetResult(Parcel in) {
         category = in.readString();
-        brand = in.createStringArray();
+        brand = in.readString();
     }
 
     public static final Creator<AssetResult> CREATOR = new Creator<AssetResult>() {
@@ -58,6 +58,6 @@ public class AssetResult implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(category);
-        dest.writeStringArray(brand);
+        dest.writeString(brand);
     }
 }
