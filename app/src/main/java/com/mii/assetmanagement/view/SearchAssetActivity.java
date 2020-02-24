@@ -129,6 +129,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
                 public boolean onQueryTextSubmit(String query) {
                     requestViewModel.setDataAsset(query);
                     Toast.makeText(SearchAssetActivity.this, query, Toast.LENGTH_SHORT).show();
+                    onResume();
                     return false;
                 }
 
@@ -149,6 +150,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
             public void onChanged(List<AssetResult> assetResults) {
                 Log.v("asset Result" , assetResults.toString());
                 assetResultList = assetResults;
+                assetResults.addAll(assetResults);
                 adapter.notifyDataSetChanged();
             }
         });
