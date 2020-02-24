@@ -13,6 +13,8 @@ import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,15 +24,15 @@ public class RequestViewModel extends ViewModel {
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<SalesOrder> liveDataSO = new MutableLiveData<>();
     private MutableLiveData<EmployeeResult> liveDataEmpl = new MutableLiveData<>();
-    private MutableLiveData<AssetResult> liveDataAsset = new MutableLiveData<>();
+    private MutableLiveData<List<AssetResult>> liveDataAsset = new MutableLiveData<>();
 
     public void setDataAsset(String brand) {
-        String query = "Hp";
+        Log.v("" , brand);
         ApiService mApiService = UtilsApi.getApiServiceJwt();
-        Call<AssetResult> call = mApiService.getBrand(query, API_TOKEN);
-        call.enqueue(new Callback<AssetResult>() {
+        Call<List<AssetResult>> call = mApiService.getBrand(brand, API_TOKEN);
+        call.enqueue(new Callback<List<AssetResult>>() {
             @Override
-            public void onResponse(Call<AssetResult> call, Response<AssetResult> response) {
+            public void onResponse(Call<List<AssetResult>> call, Response<List<AssetResult>> response) {
 
                 Log.v("", "Test" + response.body());
 
@@ -42,7 +44,7 @@ public class RequestViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<AssetResult> call, Throwable t) {
+            public void onFailure(Call<List<AssetResult>> call, Throwable t) {
                 Log.e("onFailure", t.getMessage());
             }
         });
@@ -96,6 +98,8 @@ public class RequestViewModel extends ViewModel {
     public LiveData<EmployeeResult> getDataEmployee() {
         return liveDataEmpl;
     }
+
+    public LiveData<List<AssetResult>> getDataAsset() { return liveDataAsset;}
 
 
 }
