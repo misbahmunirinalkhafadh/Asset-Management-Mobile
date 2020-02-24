@@ -1,6 +1,5 @@
 package com.mii.assetmanagement.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -28,6 +27,17 @@ public class RequestAssetAdapter extends RecyclerView.Adapter<RequestAssetAdapte
         notifyDataSetChanged();
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cvBrand;
+        TextView tvBrand;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cvBrand = itemView.findViewById(R.id.cv_brand);
+            tvBrand = itemView.findViewById(R.id.tv_brand);
+        }
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,14 +63,5 @@ public class RequestAssetAdapter extends RecyclerView.Adapter<RequestAssetAdapte
         return assetResult.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        CardView cvBrand;
-        TextView tvBrand;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cvBrand = itemView.findViewById(R.id.cv_brand);
-            tvBrand = itemView.findViewById(R.id.tv_brand);
-        }
-    }
 }
