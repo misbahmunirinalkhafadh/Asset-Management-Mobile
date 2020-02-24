@@ -3,21 +3,23 @@ package com.mii.assetmanagement.view;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +34,8 @@ import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
+
+import es.dmoral.toasty.Toasty;
 
 public class ExchangeEmployeeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -83,6 +87,9 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                             || actionId == EditorInfo.IME_ACTION_DONE
                             || event.getAction() == KeyEvent.ACTION_DOWN
                             && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
+
                         showLoading();
                         tvNewName.setText("");
                         exchangeViewModel.setDataEmpl(Integer.parseInt(value));
@@ -109,15 +116,15 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
             public void onChanged(EmployeeResult employeeResult) {
                 nikNewUser = employeeResult.getNik();
                 if (employeeResult.isError()) {
-                    Log.i("EmployeeResult Result", "Salah");
                     tvNewName.setText(INVALID_NUMBER);
                     tvNewName.setTextColor(Color.RED);
                     etNewNik.getText().clear();
+                    Toasty.error(ExchangeEmployeeActivity.this, "Not Available", Toast.LENGTH_SHORT, true).show();
                 } else {
-                    Log.i("EmployeeResult Result", "Benar");
                     tvNewName.append(employeeResult.getEmplName());
                     tvNewName.setTextColor(Color.BLACK);
-                    etReason.requestFocus();
+                    etNewNik.clearFocus();
+                    Toasty.success(ExchangeEmployeeActivity.this, "Available!", Toast.LENGTH_SHORT, true).show();
                 }
                 dismissLoading();
             }
@@ -192,6 +199,8 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 dialog.show();
                 break;
             case R.id.btn_submit:
+                InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
                 saveState();
                 break;
             case R.id.btn_close:
@@ -218,16 +227,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                     .show();
         } else if (reason.isEmpty()) {
             etReason.requestFocus();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Form required!")
-                    .setMessage("Field reason can't empty")
-                    .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
+            Toasty.error(this, "Required!, reason can't empty", Toast.LENGTH_SHORT, true).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")
