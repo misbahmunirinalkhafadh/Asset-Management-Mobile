@@ -1,183 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".view.InformationActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/AppTheme">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_arrow_back_black_24dp" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/mmedium"
-            android:text="@string/information"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ScrollView
-        android:id="@+id/sv_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
+        <!--Employee-->
         <LinearLayout
+            style="@style/ItemLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-<!--            Employee-->
-            <LinearLayout
-                style="@style/ItemLayout"
+            android:background="@drawable/bg_menu"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_menu"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:fontFamily="@font/mregular"
+                android:text="@string/employee"
+                android:textColor="@color/colorTitle"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/employee"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="16sp" />
-
-                <View
-                    android:id="@+id/line1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/colorGreySoft" />
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/nik" />
-
-                <TextView
-                    android:id="@+id/tv_nik"
-                    style="@style/ItemLayoutUserField" />
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/fullName" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    style="@style/ItemLayoutUserField" />
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/branch" />
-
-                <TextView
-                    android:id="@+id/tv_branch"
-                    style="@style/ItemLayoutUserField" />
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/location" />
-
-                <TextView
-                    android:id="@+id/tv_location"
-                    style="@style/ItemLayoutUserField" />
-
-            </LinearLayout>
-<!--            Asset-->
-            <LinearLayout
-                style="@style/ItemLayout"
+            <View
+                android:id="@+id/line1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorGreySoft" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/asset"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="16sp" />
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/nik" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/colorGreySoft" />
+            <TextView
+                android:id="@+id/tv_nik"
+                style="@style/ItemLayoutUserField" />
 
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/sales" />
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/fullName" />
 
-                <TextView
-                    android:id="@+id/tv_sales"
-                    style="@style/ItemLayoutUserField" />
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/ItemLayoutUserField" />
 
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/serial" />
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/branch" />
 
-                <TextView
-                    android:id="@+id/tv_serial"
-                    style="@style/ItemLayoutUserField" />
+            <TextView
+                android:id="@+id/tv_branch"
+                style="@style/ItemLayoutUserField" />
 
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/brand" />
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/location" />
 
-                <TextView
-                    android:id="@+id/tv_brand"
-                    style="@style/ItemLayoutUserField" />
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/category" />
-
-                <TextView
-                    android:id="@+id/tv_category"
-                    style="@style/ItemLayoutUserField" />
-
-
-            </LinearLayout>
-<!--            Device-->
-            <include
-                android:id="@+id/asset"
-                style="@style/ItemLayout"
-                layout="@layout/layout_device"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-<!--            Butt
-on-->
-            <include
-                android:id="@+id/button"
-                style="@style/ItemLayout"
-                layout="@layout/layout_btn_information"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp" />
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/ItemLayoutUserField" />
 
         </LinearLayout>
 
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--Asset-->
+        <LinearLayout
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mregular"
+                android:text="@string/asset"
+                android:textColor="@color/colorTitle"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorGreySoft" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/sales" />
+
+            <TextView
+                android:id="@+id/tv_sales"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/serial" />
+
+            <TextView
+                android:id="@+id/tv_serial"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/brand" />
+
+            <TextView
+                android:id="@+id/tv_brand"
+                style="@style/ItemLayoutUserField" />
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/category" />
+
+            <TextView
+                android:id="@+id/tv_category"
+                style="@style/ItemLayoutUserField" />
+
+        </LinearLayout>
+
+        <!--Device-->
+        <include
+            android:id="@+id/asset"
+            style="@style/ItemLayout"
+            layout="@layout/layout_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_maintenance"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/btn_blue"
+            android:fontFamily="@font/mmedium"
+            android:text="@string/maintain"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="18dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/mmedium"
+            android:text="@string/close"
+            android:textColor="@color/colorRed"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</ScrollView>

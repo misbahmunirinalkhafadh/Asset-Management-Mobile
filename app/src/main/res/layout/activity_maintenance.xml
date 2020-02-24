@@ -1,171 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".view.MaintenanceActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/AppTheme">
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/employee"
+            style="@style/ItemLayout"
+            layout="@layout/layout_checking_comparison"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/main_checklist"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorGreySoft" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                style="@style/ItemLayoutUserTitle"
+                android:text="@string/additional"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorGreySoft" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_ipAddress"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_field"
+                android:hint="@string/iPAddress"
+                android:padding="10dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_username"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_field"
+                android:hint="@string/userNameLogin"
+                android:padding="10dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_computerName"
+                style="@style/ItemLayoutUserField"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_field"
+                android:hint="@string/computerName"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_result"
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_result"
+            android:gravity="top|start"
+            android:hint="@string/result"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:overScrollMode="always"
+            android:padding="18dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/btn_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_arrow_back_black_24dp" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/btn_blue"
             android:fontFamily="@font/mmedium"
-            android:text="@string/maintenance"
+            android:text="@string/submit"
             android:textColor="@color/colorWhite"
             android:textSize="18sp" />
 
-    </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_main"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/employee"
-                style="@style/ItemLayout"
-                layout="@layout/layout_checking_comparison"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                style="@style/ItemLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/main_checklist"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/colorGreySoft" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_main_checklist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ItemLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    style="@style/ItemLayoutUserTitle"
-                    android:text="@string/additional"
-                    android:textSize="16sp" />
-
-                <View
-                    android:id="@+id/line1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/colorGreySoft" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_ipAddress"
-                    style="@style/ItemLayoutUserField"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_field"
-                    android:hint="@string/iPAddress"
-                    android:padding="10dp" />
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_username"
-                    style="@style/ItemLayoutUserField"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_field"
-                    android:hint="@string/userNameLogin"
-                    android:padding="10dp" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_computerName"
-                    style="@style/ItemLayoutUserField"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_field"
-                    android:hint="@string/computerName"
-                    android:padding="10dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/et_result"
-                    style="@style/ItemLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_result"
-                    android:fontFamily="@font/mmedium"
-                    android:gravity="top|left"
-                    android:hint="@string/result"
-                    android:inputType="textMultiLine"
-                    android:lines="8"
-                    android:overScrollMode="always"
-                    android:padding="10dp"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical"
-                    android:scrollHorizontally="false"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <include
-                android:id="@+id/submit"
-                style="@style/ItemLayout"
-                layout="@layout/layout_btn_maintenance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp" />
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
