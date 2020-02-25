@@ -1,40 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".view.SearchAssetActivity">
-
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar_main"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/colorBlue"-->
-<!--        android:minHeight="?attr/actionBarSize"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:theme="@style/AppTheme">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_back"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:background="@drawable/ic_arrow_back_black_24dp" />-->
-
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:id="@+id/sv_asset"-->
-<!--            android:layout_width=""-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@drawable/bg_search"-->
-<!--            app:queryHint="Search" />-->
-
-<!--&lt;!&ndash;        <ImageButton&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/ib_filter"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"/>&ndash;&gt;-->
-
-<!--    </androidx.appcompat.widget.Toolbar>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_asset"
