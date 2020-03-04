@@ -19,12 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.zxing.Result;
-import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
@@ -102,20 +100,17 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        exchangeViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
-            @Override
-            public void onChanged(Asset asset) {
-                Log.v("CHECK", "Error " + asset.isError());
-                if (asset.isError()) {
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
-                } else {
-                    Intent goToExchangeAsset = new Intent(getActivity(), ExchangeAssetActivity.class);
-                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_ASSET, asset);
-                    goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    startActivity(goToExchangeAsset);
-                }
-                dismissLoading();
+        exchangeViewModel.getDataAssetScan().observe(this, asset -> {
+            Log.v("CHECK", "Error " + asset.isError());
+            if (asset.isError()) {
+                Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
+            } else {
+                Intent goToExchangeAsset = new Intent(getActivity(), ExchangeAssetActivity.class);
+                goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_ASSET, asset);
+                goToExchangeAsset.putExtra(ExchangeAssetActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                startActivity(goToExchangeAsset);
             }
+            dismissLoading();
         });
     }
 
