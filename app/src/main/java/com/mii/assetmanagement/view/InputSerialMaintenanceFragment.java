@@ -17,12 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.Objects;
@@ -89,23 +87,20 @@ public class InputSerialMaintenanceFragment extends Fragment implements View.OnC
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAsset().observe(this, new Observer<Asset>() {
-            @Override
-            public void onChanged(Asset asset) {
-                Log.v("CHECK", "Error " + asset.isError());
-                if (asset.isError()) {
-                    etSerial.getText().clear();
-                    etSerial.clearFocus();
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
-                } else {
-                    Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
-                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
-                    startActivity(goToInformation);
-                }
-                dismissLoading();
+        maintenanceViewModel.getDataAsset().observe(this, asset -> {
+            Log.v("CHECK", "Error " + asset.isError());
+            if (asset.isError()) {
+                etSerial.getText().clear();
+                etSerial.clearFocus();
+                Toasty.error(Objects.requireNonNull(getActivity()), "Invalid Serial Number", Toast.LENGTH_SHORT, true).show();
+            } else {
+                Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
+                goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
+                goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
+                startActivity(goToInformation);
             }
+            dismissLoading();
         });
     }
 

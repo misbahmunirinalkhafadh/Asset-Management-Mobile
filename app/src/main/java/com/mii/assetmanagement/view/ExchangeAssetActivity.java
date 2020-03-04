@@ -82,13 +82,17 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         Asset asset = getIntent().getParcelableExtra(EXTRA_ASSET);
-        tvSales.setText(asset.getSalesOrder());
-        tvCompany.setText(asset.getCompany());
-        tvSerial.setText(asset.getSerialNumber());
+        if (asset != null) {
+            tvSales.setText(asset.getSalesOrder());
+            tvCompany.setText(asset.getCompany());
+            tvSerial.setText(asset.getSerialNumber());
+        }
 
         Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);
-        userNik = employee.getNik();
-        tvBranch.setText(employee.getBranch());
+        if (employee != null) {
+            userNik = employee.getNik();
+            tvBranch.setText(employee.getBranch());
+        }
     }
 
     @Override
@@ -96,7 +100,9 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
         switch (v.getId()) {
             case R.id.btn_submit:
                 InputMethodManager imm = (InputMethodManager) ExchangeAssetActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
+                }
                 saveState();
                 break;
             case R.id.btn_close:
@@ -116,49 +122,35 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
             builder.setTitle("Confirmation")
                     .setMessage("Are you sure, want you submit this request?")
                     .setCancelable(false)
-                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ExchangeRequest request = new ExchangeRequest();
-                            request.setRequester(sharedPrefManager.getSpNik().trim());
-                            request.setSales(tvSales.getText().toString().trim());
-                            request.setSerial(tvSerial.getText().toString().trim());
-                            request.setOldUserAsset(userNik.trim());
-                            request.setReason(etReason.getText().toString().trim());
+                    .setPositiveButton("Save", (dialog, which) -> {
+                        ExchangeRequest request = new ExchangeRequest();
+                        request.setRequester(sharedPrefManager.getSpNik().trim());
+                        request.setSales(tvSales.getText().toString().trim());
+                        request.setSerial(tvSerial.getText().toString().trim());
+                        request.setOldUserAsset(userNik.trim());
+                        request.setReason(etReason.getText().toString().trim());
 
-                            exchangeViewModel.saveExchangeAsset(request);
-                            showDialogSuccess();
-                        }
+                        exchangeViewModel.saveExchangeAsset(request);
+                        showDialogSuccess();
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    }).show();
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
         }
     }
 
     private void showDialogSuccess() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    final Dialog dialog = new Dialog(ExchangeAssetActivity.this);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setCancelable(false);
-                    dialog.setContentView(R.layout.layout_dialog_success);
-                    dialog.show();
-                    Button dialogButton = dialog.findViewById(R.id.btn_continue);
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            Intent goToMain = new Intent(ExchangeAssetActivity.this, MainActivity.class);
-                            startActivity(goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        }
-                    });
-                }
+        runOnUiThread(() -> {
+            if (!isFinishing()) {
+                final Dialog dialog = new Dialog(ExchangeAssetActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.layout_dialog_success);
+                dialog.show();
+                Button dialogButton = dialog.findViewById(R.id.btn_continue);
+                dialogButton.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent goToMain = new Intent(ExchangeAssetActivity.this, MainActivity.class);
+                    startActivity(goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                });
             }
         });
     }

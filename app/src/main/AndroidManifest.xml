@@ -19,13 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.ExchangeAssetActivity"></activity>
+        <activity android:name=".view.HistoryDetailActivity"></activity>
+        <activity android:name=".view.HistoryActivity" />
+        <activity android:name=".view.ExchangeAssetActivity" />
         <activity android:name=".view.ExchangeEmployeeActivity" />
         <activity android:name=".view.GenerateExchangeAssetActivity" />
         <activity android:name=".view.GenerateExchangeEmplActivity" />
         <activity android:name=".view.ExchangeActivity" />
-        <activity android:name=".view.PopupActivity"
-            android:theme="@style/AppTheme.PopMe"></activity>
+        <activity
+            android:name=".view.PopupActivity"
+            android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".view.SearchAssetActivity" />
         <activity android:name=".view.ReviewActivity" />
         <activity android:name=".view.RequestActivity" />
