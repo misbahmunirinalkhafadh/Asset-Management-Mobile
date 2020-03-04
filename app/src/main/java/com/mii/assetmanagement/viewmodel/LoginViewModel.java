@@ -11,6 +11,8 @@ import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.User;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +39,7 @@ public class LoginViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.e("onFailure ", t.getMessage());
+                Log.e("onFailure ", Objects.requireNonNull(t.getMessage()));
             }
         });
     }

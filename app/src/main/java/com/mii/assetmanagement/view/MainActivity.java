@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView ivProfile;
     private TextView tvResultName, tvResultNik;
-    private LinearLayout menuScan, menuRequest, menuExchange;
+    private LinearLayout menuScan, menuRequest, menuExchange, menuHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuScan.setOnClickListener(this);
         menuRequest.setOnClickListener(this);
         menuExchange.setOnClickListener(this);
+        menuHistory.setOnClickListener(this);
     }
 
     /**
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuScan = findViewById(R.id.menu_maintenance);
         menuRequest = findViewById(R.id.menu_request);
         menuExchange = findViewById(R.id.menu_exchange);
+        menuHistory = findViewById(R.id.menu_history);
     }
 
     @Override
@@ -82,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.menu_exchange:
                 Intent goToExchange = new Intent(MainActivity.this, ExchangeActivity.class);
                 startActivity(goToExchange);
+                break;
+            case R.id.menu_history:
+                Intent goToHistory = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(goToHistory);
                 break;
         }
     }

@@ -92,4 +92,11 @@
     <string name="apbar_information">Information</string>
     <string name="apbar_maintenance">Maintenance</string>
     <string name="brand_name">Brand Name</string>
+    <string name="menu_history_request">History Request</string>
+    <string name="apppbar_history">History</string>
+    <string name="date_request">Date request</string>
+    <string name="quantity">Quantity</string>
+    <string name="notes">Notes</string>
+    <string name="apbar_history_detail">History Detail</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 </resources>
