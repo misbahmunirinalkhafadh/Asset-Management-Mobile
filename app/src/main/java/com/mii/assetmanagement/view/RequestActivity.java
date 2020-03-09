@@ -1,38 +1,61 @@
 package com.mii.assetmanagement.view;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.adapter.RequestAssetAdapter;
+import com.mii.assetmanagement.db.DBHelper;
+import com.mii.assetmanagement.db.Database;
+import com.mii.assetmanagement.db.ItemAssetHelper;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
 
 import java.util.Objects;
 
+
+import static com.mii.assetmanagement.db.Database.ItemAssetColumns.BRAND;
+import static com.mii.assetmanagement.db.Database.ItemAssetColumns.QTY;
+
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String brand;
+    private int qty = 0;
     private EditText etSalesOrder, etNik, etSearch;
-    private TextView tvCompanyName, tvEmpName;
+    private TextView tvCompanyName, tvEmpName, tvAsset;
     private LinearLayout layoutUser;
     private Button btnBack;
     private ProgressDialog progressDialog;
     private RequestViewModel requestViewModel;
+    private RequestAssetAdapter adapter;
+    private ItemAssetHelper helper;
+    private DBHelper dataBaseHelper;
+    private SQLiteDatabase database;
+    private ListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +64,70 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
+//        adapter = new RequestAssetAdapter();
 
         initComponent();
         eventInputSo();
         eventInputNik();
+        eventInputBrand();
         callDataSO();
         callDataEmpl();
 
         btnBack.setOnClickListener(this);
-        etSearch.setOnClickListener(this);
+    }
+
+    private void eventInputBrand() {
+        etSearch.setInputType(InputType.TYPE_CLASS_TEXT);
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                String txt = textView.getText().toString().trim();
+                if (txt.isEmpty()) {
+                    etSearch.setError("Required");
+                    etSearch.getText().clear();
+                } else {
+                    if ((keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (i == EditorInfo.IME_ACTION_DONE)) {
+                        Toast.makeText(RequestActivity.this, "Enter " + textView.getText().toString(), Toast.LENGTH_LONG).show();
+                        brand = textView.getText().toString();
+
+                        helper = new ItemAssetHelper(RequestActivity.this);
+                        SQLiteDatabase dbs = dataBaseHelper.getWritableDatabase();
+//                        SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+
+                        values.clear();
+                        values.put(BRAND, txt);
+                        values.put(QTY, qty);
+
+                        dbs.insertWithOnConflict(Database.TABLE_ITEM_ASSET, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
+                        addlistitem();
+                    }
+                    etSearch.getText().clear();
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void addlistitem() {
+
+        helper = new ItemAssetHelper(RequestActivity.this);
+        SQLiteDatabase sqlDB = dataBaseHelper.getReadableDatabase();
+
+
+        Cursor cursor = sqlDB.query(Database.TABLE_ITEM_ASSET,
+                new String[]{Database.ItemAssetColumns.ID, BRAND},
+                null, null, null, null, null);
+        listAdapter = new SimpleCursorAdapter(
+                this,
+                R.layout.item_result_asset,
+                cursor,
+                new String[]{BRAND},
+                new int[]{R.id.tv_asset},
+                0
+        );
     }
 
     private void eventInputNik() {
@@ -115,7 +193,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         }
         progressDialog.show();
     }
-  
+
     private void callDataEmpl() {
         requestViewModel.getDataEmployee().observe(this, new Observer<EmployeeResult>() {
             @Override
@@ -151,7 +229,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     Log.i("Sales Order Result", "ADA");
                     tvCompanyName.append(salesOrder.getCustomerName());
                     tvCompanyName.setTextColor(Color.BLACK);
-                    //Set V isibility Employee Layout
+                    //Set Visibility Employee Layout
                     if (salesOrder.getAssetType().equals(asset_type)) {
                         layoutUser.setVisibility(View.VISIBLE);
                     } else {
@@ -172,13 +250,13 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initComponent() {
         etSearch = findViewById(R.id.et_search);
+        tvAsset = findViewById(R.id.tv_asset);
         etSalesOrder = findViewById(R.id.et_sales_order);
         etNik = findViewById(R.id.et_nik);
         tvCompanyName = findViewById(R.id.tv_company);
         tvEmpName = findViewById(R.id.tv_name);
         layoutUser = findViewById(R.id.ll_user);
         btnBack = findViewById(R.id.btn_back);
-        etSearch.setKeyListener(null);
         layoutUser.setVisibility(View.GONE);
     }
 
@@ -189,12 +267,12 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 //                Intent goToSearchSalesOrder = new Intent(this, SearchAssetActivity.class);
 //                startActivity(goToSearchSalesOrder);
 //                break;
-            case R.id.et_search:
-                Bundle extras = new Bundle();
-                Intent goToSearchAsset = new Intent(RequestActivity.this, SearchAssetActivity.class);
-                goToSearchAsset.putExtras(extras);
-                startActivity(goToSearchAsset);
-                break;
+//            case R.id.et_search:
+//                Bundle extras = new Bundle();
+//                Intent goToSearchAsset = new Intent(RequestActivity.this, SearchAssetActivity.class);
+//                goToSearchAsset.putExtras(extras);
+//                startActivity(goToSearchAsset);
+//                break;
             case R.id.btn_back:
                 onBackPressed();
                 break;
