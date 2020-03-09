@@ -44,7 +44,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull HistoryAdapter.HistoryViewHolder holder, int position) {
         History history = list.get(position);
+
         String type = history.getTypeRequest();
+
         Drawable req = activity.getResources().getDrawable(ic_history_request);
         Drawable main = activity.getResources().getDrawable(ic_history_laptop);
         Drawable exc = activity.getResources().getDrawable(ic_history_exchange);

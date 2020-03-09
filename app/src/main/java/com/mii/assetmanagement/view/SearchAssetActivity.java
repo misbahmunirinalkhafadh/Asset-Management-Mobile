@@ -39,8 +39,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     private RequestViewModel requestViewModel;
 
     private RequestAssetAdapter adapter;
-    private List<AssetResult> assetResultList =  new ArrayList<>();
-
+    private List<AssetResult> assetResultList = new ArrayList<>();
 
 
     @SuppressLint("WrongViewCast")
@@ -48,7 +47,6 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_asset);
-
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,21 +58,22 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
         initComponent();
         eventInputBrand();
         callDataBrand();
-        setupRecyclerView();
+//        setupRecyclerView();
 
     }
 
-    private void setupRecyclerView() {
-        if (adapter == null) {
-            adapter = new RequestAssetAdapter(this, assetResultList);
-            rvAsset.setLayoutManager(new LinearLayoutManager(this));
-            rvAsset.setAdapter(adapter);
-            rvAsset.setItemAnimator(new DefaultItemAnimator());
-            rvAsset.setNestedScrollingEnabled(true);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-    }
+//    private void setupRecyclerView() {
+//        if (adapter == null) {
+//            adapter = new RequestAssetAdapter(this, assetResultList);
+//            rvAsset.setLayoutManager(new LinearLayoutManager(this));
+//            rvAsset.addItemDecoration(new DividerItemDecoration(rvAsset.getContext(), LinearLayoutManager.VERTICAL, 16));
+//            rvAsset.setAdapter(adapter);
+//            rvAsset.setItemAnimator(new DefaultItemAnimator());
+//            rvAsset.setNestedScrollingEnabled(true);
+//        } else {
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
 
 
     private void initComponent() {
@@ -148,7 +147,7 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
         requestViewModel.getDataAsset().observe(this, new Observer<List<AssetResult>>() {
             @Override
             public void onChanged(List<AssetResult> assetResults) {
-                Log.v("asset Result" , assetResults.toString());
+                Log.v("asset Result", assetResults.toString());
                 assetResultList = assetResults;
                 assetResults.addAll(assetResults);
                 adapter.notifyDataSetChanged();

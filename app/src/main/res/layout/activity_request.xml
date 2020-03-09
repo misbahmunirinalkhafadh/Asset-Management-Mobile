@@ -191,13 +191,23 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_search"
                     style="@style/ItemLayoutUserField"
-                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_field"
                     android:hint="@string/search"
                     android:padding="10dp" />
+
+                <ListView
+                    android:id="@+id/rv_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+<!--                <include-->
+<!--                    android:id="@+id/ly_result_asset"-->
+<!--                    layout="@layout/item_result_asset"-->
+<!--                    android:visibility="visible"-->
+<!--                    />-->
 
             </LinearLayout>
             <!--            Button Request-->
