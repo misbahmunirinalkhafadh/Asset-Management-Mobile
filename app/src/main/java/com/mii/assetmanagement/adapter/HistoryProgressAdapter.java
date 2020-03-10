@@ -15,50 +15,65 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.CustomOnItemClickListener;
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.model.History;
+import com.mii.assetmanagement.model.HistoryResult;
 import com.mii.assetmanagement.view.HistoryDetailActivity;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 import static com.mii.assetmanagement.R.drawable.ic_history_exchange;
-import static com.mii.assetmanagement.R.drawable.ic_history_laptop;
+import static com.mii.assetmanagement.R.drawable.ic_history_maintenance;
 import static com.mii.assetmanagement.R.drawable.ic_history_request;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
+public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgressAdapter.HistoryViewHolder> {
 
     private Activity activity;
-    private List<History> list;
+    private ArrayList<HistoryResult> list;
 
-    public HistoryAdapter(Activity activity, List<History> list) {
+    public HistoryProgressAdapter(Activity activity, ArrayList<HistoryResult> list) {
         this.activity = activity;
         this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_history, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_history_progress, parent, false);
         return new HistoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoryAdapter.HistoryViewHolder holder, int position) {
-        History history = list.get(position);
-
-        String type = history.getTypeRequest();
-
+    public void onBindViewHolder(@NonNull HistoryProgressAdapter.HistoryViewHolder holder, int position) {
+        HistoryResult result = list.get(position);
+        String id = Integer.toString(result.getId());
+        String type = result.getTypeRequest();
+        String date = result.getDate();
         Drawable req = activity.getResources().getDrawable(ic_history_request);
-        Drawable main = activity.getResources().getDrawable(ic_history_laptop);
+        Drawable main = activity.getResources().getDrawable(ic_history_maintenance);
         Drawable exc = activity.getResources().getDrawable(ic_history_exchange);
-        if (type.equals("Request")) holder.icon.setImageDrawable(req);
-        if (type.equals("Maintenance")) holder.icon.setImageDrawable(main);
-        if (type.equals("Exchange")) holder.icon.setImageDrawable(exc);
+        if (type.equals("Request New Asset")) holder.icon.setImageDrawable(req);
+        if (type.equals("Request Maintenance")) holder.icon.setImageDrawable(main);
+        if (type.equals("Request Exchange")) holder.icon.setImageDrawable(exc);
 
-        holder.sales.setText(history.getSales());
+        final SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat output = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        try {
+            Date changeFormat = input.parse(date);
+            holder.date.setText(output.format(Objects.requireNonNull(changeFormat)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.id.setText(id);
         holder.typeRequest.setText(type);
-        holder.date.setText(history.getDate());
         holder.layout.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
             Intent intent = new Intent(activity, HistoryDetailActivity.class);
+            intent.putExtra(HistoryDetailActivity.EXTRA_HISTORY, result);
             activity.startActivity(intent);
         }));
     }
@@ -71,14 +86,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
         ImageView icon;
-        TextView sales, typeRequest, date;
+        TextView id, typeRequest, date;
 
         HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layout = itemView.findViewById(R.id.ll_item_history);
             icon = itemView.findViewById(R.id.iv_history_icon);
-            sales = itemView.findViewById(R.id.tv_sales);
+            id = itemView.findViewById(R.id.tv_id_request);
             typeRequest = itemView.findViewById(R.id.tv_type_request);
             date = itemView.findViewById(R.id.tv_date_request);
         }

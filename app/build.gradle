@@ -13,7 +13,7 @@ android {
         versionCode 1 // Ditamhbakan setiap mau di upload ke PLAY STORE
         versionName "1.5" // ditambahkan setiap menambahkan fitur baru atau perbaikan
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "JWT_SAKURA_TOKEN", '"sakura eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWt1cmEiLCJpYXQiOjE1ODAxOTYxMzJ9.zYvu8-qr48lmTx7_3tZMmVmIBuGPVXmgHbFOwSdTAdYZO9FFQWa7rUeKodtfOMkzfnnjVQSl6f_t54_qvlo7cA"'
     }
     buildTypes {
