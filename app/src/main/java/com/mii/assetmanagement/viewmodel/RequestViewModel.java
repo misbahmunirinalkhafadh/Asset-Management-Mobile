@@ -101,5 +101,4 @@ public class RequestViewModel extends ViewModel {
 
     public LiveData<List<AssetResult>> getDataAsset() { return liveDataAsset;}
 
-
 }
