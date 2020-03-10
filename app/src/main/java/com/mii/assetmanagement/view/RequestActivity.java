@@ -65,6 +65,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 //        adapter = new RequestAssetAdapter();
+        helper = new ItemAssetHelper(this);
 
         initComponent();
         eventInputSo();
@@ -90,7 +91,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(RequestActivity.this, "Enter " + textView.getText().toString(), Toast.LENGTH_LONG).show();
                         brand = textView.getText().toString();
 
-                        helper = new ItemAssetHelper(RequestActivity.this);
                         SQLiteDatabase dbs = dataBaseHelper.getWritableDatabase();
 //                        SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
@@ -120,6 +120,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         Cursor cursor = sqlDB.query(Database.TABLE_ITEM_ASSET,
                 new String[]{Database.ItemAssetColumns.ID, BRAND},
                 null, null, null, null, null);
+
         listAdapter = new SimpleCursorAdapter(
                 this,
                 R.layout.item_result_asset,
