@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mii.assetmanagement.CustomOnItemClickListener;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.HistoryResult;
-import com.mii.assetmanagement.view.HistoryDetailActivity;
+import com.mii.assetmanagement.view.HistoryDetailExchangeActivity;
+import com.mii.assetmanagement.view.HistoryDetailRequestNewActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,7 +51,7 @@ public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgress
     @Override
     public void onBindViewHolder(@NonNull HistoryProgressAdapter.HistoryViewHolder holder, int position) {
         HistoryResult result = list.get(position);
-        String id = Integer.toString(result.getId());
+
         String type = result.getTypeRequest();
         String date = result.getDate();
         Drawable req = activity.getResources().getDrawable(ic_history_request);
@@ -69,12 +70,17 @@ public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgress
             e.printStackTrace();
         }
 
-        holder.id.setText(id);
         holder.typeRequest.setText(type);
         holder.layout.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Intent intent = new Intent(activity, HistoryDetailActivity.class);
-            intent.putExtra(HistoryDetailActivity.EXTRA_HISTORY, result);
-            activity.startActivity(intent);
+            if (type.equals("Request New Asset")) {
+                Intent goToReqNew = new Intent(activity, HistoryDetailRequestNewActivity.class);
+                goToReqNew.putExtra(HistoryDetailRequestNewActivity.EXTRA_HISTORY, result);
+                activity.startActivity(goToReqNew);
+            } else if (type.equals("Request Exchange")) {
+                Intent goToReqExchange = new Intent(activity, HistoryDetailExchangeActivity.class);
+                goToReqExchange.putExtra(HistoryDetailExchangeActivity.EXTRA_HISTORY, result);
+                activity.startActivity(goToReqExchange);
+            }
         }));
     }
 
@@ -86,14 +92,13 @@ public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgress
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
         ImageView icon;
-        TextView id, typeRequest, date;
+        TextView typeRequest, date;
 
         HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layout = itemView.findViewById(R.id.ll_item_history);
             icon = itemView.findViewById(R.id.iv_history_icon);
-            id = itemView.findViewById(R.id.tv_id_request);
             typeRequest = itemView.findViewById(R.id.tv_type_request);
             date = itemView.findViewById(R.id.tv_date_request);
         }

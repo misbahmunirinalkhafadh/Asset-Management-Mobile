@@ -66,7 +66,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
         name = findViewById(R.id.tv_name);
         branch = findViewById(R.id.tv_branch);
         location = findViewById(R.id.tv_location);
-        recyclerView = findViewById(R.id.rv_preorder);
+//        recyclerView = findViewById(R.id.rv_preorder);
     }
 
     private void actionBar() {
