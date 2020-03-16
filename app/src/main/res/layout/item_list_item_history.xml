@@ -14,13 +14,9 @@
 
     <TextView
         android:id="@+id/tv_qty"
-        android:gravity="end|right"
         style="@style/ItemLayoutUserField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="end|right"
         android:text="@string/qty" />
-
-
-
-
 </RelativeLayout>
