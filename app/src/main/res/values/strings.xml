@@ -99,7 +99,12 @@
     <string name="notes">Notes</string>
     <string name="apbar_history_detail">History Detail</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-    <string name="id_request">ID Request</string>
+    <string name="id_request">ID Transaction</string>
     <string name="status">Status</string>
     <string name="qty">Qty</string>
+    <string name="detail">Detail</string>
+    <string name="new_name">New Name</string>
+    <string name="old_serial_number">Old Serial Number</string>
+    <string name="ex_ip">192.168.1.1</string>
+    <string name="comp_name">comp123</string>
 </resources>
