@@ -12,7 +12,6 @@ import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.History;
 import com.mii.assetmanagement.model.HistoryDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
