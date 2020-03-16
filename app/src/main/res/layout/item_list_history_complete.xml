@@ -48,38 +48,47 @@
                 android:id="@+id/tv_date_request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
                 android:fontFamily="@font/mlight"
                 android:gravity="end"
                 android:text="@string/date_request" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_id_request"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:fontFamily="@font/mregular"
-                android:text="@string/id_request"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/mregular"
                 android:text="@string/status"
                 android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_id_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/mregular"
+                android:text="@string/detail"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="4dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_detail" />
+
+
         </LinearLayout>
     </LinearLayout>
 

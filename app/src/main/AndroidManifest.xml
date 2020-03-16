@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.HistoryDetailActivity"></activity>
+        <activity android:name=".HistoryDetailMaintenanceActivity"></activity>
+        <activity android:name=".view.HistoryDetailActivity" />
         <activity android:name=".view.HistoryActivity" />
         <activity android:name=".view.ExchangeAssetActivity" />
         <activity android:name=".view.ExchangeEmployeeActivity" />

@@ -1,185 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:padding="18dp"
     tools:context=".view.HistoryDetailActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:text="@string/nik"
-                android:textColor="@color/colorTitle"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:text="@string/fullName"
-                android:textColor="@color/colorTitle"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:text="@string/branch"
-                android:textColor="@color/colorTitle"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:text="@string/location"
-                android:textColor="@color/colorTitle"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_nik"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorField"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorField"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_branch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorField"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/mregular"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorField"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        android:padding="18dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/notes"
-            android:textSize="16sp" />
+        <include
+            android:id="@+id/linearLayout1"
+            layout="@layout/layout_detail_history" />
 
-        <TextView
-            android:id="@+id/tv_notes"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rectangle"
-            android:gravity="start"
-            android:minLines="5"
-            android:padding="12dp"
-            android:text="@string/lorem"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/bg_menu"
-        android:orientation="vertical"
-        android:padding="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/ItemLayoutUserTitle"
-                android:text="@string/brand"
-                android:textSize="16sp" />
-
-            <TextView
-                style="@style/ItemLayoutUserTitle"
-                android:layout_alignParentEnd="true"
-                android:text="@string/qty"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorGreySoft" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_preorder"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            tools:listitem="@layout/item_list_preorder" />
-    </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_menu"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/item"
+                    android:textColor="@color/colorField"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/mregular"
+                    android:gravity="end|right"
+                    android:text="@string/qty"
+                    android:textColor="@color/colorField"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_item_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_reason"
+            style="@style/ItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_result"
+            android:gravity="top|start"
+            android:hint="@string/reason"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_marginBottom="30dp"
+            android:overScrollMode="always"
+            android:padding="18dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+</ScrollView>
