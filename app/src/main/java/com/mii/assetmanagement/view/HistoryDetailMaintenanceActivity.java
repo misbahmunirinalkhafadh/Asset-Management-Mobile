@@ -1,11 +1,13 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
+import com.mii.assetmanagement.R;
 
+public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
+    public static final String EXTRA_HISTORY = "extra_history";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
