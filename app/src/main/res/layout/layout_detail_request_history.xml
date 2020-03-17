@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/current_nik"
+        android:text="@string/nik"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/current_name"
+        android:text="@string/fullName"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/new_nik"
+        android:text="@string/company"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -71,51 +71,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/old_serial_number"
+        android:text="@string/branch"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:text="@string/company"
-        android:textColor="@color/colorTitle"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:text="@string/branch"
-        android:textColor="@color/colorTitle"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:text="@string/item"
-        android:textColor="@color/colorTitle"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/tv_id_request"
@@ -126,11 +88,11 @@
         android:textColor="@color/colorField"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_currentNik"
+        android:id="@+id/tv_nik"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -143,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_id_request" />
 
     <TextView
-        android:id="@+id/tv_currentName"
+        android:id="@+id/tv_fullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -153,33 +115,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_currentNik" />
-
-    <TextView
-        android:id="@+id/tv_new_nik"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorField"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_currentName" />
-
-    <TextView
-        android:id="@+id/tv_old_serialNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorField"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_nik" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_nik" />
 
     <TextView
         android:id="@+id/tv_company"
@@ -192,7 +128,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_old_serialNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_fullName" />
 
     <TextView
         android:id="@+id/tv_branch"
@@ -207,17 +143,5 @@
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/tv_company" />
 
-    <TextView
-        android:id="@+id/tv_item"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/mregular"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorField"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_branch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
