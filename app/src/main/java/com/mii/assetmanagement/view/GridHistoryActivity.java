@@ -1,8 +1,10 @@
-package com.mii.assetmanagement;
+package com.mii.assetmanagement.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.mii.assetmanagement.R;
 
 public class GridHistoryActivity extends AppCompatActivity {
 
