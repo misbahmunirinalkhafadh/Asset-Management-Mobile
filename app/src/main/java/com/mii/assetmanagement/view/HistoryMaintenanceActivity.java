@@ -3,7 +3,7 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,32 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.R;
 
-public class HistoryDetailRequestNewActivity extends AppCompatActivity {
-
-    private TextView tvIdTrans, tvCurrentNik, tvCurrentName, tvNewNik, tvOldSerial, tvCompany, tvBranch, tvReason;
+public class HistoryMaintenanceActivity extends AppCompatActivity {
+    private ProgressBar progressBar;
     private RecyclerView recyclerView;
-    public static final String EXTRA_HISTORY = "extra_history";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail_request_new);
+        setContentView(R.layout.activity_history_maintenance);
         actionBar();
-        initComponent();
+        progressBar = findViewById(R.id.progressbar);
+        recyclerView = findViewById(R.id.rv_history);
 
-    }
-
-    private void initComponent() {
-        tvIdTrans = findViewById(R.id.tv_id_request);
-        tvCurrentNik = findViewById(R.id.tv_currentNik);
-        tvCurrentName = findViewById(R.id.tv_currentName);
-        tvNewNik = findViewById(R.id.tv_new_nik);
-        tvOldSerial = findViewById(R.id.tv_old_serialNumber);
-        tvCompany = findViewById(R.id.tv_company);
-        tvBranch = findViewById(R.id.tv_branch);
-        tvReason = findViewById(R.id.tv_reason);
-
-        recyclerView = findViewById(R.id.rv_item_brand);
     }
 
     private void actionBar() {
@@ -48,9 +34,10 @@ public class HistoryDetailRequestNewActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+            actionBar.setElevation(0);
         }
-        mTitleTextView.setText(getString(R.string.appbar_history_detail));
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setText(R.string.appbar_his_maintenance);
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Medium);
         mTitleTextView.setTextColor(Color.WHITE);
     }
 

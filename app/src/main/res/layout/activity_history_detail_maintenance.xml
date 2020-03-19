@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,9 +7,76 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:padding="16dp">
 
         <include layout="@layout/layout_detail_history_maintenance" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/mregular"
+            android:text="@string/additional"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mregular"
+            android:text="@string/iPAddress"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ip_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mregular"
+            android:textColor="@color/colorField"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/mregular"
+            android:text="@string/userNameLogin"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_uname_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mregular"
+            android:textColor="@color/colorField"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/mregular"
+            android:text="@string/computerName"
+            android:textColor="@color/colorField"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_comp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mregular"
+            android:textColor="@color/colorField"
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/et_reason"
@@ -20,7 +86,6 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/bg_result"
             android:gravity="top|start"
-            android:editable="false"
             android:hint="@string/reason"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"

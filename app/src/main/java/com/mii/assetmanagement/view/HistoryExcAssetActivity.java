@@ -3,40 +3,39 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
-public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
-    private TextView tvIdTrans, tvProcessor, tvRam, tvHdd, tvSsd, tvOs, tvAntivirus, tvAppStd, tvCleaning, tvFunction, tvIpAddress, tvUnameLogin, tvCompName, tvReason;
-    public static final String EXTRA_HISTORY = "extra_history";
+public class HistoryExcAssetActivity extends AppCompatActivity {
+    public TabFragmentAdapter adapter;
+    public ViewPager pager;
+    public TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail_maintenance);
+        setContentView(R.layout.activity_history_exc_asset);
         actionBar();
         initComponent();
+        //Set up the view pager and fragments
+        adapter = new TabFragmentAdapter(getSupportFragmentManager());
+        adapter.addFragment(HistoryProgressFragment.newInstance(), "In Progress");
+        adapter.addFragment(HistoryCompleteFragment.newInstance(), "Completed");
+
+        pager.setAdapter(adapter);
+        tabs.setupWithViewPager(pager);
     }
 
     private void initComponent() {
-        tvIdTrans = findViewById(R.id.tv_id_request);
-        tvProcessor = findViewById(R.id.tv_processor);
-        tvRam = findViewById(R.id.tv_ram);
-        tvHdd = findViewById(R.id.tv_hdd);
-        tvSsd = findViewById(R.id.tv_ssd);
-        tvOs = findViewById(R.id.tv_os);
-        tvAntivirus = findViewById(R.id.tv_antivirus);
-        tvAppStd = findViewById(R.id.tv_app_standard);
-        tvCleaning = findViewById(R.id.tv_cleaning);
-        tvFunction = findViewById(R.id.tv_function);
-        tvIpAddress = findViewById(R.id.tv_ip_address);
-        tvUnameLogin = findViewById(R.id.tv_uname_login);
-        tvCompName = findViewById(R.id.tv_comp_name);
+        pager = findViewById(R.id.viewPager);
+        tabs = findViewById(R.id.tab);
     }
 
     private void actionBar() {
@@ -47,9 +46,10 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+            actionBar.setElevation(0);
         }
-        mTitleTextView.setText(getString(R.string.appbar_history_detail));
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setText(R.string.appbar_his_exc_asset);
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Medium);
         mTitleTextView.setTextColor(Color.WHITE);
     }
 
