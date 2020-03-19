@@ -93,7 +93,7 @@
     <string name="apbar_maintenance">Maintenance</string>
     <string name="brand_name">Brand Name</string>
     <string name="menu_history_request">History Request</string>
-    <string name="apppbar_history">History</string>
+    <string name="appbar_history">History</string>
     <string name="date_request">Date request</string>
     <string name="quantity">Quantity</string>
     <string name="notes">Notes</string>
@@ -109,4 +109,12 @@
     <string name="comp_name">comp123</string>
     <string name="new_nik">New NIK</string>
     <string name="appbar_history_detail">History Detail</string>
+    <string name="History">HISTORY</string>
+    <string name="RequestNew">Request New</string>
+    <string name="appbar_exchange_emp">Exchange Emp</string>
+    <string name="maintenancee">Maintenance</string>
+    <string name="appbar_his_maintenance">History Maintenance</string>
+    <string name="appbar_his_req_new">History Request New Asset</string>
+    <string name="appbar_his_exc_asset">History Exchange Asset</string>
+    <string name="appbar_his_exc_emp">History Exchange Employee</string>
 </resources>

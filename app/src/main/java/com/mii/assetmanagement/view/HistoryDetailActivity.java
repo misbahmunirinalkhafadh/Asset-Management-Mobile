@@ -32,7 +32,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail);
+//        setContentView(R.layout.activity_history_detail);
         actionBar();
         initComponent();
         historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
