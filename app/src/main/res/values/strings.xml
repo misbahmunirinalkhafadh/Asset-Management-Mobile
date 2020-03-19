@@ -108,4 +108,5 @@
     <string name="ex_ip">192.168.1.1</string>
     <string name="comp_name">comp123</string>
     <string name="new_nik">New NIK</string>
+    <string name="appbar_history_detail">History Detail</string>
 </resources>
