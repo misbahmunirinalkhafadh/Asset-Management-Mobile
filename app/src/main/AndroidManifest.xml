@@ -19,7 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.GridHistoryActivity"></activity>
+        <activity android:name=".view.HistoryExchangeEmployeeActivity"></activity>
+        <activity android:name=".view.HistoryExchangeAssetActivity" />
+        <activity android:name=".view.HistoryRequestActivity" />
+        <activity android:name=".view.HistoryMaintenanceActivity" />
+        <activity android:name=".view.GridHistoryActivity" />
         <activity android:name=".view.HistoryDetailExchangeActivity" />
         <activity android:name=".view.HistoryDetailRequestNewActivity" />
         <activity android:name=".view.HistoryDetailMaintenanceActivity" />
