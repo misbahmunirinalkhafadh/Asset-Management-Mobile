@@ -12,22 +12,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="?android:attr/selectableItemBackground"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="12dp"
-            android:padding="8dp"
-            android:gravity="center"
-            android:background="@drawable/bg_rectangle">
+<!--        <LinearLayout-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:background="@drawable/bg_rectangle"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="8dp">-->
 
-            <ImageView
-                android:id="@+id/iv_history_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo" />
-        </LinearLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_history_icon"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:contentDescription="@string/todo" />-->
+<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="0dp"
