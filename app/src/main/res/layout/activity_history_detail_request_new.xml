@@ -41,9 +41,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
                     android:fontFamily="@font/mregular"
-                    android:gravity="end|right"
+                    android:gravity="end"
                     android:text="@string/qty"
                     android:textColor="@color/colorField"
                     android:textSize="14sp" />
@@ -53,7 +52,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item_brand"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_list_history_detail_request"/>
 
         </LinearLayout>
 
@@ -62,13 +62,13 @@
             style="@style/ItemLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/bg_result"
             android:gravity="top|start"
             android:hint="@string/reason"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:lines="5"
-            android:layout_marginBottom="30dp"
             android:overScrollMode="always"
             android:padding="18dp"
             android:scrollbarStyle="insideInset"
@@ -76,5 +76,14 @@
             android:scrollHorizontally="false"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/tv_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rectangle"
+            android:minLines="5"
+            android:padding="16dp"
+            android:text="@string/reason"
+            android:textSize="18sp" />
     </LinearLayout>
 </ScrollView>

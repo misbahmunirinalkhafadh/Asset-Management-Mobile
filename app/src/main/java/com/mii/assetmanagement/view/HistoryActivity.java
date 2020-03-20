@@ -5,20 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
-public class HistoryActivity extends AppCompatActivity {
-
-    public TabFragmentAdapter adapter;
-    public ViewPager pager;
-    public TabLayout tabs;
+public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
+    private LinearLayout LayoutMaintenance, LayoutRequest, LayoutExcAsset, LayoutExcEmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +26,17 @@ public class HistoryActivity extends AppCompatActivity {
         actionBar();
         initComponent();
 
-        //Set up the view pager and fragments
-        adapter = new TabFragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(HistoryProgressFragment.newInstance(), "In Progress");
-        adapter.addFragment(HistoryCompleteFragment.newInstance(), "Completed");
-
-        pager.setAdapter(adapter);
-        tabs.setupWithViewPager(pager);
+        LayoutMaintenance.setOnClickListener(this);
+        LayoutRequest.setOnClickListener(this);
+        LayoutExcAsset.setOnClickListener(this);
+        LayoutExcEmp.setOnClickListener(this);
     }
 
     private void initComponent() {
-        pager = findViewById(R.id.viewPager);
-        tabs = findViewById(R.id.tab);
+        LayoutMaintenance = findViewById(R.id.layout_his_maintenance);
+        LayoutRequest = findViewById(R.id.layout_his_req_new);
+        LayoutExcAsset = findViewById(R.id.layout_his_exc_asset);
+        LayoutExcEmp = findViewById(R.id.layout_his_exc_emp);
     }
 
     private void actionBar() {
@@ -51,7 +49,7 @@ public class HistoryActivity extends AppCompatActivity {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
             actionBar.setElevation(0);
         }
-        mTitleTextView.setText(R.string.apppbar_history);
+        mTitleTextView.setText(R.string.appbar_history);
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }
@@ -60,5 +58,27 @@ public class HistoryActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.layout_his_maintenance:
+                Intent goToHisMaintain = new Intent(HistoryActivity.this, HistoryMaintenanceActivity.class);
+                startActivity(goToHisMaintain);
+                break;
+            case R.id.layout_his_req_new:
+                Intent goToHisReqNew = new Intent(HistoryActivity.this,  HistoryRequestNewActivity.class);
+                startActivity(goToHisReqNew);
+                break;
+            case R.id.layout_his_exc_asset:
+                Intent goToHisExcAsset = new Intent(HistoryActivity.this,  HistoryExcAssetActivity.class);
+                startActivity(goToHisExcAsset);
+                break;
+            case R.id.layout_his_exc_emp:
+                Intent goToHisExcEmp = new Intent(HistoryActivity.this,  HistoryExcEmpActivity.class);
+                startActivity(goToHisExcEmp);
+                break;
+        }
     }
 }

@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1 // Ditamhbakan setiap mau di upload ke PLAY STORE
-        versionName "1.5" // ditambahkan setiap menambahkan fitur baru atau perbaikan
+        versionName "1.0" // ditambahkan setiap menambahkan fitur baru atau perbaikan
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "JWT_SAKURA_TOKEN", '"sakura eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWt1cmEiLCJpYXQiOjE1ODAxOTYxMzJ9.zYvu8-qr48lmTx7_3tZMmVmIBuGPVXmgHbFOwSdTAdYZO9FFQWa7rUeKodtfOMkzfnnjVQSl6f_t54_qvlo7cA"'
@@ -56,12 +56,8 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
 
-    //Search
-    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
-
     //Toast Custom
     implementation 'com.github.GrenderG:Toasty:1.4.2'
-
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
