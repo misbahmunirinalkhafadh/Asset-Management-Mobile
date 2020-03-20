@@ -10,24 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
         android:padding="20dp">
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginEnd="12dp"-->
-<!--            android:background="@drawable/bg_rectangle"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="8dp">-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/iv_history_icon"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:contentDescription="@string/todo" />-->
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -37,7 +22,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_type_request"
+                android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
@@ -45,7 +30,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_date_request"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -54,26 +39,14 @@
                 android:text="@string/date_request" />
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_id_request"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:fontFamily="@font/mregular"-->
-<!--            android:gravity="end"-->
-<!--            android:text="@string/detail"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="16sp"-->
-<!--            android:textStyle="bold" />-->
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="-12dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_keyboard_arrow_right_black_34dp"
-            tools:ignore="PrivateResource"
-            android:contentDescription="@string/todo" />
+            tools:ignore="PrivateResource" />
     </LinearLayout>
 
 </LinearLayout>
