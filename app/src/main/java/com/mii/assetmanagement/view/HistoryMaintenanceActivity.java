@@ -3,18 +3,32 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.SharedPrefManager;
+import com.mii.assetmanagement.adapter.HistoryMaintenanceAdapter;
+import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.viewmodel.HistoryViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryMaintenanceActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
+    private HistoryMaintenanceAdapter adapter;
+    private ArrayList<HistoryMaintenance.MaintenanceResult> resultArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +38,35 @@ public class HistoryMaintenanceActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
         recyclerView = findViewById(R.id.rv_history);
 
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        int nik = Integer.parseInt(sharedPrefManager.getSpNik());
+        HistoryViewModel historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+        historyViewModel.setHistoryMaintenance(nik);
+        historyViewModel.getHistoryMaintenance().observe(this, historyMaintenance -> {
+            if (historyMaintenance.getResults() != null) {
+                List<HistoryMaintenance.MaintenanceResult> list = historyMaintenance.getResults();
+                resultArrayList.addAll(list);
+                adapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, "Data Not Found" + historyMaintenance, Toast.LENGTH_SHORT).show();
+            }
+            progressBar.setVisibility(View.GONE);
+        });
+
+        setupRecyclerView();
+    }
+
+    private void setupRecyclerView() {
+        if (adapter == null) {
+            adapter = new HistoryMaintenanceAdapter(this, resultArrayList);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.addItemDecoration(new CustomDividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL, 16));
+            recyclerView.setAdapter(adapter);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setNestedScrollingEnabled(true);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void actionBar() {
