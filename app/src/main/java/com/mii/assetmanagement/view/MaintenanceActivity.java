@@ -3,7 +3,6 @@ package com.mii.assetmanagement.view;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -129,7 +128,9 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if (v.getId() == R.id.btn_submit) {
             InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(etResult.getWindowToken(), 0);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(etResult.getWindowToken(), 0);
+            }
             validation();
         }
     }
@@ -142,78 +143,64 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmation")
                     .setMessage("Are you sure, want you save this maintenance?")
-                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            MaintenanceRequest request = new MaintenanceRequest();
-                            request.setMaintainer(sharedPrefManager.getSpNik());
-                            request.setSn(serial);
-                            request.setService(booleanList);
-                            request.setNames(service);
-                            request.setProcessor(cbProcessor.isChecked());
-                            request.setRam(cbRam.isChecked());
-                            request.setHdd(cbHdd.isChecked());
-                            request.setSsd(cbSsd.isChecked());
-                            request.setOs(cbSystem.isChecked());
+                    .setPositiveButton("Save", (dialog, which) -> {
+                        MaintenanceRequest request = new MaintenanceRequest();
+                        request.setMaintainer(sharedPrefManager.getSpNik());
+                        request.setSn(serial);
+                        request.setService(booleanList);
+                        request.setNames(service);
+                        request.setProcessor(cbProcessor.isChecked());
+                        request.setRam(cbRam.isChecked());
+                        request.setHdd(cbHdd.isChecked());
+                        request.setSsd(cbSsd.isChecked());
+                        request.setOs(cbSystem.isChecked());
 
-                            String ipValue;
-                            if (etIpAddress.getText().toString().isEmpty()) {
-                                ipValue = "N/A";
-                            } else {
-                                ipValue = etIpAddress.getText().toString();
-                            }
-                            request.setIp(ipValue);
-
-                            String unameValue;
-                            if (etUsername.getText().toString().isEmpty()) {
-                                unameValue = "N/A";
-                            } else {
-                                unameValue = etUsername.getText().toString();
-                            }
-                            request.setUsername(unameValue);
-
-                            String comName;
-                            if (etComputer.getText().toString().isEmpty()) {
-                                comName = "N/A";
-                            } else {
-                                comName = etComputer.getText().toString();
-                            }
-                            request.setComputerName(comName);
-                            request.setResult(etResult.getText().toString());
-                            maintenanceViewModel.setMaintenance(request);
-
-                            showDialogSuccess();
+                        String ipValue;
+                        if (etIpAddress.getText().toString().isEmpty()) {
+                            ipValue = "N/A";
+                        } else {
+                            ipValue = etIpAddress.getText().toString();
                         }
+                        request.setIp(ipValue);
+
+                        String unameValue;
+                        if (etUsername.getText().toString().isEmpty()) {
+                            unameValue = "N/A";
+                        } else {
+                            unameValue = etUsername.getText().toString();
+                        }
+                        request.setUsername(unameValue);
+
+                        String comName;
+                        if (etComputer.getText().toString().isEmpty()) {
+                            comName = "N/A";
+                        } else {
+                            comName = etComputer.getText().toString();
+                        }
+                        request.setComputerName(comName);
+                        request.setResult(etResult.getText().toString());
+                        maintenanceViewModel.setMaintenance(request);
+
+                        showDialogSuccess();
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    }).show();
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
         }
     }
 
     private void showDialogSuccess() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    final Dialog dialog = new Dialog(MaintenanceActivity.this);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setCancelable(false);
-                    dialog.setContentView(R.layout.layout_dialog_success);
-                    dialog.show();
-                    Button dialogButton = dialog.findViewById(R.id.btn_continue);
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
-                            startActivity(submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        }
-                    });
-                }
+        runOnUiThread(() -> {
+            if (!isFinishing()) {
+                final Dialog dialog = new Dialog(MaintenanceActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.layout_dialog_success);
+                dialog.show();
+                Button dialogButton = dialog.findViewById(R.id.btn_continue);
+                dialogButton.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent submit = new Intent(MaintenanceActivity.this, MainActivity.class);
+                    startActivity(submit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                });
             }
         });
     }

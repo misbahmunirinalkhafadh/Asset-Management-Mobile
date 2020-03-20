@@ -3,6 +3,7 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class HistoryExcEmpActivity extends AppCompatActivity {
 
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
+        Toast.makeText(this, "Exchange Employee", Toast.LENGTH_SHORT).show();
     }
 
     private void initComponent() {

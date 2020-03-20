@@ -49,10 +49,12 @@ public class HistoryProgressFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressbar);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
-        String nik = sharedPrefManager.getSpNik();
+        int nik = Integer.parseInt(sharedPrefManager.getSpNik());
+        String type = "";
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
-        historyViewModel.setHistoryProgress(Integer.parseInt(nik), REQUEST_STATUS);
+        historyViewModel.setHistoryProgress(type, nik, REQUEST_STATUS);
 
+        Toast.makeText(getActivity(), "Progres", Toast.LENGTH_SHORT).show();
         setupRecyclerView();
         return view;
     }
