@@ -53,6 +53,7 @@ public class HistoryCompleteFragment extends Fragment {
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
         historyViewModel.setHistoryComplete(Integer.parseInt(nik), REQUEST_STATUS);
 
+        Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
         setupRecyclerView();
         return view;
     }
