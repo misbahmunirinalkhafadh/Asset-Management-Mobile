@@ -13,7 +13,7 @@ import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 
 public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
-    private TextView tvIdTrans;
+    private TextView tvIdTrans, tvSerial, tvReason;
     public static final String EXTRA_HISTORY = "extra_history";
 
     @Override
@@ -25,8 +25,9 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
 
         HistoryMaintenanceResult result = getIntent().getParcelableExtra(EXTRA_HISTORY);
         if (result != null) {
-            String _id = String.valueOf(result.get_id());
-            tvIdTrans.setText(_id);
+            tvIdTrans.setText(String.valueOf(result.get_id()));
+            tvSerial.setText(result.getSerial());
+            tvReason.setText(result.getReason());
         }
     }
 
@@ -35,6 +36,8 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
 //        tvIpAddress = findViewById(R.id.tv_ip_address);
 //        tvUnameLogin = findViewById(R.id.tv_uname_login);
 //        tvCompName = findViewById(R.id.tv_comp_name);
+        tvSerial = findViewById(R.id.tv_serial);
+        tvReason = findViewById(R.id.tv_reason);
     }
 
     private void actionBar() {

@@ -83,7 +83,7 @@
     <string name="exchange">Exchange</string>
     <string name="version">Version</string>
     <string name="appbar_exchange_employee">Exchange Employee</string>
-    <string name="appbar_exchange_asset">Exchange Asset</string>
+    <string name="exchange_asset">Exc Asset</string>
     <string name="detail_exchange">Detail Exchange</string>
     <string name="current_nik">Current NIK</string>
     <string name="current_name">Current Name</string>
@@ -111,10 +111,10 @@
     <string name="appbar_history_detail">History Detail</string>
     <string name="History">HISTORY</string>
     <string name="RequestNew">Request New</string>
-    <string name="appbar_exchange_emp">Exchange Emp</string>
+    <string name="exchange_user">Exc User</string>
     <string name="maintenancee">Maintenance</string>
-    <string name="appbar_his_maintenance">History Maintenance</string>
-    <string name="appbar_his_req_new">History Request New Asset</string>
-    <string name="appbar_his_exc_asset">History Exchange Asset</string>
-    <string name="appbar_his_exc_emp">History Exchange Employee</string>
+    <string name="appbar_his_maintenance">Maintenance</string>
+    <string name="appbar_his_req_new">Request New Asset</string>
+    <string name="appbar_his_exc_asset">Exchange Asset</string>
+    <string name="appbar_his_exc_user">Exchange User</string>
 </resources>

@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".view.HistoryDetailRequestActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:padding="14dp">
 
         <include
             android:id="@+id/linearLayout1"
-            layout="@layout/layout_detail_history" />
+            layout="@layout/layout_detail_history"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/bg_menu"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -53,37 +60,21 @@
                 android:id="@+id/rv_item_brand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_list_history_detail_request"/>
+                tools:listitem="@layout/item_list_history_detail_request" />
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/et_reason"
-            style="@style/ItemLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/bg_result"
-            android:gravity="top|start"
-            android:hint="@string/reason"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:lines="5"
-            android:overScrollMode="always"
-            android:padding="18dp"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:scrollHorizontally="false"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/tv_reason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
             android:background="@drawable/bg_rectangle"
             android:minLines="5"
-            android:padding="16dp"
+            android:padding="14dp"
             android:text="@string/reason"
-            android:textSize="18sp" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

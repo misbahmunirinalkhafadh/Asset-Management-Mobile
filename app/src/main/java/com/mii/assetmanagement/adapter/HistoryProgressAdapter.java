@@ -1,13 +1,12 @@
 package com.mii.assetmanagement.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mii.assetmanagement.CustomOnItemClickListener;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.model.HistoryResult;
+import com.mii.assetmanagement.view.HistoryDetailRequestActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
+
+import static com.mii.assetmanagement.view.HistoryDetailRequestActivity.EXTRA_HISTORY;
 
 public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgressAdapter.HistoryViewHolder> {
 
@@ -56,7 +58,9 @@ public class HistoryProgressAdapter extends RecyclerView.Adapter<HistoryProgress
 
         holder.transId.setText(result.getId());
         holder.layout.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Toast.makeText(activity, result.getId(), Toast.LENGTH_SHORT).show();
+            Intent goToDetailRequest = new Intent(activity, HistoryDetailRequestActivity.class);
+            goToDetailRequest.putExtra(EXTRA_HISTORY, result);
+            activity.startActivity(goToDetailRequest);
         }));
     }
 

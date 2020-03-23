@@ -19,6 +19,9 @@ public class HistoryMaintenanceResult implements Parcelable {
     @SerializedName("tgl")
     @Expose
     private String date;
+    @SerializedName("description")
+    @Expose
+    private String reason;
 
     public HistoryMaintenanceResult() {
     }
@@ -55,11 +58,20 @@ public class HistoryMaintenanceResult implements Parcelable {
         this.date = date;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     private HistoryMaintenanceResult(Parcel in) {
         _id = in.readInt();
         brand = in.readString();
         serial = in.readString();
         date = in.readString();
+        reason = in.readString();
     }
 
     public static final Creator<HistoryMaintenanceResult> CREATOR = new Creator<HistoryMaintenanceResult>() {
@@ -85,5 +97,6 @@ public class HistoryMaintenanceResult implements Parcelable {
         dest.writeString(brand);
         dest.writeString(serial);
         dest.writeString(date);
+        dest.writeString(reason);
     }
 }

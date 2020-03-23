@@ -26,34 +26,67 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/id_request"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_id_transaction"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mregular"
+                        android:text="@string/id_request"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/mregular"
+                        android:text="@string/serial"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:textColor="@color/colorField"
-                    android:textSize="14sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_id_transaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="@font/mregular"
+                        android:textColor="@color/colorField"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_serial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/mregular"
+                        android:textColor="@color/colorField"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/mregular"
                 android:text="@string/checking_comparison"
                 android:textColor="@color/colorTitle"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -63,11 +96,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/mregular"
                 android:text="@string/main_checklist"
                 android:textColor="@color/colorTitle"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -94,7 +127,7 @@
                 android:fontFamily="@font/mregular"
                 android:text="@string/additional"
                 android:textColor="@color/colorTitle"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -156,15 +189,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_reason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="14dp"
             android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/mregular"
-            android:minLines="3"
+            android:minLines="5"
             android:padding="14dp"
-            android:text="@string/lorem"
-            android:textColor="@color/colorField"
+            android:text="@string/reason"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
