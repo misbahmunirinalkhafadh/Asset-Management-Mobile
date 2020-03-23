@@ -1,6 +1,7 @@
 package com.mii.assetmanagement.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,11 @@ public class HistoryProgressFragment extends Fragment {
     private HistoryProgressAdapter adapter;
     private HistoryViewModel historyViewModel;
     private ArrayList<HistoryResult> historyArrayList = new ArrayList<>();
+    private static String REQUEST_TYPE = "";
     private static final String REQUEST_STATUS = "inprogress";
 
-    static HistoryProgressFragment newInstance() {
+    static HistoryProgressFragment newInstance(String reqType) {
+        REQUEST_TYPE = reqType;
         return new HistoryProgressFragment();
     }
 
@@ -47,14 +50,13 @@ public class HistoryProgressFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history_progress, container, false);
         recyclerView = view.findViewById(R.id.rv_history);
         progressBar = view.findViewById(R.id.progressbar);
+        Log.d("Progres ", REQUEST_TYPE);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
         int nik = Integer.parseInt(sharedPrefManager.getSpNik());
-        String type = "";
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
-        historyViewModel.setHistoryProgress(type, nik, REQUEST_STATUS);
+        historyViewModel.setHistoryProgress(REQUEST_TYPE, nik, REQUEST_STATUS);
 
-        Toast.makeText(getActivity(), "Progres", Toast.LENGTH_SHORT).show();
         setupRecyclerView();
         return view;
     }
@@ -76,12 +78,12 @@ public class HistoryProgressFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         historyViewModel.getHistoryProgress().observe(Objects.requireNonNull(getActivity()), histories -> {
-            if (histories.isError()) {
-                Toast.makeText(getActivity(), "Data not found", Toast.LENGTH_SHORT).show();
-            } else {
+            if (histories.getResult() != null) {
                 List<HistoryResult> resultList = histories.getResult();
                 historyArrayList.addAll(resultList);
                 adapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(getActivity(), "Data not found", Toast.LENGTH_SHORT).show();
             }
             progressBar.setVisibility(View.GONE);
         });

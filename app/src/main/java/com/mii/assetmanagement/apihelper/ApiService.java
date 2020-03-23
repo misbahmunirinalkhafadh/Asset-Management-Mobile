@@ -4,8 +4,7 @@ import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
-import com.mii.assetmanagement.model.History;
-import com.mii.assetmanagement.model.HistoryDetail;
+import com.mii.assetmanagement.model.HistoryRequest;
 import com.mii.assetmanagement.model.HistoryMaintenance;
 import com.mii.assetmanagement.model.MaintenanceRequest;
 import com.mii.assetmanagement.model.SalesOrder;
@@ -76,26 +75,27 @@ public interface ApiService {
     Call<HistoryMaintenance> getHistoryMaintenance(@Query("id") int nik,
                                                    @Header("Authorization") String token);
 
+    @GET("assetrequest/gethistorydetailmaintenance")
+    @Headers({"Content-Type: application/json"})
+    Call<String> getHistoryDetailMaintenance(@Query("id") int nik,
+                                             @Header("Authorization") String token);
+
     @GET("assetrequest/getalldetailhistoryrequestnewasset")
     @Headers({"Content-Type: application/json"})
-    Call<History> getHistoryReqNew(@Query("id") int nik,
-                                   @Query("status") String status,
-                                   @Header("Authorization") String token);
+    Call<HistoryRequest> getHistoryReqNew(@Query("id") int nik,
+                                          @Query("status") String status,
+                                          @Header("Authorization") String token);
 
     @GET("assetrequest/getalldetailhistoryrequestexchangeasset")
     @Headers({"Content-Type: application/json"})
-    Call<History> getHistoryExcAsset(@Query("id") int nik,
-                                     @Query("status") String status,
-                                     @Header("Authorization") String token);
+    Call<HistoryRequest> getHistoryExcAsset(@Query("id") int nik,
+                                            @Query("status") String status,
+                                            @Header("Authorization") String token);
 
     @GET("assetrequest/getalldetailhistoryrequestexchangeuser")
     @Headers({"Content-Type: application/json"})
-    Call<History> getHistoryExcEmp(@Query("id") int nik,
-                                   @Query("status") String status,
-                                   @Header("Authorization") String token);
+    Call<HistoryRequest> getHistoryExcEmp(@Query("id") int nik,
+                                          @Query("status") String status,
+                                          @Header("Authorization") String token);
 
-    @GET("assetrequest/getdetailrequestbyrequestid")
-    @Headers({"Content-Type: application/json"})
-    Call<List<HistoryDetail>> getHistoryDetail(@Query("id") int nik,
-                                               @Header("Authorization") String token);
 }

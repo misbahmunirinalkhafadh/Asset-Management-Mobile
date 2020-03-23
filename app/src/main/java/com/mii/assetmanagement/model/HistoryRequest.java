@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class History {
+public class HistoryRequest {
     @SerializedName("result")
     @Expose
     private List<HistoryResult> result;
@@ -13,7 +13,7 @@ public class History {
     @Expose
     private boolean error;
 
-    public History() {
+    public HistoryRequest() {
     }
 
     public List<HistoryResult> getResult() {

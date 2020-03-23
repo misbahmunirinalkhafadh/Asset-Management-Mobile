@@ -1,19 +1,20 @@
 package com.mii.assetmanagement.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.CustomOnItemClickListener;
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
+import com.mii.assetmanagement.view.HistoryDetailMaintenanceActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,11 +22,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.mii.assetmanagement.view.HistoryDetailMaintenanceActivity.EXTRA_HISTORY;
+
 public class HistoryMaintenanceAdapter extends RecyclerView.Adapter<HistoryMaintenanceAdapter.MaintenanceViewHolder> {
     private Activity mActivity;
-    private ArrayList<HistoryMaintenance.MaintenanceResult> mData;
+    private ArrayList<HistoryMaintenanceResult> mData;
 
-    public HistoryMaintenanceAdapter(Activity mActivity, ArrayList<HistoryMaintenance.MaintenanceResult> mData) {
+    public HistoryMaintenanceAdapter(Activity mActivity, ArrayList<HistoryMaintenanceResult> mData) {
         this.mActivity = mActivity;
         this.mData = mData;
     }
@@ -39,7 +42,7 @@ public class HistoryMaintenanceAdapter extends RecyclerView.Adapter<HistoryMaint
 
     @Override
     public void onBindViewHolder(@NonNull HistoryMaintenanceAdapter.MaintenanceViewHolder holder, int position) {
-        HistoryMaintenance.MaintenanceResult result = mData.get(position);
+        HistoryMaintenanceResult result = mData.get(position);
 
         final SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         SimpleDateFormat output = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
@@ -55,7 +58,9 @@ public class HistoryMaintenanceAdapter extends RecyclerView.Adapter<HistoryMaint
         holder.tvBrand.setText(result.getBrand());
         holder.tvSerial.setText(result.getSerial());
         holder.layout.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Toast.makeText(mActivity, "You press " + result.getBrand(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mActivity, HistoryDetailMaintenanceActivity.class);
+            intent.putExtra(EXTRA_HISTORY, result);
+            mActivity.startActivity(intent);
         }));
     }
 
