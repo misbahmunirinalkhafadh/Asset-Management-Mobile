@@ -10,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.mii.assetmanagement.R;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 
 public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
-    private TextView tvIdTrans, tvProcessor, tvRam, tvHdd, tvSsd, tvOs, tvAntivirus, tvAppStd, tvCleaning, tvFunction, tvIpAddress, tvUnameLogin, tvCompName, tvReason;
+    private TextView tvIdTrans;
     public static final String EXTRA_HISTORY = "extra_history";
 
     @Override
@@ -21,22 +22,19 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history_detail_maintenance);
         actionBar();
         initComponent();
+
+        HistoryMaintenanceResult result = getIntent().getParcelableExtra(EXTRA_HISTORY);
+        if (result != null) {
+            String _id = String.valueOf(result.get_id());
+            tvIdTrans.setText(_id);
+        }
     }
 
     private void initComponent() {
-        tvIdTrans = findViewById(R.id.tv_id_request);
-        tvProcessor = findViewById(R.id.tv_processor);
-        tvRam = findViewById(R.id.tv_ram);
-        tvHdd = findViewById(R.id.tv_hdd);
-        tvSsd = findViewById(R.id.tv_ssd);
-        tvOs = findViewById(R.id.tv_os);
-        tvAntivirus = findViewById(R.id.tv_antivirus);
-        tvAppStd = findViewById(R.id.tv_app_standard);
-        tvCleaning = findViewById(R.id.tv_cleaning);
-        tvFunction = findViewById(R.id.tv_function);
-        tvIpAddress = findViewById(R.id.tv_ip_address);
-        tvUnameLogin = findViewById(R.id.tv_uname_login);
-        tvCompName = findViewById(R.id.tv_comp_name);
+        tvIdTrans = findViewById(R.id.tv_id_transaction);
+//        tvIpAddress = findViewById(R.id.tv_ip_address);
+//        tvUnameLogin = findViewById(R.id.tv_uname_login);
+//        tvCompName = findViewById(R.id.tv_comp_name);
     }
 
     private void actionBar() {

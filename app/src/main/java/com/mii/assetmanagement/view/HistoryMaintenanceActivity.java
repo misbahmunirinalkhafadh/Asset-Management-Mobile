@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.adapter.HistoryMaintenanceAdapter;
-import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.viewmodel.HistoryViewModel;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class HistoryMaintenanceActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private HistoryMaintenanceAdapter adapter;
-    private ArrayList<HistoryMaintenance.MaintenanceResult> resultArrayList = new ArrayList<>();
+    private ArrayList<HistoryMaintenanceResult> resultArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class HistoryMaintenanceActivity extends AppCompatActivity {
         historyViewModel.setHistoryMaintenance(nik);
         historyViewModel.getHistoryMaintenance().observe(this, historyMaintenance -> {
             if (historyMaintenance.getResults() != null) {
-                List<HistoryMaintenance.MaintenanceResult> list = historyMaintenance.getResults();
+                List<HistoryMaintenanceResult> list = historyMaintenance.getResults();
                 resultArrayList.addAll(list);
                 adapter.notifyDataSetChanged();
             } else {

@@ -18,6 +18,7 @@ public class HistoryExcEmpActivity extends AppCompatActivity {
     public TabFragmentAdapter adapter;
     public ViewPager pager;
     public TabLayout tabs;
+    private static final String REQUEST_TYPE= "Exchange Employee";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,11 @@ public class HistoryExcEmpActivity extends AppCompatActivity {
         initComponent();
         //Set up the view pager and fragments
         adapter = new TabFragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(HistoryProgressFragment.newInstance(), "In Progress");
-        adapter.addFragment(HistoryCompleteFragment.newInstance(), "Completed");
+        adapter.addFragment(HistoryProgressFragment.newInstance(REQUEST_TYPE), "In Progress");
+        adapter.addFragment(HistoryCompleteFragment.newInstance(REQUEST_TYPE), "Completed");
 
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
-        Toast.makeText(this, "Exchange Employee", Toast.LENGTH_SHORT).show();
     }
 
     private void initComponent() {
