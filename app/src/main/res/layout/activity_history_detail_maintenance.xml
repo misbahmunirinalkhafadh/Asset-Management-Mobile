@@ -113,7 +113,7 @@
                     android:id="@+id/rv_item_brand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_list_history_detail_main_comp" />
+                    tools:listitem="@layout/item_list_history_detail_main_part" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -127,7 +127,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_main_checklist"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_list_history_detail_main_service"/>
 
             </LinearLayout>
 

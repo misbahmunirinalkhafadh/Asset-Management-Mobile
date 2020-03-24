@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/mregular"
+        android:text="@string/service_name"
+        android:textColor="@color/colorField"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mregular"
+        android:text="@string/status"
+        android:textColor="@color/colorField" />
+</LinearLayout>

@@ -44,7 +44,7 @@ public class HistoryViewModel extends ViewModel {
         });
     }
 
-    public void setHistoryDetailMainPart(int _id) {
+    public void setHistoryDetailMaintenance(int _id) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
         Call<HistoryMaintenance> call = mApiService.getHistoryDetailMaintenance(_id, API_TOKEN);
         call.enqueue(new Callback<HistoryMaintenance>() {
@@ -156,12 +156,8 @@ public class HistoryViewModel extends ViewModel {
         return liveDataMaintenance;
     }
 
-    public LiveData<HistoryMaintenance> getHistoryDetailMainPart() {
+    public LiveData<HistoryMaintenance> getHistoryDetailMaintenance() {
         return liveDataMainDetailPart;
-    }
-
-    public LiveData<HistoryMaintenance> getHistoryDetailMainService() {
-        return liveDataMainDetailService;
     }
 
     public LiveData<HistoryRequest> getHistoryProgress() {
