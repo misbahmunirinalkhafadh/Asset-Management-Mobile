@@ -12,6 +12,12 @@ public class HistoryMaintenance {
     @SerializedName("result")
     @Expose
     private List<HistoryMaintenanceResult> results;
+    @SerializedName("detailmaintenancepart")
+    @Expose
+    private List<HistoryMaintenanceResult> mainPart;
+    @SerializedName("detailmaintenance")
+    @Expose
+    private List<HistoryMaintenanceResult> mainService;
 
     public HistoryMaintenance() {
     }
@@ -30,5 +36,21 @@ public class HistoryMaintenance {
 
     public void setResults(List<HistoryMaintenanceResult> results) {
         this.results = results;
+    }
+
+    public List<HistoryMaintenanceResult> getMainPart() {
+        return mainPart;
+    }
+
+    public void setMainPart(List<HistoryMaintenanceResult> mainPart) {
+        this.mainPart = mainPart;
+    }
+
+    public List<HistoryMaintenanceResult> getMainService() {
+        return mainService;
+    }
+
+    public void setMainService(List<HistoryMaintenanceResult> mainService) {
+        this.mainService = mainService;
     }
 }

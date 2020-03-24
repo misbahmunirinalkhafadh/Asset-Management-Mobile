@@ -4,6 +4,7 @@ import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.model.HistoryRequest;
 import com.mii.assetmanagement.model.HistoryMaintenance;
 import com.mii.assetmanagement.model.MaintenanceRequest;
@@ -77,8 +78,8 @@ public interface ApiService {
 
     @GET("assetrequest/gethistorydetailmaintenance")
     @Headers({"Content-Type: application/json"})
-    Call<String> getHistoryDetailMaintenance(@Query("id") int nik,
-                                             @Header("Authorization") String token);
+    Call<HistoryMaintenance> getHistoryDetailMaintenance(@Query("id") int nik,
+                                                               @Header("Authorization") String token);
 
     @GET("assetrequest/getalldetailhistoryrequestnewasset")
     @Headers({"Content-Type: application/json"})
