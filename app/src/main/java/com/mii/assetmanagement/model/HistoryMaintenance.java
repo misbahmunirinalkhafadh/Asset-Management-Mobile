@@ -1,8 +1,5 @@
 package com.mii.assetmanagement.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -14,7 +11,13 @@ public class HistoryMaintenance {
     private boolean error;
     @SerializedName("result")
     @Expose
-    private List<MaintenanceResult> results;
+    private List<HistoryMaintenanceResult> results;
+    @SerializedName("detailmaintenancepart")
+    @Expose
+    private List<HistoryMaintenanceResult> mainPart;
+    @SerializedName("detailmaintenance")
+    @Expose
+    private List<HistoryMaintenanceResult> mainService;
 
     public HistoryMaintenance() {
     }
@@ -27,93 +30,27 @@ public class HistoryMaintenance {
         this.error = error;
     }
 
-    public List<MaintenanceResult> getResults() {
+    public List<HistoryMaintenanceResult> getResults() {
         return results;
     }
 
-    public void setResults(List<MaintenanceResult> results) {
+    public void setResults(List<HistoryMaintenanceResult> results) {
         this.results = results;
     }
 
-    public static class MaintenanceResult implements Parcelable  {
-        @SerializedName("id")
-        @Expose
-        private int _id;
-        @SerializedName("brand")
-        @Expose
-        private String brand;
-        @SerializedName("SN")
-        @Expose
-        private String serial;
-        @SerializedName("tgl")
-        @Expose
-        private String date;
+    public List<HistoryMaintenanceResult> getMainPart() {
+        return mainPart;
+    }
 
-        public MaintenanceResult() {
-        }
+    public void setMainPart(List<HistoryMaintenanceResult> mainPart) {
+        this.mainPart = mainPart;
+    }
 
-        public int get_id() {
-            return _id;
-        }
+    public List<HistoryMaintenanceResult> getMainService() {
+        return mainService;
+    }
 
-        public void set_id(int _id) {
-            this._id = _id;
-        }
-
-        public String getBrand() {
-            return brand;
-        }
-
-        public void setBrand(String brand) {
-            this.brand = brand;
-        }
-
-        public String getSerial() {
-            return serial;
-        }
-
-        public void setSerial(String serial) {
-            this.serial = serial;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        MaintenanceResult(Parcel in) {
-            _id = in.readInt();
-            brand = in.readString();
-            serial = in.readString();
-            date = in.readString();
-        }
-
-        public final Creator<MaintenanceResult> CREATOR = new Creator<MaintenanceResult>() {
-            @Override
-            public MaintenanceResult createFromParcel(Parcel in) {
-                return new MaintenanceResult(in);
-            }
-
-            @Override
-            public MaintenanceResult[] newArray(int size) {
-                return new MaintenanceResult[size];
-            }
-        };
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(_id);
-            dest.writeString(brand);
-            dest.writeString(serial);
-            dest.writeString(date);
-        }
+    public void setMainService(List<HistoryMaintenanceResult> mainService) {
+        this.mainService = mainService;
     }
 }

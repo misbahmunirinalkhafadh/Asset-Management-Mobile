@@ -24,10 +24,8 @@
         <activity android:name=".view.HistoryExcAssetActivity" />
         <activity android:name=".view.HistoryRequestNewActivity" />
         <activity android:name=".view.HistoryMaintenanceActivity" />
-        <activity android:name=".view.HistoryDetailExchangeActivity" />
-        <activity android:name=".view.HistoryDetailRequestNewActivity" />
+        <activity android:name=".view.HistoryDetailRequestActivity" />
         <activity android:name=".view.HistoryDetailMaintenanceActivity" />
-        <activity android:name=".view.HistoryDetailActivity" />
         <activity android:name=".view.HistoryActivity" />
         <activity android:name=".view.ExchangeAssetActivity" />
         <activity android:name=".view.ExchangeEmployeeActivity" />

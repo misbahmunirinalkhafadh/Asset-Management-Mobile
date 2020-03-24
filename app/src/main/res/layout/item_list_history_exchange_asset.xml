@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:text="@string/appbar_exchange_asset"
+                android:text="@string/exchange_asset"
                 android:textSize="16sp" />
 
             <TextView

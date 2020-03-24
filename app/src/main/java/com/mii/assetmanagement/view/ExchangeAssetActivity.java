@@ -3,7 +3,6 @@ package com.mii.assetmanagement.view;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -73,7 +72,7 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(getString(R.string.appbar_exchange_asset));
+        mTitleTextView.setText(getString(R.string.exchange_asset));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }

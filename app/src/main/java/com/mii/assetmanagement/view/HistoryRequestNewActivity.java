@@ -3,7 +3,6 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +17,7 @@ public class HistoryRequestNewActivity extends AppCompatActivity {
     public TabFragmentAdapter adapter;
     public ViewPager pager;
     public TabLayout tabs;
+    private static final String REQUEST_TYPE = "Request New Asset";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,11 @@ public class HistoryRequestNewActivity extends AppCompatActivity {
         initComponent();
         //Set up the view pager and fragments
         adapter = new TabFragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(HistoryProgressFragment.newInstance(), "In Progress");
-        adapter.addFragment(HistoryCompleteFragment.newInstance(), "Completed");
+        adapter.addFragment(HistoryProgressFragment.newInstance(REQUEST_TYPE), "In Progress");
+        adapter.addFragment(HistoryCompleteFragment.newInstance(REQUEST_TYPE), "Completed");
 
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
-        Toast.makeText(this, "Request New Asset", Toast.LENGTH_SHORT).show();
     }
 
     private void initComponent() {
@@ -44,14 +43,14 @@ public class HistoryRequestNewActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.START;
+        layoutParams.gravity = Gravity.CENTER;
         if (actionBar != null) {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
             actionBar.setElevation(0);
         }
         mTitleTextView.setText(R.string.appbar_his_req_new);
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Medium);
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }
 

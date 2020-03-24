@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.R;
 
-public class HistoryDetailRequestNewActivity extends AppCompatActivity {
+public class HistoryDetailRequestActivity extends AppCompatActivity {
 
     private TextView tvIdTrans, tvCurrentNik, tvCurrentName, tvNewNik, tvOldSerial, tvCompany, tvBranch, tvReason;
     private RecyclerView recyclerView;
@@ -21,7 +21,7 @@ public class HistoryDetailRequestNewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail_request_new);
+        setContentView(R.layout.activity_history_detail_request);
         actionBar();
         initComponent();
 

@@ -9,11 +9,10 @@ import androidx.lifecycle.ViewModel;
 import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
-import com.mii.assetmanagement.model.History;
-import com.mii.assetmanagement.model.HistoryDetail;
 import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
+import com.mii.assetmanagement.model.HistoryRequest;
 
-import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -24,12 +23,10 @@ public class HistoryViewModel extends ViewModel {
 
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<HistoryMaintenance> liveDataMaintenance = new MutableLiveData<>();
-    private MutableLiveData<History> reqNewAsset = new MutableLiveData<>();
-    private MutableLiveData<History> exchangeAsset = new MutableLiveData<>();
-    private MutableLiveData<History> exchangeEmp = new MutableLiveData<>();
-    private MutableLiveData<History> liveDataProgress = new MutableLiveData<>();
-    private MutableLiveData<History> liveDataComplete = new MutableLiveData<>();
-    private MutableLiveData<List<HistoryDetail>> liveDataHistoryDetail = new MutableLiveData<>();
+    private MutableLiveData<HistoryMaintenance> liveDataMainDetailPart = new MutableLiveData<>();
+    private MutableLiveData<HistoryMaintenance> liveDataMainDetailService = new MutableLiveData<>();
+    private MutableLiveData<HistoryRequest> liveDataProgress = new MutableLiveData<>();
+    private MutableLiveData<HistoryRequest> liveDataComplete = new MutableLiveData<>();
 
     public void setHistoryMaintenance(int nik) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
@@ -47,82 +44,131 @@ public class HistoryViewModel extends ViewModel {
         });
     }
 
+    public void setHistoryDetailMainPart(int _id) {
+        ApiService mApiService = UtilsApi.getApiServiceJwt();
+        Call<HistoryMaintenance> call = mApiService.getHistoryDetailMaintenance(_id, API_TOKEN);
+        call.enqueue(new Callback<HistoryMaintenance>() {
+            @Override
+            public void onResponse(Call<HistoryMaintenance> call, Response<HistoryMaintenance> response) {
+                liveDataMainDetailPart.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<HistoryMaintenance> call, Throwable t) {
+                Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
     public void setHistoryProgress(String type, int nik, String progress) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
         if (type.equals("Request New Asset")) {
-            Call<History> call = mApiService.getHistoryReqNew(nik, progress, API_TOKEN);
-            call.enqueue(new Callback<History>() {
+            Call<HistoryRequest> call = mApiService.getHistoryReqNew(nik, progress, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
                 @Override
-                public void onResponse(Call<History> call, Response<History> response) {
-                    reqNewAsset.setValue(response.body());
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataProgress.setValue(response.body());
                 }
 
                 @Override
-                public void onFailure(Call<History> call, Throwable t) {
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
                     Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
                 }
             });
         }
         if (type.equals("Exchange Asset")) {
-            Call<History> call = mApiService.getHistoryExcAsset(nik, progress, API_TOKEN);
-            call.enqueue(new Callback<History>() {
+            Call<HistoryRequest> call = mApiService.getHistoryExcAsset(nik, progress, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
                 @Override
-                public void onResponse(Call<History> call, Response<History> response) {
-                    exchangeAsset.setValue(response.body());
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataProgress.setValue(response.body());
                 }
 
                 @Override
-                public void onFailure(Call<History> call, Throwable t) {
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
                     Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
                 }
             });
         }
         if (type.equals("Exchange Employee")) {
-            Call<History> call = mApiService.getHistoryExcEmp(nik, progress, API_TOKEN);
-            call.enqueue(new Callback<History>() {
+            Call<HistoryRequest> call = mApiService.getHistoryExcEmp(nik, progress, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
                 @Override
-                public void onResponse(Call<History> call, Response<History> response) {
-                    exchangeEmp.setValue(response.body());
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataProgress.setValue(response.body());
                 }
 
                 @Override
-                public void onFailure(Call<History> call, Throwable t) {
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
                     Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
                 }
             });
         }
     }
 
-    public void setHistoryComplete(int nik, String completed) {
+    public void setHistoryComplete(String type, int nik, String completed) {
+        ApiService mApiService = UtilsApi.getApiServiceJwt();
+        if (type.equals("Request New Asset")) {
+            Call<HistoryRequest> call = mApiService.getHistoryReqNew(nik, completed, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
+                @Override
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataComplete.setValue(response.body());
+                }
 
-    }
+                @Override
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
+                    Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
+                }
+            });
+        }
+        if (type.equals("Exchange Asset")) {
+            Call<HistoryRequest> call = mApiService.getHistoryExcAsset(nik, completed, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
+                @Override
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataComplete.setValue(response.body());
+                }
 
-    public void setHistoryDetail(int id) {
+                @Override
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
+                    Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
+                }
+            });
+        }
+        if (type.equals("Exchange Employee")) {
+            Call<HistoryRequest> call = mApiService.getHistoryExcEmp(nik, completed, API_TOKEN);
+            call.enqueue(new Callback<HistoryRequest>() {
+                @Override
+                public void onResponse(Call<HistoryRequest> call, Response<HistoryRequest> response) {
+                    liveDataComplete.setValue(response.body());
+                }
 
+                @Override
+                public void onFailure(Call<HistoryRequest> call, Throwable t) {
+                    Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
+                }
+            });
+        }
     }
 
     public LiveData<HistoryMaintenance> getHistoryMaintenance() {
         return liveDataMaintenance;
     }
 
-    public LiveData<History> getHistoryProgress() {
-        if (reqNewAsset != null) {
-            liveDataProgress = reqNewAsset;
-        }
-        if (exchangeAsset != null) {
-            liveDataProgress = exchangeAsset;
-        }
-        if (exchangeEmp != null) {
-            liveDataProgress = exchangeEmp;
-        }
+    public LiveData<HistoryMaintenance> getHistoryDetailMainPart() {
+        return liveDataMainDetailPart;
+    }
+
+    public LiveData<HistoryMaintenance> getHistoryDetailMainService() {
+        return liveDataMainDetailService;
+    }
+
+    public LiveData<HistoryRequest> getHistoryProgress() {
         return liveDataProgress;
     }
 
-    public LiveData<History> getHistoryComplete() {
+    public LiveData<HistoryRequest> getHistoryComplete() {
         return liveDataComplete;
-    }
-
-    public LiveData<List<HistoryDetail>> getHistoryDetail() {
-        return liveDataHistoryDetail;
     }
 }

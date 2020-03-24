@@ -1,6 +1,7 @@
 package com.mii.assetmanagement.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,11 @@ public class HistoryCompleteFragment extends Fragment {
     private HistoryCompleteAdapter adapter;
     private HistoryViewModel historyViewModel;
     private ArrayList<HistoryResult> historyCompleteList = new ArrayList<>();
+    private static String REQUEST_TYPE = "";
     private static final String REQUEST_STATUS = "completed";
 
-    static HistoryCompleteFragment newInstance() {
+    static HistoryCompleteFragment newInstance(String reqType) {
+        REQUEST_TYPE = reqType;
         return new HistoryCompleteFragment();
     }
 
@@ -47,13 +50,13 @@ public class HistoryCompleteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history_complete, container, false);
         recyclerView = view.findViewById(R.id.rv_history);
         progressBar = view.findViewById(R.id.progressbar);
+        Log.d("Completed ", REQUEST_TYPE);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
-        String nik = sharedPrefManager.getSpNik();
+        int nik = Integer.parseInt(sharedPrefManager.getSpNik());
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
-        historyViewModel.setHistoryComplete(Integer.parseInt(nik), REQUEST_STATUS);
+        historyViewModel.setHistoryComplete(REQUEST_TYPE, nik, REQUEST_STATUS);
 
-        Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
         setupRecyclerView();
         return view;
     }
@@ -75,12 +78,12 @@ public class HistoryCompleteFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         historyViewModel.getHistoryComplete().observe(Objects.requireNonNull(getActivity()), histories -> {
-            if (histories.isError()) {
-                Toast.makeText(getActivity(), "Data not found", Toast.LENGTH_SHORT).show();
-            } else {
+            if (histories.getResult() != null) {
                 List<HistoryResult> resultList = histories.getResult();
                 historyCompleteList.addAll(resultList);
                 adapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(getActivity(), "Data not found", Toast.LENGTH_SHORT).show();
             }
             progressBar.setVisibility(View.GONE);
         });
