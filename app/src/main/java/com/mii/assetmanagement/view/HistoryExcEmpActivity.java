@@ -3,7 +3,6 @@ package com.mii.assetmanagement.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,14 +43,14 @@ public class HistoryExcEmpActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.START;
+        layoutParams.gravity = Gravity.CENTER;
         if (actionBar != null) {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
             actionBar.setElevation(0);
         }
-        mTitleTextView.setText(R.string.appbar_his_exc_emp);
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Medium);
+        mTitleTextView.setText(R.string.appbar_his_exc_user);
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }
 

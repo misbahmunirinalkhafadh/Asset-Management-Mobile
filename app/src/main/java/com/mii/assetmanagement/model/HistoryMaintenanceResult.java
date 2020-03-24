@@ -19,6 +19,23 @@ public class HistoryMaintenanceResult implements Parcelable {
     @SerializedName("tgl")
     @Expose
     private String date;
+    @SerializedName("description")
+    @Expose
+    private String reason;
+
+    //detail maintenance
+    @SerializedName("partname")
+    @Expose
+    private String partName;
+    @SerializedName("parttype")
+    @Expose
+    private String partType;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("status")
+    @Expose
+    private String status;
 
     public HistoryMaintenanceResult() {
     }
@@ -55,11 +72,56 @@ public class HistoryMaintenanceResult implements Parcelable {
         this.date = date;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getPartName() {
+        return partName;
+    }
+
+    public void setPartName(String partName) {
+        this.partName = partName;
+    }
+
+    public String getPartType() {
+        return partType;
+    }
+
+    public void setPartType(String partType) {
+        this.partType = partType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private HistoryMaintenanceResult(Parcel in) {
         _id = in.readInt();
         brand = in.readString();
         serial = in.readString();
         date = in.readString();
+        reason = in.readString();
+        partName = in.readString();
+        partType = in.readString();
+        name = in.readString();
+        status = in.readString();
     }
 
     public static final Creator<HistoryMaintenanceResult> CREATOR = new Creator<HistoryMaintenanceResult>() {
@@ -85,5 +147,10 @@ public class HistoryMaintenanceResult implements Parcelable {
         dest.writeString(brand);
         dest.writeString(serial);
         dest.writeString(date);
+        dest.writeString(reason);
+        dest.writeString(partName);
+        dest.writeString(partType);
+        dest.writeString(name);
+        dest.writeString(status);
     }
 }

@@ -16,6 +16,12 @@ public class HistoryResult implements Parcelable {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("oldnik")
+    @Expose
+    private String oldNik;
+    @SerializedName("oldname")
+    @Expose
+    private String oldName;
     @SerializedName("type")
     @Expose
     private String typeRequest;
@@ -63,6 +69,22 @@ public class HistoryResult implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOldNik() {
+        return oldNik;
+    }
+
+    public void setOldNik(String oldNik) {
+        this.oldNik = oldNik;
+    }
+
+    public String getOldName() {
+        return oldName;
+    }
+
+    public void setOldName(String oldName) {
+        this.oldName = oldName;
     }
 
     public String getTypeRequest() {
@@ -125,6 +147,8 @@ public class HistoryResult implements Parcelable {
         id = in.readString();
         nik = in.readString();
         name = in.readString();
+        oldNik = in.readString();
+        oldName = in.readString();
         typeRequest = in.readString();
         branch = in.readString();
         location = in.readString();
@@ -156,6 +180,8 @@ public class HistoryResult implements Parcelable {
         dest.writeString(id);
         dest.writeString(nik);
         dest.writeString(name);
+        dest.writeString(oldNik);
+        dest.writeString(oldName);
         dest.writeString(typeRequest);
         dest.writeString(branch);
         dest.writeString(location);

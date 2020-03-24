@@ -10,6 +10,7 @@ import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
 import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.model.HistoryRequest;
 
 import java.util.Objects;
@@ -22,6 +23,8 @@ public class HistoryViewModel extends ViewModel {
 
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<HistoryMaintenance> liveDataMaintenance = new MutableLiveData<>();
+    private MutableLiveData<HistoryMaintenance> liveDataMainDetailPart = new MutableLiveData<>();
+    private MutableLiveData<HistoryMaintenance> liveDataMainDetailService = new MutableLiveData<>();
     private MutableLiveData<HistoryRequest> liveDataProgress = new MutableLiveData<>();
     private MutableLiveData<HistoryRequest> liveDataComplete = new MutableLiveData<>();
 
@@ -32,6 +35,22 @@ public class HistoryViewModel extends ViewModel {
             @Override
             public void onResponse(Call<HistoryMaintenance> call, Response<HistoryMaintenance> response) {
                 liveDataMaintenance.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<HistoryMaintenance> call, Throwable t) {
+                Log.e("onFailure", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void setHistoryDetailMainPart(int _id) {
+        ApiService mApiService = UtilsApi.getApiServiceJwt();
+        Call<HistoryMaintenance> call = mApiService.getHistoryDetailMaintenance(_id, API_TOKEN);
+        call.enqueue(new Callback<HistoryMaintenance>() {
+            @Override
+            public void onResponse(Call<HistoryMaintenance> call, Response<HistoryMaintenance> response) {
+                liveDataMainDetailPart.setValue(response.body());
             }
 
             @Override
@@ -135,6 +154,14 @@ public class HistoryViewModel extends ViewModel {
 
     public LiveData<HistoryMaintenance> getHistoryMaintenance() {
         return liveDataMaintenance;
+    }
+
+    public LiveData<HistoryMaintenance> getHistoryDetailMainPart() {
+        return liveDataMainDetailPart;
+    }
+
+    public LiveData<HistoryMaintenance> getHistoryDetailMainService() {
+        return liveDataMainDetailService;
     }
 
     public LiveData<HistoryRequest> getHistoryProgress() {

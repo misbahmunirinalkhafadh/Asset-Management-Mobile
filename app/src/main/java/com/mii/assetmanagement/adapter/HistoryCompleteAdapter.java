@@ -3,11 +3,9 @@ package com.mii.assetmanagement.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +25,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-import static com.mii.assetmanagement.R.drawable.ic_history_exchange;
-import static com.mii.assetmanagement.R.drawable.ic_history_maintenance;
-import static com.mii.assetmanagement.R.drawable.ic_history_request;
+import static com.mii.assetmanagement.view.HistoryDetailRequestActivity.EXTRA_HISTORY;
 
 public class HistoryCompleteAdapter extends RecyclerView.Adapter<HistoryCompleteAdapter.HistoryViewHolder> {
 
@@ -69,16 +65,9 @@ public class HistoryCompleteAdapter extends RecyclerView.Adapter<HistoryComplete
 
         holder.transId.setText(result.getId());
         holder.layout.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Toast.makeText(activity, result.getId(), Toast.LENGTH_SHORT).show();
-//            if (type.equals("Request New Asset")) {
-//                Intent goToReqNew = new Intent(activity, HistoryDetailRequestActivity.class);
-//                goToReqNew.putExtra(HistoryDetailRequestActivity.EXTRA_HISTORY, result);
-//                activity.startActivity(goToReqNew);
-//            } else if (type.equals("Request Exchange")) {
-//                Intent goToReqExchange = new Intent(activity, HistoryDetailExchangeActivity.class);
-//                goToReqExchange.putExtra(HistoryDetailExchangeActivity.EXTRA_HISTORY, result);
-//                activity.startActivity(goToReqExchange);
-//            }
+            Intent goToDetailRequest = new Intent(activity, HistoryDetailRequestActivity.class);
+            goToDetailRequest.putExtra(EXTRA_HISTORY, result);
+            activity.startActivity(goToDetailRequest);
         }));
     }
 
