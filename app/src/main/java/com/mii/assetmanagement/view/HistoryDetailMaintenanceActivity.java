@@ -1,5 +1,6 @@
 package com.mii.assetmanagement.view;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -67,14 +68,26 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
     private void setDataRecyclerview() {
         if (partAdapter == null) {
             partAdapter = new HistoryMainPartAdapter(this, mainParts);
-            rvMainPart.setLayoutManager(new LinearLayoutManager(this));
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            rvMainPart.setLayoutManager(layoutManager);
             rvMainPart.setAdapter(partAdapter);
         } else {
             partAdapter.notifyDataSetChanged();
         }
         if (serviceAdapter == null) {
             serviceAdapter = new HistoryMainServiceAdapter(this, mainServices);
-            rvMainService.setLayoutManager(new LinearLayoutManager(this));
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            rvMainService.setLayoutManager(layoutManager);
             rvMainService.setAdapter(serviceAdapter);
         } else {
             serviceAdapter.notifyDataSetChanged();
