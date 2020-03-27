@@ -69,7 +69,6 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
             partAdapter = new HistoryMainPartAdapter(this, mainParts);
             rvMainPart.setLayoutManager(new LinearLayoutManager(this));
             rvMainPart.setAdapter(partAdapter);
-            rvMainPart.setItemAnimator(new DefaultItemAnimator());
         } else {
             partAdapter.notifyDataSetChanged();
         }
@@ -77,7 +76,6 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
             serviceAdapter = new HistoryMainServiceAdapter(this, mainServices);
             rvMainService.setLayoutManager(new LinearLayoutManager(this));
             rvMainService.setAdapter(serviceAdapter);
-            rvMainService.setItemAnimator(new DefaultItemAnimator());
         } else {
             serviceAdapter.notifyDataSetChanged();
         }

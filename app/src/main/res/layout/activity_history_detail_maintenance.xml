@@ -113,6 +113,7 @@
                     android:id="@+id/rv_item_brand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:overScrollMode="never"
                     tools:listitem="@layout/item_list_history_detail_main_part" />
 
                 <TextView
@@ -128,7 +129,8 @@
                     android:id="@+id/rv_main_checklist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_list_history_detail_main_service"/>
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_list_history_detail_main_service" />
 
             </LinearLayout>
 

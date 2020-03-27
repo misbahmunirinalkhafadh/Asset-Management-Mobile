@@ -24,7 +24,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class HistoryDetailRequestActivity extends AppCompatActivity {
-    private TextView textStatus, textNik, textName, textOldNik, textOldName;
+    private TextView textStatus, textNik, textName, textOldNik, textOldName, textSerial;
     private LinearLayout lineItem;
     private TextView tvIdTrans, tvDate, tvStatus, tvNik, tvName, tvOldNik, tvOldName, tvSerial, tvLocation, tvBranch, tvReason;
     private RecyclerView recyclerView;
@@ -55,8 +55,11 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             tvName.setText(result.getName());
             tvOldNik.setText(result.getOldNik());
             tvOldName.setText(result.getOldName());
+            tvSerial.setText(result.getSerial());
             tvLocation.setText(result.getLocation());
             tvBranch.setText(result.getBranch());
+            if (result.getReason() != null) tvReason.setText(result.getReason());
+            if (result.getRemark() != null) tvReason.setText(result.getRemark());
 
             String[] brand = result.getBrand();
             int[] qty = result.getQuantity();
@@ -85,6 +88,13 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
         } else {
             lineItem.setVisibility(View.VISIBLE);
         }
+        if (result.getSerial() == null) {
+            tvSerial.setVisibility(View.GONE);
+            textSerial.setVisibility(View.GONE);
+        } else {
+            tvSerial.setVisibility(View.VISIBLE);
+            textSerial.setVisibility(View.VISIBLE);
+        }
 
         if (result.getTypeRequest().equals("Request New Asset")) {
             textNik.setVisibility(View.GONE);
@@ -111,6 +121,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
         textName = findViewById(R.id.textName);
         textOldNik = findViewById(R.id.textOldNik);
         textOldName = findViewById(R.id.textOldName);
+        textSerial = findViewById(R.id.textSerial);
         lineItem = findViewById(R.id.lineItem);
         recyclerView = findViewById(R.id.rv_asset);
         // View
@@ -128,6 +139,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
     }
 
     private void actionBar(String type) {
+        String tittleBar = "Detail " + type;
         ActionBar actionBar = getSupportActionBar();
         AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -136,8 +148,8 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(type);
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setText(tittleBar);
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Medium);
         mTitleTextView.setTextColor(Color.WHITE);
     }
 
