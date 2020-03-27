@@ -35,7 +35,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_detail_request);
-        actionBar();
+
         initComponent();
 
         HistoryResult result = getIntent().getParcelableExtra(EXTRA_HISTORY);
@@ -61,6 +61,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             String[] brand = result.getBrand();
             int[] qty = result.getQuantity();
             setupRecyclerView(brand, qty);
+            actionBar(result.getTypeRequest());
         }
     }
 
@@ -126,7 +127,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
         tvReason = findViewById(R.id.tv_reason);
     }
 
-    private void actionBar() {
+    private void actionBar(String type) {
         ActionBar actionBar = getSupportActionBar();
         AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -135,7 +136,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(getString(R.string.appbar_history_detail));
+        mTitleTextView.setText(type);
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }
