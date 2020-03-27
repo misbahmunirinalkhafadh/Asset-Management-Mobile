@@ -115,8 +115,8 @@
     <string name="maintenancee">Maintenance</string>
     <string name="appbar_his_maintenance">Maintenance</string>
     <string name="appbar_his_req_new">Request New Asset</string>
-    <string name="appbar_his_exc_asset">Exchange Asset</string>
-    <string name="appbar_his_exc_user">Exchange User</string>
+    <string name="appbar_his_exc_asset">Request Exchange Asset</string>
+    <string name="appbar_his_exc_user">Request Exchange User</string>
     <string name="part_name">Part Name</string>
     <string name="part_type">Part Type</string>
     <string name="status_matching">Match</string>
