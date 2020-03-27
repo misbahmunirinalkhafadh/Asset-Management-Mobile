@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
+        android:layout_margin="14dp"
         android:columnOrderPreserved="false"
         android:rowCount="3">
 
