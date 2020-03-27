@@ -14,7 +14,7 @@
         app:layout_constraintGuide_begin="140dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textTrans"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mregular"
@@ -26,43 +26,82 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/current_nik"
+        android:text="@string/date_request"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textTrans" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/current_name"
+        android:text="@string/status"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textNik"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/new_nik"
+        android:text="@string/nik"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textStatus" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:text="@string/Name"
+        android:textColor="@color/colorTitle"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNik" />
+
+    <TextView
+        android:id="@+id/textOldNik"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:text="@string/old_nik"
+        android:textColor="@color/colorTitle"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textOldName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:text="@string/old_name"
+        android:textColor="@color/colorTitle"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOldNik" />
 
     <TextView
         android:id="@+id/textView8"
@@ -70,20 +109,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/old_serial_number"
+        android:text="@string/serial"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textOldName" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/company"
+        android:text="@string/location"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -101,10 +140,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
     <TextView
-        android:id="@+id/tv_id_request"
+        android:id="@+id/tv_id_transaction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mregular"
@@ -116,7 +155,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_currentNik"
+        android:id="@+id/tv_date_request"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -126,10 +165,22 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_id_request" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_id_transaction" />
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorField"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_request" />
 
     <TextView
-        android:id="@+id/tv_currentName"
+        android:id="@+id/tv_nik"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -139,10 +190,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_currentNik" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
     <TextView
-        android:id="@+id/tv_new_nik"
+        android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -152,10 +203,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_currentName" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_nik" />
 
     <TextView
-        android:id="@+id/tv_old_serialNumber"
+        android:id="@+id/tv_old_nik"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -165,10 +216,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_nik" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
-        android:id="@+id/tv_company"
+        android:id="@+id/tv_old_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -178,7 +229,33 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_old_serialNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_old_nik" />
+
+    <TextView
+        android:id="@+id/tv_serial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorField"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_old_name" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mregular"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorField"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_serial" />
 
     <TextView
         android:id="@+id/tv_branch"
@@ -191,6 +268,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_company" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
