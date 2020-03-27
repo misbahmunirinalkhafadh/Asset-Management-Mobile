@@ -39,7 +39,7 @@ public class HistoryResult implements Parcelable {
     private String status;
     @SerializedName("item_asset")
     @Expose
-    private String[] quantity;
+    private int[] quantity;
     @SerializedName("brand")
     @Expose
     private String[] brand;
@@ -127,11 +127,11 @@ public class HistoryResult implements Parcelable {
         this.status = status;
     }
 
-    public String[] getQuantity() {
+    public int[] getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String[] quantity) {
+    public void setQuantity(int[] quantity) {
         this.quantity = quantity;
     }
 
@@ -154,7 +154,7 @@ public class HistoryResult implements Parcelable {
         location = in.readString();
         date = in.readString();
         status = in.readString();
-        quantity = in.createStringArray();
+        quantity = in.createIntArray();
         brand = in.createStringArray();
     }
 
@@ -187,7 +187,7 @@ public class HistoryResult implements Parcelable {
         dest.writeString(location);
         dest.writeString(date);
         dest.writeString(status);
-        dest.writeStringArray(quantity);
+        dest.writeIntArray(quantity);
         dest.writeStringArray(brand);
     }
 }
