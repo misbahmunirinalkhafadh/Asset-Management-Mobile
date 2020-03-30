@@ -1,6 +1,5 @@
 package com.mii.assetmanagement.view;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,7 +66,7 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
     private void setDataRecyclerview() {
         if (partAdapter == null) {
             partAdapter = new HistoryMainPartAdapter(this, mainParts);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this) {
                 @Override
                 public boolean canScrollVertically() {
                     return false;
@@ -81,7 +79,7 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         }
         if (serviceAdapter == null) {
             serviceAdapter = new HistoryMainServiceAdapter(this, mainServices);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this) {
                 @Override
                 public boolean canScrollVertically() {
                     return false;
@@ -109,9 +107,6 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         tvSerial = findViewById(R.id.tv_serial);
         rvMainPart = findViewById(R.id.rv_item_brand);
         rvMainService = findViewById(R.id.rv_main_checklist);
-//        tvIpAddress = findViewById(R.id.tv_ip_address);
-//        tvUnameLogin = findViewById(R.id.tv_uname_login);
-//        tvCompName = findViewById(R.id.tv_comp_name);
         tvReason = findViewById(R.id.tv_reason);
         progressBar = findViewById(R.id.progressbar);
         view = findViewById(R.id.view);
@@ -126,7 +121,7 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(getString(R.string.appbar_history_detail));
+        mTitleTextView.setText(getString(R.string.appbar_detail_maintenance));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }
