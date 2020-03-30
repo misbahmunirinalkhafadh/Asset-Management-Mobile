@@ -111,7 +111,7 @@
     <string name="appbar_history_detail">History Detail</string>
     <string name="History">HISTORY</string>
     <string name="RequestNew">Request New</string>
-    <string name="exchange_user">Exc User</string>
+    <string name="exchange_user">Exc Employee</string>
     <string name="maintenancee">Maintenance</string>
     <string name="appbar_his_maintenance">Maintenance</string>
     <string name="appbar_his_req_new">Request New Asset</string>
@@ -121,6 +121,9 @@
     <string name="part_type">Part Type</string>
     <string name="status_matching">Match</string>
     <string name="status_different">Diff</string>
+    <string name="menu">Menu</string>
+    <string name="exc_emp">Exchange Employee</string>
     <string name="old_nik">Old Nik</string>
     <string name="old_name">Old Name</string>
+
 </resources>
