@@ -1,5 +1,6 @@
 package com.mii.assetmanagement.view;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.HistoryMainPartAdapter;
+import com.mii.assetmanagement.adapter.HistoryMainServiceAdapter;
 import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.viewmodel.HistoryViewModel;
 
@@ -29,8 +31,8 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
     private RecyclerView rvMainPart, rvMainService;
     private ProgressBar progressBar;
     private ScrollView view;
-    private HistoryViewModel historyViewModel;
-    private HistoryMainPartAdapter mainPartAdapter;
+    private HistoryMainPartAdapter partAdapter;
+    private HistoryMainServiceAdapter serviceAdapter;
     private ArrayList<HistoryMaintenanceResult> mainParts = new ArrayList<>();
     private ArrayList<HistoryMaintenanceResult> mainServices = new ArrayList<>();
     public static final String EXTRA_HISTORY = "extra_history";
@@ -43,31 +45,52 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         initComponent();
         showLoading(true);
 
-        historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+        HistoryViewModel historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
         HistoryMaintenanceResult result = getIntent().getParcelableExtra(EXTRA_HISTORY);
         if (result != null) {
             tvIdTrans.setText(String.valueOf(result.get_id()));
             tvSerial.setText(result.getSerial());
             tvReason.setText(result.getReason());
-            historyViewModel.setHistoryDetailMainPart(result.get_id());
+            historyViewModel.setHistoryDetailMaintenance(result.get_id());
         }
-        getDataMainPart();
-    }
 
-    private void getDataMainPart() {
-        historyViewModel.getHistoryDetailMainPart().observe(this, historyMaintenance -> {
-            List<HistoryMaintenanceResult> results = historyMaintenance.getMainPart();
-            mainParts.addAll(results);
-            mainPartAdapter.notifyDataSetChanged();
+        historyViewModel.getHistoryDetailMaintenance().observe(this, historyMaintenance -> {
+            List<HistoryMaintenanceResult> resultMainPart = historyMaintenance.getMainPart();
+            List<HistoryMaintenanceResult> resultMainService = historyMaintenance.getMainService();
+            mainParts.addAll(resultMainPart);
+            mainServices.addAll(resultMainService);
+            partAdapter.notifyDataSetChanged();
             showLoading(false);
         });
-        if (mainPartAdapter == null) {
-            mainPartAdapter = new HistoryMainPartAdapter(this, mainParts);
-            rvMainPart.setLayoutManager(new LinearLayoutManager(this));
-            rvMainPart.setAdapter(mainPartAdapter);
-            rvMainPart.setItemAnimator(new DefaultItemAnimator());
+        setDataRecyclerview();
+    }
+
+    private void setDataRecyclerview() {
+        if (partAdapter == null) {
+            partAdapter = new HistoryMainPartAdapter(this, mainParts);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            rvMainPart.setLayoutManager(layoutManager);
+            rvMainPart.setAdapter(partAdapter);
         } else {
-            mainPartAdapter.notifyDataSetChanged();
+            partAdapter.notifyDataSetChanged();
+        }
+        if (serviceAdapter == null) {
+            serviceAdapter = new HistoryMainServiceAdapter(this, mainServices);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            rvMainService.setLayoutManager(layoutManager);
+            rvMainService.setAdapter(serviceAdapter);
+        } else {
+            serviceAdapter.notifyDataSetChanged();
         }
     }
 

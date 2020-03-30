@@ -94,7 +94,7 @@
     <string name="brand_name">Brand Name</string>
     <string name="menu_history_request">History Request</string>
     <string name="appbar_history">History</string>
-    <string name="date_request">Date request</string>
+    <string name="date_request">Date Request</string>
     <string name="quantity">Quantity</string>
     <string name="notes">Notes</string>
     <string name="apbar_history_detail">History Detail</string>
@@ -115,12 +115,15 @@
     <string name="maintenancee">Maintenance</string>
     <string name="appbar_his_maintenance">Maintenance</string>
     <string name="appbar_his_req_new">Request New Asset</string>
-    <string name="appbar_his_exc_asset">Exchange Asset</string>
-    <string name="appbar_his_exc_user">Exchange User</string>
+    <string name="appbar_his_exc_asset">Request Exchange Asset</string>
+    <string name="appbar_his_exc_user">Request Exchange User</string>
     <string name="part_name">Part Name</string>
     <string name="part_type">Part Type</string>
     <string name="status_matching">Match</string>
     <string name="status_different">Diff</string>
     <string name="menu">Menu</string>
     <string name="exc_emp">Exchange Employee</string>
+    <string name="old_nik">Old Nik</string>
+    <string name="old_name">Old Name</string>
+
 </resources>

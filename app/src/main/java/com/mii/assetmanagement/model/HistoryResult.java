@@ -37,12 +37,21 @@ public class HistoryResult implements Parcelable {
     @SerializedName("statusrequest")
     @Expose
     private String status;
+    @SerializedName("sn")
+    @Expose
+    private String serial;
     @SerializedName("item_asset")
     @Expose
-    private String[] quantity;
+    private int[] quantity;
     @SerializedName("brand")
     @Expose
     private String[] brand;
+    @SerializedName("reason")
+    @Expose
+    private String reason;
+    @SerializedName("remark")
+    @Expose
+    private String remark;
 
     public HistoryResult() {
     }
@@ -127,11 +136,19 @@ public class HistoryResult implements Parcelable {
         this.status = status;
     }
 
-    public String[] getQuantity() {
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public int[] getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String[] quantity) {
+    public void setQuantity(int[] quantity) {
         this.quantity = quantity;
     }
 
@@ -141,6 +158,22 @@ public class HistoryResult implements Parcelable {
 
     public void setBrand(String[] brand) {
         this.brand = brand;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     private HistoryResult(Parcel in) {
@@ -154,8 +187,11 @@ public class HistoryResult implements Parcelable {
         location = in.readString();
         date = in.readString();
         status = in.readString();
-        quantity = in.createStringArray();
+        serial = in.readString();
+        quantity = in.createIntArray();
         brand = in.createStringArray();
+        reason = in.readString();
+        remark = in.readString();
     }
 
     public static final Creator<HistoryResult> CREATOR = new Creator<HistoryResult>() {
@@ -187,7 +223,10 @@ public class HistoryResult implements Parcelable {
         dest.writeString(location);
         dest.writeString(date);
         dest.writeString(status);
-        dest.writeStringArray(quantity);
+        dest.writeString(serial);
+        dest.writeIntArray(quantity);
         dest.writeStringArray(brand);
+        dest.writeString(reason);
+        dest.writeString(remark);
     }
 }
