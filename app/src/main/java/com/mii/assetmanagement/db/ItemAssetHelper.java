@@ -25,4 +25,10 @@ public class ItemAssetHelper {
         database = dataBaseHelper.getReadableDatabase();
         return database.update(DATABASE_TABLE, values, ID + " = ?", new String[]{id});
     }
+
+    public void deleteAll() {
+        //database = dataBaseHelper.getWritableDatabase();
+        database.execSQL("delete from " + DATABASE_TABLE);
+        database.close();
+    }
 }

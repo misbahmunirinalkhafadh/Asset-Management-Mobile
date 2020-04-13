@@ -1,13 +1,17 @@
 package com.mii.assetmanagement.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.R;
@@ -53,11 +57,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void actionBar() {
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.appbar_profile);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setElevation(0);
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.START;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+            actionBar.setElevation(0);
+        }
+        mTitleTextView.setText(getString(R.string.appbar_profile));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override

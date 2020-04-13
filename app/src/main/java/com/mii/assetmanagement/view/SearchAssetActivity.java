@@ -162,10 +162,10 @@ public class SearchAssetActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_back:
-                onBackPressed();
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.btn_back:
+//                onBackPressed();
+//                break;
+//        }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AssetManagement</string>
+    <string name="app_name">Asset Management</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="nik">NIK</string>
@@ -123,4 +123,6 @@
     <string name="status_different">Diff</string>
     <string name="old_nik">Old Nik</string>
     <string name="old_name">Old Name</string>
+    <string name="type_here">Type here...</string>
+    <string name="input_brand">Input Brand</string>
 </resources>
