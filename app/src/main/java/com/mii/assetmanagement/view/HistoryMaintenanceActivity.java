@@ -22,6 +22,7 @@ import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.viewmodel.HistoryViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryMaintenanceActivity extends AppCompatActivity {
@@ -57,6 +58,14 @@ public class HistoryMaintenanceActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
+//        if (resultArrayList.size() > 0) {
+        Collections.sort(resultArrayList, (o1, o2) -> {
+            String date1 = o1.getDate();
+            String date2 = o2.getDate();
+            return date1.compareTo(date2);
+        });
+//        }
+
         if (adapter == null) {
             adapter = new HistoryMaintenanceAdapter(this, resultArrayList);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));

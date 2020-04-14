@@ -23,15 +23,6 @@ public class ExchangeRequest {
     @Expose
     private String reason;
 
-    public ExchangeRequest(String requester, String sales, String oldUserAsset, String newUserAsset, String serial, String reason) {
-        this.requester = requester;
-        this.sales = sales;
-        this.oldUserAsset = oldUserAsset;
-        this.newUserAsset = newUserAsset;
-        this.serial = serial;
-        this.reason = reason;
-    }
-
     public ExchangeRequest() {
     }
 

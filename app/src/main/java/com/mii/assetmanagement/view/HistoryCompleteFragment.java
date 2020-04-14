@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.adapter.HistoryCompleteAdapter;
@@ -32,6 +35,7 @@ import java.util.Objects;
 public class HistoryCompleteFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private ImageView imgListSearch;
     private HistoryCompleteAdapter adapter;
     private HistoryViewModel historyViewModel;
     private ArrayList<HistoryResult> historyCompleteList = new ArrayList<>();
@@ -50,7 +54,8 @@ public class HistoryCompleteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history_complete, container, false);
         recyclerView = view.findViewById(R.id.rv_history);
         progressBar = view.findViewById(R.id.progressbar);
-        Log.d("Completed ", REQUEST_TYPE);
+        imgListSearch = view.findViewById(R.id.img_search_list);
+        imgListSearch.setVisibility(View.GONE);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
         int nik = Integer.parseInt(sharedPrefManager.getSpNik());
@@ -83,7 +88,7 @@ public class HistoryCompleteFragment extends Fragment {
                 historyCompleteList.addAll(resultList);
                 adapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(getActivity(), "Data not found", Toast.LENGTH_SHORT).show();
+                imgListSearch.setVisibility(View.VISIBLE);
             }
             progressBar.setVisibility(View.GONE);
         });

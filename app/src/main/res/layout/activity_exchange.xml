@@ -23,7 +23,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_exchangeEmp" />
+            android:src="@drawable/img_exchange_emp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/img_exchange_asset"/>
+            android:src="@drawable/img_history_exchange_asset"/>
 
         <TextView
             android:layout_width="wrap_content"
