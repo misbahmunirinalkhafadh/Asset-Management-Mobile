@@ -28,6 +28,9 @@ public class Asset implements Parcelable {
     @SerializedName("serialNumber")
     @Expose
     private String serialNumber;
+    @SerializedName("type_serialnumberName")
+    @Expose
+    private String typeSerialNumber;
     @SerializedName("others")
     @Expose
     private String[] others;
@@ -94,6 +97,14 @@ public class Asset implements Parcelable {
         this.serialNumber = serialNumber;
     }
 
+    public String getTypeSerialNumber() {
+        return typeSerialNumber;
+    }
+
+    public void setTypeSerialNumber(String typeSerialNumber) {
+        this.typeSerialNumber = typeSerialNumber;
+    }
+
     public String[] getOthers() {
         return others;
     }
@@ -116,6 +127,7 @@ public class Asset implements Parcelable {
         type = in.readString();
         brand = in.readString();
         serialNumber = in.readString();
+        typeSerialNumber = in.readString();
         others = in.createStringArray();
         error = in.readByte() != 0;
     }
@@ -144,6 +156,7 @@ public class Asset implements Parcelable {
         dest.writeString(type);
         dest.writeString(brand);
         dest.writeString(serialNumber);
+        dest.writeString(typeSerialNumber);
         dest.writeStringArray(others);
         dest.writeByte((byte) (error ? 1 : 0));
     }

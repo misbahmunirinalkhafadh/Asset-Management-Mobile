@@ -19,12 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.zxing.Result;
-import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
 import java.util.Objects;
@@ -36,7 +34,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * A simple {@link Fragment} subclass.
  */
 public class CaptureExchangeEmplFragment extends Fragment implements ZXingScannerView.ResultHandler {
-
     private ZXingScannerView mScannerView;
     private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
@@ -49,7 +46,6 @@ public class CaptureExchangeEmplFragment extends Fragment implements ZXingScanne
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         //set permission version
         if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -102,20 +98,19 @@ public class CaptureExchangeEmplFragment extends Fragment implements ZXingScanne
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        exchangeViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
-            @Override
-            public void onChanged(Asset asset) {
-                Log.v("CHECK", "Error " + asset.isError());
-                if (asset.isError()) {
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
-                } else {
-                    Intent goToExchangeEmpl = new Intent(getActivity(), ExchangeEmployeeActivity.class);
-                    goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_ASSET, asset);
-                    goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    startActivity(goToExchangeEmpl);
-                }
-                dismissLoading();
+        exchangeViewModel.getDataAssetScan().observe(this, asset -> {
+            Log.v("CHECK", "Error " + asset.isError());
+            if (asset.isError()) {
+                Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
+            } else if (asset.getTypeSerialNumber().equals("Asset Only")) {
+                Toasty.warning(Objects.requireNonNull(getActivity()), "Serial Number Type is Asset Only", Toast.LENGTH_SHORT, true).show();
+            } else {
+                Intent goToExchangeEmpl = new Intent(getActivity(), ExchangeEmployeeActivity.class);
+                goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_ASSET, asset);
+                goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                startActivity(goToExchangeEmpl);
             }
+            dismissLoading();
         });
     }
 

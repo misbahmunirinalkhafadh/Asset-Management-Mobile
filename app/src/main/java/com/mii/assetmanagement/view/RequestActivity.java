@@ -1,29 +1,31 @@
 package com.mii.assetmanagement.view;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
@@ -31,12 +33,7 @@ import com.mii.assetmanagement.adapter.RequestAssetAdapter;
 import com.mii.assetmanagement.db.DBHelper;
 import com.mii.assetmanagement.db.Database;
 import com.mii.assetmanagement.db.ItemAssetHelper;
-import com.mii.assetmanagement.model.EmployeeResult;
-import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.viewmodel.RequestViewModel;
-
-import java.util.Objects;
-
 
 import static com.mii.assetmanagement.db.Database.ItemAssetColumns.BRAND;
 import static com.mii.assetmanagement.db.Database.ItemAssetColumns.QTY;
@@ -45,7 +42,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
     private String brand;
     private int qty = 0;
-    private EditText etSalesOrder, etNik, etSearch;
+    private EditText etSalesOrder, etNik, etSearch, inputText;
     private TextView tvCompanyName, tvEmpName, tvAsset;
     private LinearLayout layoutUser;
     private Button btnBack;
@@ -61,7 +58,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        actionBar();
 
         requestViewModel = ViewModelProviders.of(this).get(RequestViewModel.class);
 //        adapter = new RequestAssetAdapter();
@@ -74,7 +71,8 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         callDataSO();
         callDataEmpl();
 
-        btnBack.setOnClickListener(this);
+//        btnBack.setOnClickListener(this);
+        inputText.setOnClickListener(this);
     }
 
     private void eventInputBrand() {
@@ -108,7 +106,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 return false;
             }
         });
-
     }
 
     private void addlistitem() {
@@ -133,56 +130,50 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
     private void eventInputNik() {
         etNik.setInputType(InputType.TYPE_CLASS_NUMBER);
-        etNik.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String value = v.getText().toString().trim();
-                if (value.isEmpty()) {
-                    etNik.setError("Required");
-                    tvEmpName.setText("-");
-                    tvEmpName.setTextColor(Color.GRAY);
-                    etNik.getText().clear();
-                } else {
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH
-                            || actionId == EditorInfo.IME_ACTION_DONE
-                            || event.getAction() == KeyEvent.ACTION_DOWN
-                            && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                        showLoading();
-                        tvEmpName.setText("");
-                        requestViewModel.setDataEmpl(Integer.parseInt(value));
-                        return true;
-                    }
+        etNik.setOnEditorActionListener((v, actionId, event) -> {
+            String value = v.getText().toString().trim();
+            if (value.isEmpty()) {
+                etNik.setError("Required");
+                tvEmpName.setText("-");
+                tvEmpName.setTextColor(Color.GRAY);
+                etNik.getText().clear();
+            } else {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || event.getAction() == KeyEvent.ACTION_DOWN
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    showLoading();
+                    tvEmpName.setText("");
+                    requestViewModel.setDataEmpl(Integer.parseInt(value));
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
     }
 
     private void eventInputSo() {
         etSalesOrder.setInputType(InputType.TYPE_CLASS_NUMBER);
-        etSalesOrder.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String val = v.getText().toString().trim();
-                if (val.isEmpty()) {
-                    etSalesOrder.setError("Required");
-                    tvCompanyName.setText("-");
-                    tvCompanyName.setTextColor(Color.GRAY);
-                    layoutUser.setVisibility(View.GONE);
-                    etNik.getText().clear();
-                } else {
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH
-                            || actionId == EditorInfo.IME_ACTION_DONE
-                            || event.getAction() == KeyEvent.ACTION_DOWN
-                            && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                        showLoading();
-                        tvCompanyName.setText("");
-                        requestViewModel.setDataSO(val);
-                        return true;
-                    }
+        etSalesOrder.setOnEditorActionListener((v, actionId, event) -> {
+            String val = v.getText().toString().trim();
+            if (val.isEmpty()) {
+                etSalesOrder.setError("Required");
+                tvCompanyName.setText("-");
+                tvCompanyName.setTextColor(Color.GRAY);
+                layoutUser.setVisibility(View.GONE);
+                etNik.getText().clear();
+            } else {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || event.getAction() == KeyEvent.ACTION_DOWN
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    showLoading();
+                    tvCompanyName.setText("");
+                    requestViewModel.setDataSO(val);
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
     }
 
@@ -196,50 +187,39 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void callDataEmpl() {
-        requestViewModel.getDataEmployee().observe(this, new Observer<EmployeeResult>() {
-            @Override
-            public void onChanged(EmployeeResult employeeResult) {
-                Log.v("test", "employeeResult name" + employeeResult.getEmplName());
-                if (employeeResult.isError()) {
-                    Log.i("EmployeeResult Result", "Salah");
-                    tvEmpName.setText(R.string.invalid);
-                    tvEmpName.setTextColor(Color.RED);
-                    etNik.getText().clear();
-                } else {
-                    Log.i("EmployeeResult Result", "Benar");
-                    tvEmpName.append(employeeResult.getEmplName());
-                    tvEmpName.setTextColor(Color.BLACK);
-                }
-                dismissLoading();
+        requestViewModel.getDataEmployee().observe(this, employeeResult -> {
+            if (employeeResult.isError()) {
+                tvEmpName.setText(R.string.invalid);
+                tvEmpName.setTextColor(Color.RED);
+                etNik.getText().clear();
+            } else {
+                tvEmpName.append(employeeResult.getEmplName());
+                tvEmpName.setTextColor(Color.BLACK);
             }
+            dismissLoading();
         });
     }
 
     private void callDataSO() {
-        requestViewModel.getDataSO().observe(this, new Observer<SalesOrder>() {
-            @Override
-            public void onChanged(SalesOrder salesOrder) {
-                String asset_type = "Resource";
-                if (salesOrder.getError()) {
-                    Log.i("Sales Order Result", "Kosong");
-                    tvCompanyName.setText(R.string.invalid);
-                    tvCompanyName.setTextColor(Color.RED);
+        requestViewModel.getDataSO().observe(this, salesOrder -> {
+            String asset_type = "Resource";
+            if (salesOrder.getError()) {
+                tvCompanyName.setText(R.string.invalid);
+                tvCompanyName.setTextColor(Color.RED);
+                layoutUser.setVisibility(View.GONE);
+                etNik.getText().clear();
+            } else {
+                tvCompanyName.append(salesOrder.getCustomerName());
+                tvCompanyName.setTextColor(Color.BLACK);
+                //Set Visibility Employee Layout
+                if (salesOrder.getAssetType().equals(asset_type)) {
+                    layoutUser.setVisibility(View.VISIBLE);
+                } else {
                     layoutUser.setVisibility(View.GONE);
                     etNik.getText().clear();
-                } else {
-                    Log.i("Sales Order Result", "ADA");
-                    tvCompanyName.append(salesOrder.getCustomerName());
-                    tvCompanyName.setTextColor(Color.BLACK);
-                    //Set Visibility Employee Layout
-                    if (salesOrder.getAssetType().equals(asset_type)) {
-                        layoutUser.setVisibility(View.VISIBLE);
-                    } else {
-                        layoutUser.setVisibility(View.GONE);
-                        etNik.getText().clear();
-                    }
                 }
-                dismissLoading();
             }
+            dismissLoading();
         });
     }
 
@@ -257,8 +237,25 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         tvCompanyName = findViewById(R.id.tv_company);
         tvEmpName = findViewById(R.id.tv_name);
         layoutUser = findViewById(R.id.ll_user);
-        btnBack = findViewById(R.id.btn_back);
+//        btnBack = findViewById(R.id.btn_back);
         layoutUser.setVisibility(View.GONE);
+
+        inputText = findViewById(R.id.input_text);
+        inputText.setFocusable(false);
+    }
+
+    private void actionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.CENTER;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        }
+        mTitleTextView.setText(getString(R.string.appbar_his_req_new));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -274,9 +271,31 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 //                goToSearchAsset.putExtras(extras);
 //                startActivity(goToSearchAsset);
 //                break;
-            case R.id.btn_back:
-                onBackPressed();
+//            case R.id.btn_back:
+//                onBackPressed();
+//                break;
+            case R.id.input_text:
+                insertBrand();
                 break;
         }
+    }
+
+    private void insertBrand() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Brand Name")
+                .setView(R.layout.layout_insert_text)
+                .setPositiveButton("Save", (dialog, which) -> {
+
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    dialog.cancel();
+                })
+                .show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
