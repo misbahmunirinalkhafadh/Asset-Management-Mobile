@@ -125,5 +125,9 @@
     <string name="exc_emp">Exchange Employee</string>
     <string name="old_nik">Old Nik</string>
     <string name="old_name">Old Name</string>
+    <string name="transactiondetail">Transaction Detail</string>
+    <string name="employeeInformatio">Employee Information</string>
+    <string name="employeeInformation">Employee Information</string>
+    <string name="assetInformation">Asset Information</string>
 
 </resources>
