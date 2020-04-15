@@ -61,8 +61,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/mregular"
                             android:text="@string/id_request"
-                            android:textColor="@color/colorTitle"
-                            android:textSize="14sp" />
+                            android:textColor="@color/colorTitle" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -70,8 +69,7 @@
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/mregular"
                             android:text="@string/serial"
-                            android:textColor="@color/colorTitle"
-                            android:textSize="14sp" />
+                            android:textColor="@color/colorTitle" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -84,9 +82,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:fontFamily="@font/mregular"
-                            android:textColor="@color/colorField"
-                            android:textSize="14sp" />
+                            android:textColor="@color/colorField" />
 
                         <TextView
                             android:id="@+id/tv_serial"
@@ -94,9 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/mregular"
-                            android:textColor="@color/colorField"
-                            android:textSize="14sp" />
+                            android:textColor="@color/colorField" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -132,86 +126,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="14dp"
-                android:background="@drawable/bg_menu"
-                android:orientation="vertical"
-                android:padding="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/additional"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/iPAddress"
-                    android:textColor="@color/colorField"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_ip_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mregular"
-                    android:textColor="@color/colorField"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/userNameLogin"
-                    android:textColor="@color/colorField"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_uname_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mregular"
-                    android:textColor="@color/colorField"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/computerName"
-                    android:textColor="@color/colorField"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_comp_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mregular"
-                    android:textColor="@color/colorField"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/tv_reason"
                 android:layout_width="match_parent"
@@ -223,7 +137,7 @@
                 android:text="@string/reason"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

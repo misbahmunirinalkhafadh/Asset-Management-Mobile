@@ -108,7 +108,7 @@
     <string name="ex_ip">192.168.1.1</string>
     <string name="comp_name">comp123</string>
     <string name="new_nik">New NIK</string>
-    <string name="appbar_history_detail">History Detail</string>
+    <string name="appbar_detail_maintenance">Detail Maintenance</string>
     <string name="History">HISTORY</string>
     <string name="RequestNew">Request New</string>
     <string name="exchange_user">Exc Employee</string>
