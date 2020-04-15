@@ -16,12 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_profile"
+        android:src="@drawable/img_profile"
         android:transitionName="profileTransition"
         app:civ_border_color="@color/colorWhite"
         app:civ_border_width="4dp"
@@ -118,9 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/version"
-        android:textSize="16sp"
         android:fontFamily="@font/mlight"
-        android:textStyle="italic"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

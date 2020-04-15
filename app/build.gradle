@@ -10,8 +10,8 @@ android {
         applicationId "com.mii.assetmanagement"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1 // Ditamhbakan setiap mau di upload ke PLAY STORE
-        versionName "1.0" // ditambahkan setiap menambahkan fitur baru atau perbaikan
+        versionCode 1
+        versionName "1.7" // Ditamhbakan setiap mau di upload ke PLAY STORE
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "JWT_SAKURA_TOKEN", '"sakura eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWt1cmEiLCJpYXQiOjE1ODAxOTYxMzJ9.zYvu8-qr48lmTx7_3tZMmVmIBuGPVXmgHbFOwSdTAdYZO9FFQWa7rUeKodtfOMkzfnnjVQSl6f_t54_qvlo7cA"'
@@ -27,12 +27,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.android.support:appcompat-v7:29.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+//    implementation 'com.android.support:appcompat-v7:29.0.0'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    // Imager
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.github.gcacace:signature-pad:1.2.1'
 
@@ -59,7 +60,6 @@ dependencies {
     //Toast Custom
     implementation 'com.github.GrenderG:Toasty:1.4.2'
 
-    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

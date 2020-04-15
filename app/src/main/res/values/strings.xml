@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AssetManagement</string>
+    <string name="app_name">Asset Management</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="nik">NIK</string>
@@ -111,7 +111,7 @@
     <string name="appbar_detail_maintenance">Detail Maintenance</string>
     <string name="History">HISTORY</string>
     <string name="RequestNew">Request New</string>
-    <string name="exchange_user">Exc Employee</string>
+    <string name="exchange_user">Exc User</string>
     <string name="maintenancee">Maintenance</string>
     <string name="appbar_his_maintenance">Maintenance</string>
     <string name="appbar_his_req_new">Request New Asset</string>
@@ -121,13 +121,13 @@
     <string name="part_type">Part Type</string>
     <string name="status_matching">Match</string>
     <string name="status_different">Diff</string>
-    <string name="menu">Menu</string>
-    <string name="exc_emp">Exchange Employee</string>
     <string name="old_nik">Old Nik</string>
     <string name="old_name">Old Name</string>
     <string name="transactiondetail">Transaction Detail</string>
     <string name="employeeInformatio">Employee Information</string>
     <string name="employeeInformation">Employee Information</string>
     <string name="assetInformation">Asset Information</string>
+    <string name="type_here">Type here...</string>
+    <string name="input_brand">Input Brand</string>
 
 </resources>

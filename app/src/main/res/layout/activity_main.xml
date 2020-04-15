@@ -40,7 +40,7 @@
                     android:id="@+id/img_profile"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/img_profile"
                     android:transitionName="profileTransition"
                     app:civ_border_color="@color/colorWhite"
                     app:civ_border_width="2dp" />
@@ -98,7 +98,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:contentDescription="@string/todo"
-                    android:src="@drawable/ic_maintain" />
+                    android:src="@drawable/img_menu_maintain" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:contentDescription="@string/todo"
-                    android:src="@drawable/ic_requ" />
+                    android:src="@drawable/img_menu_request" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -12,7 +12,7 @@
         android:layout_height="174dp"
         android:scaleType="fitCenter"
         android:contentDescription="@string/todo"
-        android:src="@drawable/ic_success" />
+        android:src="@drawable/img_success" />
 
     <TextView
         android:id="@+id/tv_success"

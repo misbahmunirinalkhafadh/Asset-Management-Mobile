@@ -37,6 +37,7 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
     private String userNik;
     private SharedPrefManager sharedPrefManager;
     private ExchangeViewModel exchangeViewModel;
+    public static final String STRIP = "-";
     public static final String EXTRA_ASSET = "extra_asset";
     public static final String EXTRA_EMPLOYEE = "extra_employee";
 
@@ -89,7 +90,11 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
 
         Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);
         if (employee != null) {
-            userNik = employee.getNik();
+            if (employee.getNik() == null) {
+                userNik = STRIP;
+            } else {
+                userNik = employee.getNik();
+            }
             tvBranch.setText(employee.getBranch());
         }
     }
@@ -126,7 +131,7 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
                         request.setRequester(sharedPrefManager.getSpNik().trim());
                         request.setSales(tvSales.getText().toString().trim());
                         request.setSerial(tvSerial.getText().toString().trim());
-                        request.setOldUserAsset(userNik.trim());
+                        request.setOldUserAsset(userNik);
                         request.setReason(etReason.getText().toString().trim());
 
                         exchangeViewModel.saveExchangeAsset(request);

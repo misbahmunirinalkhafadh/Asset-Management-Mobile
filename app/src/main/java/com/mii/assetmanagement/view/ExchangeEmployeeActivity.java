@@ -38,13 +38,12 @@ import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 import es.dmoral.toasty.Toasty;
 
 public class ExchangeEmployeeActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tvSales, tvCompany, tvBranch, tvBrand, tvOldNik, tvOldName, tvNewName;
     private EditText etNewNik, etReason;
     private ImageView ivInfo;
     private Button btnSubmit, btnClose;
     private String serialNumber;
-    private int nikNewUser;
+    private String nikNewUser;
     private SharedPrefManager sharedPrefManager;
     private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
@@ -73,31 +72,28 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
 
     private void eventInputNik() {
         etNewNik.setInputType(InputType.TYPE_CLASS_NUMBER);
-        etNewNik.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String value = v.getText().toString().trim();
-                if (value.isEmpty()) {
-                    etNewNik.setError("Required");
-                    tvNewName.setText(STRIP);
-                    tvNewName.setTextColor(Color.GRAY);
-                    etNewNik.getText().clear();
-                } else {
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH
-                            || actionId == EditorInfo.IME_ACTION_DONE
-                            || event.getAction() == KeyEvent.ACTION_DOWN
-                            && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                        InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
+        etNewNik.setOnEditorActionListener((v, actionId, event) -> {
+            String value = v.getText().toString().trim();
+            if (value.isEmpty()) {
+                etNewNik.setError("Required");
+                tvNewName.setText(STRIP);
+                tvNewName.setTextColor(Color.GRAY);
+                etNewNik.getText().clear();
+            } else {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || event.getAction() == KeyEvent.ACTION_DOWN
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
 
-                        showLoading();
-                        tvNewName.setText("");
-                        exchangeViewModel.setDataEmpl(Integer.parseInt(value));
-                        return true;
-                    }
+                    showLoading();
+                    tvNewName.setText("");
+                    exchangeViewModel.setDataEmpl(Integer.parseInt(value));
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
     }
 
@@ -111,23 +107,20 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
     }
 
     private void callDataEmpl() {
-        exchangeViewModel.getDataEmployee().observe(this, new Observer<EmployeeResult>() {
-            @Override
-            public void onChanged(EmployeeResult employeeResult) {
-                nikNewUser = employeeResult.getNik();
-                if (employeeResult.isError()) {
-                    tvNewName.setText(INVALID_NUMBER);
-                    tvNewName.setTextColor(Color.RED);
-                    etNewNik.getText().clear();
-                    Toasty.error(ExchangeEmployeeActivity.this, "Not Available", Toast.LENGTH_SHORT, true).show();
-                } else {
-                    tvNewName.append(employeeResult.getEmplName());
-                    tvNewName.setTextColor(Color.BLACK);
-                    etNewNik.clearFocus();
-                    Toasty.success(ExchangeEmployeeActivity.this, "Available!", Toast.LENGTH_SHORT, true).show();
-                }
-                dismissLoading();
+        exchangeViewModel.getDataEmployee().observe(this, employeeResult -> {
+            nikNewUser = String.valueOf(employeeResult.getNik());
+            if (employeeResult.isError()) {
+                tvNewName.setText(INVALID_NUMBER);
+                tvNewName.setTextColor(Color.RED);
+                etNewNik.getText().clear();
+                Toasty.error(ExchangeEmployeeActivity.this, "Not Available", Toast.LENGTH_SHORT, true).show();
+            } else {
+                tvNewName.append(employeeResult.getEmplName());
+                tvNewName.setTextColor(Color.BLACK);
+                etNewNik.clearFocus();
+                Toasty.success(ExchangeEmployeeActivity.this, "Available!", Toast.LENGTH_SHORT, true).show();
             }
+            dismissLoading();
         });
     }
 
@@ -190,12 +183,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("Information");
                 dialog.setMessage("Press enter on keyboard after input Employee NIK for showing Employee Name");
-                dialog.setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                dialog.setPositiveButton("OKE", (dialog1, which) -> dialog1.dismiss());
                 dialog.show();
                 break;
             case R.id.btn_submit:
@@ -217,12 +205,9 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("User Name Invalid!")
                     .setMessage("New user name employee invalid, please insert new user nik!")
-                    .setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            etNewNik.requestFocus();
-                        }
+                    .setPositiveButton("OKE", (dialog, which) -> {
+                        dialog.dismiss();
+                        etNewNik.requestFocus();
                     })
                     .show();
         } else if (reason.isEmpty()) {
@@ -233,50 +218,36 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
             builder.setTitle("Confirmation")
                     .setMessage("Are you sure, want you change user asset?")
                     .setCancelable(false)
-                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ExchangeRequest request = new ExchangeRequest();
-                            request.setRequester(sharedPrefManager.getSpNik().trim());
-                            request.setSales(tvSales.getText().toString().trim());
-                            request.setSerial(serialNumber.trim());
-                            request.setOldUserAsset(tvOldNik.getText().toString().trim());
-                            request.setNewUserAsset(String.valueOf(nikNewUser).trim());
-                            request.setReason(etReason.getText().toString().trim());
+                    .setPositiveButton("Save", (dialog, which) -> {
+                        ExchangeRequest request = new ExchangeRequest();
+                        request.setRequester(sharedPrefManager.getSpNik());
+                        request.setSales(tvSales.getText().toString().trim());
+                        request.setSerial(serialNumber);
+                        request.setOldUserAsset(tvOldNik.getText().toString().trim());
+                        request.setNewUserAsset(nikNewUser);
+                        request.setReason(etReason.getText().toString().trim());
 
-                            exchangeViewModel.saveExchangeEmpl(request);
-                            showDialogSuccess();
-                        }
+                        exchangeViewModel.saveExchangeEmpl(request);
+                        showDialogSuccess();
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    }).show();
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
         }
     }
 
     private void showDialogSuccess() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    final Dialog dialog = new Dialog(ExchangeEmployeeActivity.this);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setCancelable(false);
-                    dialog.setContentView(R.layout.layout_dialog_success);
-                    dialog.show();
-                    Button dialogButton = dialog.findViewById(R.id.btn_continue);
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            Intent goToMain = new Intent(ExchangeEmployeeActivity.this, MainActivity.class);
-                            startActivity(goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        }
-                    });
-                }
+        runOnUiThread(() -> {
+            if (!isFinishing()) {
+                final Dialog dialog = new Dialog(ExchangeEmployeeActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.layout_dialog_success);
+                dialog.show();
+                Button dialogButton = dialog.findViewById(R.id.btn_continue);
+                dialogButton.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent goToMain = new Intent(ExchangeEmployeeActivity.this, MainActivity.class);
+                    startActivity(goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                });
             }
         });
     }
