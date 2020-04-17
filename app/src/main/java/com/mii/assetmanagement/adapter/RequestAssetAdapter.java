@@ -1,68 +1,77 @@
 package com.mii.assetmanagement.adapter;
 
-import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.mii.assetmanagement.R;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.mii.assetmanagement.R.drawable.img_delete;
+import com.mii.assetmanagement.R;
+
+import static android.provider.BaseColumns._ID;
+import static com.mii.assetmanagement.db.AssetContract.AssetEntry.COLUMN_ITEM;
+import static com.mii.assetmanagement.db.AssetContract.AssetEntry.COLUMN_QTY;
 
 public class RequestAssetAdapter extends RecyclerView.Adapter<RequestAssetAdapter.ViewHolder> {
-    private Activity activity;
-    private List<String> requestList;
+    private Context mContext;
+    private Cursor mCursor;
+    private SQLiteDatabase mDatabase;
 
-    public RequestAssetAdapter(Activity activity, List<String> requestList) {
-        this.activity = activity;
-        this.requestList = requestList;
+    public RequestAssetAdapter(Context mContext, Cursor mCursor, SQLiteDatabase mDatabase) {
+        this.mContext = mContext;
+        this.mCursor = mCursor;
+        this.mDatabase = mDatabase;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_result_asset, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_list_request_asset, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if (!mCursor.moveToPosition(position)) {
+            return;
+        }
+        String item = mCursor.getString(mCursor.getColumnIndex(COLUMN_ITEM));
+        int qty = mCursor.getInt(mCursor.getColumnIndex(COLUMN_QTY));
+        long id = mCursor.getLong(mCursor.getColumnIndex(_ID));
 
-        holder.brand.setText(requestList.get(position));
-        holder.qty.setText(requestList.get(position));
-//        holder.delete.setImageDrawable();
-
-//        holder.delete.setImageDrawable(R.drawable);
-
-
+        holder.tvItem.setText(item);
+        holder.tvQty.setText(String.valueOf(qty));
+        holder.itemView.setTag(id);
     }
 
     @Override
     public int getItemCount() {
-        return requestList.size();
+        return mCursor.getCount();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView delete;
-        TextView brand, qty;
-        Button increase, decrease;
+    public void swapCursor(Cursor newCursor) {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        mCursor = newCursor;
+        if (newCursor != null) {
+            notifyDataSetChanged();
+        }
+    }
 
-        public ViewHolder(@NonNull View itemView) {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvItem, tvQty;
+
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            delete = itemView.findViewById(R.id.iv_delete);
-            qty = itemView.findViewById(R.id.tv_number);
-            brand = itemView.findViewById(R.id.tv_brand);
-            increase = itemView.findViewById(R.id.btn_increase);
-            decrease = itemView.findViewById(R.id.btn_decrease);
+            tvItem = itemView.findViewById(R.id.tv_item);
+            tvQty = itemView.findViewById(R.id.tv_qty);
 
         }
     }

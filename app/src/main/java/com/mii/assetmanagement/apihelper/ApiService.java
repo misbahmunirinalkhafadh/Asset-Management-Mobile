@@ -4,10 +4,10 @@ import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.AssetResult;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
-import com.mii.assetmanagement.model.HistoryMaintenanceResult;
 import com.mii.assetmanagement.model.HistoryRequest;
 import com.mii.assetmanagement.model.HistoryMaintenance;
 import com.mii.assetmanagement.model.MaintenanceRequest;
+import com.mii.assetmanagement.model.AssetRequest;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.model.User;
 
@@ -34,6 +34,11 @@ public interface ApiService {
     @POST("maintenance/save")
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Call<String> saveMaintenance(@Body MaintenanceRequest body,
+                                 @Header("Authorization") String token);
+
+    @POST("assetrequest/save")
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Call<String> saveRequestAsset(@Body AssetRequest body,
                                  @Header("Authorization") String token);
 
     @POST("exchange/saveuser")

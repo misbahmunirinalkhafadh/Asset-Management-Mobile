@@ -1,11 +1,13 @@
 package com.mii.assetmanagement.view;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -27,10 +29,11 @@ import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
+import java.util.Objects;
+
 import es.dmoral.toasty.Toasty;
 
 public class ExchangeAssetActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tvSales, tvCompany, tvBranch, tvSerial;
     private EditText etReason;
     private Button btnSubmit, btnClose;
@@ -46,22 +49,13 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange_asset);
         actionBar();
+        initComponent();
+
         sharedPrefManager = new SharedPrefManager(this);
         exchangeViewModel = ViewModelProviders.of(this).get(ExchangeViewModel.class);
-        initComponent();
 
         btnSubmit.setOnClickListener(this);
         btnClose.setOnClickListener(this);
-    }
-
-    private void initComponent() {
-        tvSales = findViewById(R.id.tv_sales);
-        tvCompany = findViewById(R.id.tv_company);
-        tvBranch = findViewById(R.id.tv_branch);
-        tvSerial = findViewById(R.id.tv_serial);
-        etReason = findViewById(R.id.et_reason);
-        btnSubmit = findViewById(R.id.btn_submit);
-        btnClose = findViewById(R.id.btn_close);
     }
 
     private void actionBar() {
@@ -73,9 +67,19 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(getString(R.string.exchange_asset));
+        mTitleTextView.setText(getString(R.string.appbar_exchange_asset));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
+    }
+
+    private void initComponent() {
+        tvSales = findViewById(R.id.tv_sales);
+        tvCompany = findViewById(R.id.tv_company);
+        tvBranch = findViewById(R.id.tv_branch);
+        tvSerial = findViewById(R.id.tv_serial);
+        etReason = findViewById(R.id.et_reason);
+        btnSubmit = findViewById(R.id.btn_submit);
+        btnClose = findViewById(R.id.btn_close);
     }
 
     @Override
@@ -103,11 +107,18 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_submit:
-                InputMethodManager imm = (InputMethodManager) ExchangeAssetActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
                 }
-                saveState();
+
+                String reason = etReason.getText().toString().trim();
+                if (TextUtils.isEmpty(reason)){
+                    etReason.requestFocus();
+                    Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
+                }else {
+                    saveState();
+                }
                 break;
             case R.id.btn_close:
                 Intent goToExchange = new Intent(ExchangeAssetActivity.this, ExchangeActivity.class);
@@ -117,28 +128,22 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
     }
 
     private void saveState() {
-        String reason = etReason.getText().toString().trim();
-        if (reason.isEmpty()) {
-            etReason.requestFocus();
-            Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Confirmation")
-                    .setMessage("Are you sure, want you submit this request?")
-                    .setCancelable(false)
-                    .setPositiveButton("Save", (dialog, which) -> {
-                        ExchangeRequest request = new ExchangeRequest();
-                        request.setRequester(sharedPrefManager.getSpNik().trim());
-                        request.setSales(tvSales.getText().toString().trim());
-                        request.setSerial(tvSerial.getText().toString().trim());
-                        request.setOldUserAsset(userNik);
-                        request.setReason(etReason.getText().toString().trim());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+                .setMessage("Are you sure, want you submit this request?")
+                .setCancelable(false)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    ExchangeRequest request = new ExchangeRequest();
+                    request.setRequester(sharedPrefManager.getSpNik().trim());
+                    request.setSales(tvSales.getText().toString().trim());
+                    request.setSerial(tvSerial.getText().toString().trim());
+                    request.setOldUserAsset(userNik);
+                    request.setReason(etReason.getText().toString().trim());
 
-                        exchangeViewModel.saveExchangeAsset(request);
-                        showDialogSuccess();
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
-        }
+                    exchangeViewModel.saveExchangeAsset(request);
+                    showDialogSuccess();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
     }
 
     private void showDialogSuccess() {
