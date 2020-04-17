@@ -147,7 +147,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:contentDescription="@string/todo"
-                    android:src="@drawable/img_history_exchange_emp" />
+                    android:src="@drawable/ic_exchangeemp" />
 
                 <TextView
                     android:layout_width="wrap_content"

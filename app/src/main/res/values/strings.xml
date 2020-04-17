@@ -124,9 +124,14 @@
     <string name="status_different">Diff</string>
     <string name="old_nik">Old Nik</string>
     <string name="old_name">Old Name</string>
+    <string name="transactiondetail">Transaction Detail</string>
+    <string name="employeeInformatio">Employee Information</string>
+    <string name="employeeInformation">Employee Information</string>
+    <string name="assetInformation">Asset Information</string>
     <string name="type_here">Type here...</string>
     <string name="input_brand">Input Brand</string>
     <string name="minus">-</string>
     <string name="amount">0</string>
     <string name="plus">+</string>
+
 </resources>
