@@ -27,6 +27,8 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     public static final String EXTRA_ASSET = "extra_asset";
     public static final String EXTRA_EMPLOYEE = "extra_employee";
     public static final String EXTRA_PARTS = "extra_parts";
+    public static final String STRIP = "-";
+    public static final String NOT_AVAILABLE = "N/A";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,34 +78,48 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     protected void onResume() {
         super.onResume();
         Asset asset = getIntent().getParcelableExtra(EXTRA_ASSET);
-        tvSales.setText(asset.getSalesOrder());
-        tvSerial.setText(asset.getSerialNumber());
-        tvBrand.setText(asset.getBrand());
-        tvCategory.setText(asset.getType());
-        listService = asset.getOthers();
+        if (asset != null) {
+            tvSales.setText(asset.getSalesOrder());
+            tvSerial.setText(asset.getSerialNumber());
+            tvBrand.setText(asset.getBrand());
+            tvCategory.setText(asset.getType());
+            listService = asset.getOthers();
+        }
 
         Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);
-        tvNik.setText(employee.getNik());
-        tvName.setText(employee.getName());
-        tvLocation.setText(employee.getLocation());
-        tvBranch.setText(employee.getBranch());
+        if (employee != null) {
+            if (employee.getNik() == null) {
+                tvNik.setText(STRIP);
+            } else {
+                tvNik.setText(employee.getNik());
+            }
+            if (employee.getName().equals("")) {
+                tvName.setText(STRIP);
+            } else {
+                tvName.setText(employee.getName());
+            }
+
+            tvLocation.setText(employee.getLocation());
+            tvBranch.setText(employee.getBranch());
+        }
 
         Part part = getIntent().getParcelableExtra(EXTRA_PARTS);
-        String hdd = part.getHDD();
-        String ssd = part.getSSD();
-        if (hdd.equals("")) {
-            tvHdd.setText("N/A");
-        } else {
-            tvHdd.setText(hdd);
+        if (part != null) {
+            if (part.getHDD().equals("")) {
+                tvHdd.setText(NOT_AVAILABLE);
+            } else {
+                tvHdd.setText(part.getHDD());
+            }
+            if (part.getSSD().equals("")) {
+                tvSsd.setText(NOT_AVAILABLE);
+            } else {
+                tvSsd.setText(part.getSSD());
+            }
+
+            tvProcessor.setText(part.getProcessor());
+            tvSystem.setText(part.getOS());
+            tvRam.setText(part.getRAM());
         }
-        if (ssd.equals("")) {
-            tvSsd.setText("N/A");
-        } else {
-            tvSsd.setText(ssd);
-        }
-        tvProcessor.setText(part.getProcessor());
-        tvSystem.setText(part.getOS());
-        tvRam.setText(part.getRAM());
     }
 
     @Override

@@ -71,7 +71,13 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
     private void setupRecyclerView(String[] brand, int[] qty) {
         if (adapter == null) {
             adapter = new HistoryRequestDetailAdapter(this, brand, qty);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this) {
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
@@ -106,6 +112,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             tvNik.setVisibility(View.GONE);
             tvName.setVisibility(View.GONE);
         }
+
         if (result.getTypeRequest().equals("Request Exchange Asset")) {
             textOldNik.setVisibility(View.GONE);
             textOldName.setVisibility(View.GONE);

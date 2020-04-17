@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
@@ -36,7 +34,6 @@ import es.dmoral.toasty.Toasty;
 public class InputSerialExchangeEmplFragment extends Fragment implements View.OnClickListener {
     private EditText etSerial;
     private Button btnSearch;
-    private ConstraintLayout layout;
     private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
 
@@ -57,7 +54,6 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
     }
 
     private void initComponent(View view) {
-        layout = view.findViewById(R.id.main_view);
         etSerial = view.findViewById(R.id.et_serial);
         btnSearch = view.findViewById(R.id.btn_search_serial);
     }
@@ -65,7 +61,9 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
     @Override
     public void onClick(View v) {
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(etSerial.getWindowToken(), 0);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(etSerial.getWindowToken(), 0);
+        }
         String serial = etSerial.getText().toString().trim();
         if (serial.isEmpty()) {
             etSerial.setError("Enter serial number");
@@ -92,9 +90,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
                 etSerial.getText().clear();
                 Toasty.error(Objects.requireNonNull(getActivity()), "Invalid Serial Number", Toast.LENGTH_SHORT, true).show();
             } else if (asset.getTypeSerialNumber().equals("Asset Only")) {
-                Snackbar snackbar = Snackbar.make(layout, "Serial Number Type is Asset Only", Snackbar.LENGTH_LONG);
-                snackbar.setAction("DISMISS", v -> snackbar.dismiss());
-                snackbar.show();
+                Toasty.warning(Objects.requireNonNull(getActivity()), "Serial Number Type is Asset Only", Toast.LENGTH_SHORT, true).show();
             } else {
                 Intent goToExchangeEmpl = new Intent(getActivity(), ExchangeEmployeeActivity.class);
                 goToExchangeEmpl.putExtra(ExchangeEmployeeActivity.EXTRA_ASSET, asset);

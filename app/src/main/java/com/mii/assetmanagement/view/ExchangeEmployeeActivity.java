@@ -1,10 +1,10 @@
 package com.mii.assetmanagement.view;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,16 +24,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.model.Employee;
-import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
+
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -57,17 +57,48 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange_employee);
         actionBar();
+        initComponent();
 
         sharedPrefManager = new SharedPrefManager(this);
         exchangeViewModel = ViewModelProviders.of(this).get(ExchangeViewModel.class);
 
-        initComponent();
         eventInputNik();
         callDataEmpl();
 
         ivInfo.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
         btnClose.setOnClickListener(this);
+    }
+
+    private void actionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.START;
+        if (actionBar != null) {
+            actionBar.setCustomView(mTitleTextView, layoutParams);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+        }
+        mTitleTextView.setText(getString(R.string.appbar_exchange_employee));
+        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
+        mTitleTextView.setTextColor(Color.WHITE);
+    }
+
+    private void initComponent() {
+        tvSales = findViewById(R.id.tv_sales);
+        tvCompany = findViewById(R.id.tv_company);
+        tvBranch = findViewById(R.id.tv_branch);
+        tvBrand = findViewById(R.id.tv_brand);
+        tvOldNik = findViewById(R.id.tv_old_nik);
+        tvOldName = findViewById(R.id.tv_old_name);
+        tvNewName = findViewById(R.id.tv_new_name);
+        etNewNik = findViewById(R.id.et_new_nik);
+        etReason = findViewById(R.id.et_reason);
+        ivInfo = findViewById(R.id.iv_info);
+        btnSubmit = findViewById(R.id.btn_submit);
+        btnClose = findViewById(R.id.btn_close);
+
+        tvNewName.setText(STRIP);
     }
 
     private void eventInputNik() {
@@ -84,12 +115,10 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || event.getAction() == KeyEvent.ACTION_DOWN
                         && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
-
                     showLoading();
                     tvNewName.setText("");
                     exchangeViewModel.setDataEmpl(Integer.parseInt(value));
+                    hideSoftKeyboard(this);
                     return true;
                 }
             }
@@ -108,7 +137,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
 
     private void callDataEmpl() {
         exchangeViewModel.getDataEmployee().observe(this, employeeResult -> {
-            nikNewUser = String.valueOf(employeeResult.getNik());
+            nikNewUser = String.valueOf(employeeResult.getNik()).trim();
             if (employeeResult.isError()) {
                 tvNewName.setText(INVALID_NUMBER);
                 tvNewName.setTextColor(Color.RED);
@@ -130,50 +159,30 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
         }
     }
 
-    private void initComponent() {
-        tvSales = findViewById(R.id.tv_sales);
-        tvCompany = findViewById(R.id.tv_company);
-        tvBranch = findViewById(R.id.tv_branch);
-        tvBrand = findViewById(R.id.tv_brand);
-        tvOldNik = findViewById(R.id.tv_old_nik);
-        tvOldName = findViewById(R.id.tv_old_name);
-        tvNewName = findViewById(R.id.tv_new_name);
-        etNewNik = findViewById(R.id.et_new_nik);
-        etReason = findViewById(R.id.et_reason);
-        ivInfo = findViewById(R.id.iv_info);
-        btnSubmit = findViewById(R.id.btn_submit);
-        btnClose = findViewById(R.id.btn_close);
-
-        tvNewName.setText(STRIP);
-    }
-
-    private void actionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        AppCompatTextView mTitleTextView = new AppCompatTextView(getApplicationContext());
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.START;
-        if (actionBar != null) {
-            actionBar.setCustomView(mTitleTextView, layoutParams);
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(Objects.requireNonNull(activity.getCurrentFocus()).getWindowToken(), 0);
         }
-        mTitleTextView.setText(getString(R.string.appbar_exchange_employee));
-        mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
-        mTitleTextView.setTextColor(Color.WHITE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Asset asset = getIntent().getParcelableExtra(EXTRA_ASSET);
-        tvSales.setText(asset.getSalesOrder());
-        tvCompany.setText(asset.getCompany());
-        tvBrand.setText(asset.getBrand());
-        serialNumber = asset.getSerialNumber();
+        if (asset != null) {
+            tvSales.setText(asset.getSalesOrder());
+            tvCompany.setText(asset.getCompany());
+            tvBrand.setText(asset.getBrand());
+            serialNumber = asset.getSerialNumber();
+        }
 
         Employee employee = getIntent().getParcelableExtra(EXTRA_EMPLOYEE);
-        tvBranch.setText(employee.getBranch());
-        tvOldNik.setText(employee.getNik());
-        tvOldName.setText(employee.getName());
+        if (employee != null) {
+            tvBranch.setText(employee.getBranch());
+            tvOldNik.setText(employee.getNik());
+            tvOldName.setText(employee.getName());
+        }
     }
 
     @Override
@@ -187,8 +196,11 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 dialog.show();
                 break;
             case R.id.btn_submit:
-                InputMethodManager imm = (InputMethodManager) ExchangeEmployeeActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
+                InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
+                }
                 saveState();
                 break;
             case R.id.btn_close:
