@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
 
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/et_item"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/type_here"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:hint="@string/type_here"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_minus"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:background="@color/colorGreen"
+            android:text="@string/minus"
+            android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/amount"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_plus"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:background="@color/colorGreen"
+            android:text="@string/plus"
+            android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

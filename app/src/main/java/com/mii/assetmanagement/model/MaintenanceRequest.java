@@ -44,21 +44,6 @@ public class MaintenanceRequest {
     @Expose
     private String maintainer; // session
 
-    public MaintenanceRequest(boolean ram, boolean hdd, boolean ssd, boolean os, boolean processor, boolean[] service, String ip, String sn, String result, String username, String computerName, String maintainer) {
-        this.ram = ram;
-        this.hdd = hdd;
-        this.ssd = ssd;
-        this.os = os;
-        this.processor = processor;
-        this.service = service;
-        this.ip = ip;
-        this.sn = sn;
-        this.result = result;
-        this.username = username;
-        this.computerName = computerName;
-        this.maintainer = maintainer;
-    }
-
     public MaintenanceRequest() {
 
     }
