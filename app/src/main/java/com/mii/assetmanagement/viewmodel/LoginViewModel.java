@@ -26,7 +26,7 @@ public class LoginViewModel extends ViewModel {
 
     public void setLiveDataUser(Login login) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
-        mApiService.reqLogin(login, API_TOKEN).enqueue(new Callback<User>() {
+        mApiService.requestLogin(login, API_TOKEN).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null && response.body().isError()) {
