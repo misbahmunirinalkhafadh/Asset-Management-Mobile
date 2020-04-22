@@ -54,7 +54,7 @@
     <CheckBox
         android:id="@+id/cb_hdd"
         style="@style/ItemLayoutCheckbox"
-        android:text="@string/hardisk"
+        android:text="@string/hard_disk"
         android:theme="@style/MyCheckbox"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"

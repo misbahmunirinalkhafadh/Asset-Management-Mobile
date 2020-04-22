@@ -18,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ExchangeViewModel extends ViewModel {
-
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<Asset> liveDataAssetInput = new MutableLiveData<>();
     private MutableLiveData<Asset> liveDataAssetScan = new MutableLiveData<>();
@@ -27,8 +26,7 @@ public class ExchangeViewModel extends ViewModel {
 
     public void setDataAssetInput(String serial) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
-        call.enqueue(new Callback<Asset>() {
+        mApiService.assetRequest(serial, API_TOKEN).enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 Log.d("onResponse", "Asset " + response.body().toString());
@@ -48,8 +46,7 @@ public class ExchangeViewModel extends ViewModel {
 
     public void setDataAssetScan(String serial) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
-        call.enqueue(new Callback<Asset>() {
+        mApiService.assetRequest(serial, API_TOKEN).enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 Log.d("onResponse", "Asset " + response.body().toString());
@@ -69,8 +66,7 @@ public class ExchangeViewModel extends ViewModel {
 
     public void setDataEmpl(int nik) {
         mApiService = UtilsApi.getApiServiceSakuraJwt();
-        Call<EmployeeResult> call = mApiService.getEmployee(nik, API_TOKEN);
-        call.enqueue(new Callback<EmployeeResult>() {
+        mApiService.getEmployee(nik, API_TOKEN).enqueue(new Callback<EmployeeResult>() {
             @Override
             public void onResponse(Call<EmployeeResult> call, Response<EmployeeResult> response) {
                 Log.v("", "Test" + response.body());
@@ -90,8 +86,7 @@ public class ExchangeViewModel extends ViewModel {
 
     public void saveExchangeEmpl(ExchangeRequest request) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<String> call = mApiService.saveExchangeEmpl(request, API_TOKEN);
-        call.enqueue(new Callback<String>() {
+        mApiService.saveExchangeEmpl(request, API_TOKEN).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.i("Save exchange employee ", response.message());
@@ -107,8 +102,7 @@ public class ExchangeViewModel extends ViewModel {
 
     public void saveExchangeAsset(ExchangeRequest request) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<String> call = mApiService.saveExchangeAsset(request, API_TOKEN);
-        call.enqueue(new Callback<String>() {
+        mApiService.saveExchangeAsset(request, API_TOKEN).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.i("Save exchange Asset ", response.message());

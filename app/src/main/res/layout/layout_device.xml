@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mregular"
-        android:text="@string/hardisk"
+        android:text="@string/hard_disk"
         android:textColor="@color/colorTitle"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"

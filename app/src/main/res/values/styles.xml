@@ -27,11 +27,6 @@
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
-    <style name="ActionBar" parent="TextAppearance.AppCompat.Title">
-        <item name="android:fontFamily">@font/mmedium</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
     <style name="ItemTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -55,23 +50,6 @@
         <item name="android:fontFamily">@font/mlight</item>
     </style>
 
-    <style name="ItemInputTitle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorField</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">@font/mregular</item>
-        <item name="android:layout_marginTop">8dp</item>
-    </style>
-
-    <style name="ItemInput">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorTitle</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:fontFamily">@font/mregular</item>
-    </style>
-
     <style name="ItemLayoutUserField">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -89,15 +67,6 @@
         <item name="android:fontFamily">@font/mmedium</item>
     </style>
 
-    <style name="ItemSearch">
-        <item name="android:layout_marginTop">50dp</item>
-        <item name="android:layout_marginStart">50dp</item>
-        <item name="android:layout_marginEnd">50dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/mregular</item>
-    </style>
-
     <style name="ItemLayoutCheckbox">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -112,39 +81,6 @@
         <item name="android:textColor">@color/colorField</item>
         <item name="android:textSize">26sp</item>
         <item name="android:fontFamily">@font/msemibold</item>
-    </style>
-
-    <style name="AlertSuccess" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="ItemReviewTitle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/mregular</item>
-        <item name="android:textColor">@color/colorTitle</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="ItemReviewField">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/mregular</item>
-        <item name="android:textColor">@color/colorField</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="AppTheme.PopMe">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-        <!--        <item name ="android:windowBackground">@android:color/transparent</item>-->
-        <!--        <item name ="android:windowContentOverlay">@null</item>-->
-        <!--        <item name ="android:windowIsFloating">false</item>-->
-        <!--        <item name ="android:backgroundDimEnabled">false</item>-->
     </style>
 
 </resources>

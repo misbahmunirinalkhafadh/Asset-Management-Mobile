@@ -18,15 +18,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RequestViewModel extends ViewModel {
-
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<SalesOrder> liveDataSO = new MutableLiveData<>();
     private MutableLiveData<EmployeeResult> liveDataEmpl = new MutableLiveData<>();
 
     public void setDataSO(String soNumber) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
-        Call<SalesOrder> call = mApiService.getSalesOrder(soNumber, API_TOKEN);
-        call.enqueue(new Callback<SalesOrder>() {
+        mApiService.getSalesOrder(soNumber, API_TOKEN).enqueue(new Callback<SalesOrder>() {
             @Override
             public void onResponse(Call<SalesOrder> call, Response<SalesOrder> response) {
                 if (response.body() == null) {
@@ -45,8 +43,7 @@ public class RequestViewModel extends ViewModel {
 
     public void setDataEmpl(int nik) {
         ApiService mApiService = UtilsApi.getApiServiceSakuraJwt();
-        Call<EmployeeResult> call = mApiService.getEmployee(nik, API_TOKEN);
-        call.enqueue(new Callback<EmployeeResult>() {
+        mApiService.getEmployee(nik, API_TOKEN).enqueue(new Callback<EmployeeResult>() {
             @Override
             public void onResponse(Call<EmployeeResult> call, Response<EmployeeResult> response) {
                 Log.v("", "Test" + response.body());
