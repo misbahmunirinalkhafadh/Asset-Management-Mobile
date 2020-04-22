@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_view"
     android:background="@color/backgroundColor"
     tools:context=".view.RequestActivity">
 
@@ -68,20 +69,6 @@
                 android:text="@string/stript"
                 android:textSize="14sp" />
 
-            <TextView
-                style="@style/ItemLayoutUserTitle"
-                android:layout_marginTop="4dp"
-                android:text="@string/branch" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_branch"
-                style="@style/ItemLayoutUserField"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_field"
-                android:hint="@string/Input_Branch"
-                android:padding="10dp" />
         </LinearLayout>
         <!--  User -->
         <LinearLayout

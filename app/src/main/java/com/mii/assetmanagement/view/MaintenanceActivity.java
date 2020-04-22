@@ -1,11 +1,12 @@
 package com.mii.assetmanagement.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.adapter.MainChecklistAdapter;
@@ -34,17 +37,17 @@ import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
 public class MaintenanceActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;
     private CheckBox cbProcessor, cbSystem, cbHdd, cbSsd, cbRam;
     private RecyclerView rvService;
     private EditText etIpAddress, etUsername, etComputer, etResult;
     private Button btnSubmit;
+    private ScrollView scrollView;
+    private Snackbar snackbar;
     private SharedPrefManager sharedPrefManager;
     private MaintenanceViewModel maintenanceViewModel;
     private String serial;
@@ -123,6 +126,7 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
         etUsername = findViewById(R.id.et_username);
         etComputer = findViewById(R.id.et_computerName);
         etResult = findViewById(R.id.et_result);
+        scrollView = findViewById(R.id.main_view);
 
         btnSubmit = findViewById(R.id.btn_submit);
     }
@@ -139,10 +143,12 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
             }
 
             String result = etResult.getText().toString().trim();
-            if (TextUtils.isEmpty(result)){
+            if (TextUtils.isEmpty(result)) {
                 Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
-            } else {
+            } else if (isNetworkAvailable()) {
                 saveState();
+            } else {
+                showSnackBar();
             }
         }
     }
@@ -210,6 +216,19 @@ public class MaintenanceActivity extends AppCompatActivity implements View.OnCli
                 });
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(scrollView, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 
     @Override

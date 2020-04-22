@@ -16,7 +16,6 @@ import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
 public class GenerateExchangeAssetActivity extends AppCompatActivity {
-
     private TabLayout mTabs;
     private View mIndicator;
     private ViewPager mViewPager;

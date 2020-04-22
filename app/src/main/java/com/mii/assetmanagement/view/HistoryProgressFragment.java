@@ -1,9 +1,13 @@
 package com.mii.assetmanagement.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.adapter.HistoryProgressAdapter;
@@ -31,7 +36,9 @@ import java.util.Objects;
 public class HistoryProgressFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private ImageView imgListSearch;
+    private ImageView imgEmptyList;
+    private FrameLayout layout;
+    private Snackbar snackbar;
     private HistoryProgressAdapter adapter;
     private HistoryViewModel historyViewModel;
     private ArrayList<HistoryResult> historyArrayList = new ArrayList<>();
@@ -48,18 +55,31 @@ public class HistoryProgressFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history_progress, container, false);
-        recyclerView = view.findViewById(R.id.rv_history);
-        progressBar = view.findViewById(R.id.progressbar);
-        imgListSearch = view.findViewById(R.id.img_search_list);
-        imgListSearch.setVisibility(View.GONE);
+        initComponent(view);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
         int nik = Integer.parseInt(sharedPrefManager.getSpNik());
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
-        historyViewModel.setHistoryProgress(REQUEST_TYPE, nik, REQUEST_STATUS);
+        if (isNetworkAvailable()){
+            historyViewModel.setHistoryProgress(REQUEST_TYPE, nik, REQUEST_STATUS);
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            showSnackBar();
+            imgEmptyList.setVisibility(View.VISIBLE);
+        }
 
         setupRecyclerView();
         return view;
+    }
+
+    private void initComponent(View view) {
+        recyclerView = view.findViewById(R.id.rv_history);
+        progressBar = view.findViewById(R.id.progressbar);
+        imgEmptyList = view.findViewById(R.id.img_empty_list);
+        layout = view.findViewById(R.id.main_view);
+
+        imgEmptyList.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setupRecyclerView() {
@@ -84,9 +104,22 @@ public class HistoryProgressFragment extends Fragment {
                 historyArrayList.addAll(resultList);
                 adapter.notifyDataSetChanged();
             } else {
-                imgListSearch.setVisibility(View.VISIBLE);
+                imgEmptyList.setVisibility(View.VISIBLE);
             }
             progressBar.setVisibility(View.GONE);
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(layout, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 }

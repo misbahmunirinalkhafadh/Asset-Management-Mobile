@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class EmployeeResult {
-
     @SerializedName("empl_nik")
     @Expose
     private int nik;

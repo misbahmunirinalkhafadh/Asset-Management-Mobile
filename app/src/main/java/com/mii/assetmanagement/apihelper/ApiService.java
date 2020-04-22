@@ -1,17 +1,15 @@
 package com.mii.assetmanagement.apihelper;
 
 import com.mii.assetmanagement.model.Asset;
-import com.mii.assetmanagement.model.AssetResult;
+import com.mii.assetmanagement.model.AssetRequest;
 import com.mii.assetmanagement.model.EmployeeResult;
 import com.mii.assetmanagement.model.ExchangeRequest;
-import com.mii.assetmanagement.model.HistoryRequest;
 import com.mii.assetmanagement.model.HistoryMaintenance;
+import com.mii.assetmanagement.model.HistoryRequest;
+import com.mii.assetmanagement.model.Login;
 import com.mii.assetmanagement.model.MaintenanceRequest;
-import com.mii.assetmanagement.model.AssetRequest;
 import com.mii.assetmanagement.model.SalesOrder;
 import com.mii.assetmanagement.model.User;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -24,11 +22,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiService {
-
-    @FormUrlEncoded
-    @POST("login/data")
-    Call<User> requestLogin(@Field("email") String email,
-                            @Field("password") String password,
+    @POST("login")
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Call<User> requestLogin(@Body Login body,
                             @Header("Authorization") String token);
 
     @POST("maintenance/save")
@@ -39,7 +35,7 @@ public interface ApiService {
     @POST("assetrequest/save")
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Call<String> saveRequestAsset(@Body AssetRequest body,
-                                 @Header("Authorization") String token);
+                                  @Header("Authorization") String token);
 
     @POST("exchange/saveuser")
     @Headers({"Content-Type: application/json;charset=UTF-8"})
@@ -66,16 +62,6 @@ public interface ApiService {
     Call<EmployeeResult> getEmployee(@Query("id") int nik,
                                      @Header("Authorization") String token);
 
-    @GET("assetrequest/brand")
-    @Headers({"Content-Type: application/json"})
-    Call<List<AssetResult>> getBrand(@Query("name") String brand,
-                                     @Header("Authorization") String token);
-
-    //    @GET("assetrequest/category")
-//    @Headers({"Content-Type: application/json"})
-//    Call<> getBrand(@Query("name") String brand,
-//                               @Header("Authorization") String token);
-
     @GET("assetrequest/gethistorymaintenance")
     @Headers({"Content-Type: application/json"})
     Call<HistoryMaintenance> getHistoryMaintenance(@Query("id") int nik,
@@ -84,7 +70,7 @@ public interface ApiService {
     @GET("assetrequest/gethistorydetailmaintenance")
     @Headers({"Content-Type: application/json"})
     Call<HistoryMaintenance> getHistoryDetailMaintenance(@Query("id") int nik,
-                                                               @Header("Authorization") String token);
+                                                         @Header("Authorization") String token);
 
     @GET("assetrequest/getalldetailhistoryrequestnewasset")
     @Headers({"Content-Type: application/json"})

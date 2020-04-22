@@ -1,10 +1,5 @@
 package com.mii.assetmanagement.view;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,9 +7,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.mii.assetmanagement.R;
-import com.mii.assetmanagement.adapter.TabFragmentAdapter;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout LayoutMaintenance, LayoutRequest, LayoutExcAsset, LayoutExcEmp;
@@ -62,21 +59,21 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.layout_his_maintenance:
                 Intent goToHisMaintain = new Intent(HistoryActivity.this, HistoryMaintenanceActivity.class);
                 startActivity(goToHisMaintain);
                 break;
             case R.id.layout_his_req_new:
-                Intent goToHisReqNew = new Intent(HistoryActivity.this,  HistoryRequestNewActivity.class);
+                Intent goToHisReqNew = new Intent(HistoryActivity.this, HistoryRequestNewActivity.class);
                 startActivity(goToHisReqNew);
                 break;
             case R.id.layout_his_exc_asset:
-                Intent goToHisExcAsset = new Intent(HistoryActivity.this,  HistoryExcAssetActivity.class);
+                Intent goToHisExcAsset = new Intent(HistoryActivity.this, HistoryExcAssetActivity.class);
                 startActivity(goToHisExcAsset);
                 break;
             case R.id.layout_his_exc_emp:
-                Intent goToHisExcEmp = new Intent(HistoryActivity.this,  HistoryExcEmpActivity.class);
+                Intent goToHisExcEmp = new Intent(HistoryActivity.this, HistoryExcEmpActivity.class);
                 startActivity(goToHisExcEmp);
                 break;
         }

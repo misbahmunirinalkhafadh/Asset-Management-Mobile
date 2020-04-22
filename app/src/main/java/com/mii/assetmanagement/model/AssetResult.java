@@ -33,7 +33,7 @@ public class AssetResult implements Parcelable {
         this.brand = brand;
     }
 
-    protected AssetResult(Parcel in) {
+    private AssetResult(Parcel in) {
         category = in.readString();
         brand = in.readString();
     }

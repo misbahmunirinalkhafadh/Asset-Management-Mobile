@@ -7,13 +7,13 @@
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
-        android:id="@+id/img_search_list"
+        android:id="@+id/img_empty_list"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/ic_empty"
-        android:alpha="0.5"
         android:layout_gravity="center"
-        android:contentDescription="@string/todo" />
+        android:alpha="0.5"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/img_empty" />
 
     <ProgressBar
         android:id="@+id/progressbar"

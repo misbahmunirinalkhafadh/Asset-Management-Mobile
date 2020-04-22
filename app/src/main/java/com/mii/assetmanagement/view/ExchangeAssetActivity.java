@@ -1,11 +1,12 @@
 package com.mii.assetmanagement.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.model.Asset;
@@ -29,14 +32,14 @@ import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.ExchangeRequest;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
-import java.util.Objects;
-
 import es.dmoral.toasty.Toasty;
 
 public class ExchangeAssetActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tvSales, tvCompany, tvBranch, tvSerial;
     private EditText etReason;
     private Button btnSubmit, btnClose;
+    private ScrollView scrollView;
+    private Snackbar snackbar;
     private String userNik;
     private SharedPrefManager sharedPrefManager;
     private ExchangeViewModel exchangeViewModel;
@@ -80,6 +83,7 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
         etReason = findViewById(R.id.et_reason);
         btnSubmit = findViewById(R.id.btn_submit);
         btnClose = findViewById(R.id.btn_close);
+        scrollView = findViewById(R.id.main_view);
     }
 
     @Override
@@ -113,11 +117,13 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
                 }
 
                 String reason = etReason.getText().toString().trim();
-                if (TextUtils.isEmpty(reason)){
+                if (TextUtils.isEmpty(reason)) {
                     etReason.requestFocus();
                     Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
-                }else {
+                } else if (isNetworkAvailable()) {
                     saveState();
+                } else {
+                    showSnackBar();
                 }
                 break;
             case R.id.btn_close:
@@ -162,6 +168,19 @@ public class ExchangeAssetActivity extends AppCompatActivity implements View.OnC
                 });
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(scrollView, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 
     @Override

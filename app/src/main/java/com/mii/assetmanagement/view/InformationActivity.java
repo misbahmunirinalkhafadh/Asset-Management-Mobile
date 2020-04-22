@@ -18,7 +18,6 @@ import com.mii.assetmanagement.model.Employee;
 import com.mii.assetmanagement.model.Part;
 
 public class InformationActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tvNik, tvName, tvLocation, tvBranch;
     private TextView tvSales, tvSerial, tvBrand, tvCategory;
     public TextView tvProcessor, tvSystem, tvHdd, tvSsd, tvRam;

@@ -4,6 +4,8 @@ package com.mii.assetmanagement.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.viewmodel.ExchangeViewModel;
 
@@ -34,6 +37,8 @@ import es.dmoral.toasty.Toasty;
 public class InputSerialExchangeEmplFragment extends Fragment implements View.OnClickListener {
     private EditText etSerial;
     private Button btnSearch;
+    private ConstraintLayout layout;
+    private Snackbar snackbar;
     private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
 
@@ -45,7 +50,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_input_serial_exchange_empl, container, false);
+        View view = inflater.inflate(R.layout.fragment_input_serial_exchange, container, false);
         initComponent(view);
         exchangeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(ExchangeViewModel.class);
         btnSearch.setOnClickListener(this);
@@ -56,6 +61,7 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
     private void initComponent(View view) {
         etSerial = view.findViewById(R.id.et_serial);
         btnSearch = view.findViewById(R.id.btn_search_serial);
+        layout = view.findViewById(R.id.main_view);
     }
 
     @Override
@@ -67,9 +73,14 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
         String serial = etSerial.getText().toString().trim();
         if (serial.isEmpty()) {
             etSerial.setError("Enter serial number");
-        } else {
+        } else if (isNetworkAvailable()) {
             showLoading();
             exchangeViewModel.setDataAssetInput(serial);
+        } else {
+            snackbar = Snackbar
+                    .make(layout, "No Internet Connection", Snackbar.LENGTH_LONG)
+                    .setAction("DISMISS", v1 -> snackbar.dismiss());
+            snackbar.show();
         }
     }
 
@@ -80,6 +91,12 @@ public class InputSerialExchangeEmplFragment extends Fragment implements View.On
             progressDialog.setMessage("Please wait...");
         }
         progressDialog.show();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override

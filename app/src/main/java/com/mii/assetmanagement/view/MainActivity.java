@@ -1,10 +1,7 @@
 package com.mii.assetmanagement.view;
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -20,7 +17,6 @@ import com.mii.assetmanagement.SharedPrefManager;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     private ImageView ivProfile;
     private TextView tvResultName, tvResultNik;
     private LinearLayout menuScan, menuRequest, menuExchange, menuHistory;

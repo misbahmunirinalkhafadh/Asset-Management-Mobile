@@ -3,9 +3,12 @@ package com.mii.assetmanagement.view;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +37,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * A simple {@link Fragment} subclass.
  */
 public class CaptureExchangeAssetFragment extends Fragment implements ZXingScannerView.ResultHandler {
-
     private ZXingScannerView mScannerView;
     private ExchangeViewModel exchangeViewModel;
     private ProgressDialog progressDialog;
@@ -81,9 +83,13 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
 
     @Override
     public void handleResult(Result rawResult) {
-        showLoading();
-        String serial = rawResult.getText();
-        exchangeViewModel.setDataAssetScan(serial);
+        if (isNetworkAvailable()) {
+            showLoading();
+            String serial = rawResult.getText();
+            exchangeViewModel.setDataAssetScan(serial);
+        } else {
+            Toasty.warning(Objects.requireNonNull(getActivity()), "No Internet Connection", Toasty.LENGTH_LONG).show();
+        }
 
         mScannerView.resumeCameraPreview(this);
     }
@@ -95,6 +101,12 @@ public class CaptureExchangeAssetFragment extends Fragment implements ZXingScann
             progressDialog.setMessage("Please wait...");
         }
         progressDialog.show();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
