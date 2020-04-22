@@ -20,7 +20,6 @@ import com.mii.assetmanagement.SharedPrefManager;
 import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tvResultName, tvResultEmail, tvResultNik, tvVersion;
     private Button btnLogout;
     private SharedPrefManager sharedPrefManager;

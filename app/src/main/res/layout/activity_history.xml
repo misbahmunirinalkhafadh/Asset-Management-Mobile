@@ -1,162 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:alignmentMode="alignMargins"
+    android:columnCount="2"
+    android:columnOrderPreserved="false"
+    android:padding="8dp"
+    android:rowCount="3"
     tools:context=".view.HistoryActivity">
 
-    <GridLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:alignmentMode="alignMargins"
-        android:columnCount="2"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:layout_margin="8dp"
-        android:columnOrderPreserved="false"
-        android:rowCount="3">
+        android:padding="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+        <LinearLayout
+            android:id="@+id/layout_his_maintenance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
             android:padding="16dp"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+            tools:ignore="UseCompoundDrawables">
 
-            <LinearLayout
-                android:id="@+id/layout_his_maintenance"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp"
-                tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_maintain" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/img_menu_maintain" />
+            <TextView
+                style="@style/ItemTitleHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/maintenancee" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/maintenancee"
-                    style="@style/ItemTitleHistory" />
+        </LinearLayout>
 
-            </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+        <LinearLayout
+            android:id="@+id/layout_his_req_new"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="UseCompoundDrawables">
 
-            <LinearLayout
-                android:id="@+id/layout_his_req_new"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp"
-                tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_request" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/img_menu_request" />
+            <TextView
+                style="@style/ItemTitleHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/RequestNew"
+                android:textAlignment="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/RequestNew"
-                    style="@style/ItemTitleHistory"/>
+        </LinearLayout>
 
-            </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+        <LinearLayout
+            android:id="@+id/layout_his_exc_asset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="UseCompoundDrawables">
 
-            <LinearLayout
-                android:id="@+id/layout_his_exc_asset"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp"
-                tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_exchange_asset" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/img_history_exchange_asset" />
+            <TextView
+                style="@style/ItemTitleHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/appbar_exchange_asset"
+                android:textAlignment="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/exchange_asset"
-                    style="@style/ItemTitleHistory" />
+        </LinearLayout>
 
-            </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+        <LinearLayout
+            android:id="@+id/layout_his_exc_emp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="UseCompoundDrawables">
 
-            <LinearLayout
-                android:id="@+id/layout_his_exc_emp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp"
-                tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_exchange_user" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/ic_exchangeemp" />
+            <TextView
+                style="@style/ItemTitleHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/appbar_exchange_employee"
+                android:textAlignment="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/exchange_user"
-                    style="@style/ItemTitleHistory" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </GridLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</GridLayout>

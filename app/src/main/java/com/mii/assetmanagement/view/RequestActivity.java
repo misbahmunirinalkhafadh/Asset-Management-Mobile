@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -22,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.adapter.RequestAssetAdapter;
@@ -53,13 +57,15 @@ import static com.mii.assetmanagement.db.AssetContract.AssetEntry.COLUMN_TIMESTA
 import static com.mii.assetmanagement.db.AssetContract.TABLE_NAME;
 
 public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText etSalesOrder, etBranch, etNik, etItem, inputText, etReason;
+    private EditText etSalesOrder, etNik, etItem, inputText, etReason;
     private TextView tvCompanyName, tvEmpName, tvQty;
     private Button btnSubmit;
     private RecyclerView recyclerView;
-    private boolean userHide;
+    private ScrollView scrollView;
+    private boolean hideFieldUser = false;
     private LinearLayout layoutUser;
     private ProgressDialog progressDialog;
+    private Snackbar snackbar;
     private SharedPrefManager sharedPrefManager;
     private RequestViewModel requestViewModel;
     private SQLiteDatabase database;
@@ -105,7 +111,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initComponent() {
         etSalesOrder = findViewById(R.id.et_sales_order);
-        etBranch = findViewById(R.id.et_branch);
         etNik = findViewById(R.id.et_nik);
         tvCompanyName = findViewById(R.id.tv_company);
         tvEmpName = findViewById(R.id.tv_name);
@@ -114,6 +119,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         etReason = findViewById(R.id.et_reason);
         recyclerView = findViewById(R.id.rv_asset);
         btnSubmit = findViewById(R.id.btn_submit);
+        scrollView = findViewById(R.id.main_view);
 
         layoutUser.setVisibility(View.GONE);
         inputText.setFocusable(false);
@@ -144,9 +150,13 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || event.getAction() == KeyEvent.ACTION_DOWN
                         && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    showLoading();
-                    tvCompanyName.setText("");
-                    requestViewModel.setDataSO(val);
+                    if (isNetworkAvailable()) {
+                        showLoading();
+                        tvCompanyName.setText("");
+                        requestViewModel.setDataSO(val);
+                    } else {
+                        showSnackBar();
+                    }
                     hideSoftKeyboard(this);
                     return true;
                 }
@@ -161,17 +171,24 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 tvCompanyName.setText(INVALID_NUMBER);
                 tvCompanyName.setTextColor(Color.RED);
                 layoutUser.setVisibility(View.GONE);
+                etSalesOrder.getText().clear();
                 etNik.getText().clear();
+                tvEmpName.setText(STRIP);
+                tvEmpName.setTextColor(Color.GRAY);
+                hideFieldUser = true;
             } else {
                 tvCompanyName.append(salesOrder.getCustomerName());
                 tvCompanyName.setTextColor(Color.BLACK);
                 //Set Visibility Employee Layout
                 if (salesOrder.getAssetType().equals(RESOURCE)) {
-                    userHide = false;
                     layoutUser.setVisibility(View.VISIBLE);
+                    hideFieldUser = false;
                 } else {
                     layoutUser.setVisibility(View.GONE);
                     etNik.getText().clear();
+                    tvEmpName.setText(STRIP);
+                    tvEmpName.setTextColor(Color.GRAY);
+                    hideFieldUser = true;
                 }
             }
             dismissLoading();
@@ -195,9 +212,13 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || event.getAction() == KeyEvent.ACTION_DOWN
                         && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    showLoading();
-                    tvEmpName.setText("");
-                    requestViewModel.setDataEmpl(Integer.parseInt(value));
+                    if (isNetworkAvailable()) {
+                        showLoading();
+                        tvEmpName.setText("");
+                        requestViewModel.setDataEmpl(Integer.parseInt(value));
+                    } else {
+                        showSnackBar();
+                    }
                     hideSoftKeyboard(this);
                     return true;
                 }
@@ -343,25 +364,38 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 String company = tvCompanyName.getText().toString().trim();
                 String employee = tvEmpName.getText().toString().trim();
                 String reason = etReason.getText().toString().trim();
+
                 boolean isEmptyFields = false;
-                if (TextUtils.isEmpty(soId) && company.equals(STRIP) || company.equals(INVALID_NUMBER)) {
+                if (TextUtils.isEmpty(soId)) {
                     isEmptyFields = true;
                     etSalesOrder.setError("Required");
-                }
-
-                if (!userHide && TextUtils.isEmpty(nik) && employee.equals(STRIP) || employee.equals(INVALID_NUMBER)) {
+                } else if (company.equals(INVALID_NUMBER)) {
                     isEmptyFields = true;
-                    etNik.setError("Required");
+                    etSalesOrder.setFocusable(true);
                 }
 
-                if (!isEmptyFields) {
+                boolean isEmptyFieldUser;
+                if (!hideFieldUser && TextUtils.isEmpty(nik)) {
+                    isEmptyFieldUser = true;
+                    etNik.setError("Required");
+                } else if (employee.equals(INVALID_NUMBER)) {
+                    isEmptyFieldUser = true;
+                    etNik.setFocusable(true);
+                } else {
+                    isEmptyFieldUser = false;
+                    etNik.setError(null);
+                }
+
+                if (!isEmptyFields && !isEmptyFieldUser) {
                     if (getDataItem().length == 0 && getDataQty().length == 0) {
                         Toasty.error(this, "No Asset can be request", Toast.LENGTH_SHORT, true).show();
                     } else if (TextUtils.isEmpty(reason)) {
                         etReason.setFocusable(true);
                         Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
-                    } else {
+                    } else if (isNetworkAvailable()) {
                         saveState();
+                    } else {
+                        showSnackBar();
                     }
                 }
                 break;
@@ -437,6 +471,19 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 });
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(scrollView, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 
     @Override

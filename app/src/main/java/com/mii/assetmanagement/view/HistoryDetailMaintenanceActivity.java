@@ -1,6 +1,9 @@
 package com.mii.assetmanagement.view;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -11,10 +14,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.adapter.HistoryMainPartAdapter;
 import com.mii.assetmanagement.adapter.HistoryMainServiceAdapter;
@@ -28,7 +33,9 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
     private TextView tvIdTrans, tvSerial, tvReason;
     private RecyclerView rvMainPart, rvMainService;
     private ProgressBar progressBar;
+    private ConstraintLayout layout;
     private ScrollView view;
+    private Snackbar snackbar;
     private HistoryMainPartAdapter partAdapter;
     private HistoryMainServiceAdapter serviceAdapter;
     private ArrayList<HistoryMaintenanceResult> mainParts = new ArrayList<>();
@@ -41,7 +48,6 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history_detail_maintenance);
         actionBar();
         initComponent();
-        showLoading(true);
 
         HistoryViewModel historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
         HistoryMaintenanceResult result = getIntent().getParcelableExtra(EXTRA_HISTORY);
@@ -49,7 +55,14 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
             tvIdTrans.setText(String.valueOf(result.get_id()));
             tvSerial.setText(result.getSerial());
             tvReason.setText(result.getReason());
-            historyViewModel.setHistoryDetailMaintenance(result.get_id());
+            if (isNetworkAvailable()) {
+                showLoading(true);
+                historyViewModel.setHistoryDetailMaintenance(result.get_id());
+            } else {
+                progressBar.setVisibility(View.GONE);
+                view.setVisibility(View.GONE);
+                showSnackBar();
+            }
         }
 
         historyViewModel.getHistoryDetailMaintenance().observe(this, historyMaintenance -> {
@@ -110,6 +123,7 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         tvReason = findViewById(R.id.tv_reason);
         progressBar = findViewById(R.id.progressbar);
         view = findViewById(R.id.view);
+        layout = findViewById(R.id.main_view);
     }
 
     private void actionBar() {
@@ -124,6 +138,19 @@ public class HistoryDetailMaintenanceActivity extends AppCompatActivity {
         mTitleTextView.setText(getString(R.string.appbar_detail_maintenance));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(layout, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.mii.assetmanagement.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +34,7 @@ import java.util.Objects;
 public class HistoryCompleteFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private ImageView imgListSearch;
+    private ImageView imgEmptyList;
     private HistoryCompleteAdapter adapter;
     private HistoryViewModel historyViewModel;
     private ArrayList<HistoryResult> historyCompleteList = new ArrayList<>();
@@ -48,18 +51,29 @@ public class HistoryCompleteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history_complete, container, false);
-        recyclerView = view.findViewById(R.id.rv_history);
-        progressBar = view.findViewById(R.id.progressbar);
-        imgListSearch = view.findViewById(R.id.img_search_list);
-        imgListSearch.setVisibility(View.GONE);
+        initComponent(view);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(Objects.requireNonNull(getActivity()));
         int nik = Integer.parseInt(sharedPrefManager.getSpNik());
         historyViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), new ViewModelProvider.NewInstanceFactory()).get(HistoryViewModel.class);
-        historyViewModel.setHistoryComplete(REQUEST_TYPE, nik, REQUEST_STATUS);
+        if (isNetworkAvailable()) {
+            historyViewModel.setHistoryComplete(REQUEST_TYPE, nik, REQUEST_STATUS);
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            imgEmptyList.setVisibility(View.VISIBLE);
+        }
 
         setupRecyclerView();
         return view;
+    }
+
+    private void initComponent(View view) {
+        recyclerView = view.findViewById(R.id.rv_history);
+        progressBar = view.findViewById(R.id.progressbar);
+        imgEmptyList = view.findViewById(R.id.img_empty_list);
+
+        imgEmptyList.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setupRecyclerView() {
@@ -84,9 +98,15 @@ public class HistoryCompleteFragment extends Fragment {
                 historyCompleteList.addAll(resultList);
                 adapter.notifyDataSetChanged();
             } else {
-                imgListSearch.setVisibility(View.VISIBLE);
+                imgEmptyList.setVisibility(View.VISIBLE);
             }
             progressBar.setVisibility(View.GONE);
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

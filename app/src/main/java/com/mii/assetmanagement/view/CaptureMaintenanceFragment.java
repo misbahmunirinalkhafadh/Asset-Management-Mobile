@@ -3,9 +3,12 @@ package com.mii.assetmanagement.view;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,12 +22,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.zxing.Result;
-import com.mii.assetmanagement.model.Asset;
 import com.mii.assetmanagement.viewmodel.MaintenanceViewModel;
 
 import java.util.Objects;
@@ -36,7 +37,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * A simple {@link Fragment} subclass.
  */
 public class CaptureMaintenanceFragment extends Fragment implements ZXingScannerView.ResultHandler {
-
     private ZXingScannerView mScannerView;
     private MaintenanceViewModel maintenanceViewModel;
     private ProgressDialog progressDialog;
@@ -83,9 +83,13 @@ public class CaptureMaintenanceFragment extends Fragment implements ZXingScanner
 
     @Override
     public void handleResult(Result rawResult) {
-        showLoading();
-        String serial = rawResult.getText();
-        maintenanceViewModel.setDataAssetScan(serial);
+        if (isNetworkAvailable()) {
+            showLoading();
+            String serial = rawResult.getText();
+            maintenanceViewModel.setDataAssetScan(serial);
+        } else {
+            Toasty.warning(Objects.requireNonNull(getActivity()), "No Internet Connection", Toasty.LENGTH_LONG).show();
+        }
 
         mScannerView.resumeCameraPreview(this);
     }
@@ -99,24 +103,27 @@ public class CaptureMaintenanceFragment extends Fragment implements ZXingScanner
         progressDialog.show();
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maintenanceViewModel.getDataAssetScan().observe(this, new Observer<Asset>() {
-            @Override
-            public void onChanged(Asset asset) {
-                Log.v("CHECK", "Error " + asset.isError());
-                if (asset.isError()) {
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
-                } else {
-                    Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
-                    goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
-                    goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
-                    goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
-                    startActivity(goToInformation);
-                }
-                dismissLoading();
+        maintenanceViewModel.getDataAssetScan().observe(this, asset -> {
+            Log.v("CHECK", "Error " + asset.isError());
+            if (asset.isError()) {
+                Toasty.error(Objects.requireNonNull(getActivity()), "Invalid QR CODE", Toast.LENGTH_SHORT, true).show();
+            } else {
+                Intent goToInformation = new Intent(getActivity(), InformationActivity.class);
+                goToInformation.putExtra(InformationActivity.EXTRA_ASSET, asset);
+                goToInformation.putExtra(InformationActivity.EXTRA_EMPLOYEE, asset.getEmployee());
+                goToInformation.putExtra(InformationActivity.EXTRA_PARTS, asset.getParts());
+                startActivity(goToInformation);
             }
+            dismissLoading();
         });
     }
 

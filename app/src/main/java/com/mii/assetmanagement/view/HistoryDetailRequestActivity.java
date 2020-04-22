@@ -24,12 +24,14 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class HistoryDetailRequestActivity extends AppCompatActivity {
-    private TextView textStatus, textNik, textName, textOldNik, textOldName, textSerial;
+    private TextView textStatus, textOldNik, textOldName, textSerial;
     private LinearLayout lineItem;
     private TextView tvIdTrans, tvDate, tvStatus, tvNik, tvName, tvOldNik, tvOldName, tvSerial, tvLocation, tvBranch, tvReason;
     private RecyclerView recyclerView;
     private HistoryRequestDetailAdapter adapter;
     public static final String EXTRA_HISTORY = "extra_history";
+    public static final String PROGRESS = "inprogress";
+    public static final String REQ_EXC_USER = "Request Exchange User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
     }
 
     private void stateCondition(HistoryResult result) {
-        if (result.getStatus().equals("inprogress")) {
+        if (result.getStatus().equals(PROGRESS)) {
             textStatus.setVisibility(View.GONE);
             tvStatus.setVisibility(View.GONE);
         }
@@ -102,30 +104,17 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
             textSerial.setVisibility(View.VISIBLE);
         }
 
-        if (result.getTypeRequest().equals("Request New Asset")) {
-            textNik.setVisibility(View.GONE);
-            textName.setVisibility(View.GONE);
-            textOldNik.setVisibility(View.GONE);
-            textOldName.setVisibility(View.GONE);
-            tvOldNik.setVisibility(View.GONE);
-            tvOldName.setVisibility(View.GONE);
-            tvNik.setVisibility(View.GONE);
-            tvName.setVisibility(View.GONE);
-        }
-
-        if (result.getTypeRequest().equals("Request Exchange Asset")) {
-            textOldNik.setVisibility(View.GONE);
-            textOldName.setVisibility(View.GONE);
-            tvOldNik.setVisibility(View.GONE);
-            tvOldName.setVisibility(View.GONE);
+        if (result.getTypeRequest().equals(REQ_EXC_USER)) {
+            textOldNik.setVisibility(View.VISIBLE);
+            textOldName.setVisibility(View.VISIBLE);
+            tvOldNik.setVisibility(View.VISIBLE);
+            tvOldName.setVisibility(View.VISIBLE);
         }
     }
 
     private void initComponent() {
         // Layout
         textStatus = findViewById(R.id.textStatus);
-        textNik = findViewById(R.id.textNik);
-        textName = findViewById(R.id.textName);
         textOldNik = findViewById(R.id.textOldNik);
         textOldName = findViewById(R.id.textOldName);
         textSerial = findViewById(R.id.textSerial);
@@ -143,6 +132,11 @@ public class HistoryDetailRequestActivity extends AppCompatActivity {
         tvLocation = findViewById(R.id.tv_location);
         tvBranch = findViewById(R.id.tv_branch);
         tvReason = findViewById(R.id.tv_reason);
+
+        textOldNik.setVisibility(View.GONE);
+        textOldName.setVisibility(View.GONE);
+        tvOldNik.setVisibility(View.GONE);
+        tvOldName.setVisibility(View.GONE);
     }
 
     private void actionBar(String type) {

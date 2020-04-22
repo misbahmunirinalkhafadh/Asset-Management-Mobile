@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sv_login"
+    android:id="@+id/main_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:padding="18dp">
 
         <LinearLayout
             android:id="@+id/logo_app"
@@ -24,7 +24,7 @@
             <TextView
                 style="@style/ItemTextLogin"
                 android:layout_marginBottom="8dp"
-                android:text="Hi, There !" />
+                android:text="@string/hi_there" />
 
         </LinearLayout>
 
@@ -32,37 +32,37 @@
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/input_login"
+            android:background="@drawable/bg_line_rectangle"
             android:fontFamily="@font/mmedium"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:textSize="16sp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
 
         <!-- Password Label -->
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/input_login"
+            android:background="@drawable/bg_line_rectangle"
             android:fontFamily="@font/mmedium"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="16dp"
-            android:textSize="16sp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="130dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="12dp"
                 android:background="@drawable/btn_blue"
                 android:fontFamily="@font/mmedium"
                 android:text="@string/login"
@@ -73,21 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/mmedium"
-                android:layout_gravity="center"
-                android:gravity="right"
-                android:text="Forgor Password ?"
-                android:textSize="12dp"
+                android:gravity="end"
+                android:text="@string/forgot_password"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlue" />
         </LinearLayout>
-
-
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:visibility="gone" />
-
     </LinearLayout>
-
 </ScrollView>

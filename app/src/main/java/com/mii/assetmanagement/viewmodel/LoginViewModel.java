@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.mii.assetmanagement.BuildConfig;
 import com.mii.assetmanagement.apihelper.ApiService;
 import com.mii.assetmanagement.apihelper.UtilsApi;
+import com.mii.assetmanagement.model.Login;
 import com.mii.assetmanagement.model.User;
 
 import java.util.Objects;
@@ -23,23 +24,23 @@ public class LoginViewModel extends ViewModel {
     private static final String API_TOKEN = BuildConfig.JWT_SAKURA_TOKEN;
     private MutableLiveData<User> liveDataUser = new MutableLiveData<>();
 
-    public void setLiveDataUser(String email, String pass) {
+    public void setLiveDataUser(Login login) {
         ApiService mApiService = UtilsApi.getApiServiceJwt();
-        Call<User> call = mApiService.requestLogin(email, pass, API_TOKEN);
-        call.enqueue(new Callback<User>() {
+        mApiService.reqLogin(login, API_TOKEN).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.i(TAG, "onResponse > Login " + response.body());
-                if (response.body() == null) {
+                if (response.body() != null && response.body().isError()) {
+                    Log.i(TAG, "onResponse > Failed");
                     liveDataUser.setValue(null);
                 } else {
+                    Log.i(TAG, "onResponse > Success");
                     liveDataUser.setValue(response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.e("onFailure ", Objects.requireNonNull(t.getMessage()));
+                Log.e(TAG, "onFailure " + Objects.requireNonNull(t.getMessage()));
             }
         });
     }

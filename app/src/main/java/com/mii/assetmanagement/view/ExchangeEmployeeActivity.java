@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -18,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mii.assetmanagement.R;
 import com.mii.assetmanagement.SharedPrefManager;
 import com.mii.assetmanagement.model.Asset;
@@ -42,6 +46,8 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
     private EditText etNewNik, etReason;
     private ImageView ivInfo;
     private Button btnSubmit, btnClose;
+    private ScrollView scrollView;
+    private Snackbar snackbar;
     private String serialNumber;
     private String nikNewUser;
     private SharedPrefManager sharedPrefManager;
@@ -97,6 +103,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
         ivInfo = findViewById(R.id.iv_info);
         btnSubmit = findViewById(R.id.btn_submit);
         btnClose = findViewById(R.id.btn_close);
+        scrollView = findViewById(R.id.main_view);
 
         tvNewName.setText(STRIP);
     }
@@ -201,7 +208,25 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                     imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
                     imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
                 }
-                saveState();
+                String reason = etReason.getText().toString().trim();
+                String name = tvNewName.getText().toString().trim();
+                if (name.equals(STRIP) || name.equals(INVALID_NUMBER)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("User Name Invalid!")
+                            .setMessage("New user name employee invalid, please insert new user nik!")
+                            .setPositiveButton("OKE", (dialog2, which) -> {
+                                dialog2.dismiss();
+                                etNewNik.requestFocus();
+                            })
+                            .show();
+                } else if (reason.isEmpty()) {
+                    etReason.requestFocus();
+                    Toasty.error(this, "Required!, reason can't empty", Toast.LENGTH_SHORT, true).show();
+                } else if (isNetworkAvailable()) {
+                    saveState();
+                } else {
+                    showSnackBar();
+                }
                 break;
             case R.id.btn_close:
                 Intent goToExchange = new Intent(ExchangeEmployeeActivity.this, ExchangeActivity.class);
@@ -211,39 +236,23 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
     }
 
     private void saveState() {
-        String reason = etReason.getText().toString().trim();
-        String name = tvNewName.getText().toString().trim();
-        if (name.equals(STRIP) || name.equals(INVALID_NUMBER)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("User Name Invalid!")
-                    .setMessage("New user name employee invalid, please insert new user nik!")
-                    .setPositiveButton("OKE", (dialog, which) -> {
-                        dialog.dismiss();
-                        etNewNik.requestFocus();
-                    })
-                    .show();
-        } else if (reason.isEmpty()) {
-            etReason.requestFocus();
-            Toasty.error(this, "Required!, reason can't empty", Toast.LENGTH_SHORT, true).show();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Confirmation")
-                    .setMessage("Are you sure, want you change user asset?")
-                    .setCancelable(false)
-                    .setPositiveButton("Save", (dialog, which) -> {
-                        ExchangeRequest request = new ExchangeRequest();
-                        request.setRequester(sharedPrefManager.getSpNik());
-                        request.setSales(tvSales.getText().toString().trim());
-                        request.setSerial(serialNumber);
-                        request.setOldUserAsset(tvOldNik.getText().toString().trim());
-                        request.setNewUserAsset(nikNewUser);
-                        request.setReason(etReason.getText().toString().trim());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+                .setMessage("Are you sure, want you change user asset?")
+                .setCancelable(false)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    ExchangeRequest request = new ExchangeRequest();
+                    request.setRequester(sharedPrefManager.getSpNik());
+                    request.setSales(tvSales.getText().toString().trim());
+                    request.setSerial(serialNumber);
+                    request.setOldUserAsset(tvOldNik.getText().toString().trim());
+                    request.setNewUserAsset(nikNewUser);
+                    request.setReason(etReason.getText().toString().trim());
 
-                        exchangeViewModel.saveExchangeEmpl(request);
-                        showDialogSuccess();
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
-        }
+                    exchangeViewModel.saveExchangeEmpl(request);
+                    showDialogSuccess();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel()).show();
     }
 
     private void showDialogSuccess() {
@@ -262,6 +271,19 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 });
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void showSnackBar() {
+        snackbar = Snackbar
+                .make(scrollView, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
     }
 
     @Override
