@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/msemibold"
-        android:text="@string/successs"
+        android:text="@string/success"
         android:textColor="@color/colorField" />
 
     <Button

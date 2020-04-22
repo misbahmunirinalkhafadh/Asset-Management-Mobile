@@ -26,8 +26,7 @@ public class MaintenanceViewModel extends ViewModel {
 
     public void setDataAsset(String serial) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
-        call.enqueue(new Callback<Asset>() {
+        mApiService.assetRequest(serial, API_TOKEN).enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 Log.d("onResponse", "Asset " + response.body().toString());
@@ -47,8 +46,7 @@ public class MaintenanceViewModel extends ViewModel {
 
     public void setDataAssetScan(String serial) {
         mApiService = UtilsApi.getApiServiceJwt();
-        Call<Asset> call = mApiService.assetRequest(serial, API_TOKEN);
-        call.enqueue(new Callback<Asset>() {
+        mApiService.assetRequest(serial, API_TOKEN).enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 Log.d("onResponse", "Asset " + response.body().toString());

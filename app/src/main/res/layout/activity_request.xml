@@ -23,7 +23,7 @@
 
             <TextView
                 style="@style/ItemLayoutUserTitle"
-                android:text="@string/salesorder"
+                android:text="@string/sales_order"
                 android:textSize="16sp" />
 
             <View
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/mregular"
-                android:text="@string/stript"
+                android:text="@string/strip"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/mregular"
-                android:text="@string/stript"
+                android:text="@string/strip"
                 android:textSize="14sp" />
         </LinearLayout>
         <!-- Asset-->

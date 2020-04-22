@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainChecklistAdapter extends RecyclerView.Adapter<MainChecklistAdapter.ViewHolder> {
-
     private Context mContext;
     private LayoutInflater inflater;
     private List<String> serviceList;

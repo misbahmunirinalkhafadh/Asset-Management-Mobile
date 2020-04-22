@@ -10,11 +10,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
-
+class RetrofitClient {
     private static Retrofit retrofitJwt = null;
     private static Retrofit retrofitSakuraJwt = null;
-
 
     static Retrofit getClientJwt() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -37,6 +35,7 @@ public class RetrofitClient {
         }
         return retrofitJwt;
     }
+
     static Retrofit getClientSakuraJwt() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -58,5 +57,4 @@ public class RetrofitClient {
         }
         return retrofitSakuraJwt;
     }
-
 }

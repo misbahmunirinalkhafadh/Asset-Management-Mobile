@@ -27,7 +27,6 @@ import java.util.Objects;
 import static com.mii.assetmanagement.view.HistoryDetailRequestActivity.EXTRA_HISTORY;
 
 public class HistoryCompleteAdapter extends RecyclerView.Adapter<HistoryCompleteAdapter.HistoryViewHolder> {
-
     private Activity activity;
     private ArrayList<HistoryResult> list;
 

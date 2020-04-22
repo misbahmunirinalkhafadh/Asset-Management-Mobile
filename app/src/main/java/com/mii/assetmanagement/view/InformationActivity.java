@@ -68,7 +68,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
             actionBar.setCustomView(mTitleTextView, layoutParams);
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
         }
-        mTitleTextView.setText(getString(R.string.apbar_information));
+        mTitleTextView.setText(getString(R.string.appbar_information));
         mTitleTextView.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_DeviceDefault_Large);
         mTitleTextView.setTextColor(Color.WHITE);
     }

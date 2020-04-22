@@ -34,7 +34,7 @@
 
             <TextView
                 style="@style/ItemLayoutUserTitle"
-                android:text="@string/salesorder" />
+                android:text="@string/sales_order" />
 
             <TextView
                 android:id="@+id/tv_sales"
