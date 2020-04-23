@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="6dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
     android:clickable="true"
     android:focusable="true"
     android:background="?android:selectableItemBackground"
@@ -13,15 +14,14 @@
         android:id="@+id/tv_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:text="@string/item"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/qty"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 </LinearLayout>
