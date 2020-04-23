@@ -176,9 +176,11 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 tvEmpName.setText(STRIP);
                 tvEmpName.setTextColor(Color.GRAY);
                 hideFieldUser = true;
+                Toasty.error(RequestActivity.this, "Not Available!", Toast.LENGTH_SHORT, true).show();
             } else {
                 tvCompanyName.append(salesOrder.getCustomerName());
                 tvCompanyName.setTextColor(Color.BLACK);
+                Toasty.success(RequestActivity.this, "Available!", Toast.LENGTH_SHORT, true).show();
                 //Set Visibility Employee Layout
                 if (salesOrder.getAssetType().equals(RESOURCE)) {
                     layoutUser.setVisibility(View.VISIBLE);
@@ -233,9 +235,11 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 tvEmpName.setText(INVALID_NUMBER);
                 tvEmpName.setTextColor(Color.RED);
                 etNik.getText().clear();
+                Toasty.error(RequestActivity.this, "Not Available!", Toast.LENGTH_SHORT, true).show();
             } else {
                 tvEmpName.append(employeeResult.getEmplName());
                 tvEmpName.setTextColor(Color.BLACK);
+                Toasty.success(RequestActivity.this, "Available!", Toast.LENGTH_SHORT, true).show();
             }
             dismissLoading();
         });
@@ -313,7 +317,6 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .show();
-        hideSoftKeyboard(this);
     }
 
     private void removeItem(long id) {
@@ -369,20 +372,31 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 if (TextUtils.isEmpty(soId)) {
                     isEmptyFields = true;
                     etSalesOrder.setError("Required");
+                    etSalesOrder.requestFocus();
+                } else if (company.equals(STRIP)) {
+                    isEmptyFields = true;
+                    etSalesOrder.requestFocus();
+                    showTipsDialog();
                 } else if (company.equals(INVALID_NUMBER)) {
                     isEmptyFields = true;
-                    etSalesOrder.setFocusable(true);
+                    etSalesOrder.requestFocus();
                 }
 
-                boolean isEmptyFieldUser;
-                if (!hideFieldUser && TextUtils.isEmpty(nik)) {
-                    isEmptyFieldUser = true;
-                    etNik.setError("Required");
-                } else if (employee.equals(INVALID_NUMBER)) {
-                    isEmptyFieldUser = true;
-                    etNik.setFocusable(true);
+                boolean isEmptyFieldUser = false;
+                if (!hideFieldUser) {
+                    if (TextUtils.isEmpty(nik)) {
+                        isEmptyFieldUser = true;
+                        etNik.setError("Required");
+                        etNik.requestFocus();
+                    } else if (employee.equals(STRIP)) {
+                        isEmptyFieldUser = true;
+                        etNik.requestFocus();
+                        showTipsDialog();
+                    } else if (employee.equals(INVALID_NUMBER)) {
+                        isEmptyFieldUser = true;
+                        etNik.requestFocus();
+                    }
                 } else {
-                    isEmptyFieldUser = false;
                     etNik.setError(null);
                 }
 
@@ -390,7 +404,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                     if (getDataItem().length == 0 && getDataQty().length == 0) {
                         Toasty.error(this, "No Asset can be request", Toast.LENGTH_SHORT, true).show();
                     } else if (TextUtils.isEmpty(reason)) {
-                        etReason.setFocusable(true);
+                        etReason.requestFocus();
                         Toasty.error(this, "Required!, result can't empty", Toast.LENGTH_SHORT, true).show();
                     } else if (isNetworkAvailable()) {
                         saveState();
@@ -400,6 +414,14 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
         }
+    }
+
+    private void showTipsDialog() {
+        android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(this);
+        dialog.setTitle("Information & Tips");
+        dialog.setMessage("Please, press enter on the keyboard after filling in the fields to display the review");
+        dialog.setPositiveButton("OKE", (dialog1, which) -> dialog1.dismiss());
+        dialog.show();
     }
 
     private String[] getDataItem() {

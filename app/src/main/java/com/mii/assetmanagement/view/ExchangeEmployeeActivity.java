@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -149,7 +150,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 tvNewName.setText(INVALID_NUMBER);
                 tvNewName.setTextColor(Color.RED);
                 etNewNik.getText().clear();
-                Toasty.error(ExchangeEmployeeActivity.this, "Not Available", Toast.LENGTH_SHORT, true).show();
+                Toasty.error(ExchangeEmployeeActivity.this, "Not Available!", Toast.LENGTH_SHORT, true).show();
             } else {
                 tvNewName.append(employeeResult.getEmplName());
                 tvNewName.setTextColor(Color.BLACK);
@@ -196,11 +197,7 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_info:
-                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                dialog.setTitle("Information");
-                dialog.setMessage("Press enter on keyboard after input Employee NIK for showing Employee Name");
-                dialog.setPositiveButton("OKE", (dialog1, which) -> dialog1.dismiss());
-                dialog.show();
+                showTipsDialog();
                 break;
             case R.id.btn_submit:
                 InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -208,24 +205,35 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                     imm.hideSoftInputFromWindow(etNewNik.getWindowToken(), 0);
                     imm.hideSoftInputFromWindow(etReason.getWindowToken(), 0);
                 }
-                String reason = etReason.getText().toString().trim();
+
+                String nik = etNewNik.getText().toString().trim();
                 String name = tvNewName.getText().toString().trim();
-                if (name.equals(STRIP) || name.equals(INVALID_NUMBER)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("User Name Invalid!")
-                            .setMessage("New user name employee invalid, please insert new user nik!")
-                            .setPositiveButton("OKE", (dialog2, which) -> {
-                                dialog2.dismiss();
-                                etNewNik.requestFocus();
-                            })
-                            .show();
-                } else if (reason.isEmpty()) {
+                String reason = etReason.getText().toString().trim();
+
+                boolean isEmptyFields = false;
+                if (TextUtils.isEmpty(nik)) {
+                    isEmptyFields = true;
+                    etNewNik.setError("Required");
+                    etNewNik.requestFocus();
+                } else if (name.equals(STRIP)) {
+                    isEmptyFields = true;
+                    etNewNik.requestFocus();
+                    showTipsDialog();
+                } else if (name.equals(INVALID_NUMBER)) {
+                    isEmptyFields = true;
+                    etNewNik.requestFocus();
+                } else if (TextUtils.isEmpty(reason)) {
+                    isEmptyFields = true;
                     etReason.requestFocus();
                     Toasty.error(this, "Required!, reason can't empty", Toast.LENGTH_SHORT, true).show();
-                } else if (isNetworkAvailable()) {
-                    saveState();
-                } else {
-                    showSnackBar();
+                }
+
+                if (!isEmptyFields){
+                    if (isNetworkAvailable()) {
+                        saveState();
+                    } else {
+                        showSnackBar();
+                    }
                 }
                 break;
             case R.id.btn_close:
@@ -271,6 +279,14 @@ public class ExchangeEmployeeActivity extends AppCompatActivity implements View.
                 });
             }
         });
+    }
+
+    private void showTipsDialog() {
+        android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(this);
+        dialog.setTitle("Information & Tips");
+        dialog.setMessage("Please, press enter on the keyboard after filling in the fields to display the review");
+        dialog.setPositiveButton("OKE", (dialog1, which) -> dialog1.dismiss());
+        dialog.show();
     }
 
     private boolean isNetworkAvailable() {
